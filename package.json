@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint-staged": "lint-staged",
     "prettier": "prettier --write --ignore-unknown .",
-    "prettier:check": "prettier --check --ignore-unknown .",
+    "prettier:check": "prettier --check --ignore-unknown ."
   },
   "dependencies": {
     "next": "15.0.3",
