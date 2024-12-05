@@ -5,8 +5,8 @@ import pluginReact from "eslint-plugin-react";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  {files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"]},
-  {languageOptions: { globals: globals.browser }},
+  { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
+  { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
@@ -14,17 +14,20 @@ export default [
     rules: {
       "no-console": "warn",
       "no-debugger": "error",
-      "eqeqeq": ["error", "always"],
-      "curly": ["error", "all"],
+      eqeqeq: ["error", "always"],
+      curly: ["error", "all"],
       "no-eval": "error",
       "no-undef": "error",
-      "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
-      "indent": ["error", 2],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
+      "no-unused-vars": [
+        "warn",
+        { vars: "all", args: "after-used", ignoreRestSiblings: false },
+      ],
+      indent: ["error", 2],
+      quotes: ["error", "single"],
+      semi: ["error", "always"],
       "no-var": "error",
       "prefer-const": "error",
-      "arrow-spacing": ["error", { "before": true, "after": true }]
-    }
-  }
+      "arrow-spacing": ["error", { before: true, after: true }],
+    },
+  },
 ];
