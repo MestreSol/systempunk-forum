@@ -1,6 +1,51 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --principal: #8B0000;
+  --primary_hover: #6E0000;
+  --primary_light: #E64D4D;
+  
+  --secondary: #DAA520;
+  --secondary_hover: #b88b1b;
+  --secondary_light: #ffd033;
+
+  --background_light: #fafafa;
+  --background_dark: #10100E;
+  --background_secondary_light: #f2f2f2;
+  --background_secondary_dark: #262626;
+
+
+  --foreground_light: #10100E;
+  --foreground_dark: #f2f2f2;
+  --muted_light: #737373;
+  --muted_dark: #a7a7a7;
+
+  --success: #556B2F;
+  --success_hover: #3f5023;
+  --success_light: #7fc47f;
+
+  --warning: #B8860B;
+  --warning_hover: #926b09;
+  --warning_light: #ffbf66;
+
+  --destructive: #CC1A1A;
+  --destructive_hover: #a31414;
+  --destructive_light: #ff7777;
+
+  --border_light: #e5e5e5;
+  --border_dark: #404040;
+  --shadow_light: rgba(0, 0, 0, 0.1);
+  --shadow_dark: rgba(0, 0, 0, 0.5);
+
+  /* text colors */
+  --text_primary: #10100E;
+  --text_secondary: #737373;
+  --text_tertiary: #a7a7a7;
+  --text_light: #f2f2f2;
+  --text_dark: #10100E;
+  --text_muted: #737373;
+  --text_warning: #B8860B;
+  --text_success: #556B2F;
+  --text_destructive: #CC1A1A;
+  --text_title_color: #8B0000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,3 +85,4 @@ a {
     color-scheme: dark;
   }
 }
+

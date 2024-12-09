@@ -4,8 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: var(--foreground);
-    border-bottom: 1px solid #e9ecef;
+    background-color: var(--background_dark);
 }
 
 .BrandArea{
@@ -22,5 +21,53 @@
 .BrandArea h1{
     font-size: 1.5rem;
     font-weight: 700;
-    color: #343a40;
+    color: var(--text_title_color);
+}
+
+.SearchArea{
+    display: flex;
+    align-items: center;
+}
+
+.SearchArea input{
+    padding: 0.5rem;
+    border: 1px solid var(--border_light);
+    border-radius: 5px;
+    margin-right: 1rem;
+}
+
+.SearchArea button{
+    padding: 0.5rem 1rem;
+    background-color: var(--background_light);
+    color: var(--text_light);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.LinkList{
+    display: flex;
+    align-items: center;
+}
+
+.LinkList ul{
+    display: flex;
+    list-style: none;
+    padding-left: 10%;
+}  
+
+.LinkList ul li{
+    margin-right: 1rem;
+}
+
+.LinkList ul li a{
+    color: var(--text_light);
+    font-weight: 700;
+}
+
+.ListItem{
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+    font-size: large;
 }
