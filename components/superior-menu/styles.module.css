@@ -1,0 +1,26 @@
+
+.SuperiorMenu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--foreground);
+    border-bottom: 1px solid #e9ecef;
+}
+
+.BrandArea{
+    display: flex;
+    align-items: center;
+}
+
+.BrandArea img{
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+}
+
+.BrandArea h1{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #343a40;
+}
