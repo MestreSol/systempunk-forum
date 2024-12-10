@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import GlobalMenu from "@/ui/GlobalMenu";
 
 export const metadata: Metadata = {
   title: {
@@ -17,12 +17,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
+    <html lang="en" className="[color-scheme:dark]">
       <body>
+        <GlobalMenu />
         {children}
       </body>
     </html>
