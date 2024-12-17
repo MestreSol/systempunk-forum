@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "lint:fix",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: lint:fix",
+			"presentation": {
+				"reveal": "silent"
+			}
+		}
+	]
+}
