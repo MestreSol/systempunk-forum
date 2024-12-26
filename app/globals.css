@@ -1,42 +1,20 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+main {
+    position: relative;
+    width: 100vw;
+    height: 70vh;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Media query para telas menores */
+@media (max-width: 768px) {
+    main {
+        height: 50vh; /* Ajuste a altura para telas menores */
+    }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Media query para telas muito pequenas */
+@media (max-width: 480px) {
+    main {
+        height: 40vh; /* Ajuste a altura para telas muito pequenas */
+    }
 }

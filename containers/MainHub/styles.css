@@ -1,0 +1,125 @@
+.main-hub {
+    position: relative;
+    margin-top: 3vh;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.update-area {
+    width: 65vw;
+    text-align: justify;
+}
+
+.sidebar {
+    width: 25vw;
+}
+
+.update-area h2{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid white;
+}
+
+.update-area h1{
+    font-size: 2rem;
+    margin-bottom: 0.1rem;
+}
+
+.update-area p{
+    font-size: 1rem;
+
+}
+.update-time{
+    font-size: 0.3rem;
+    color: grey;
+}
+
+hr{
+    border: 1px solid white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.about{
+    font-size: 1rem;
+    margin-top: 1rem;
+    background-color: black;
+    padding: 1rem;
+    border-radius: 10px;
+}
+.about h2{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid white;
+}
+
+.trends{
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.trends h2{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid white;
+}
+
+.tends-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.trend{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.trend img{
+    width: 100px;
+    height: 100px;
+}
+
+.trend h3{
+    font-size: 1.2rem;
+}
+
+.trend p{
+    font-size: 1rem;
+    color:gray;
+}
+
+/* Responsiveness for tablets */
+@media (max-width: 768px) {
+  .main-hub {
+    flex-direction: column;
+    align-items: center;
+  }
+  .update-area {
+    width: 90vw;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Responsiveness for mobile phones */
+@media (max-width: 480px) {
+  .main-hub {
+    flex-direction: column;
+    align-items: center;
+  }
+  .update-area {
+    width: 100vw;
+  }
+  .sidebar {
+    display: none;
+  }
+}
