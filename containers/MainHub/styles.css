@@ -6,7 +6,7 @@
     color: white;
     display: flex;
     justify-content: space-between;
-    gap:20px
+    gap: 20px;
 }
 
 .update-area {
@@ -94,4 +94,32 @@ hr{
 .trend p{
     font-size: 1rem;
     color:gray;
+}
+
+/* Responsiveness for tablets */
+@media (max-width: 768px) {
+  .main-hub {
+    flex-direction: column;
+    align-items: center;
+  }
+  .update-area {
+    width: 90vw;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Responsiveness for mobile phones */
+@media (max-width: 480px) {
+  .main-hub {
+    flex-direction: column;
+    align-items: center;
+  }
+  .update-area {
+    width: 100vw;
+  }
+  .sidebar {
+    display: none;
+  }
 }

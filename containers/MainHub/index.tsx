@@ -112,8 +112,8 @@ const MainHub = () => {
             <li className="trend">
               <img src="/vercel.svg"></img>
               <div>
-                <h3>Exemple Post</h3>
-                <p>January 1, 2024</p>
+              <h3>Exemple Post</h3>
+              <p>January 1, 2024</p>
               </div>
             </li>
           </ul>
