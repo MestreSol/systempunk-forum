@@ -9,7 +9,6 @@
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write ."
-
   },
   "dependencies": {
     "formik": "^2.4.6",
