@@ -1,14 +1,14 @@
-"use client";
+'use client'
 
-import React, { useState } from 'react';
-import './style.css';
+import React, { useState } from 'react'
+import './style.css'
 
 export default function SuperiorMenu() {
-  const [menuActive, setMenuActive] = useState(false);
+  const [menuActive, setMenuActive] = useState(false)
 
   const toggleMenu = () => {
-    setMenuActive(!menuActive);
-  };
+    setMenuActive(!menuActive)
+  }
 
   return (
     <nav className="superior-menu">
@@ -45,5 +45,5 @@ export default function SuperiorMenu() {
         <a href="#">Login</a>
       </div>
     </nav>
-  );
+  )
 }

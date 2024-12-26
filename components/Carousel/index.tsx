@@ -27,7 +27,7 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">"Lossless Youths"</h2>
+            <h2 className="title">Lossless Youths</h2>
             <p className="description">
               {' '}
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
@@ -44,7 +44,7 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">"Estrange Bond"</h2>
+            <h2 className="title">Estrange Bond</h2>
             <p className="description">
               {' '}
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
@@ -61,7 +61,7 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">"The Gate Keeper"</h2>
+            <h2 className="title">The Gate Keeper</h2>
             <p className="description">
               {' '}
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
@@ -78,7 +78,7 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">"Last Trace Of Us"</h2>
+            <h2 className="title">Last Trace Of Us</h2>
             <p className="description">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
               fuga voluptatum, iure corporis inventore praesentium nisi. Id
@@ -94,7 +94,7 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">"Urban Decay"</h2>
+            <h2 className="title">Urban Decay</h2>
             <p className="description">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
               fuga voluptatum, iure corporis inventore praesentium nisi. Id
@@ -110,7 +110,7 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">"The Migration"</h2>
+            <h2 className="title">The Migration</h2>
             <p className="description">
               {' '}
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
@@ -127,9 +127,13 @@ export default function Carousel() {
       </nav>
       <script
         type="module"
+        async
         src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
       ></script>
-      <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+      <script
+        async
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+      ></script>
     </main>
   )
 }

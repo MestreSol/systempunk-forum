@@ -2,11 +2,13 @@ import type { Metadata } from 'next'
 import './globals.css'
 import SuperiorMenu from '@/components/SuperiorMenu'
 
-export const meta: Metadata = {
+export const metadata: Metadata = {
   title: 'Root Layout',
   description: 'Root layout for the app',
   keywords: ['root', 'layout'],
-  icons: ['/favicon.ico']
+  icons: {
+    icon: '/favicon.ico'
+  }
 }
 
 export default function RootLayout({
@@ -17,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SuperiorMenu></SuperiorMenu>
+        <SuperiorMenu />
         {children}
       </body>
     </html>

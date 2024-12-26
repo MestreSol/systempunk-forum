@@ -5,7 +5,7 @@ const MainHub = () => {
       <div className="update-area">
         <h2>Update Area</h2>
         <h1>Version 1.0</h1>
-        <p className='update-time'>January 1, 2024 by USER</p>
+        <p className="update-time">January 1, 2024 by USER</p>
         <div className="update-content">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut
@@ -112,8 +112,8 @@ const MainHub = () => {
             <li className="trend">
               <img src="/vercel.svg"></img>
               <div>
-              <h3>Exemple Post</h3>
-              <p>January 1, 2024</p>
+                <h3>Exemple Post</h3>
+                <p>January 1, 2024</p>
               </div>
             </li>
           </ul>
