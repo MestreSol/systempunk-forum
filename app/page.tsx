@@ -1,9 +1,10 @@
-"use client"
+'use client'
 import styles from './page.module.css'
 import { GlobalStyle } from '@/global/GlobalStyle'
 import Carousel from '@/components/Carousel'
 import Card from '@/components/Card'
-import "./globals.css"
+import './globals.css'
+import MainHub from '@/containers/MainHub'
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <Card />
         <Card />
       </div>
+      <MainHub></MainHub>
     </div>
   )
 }

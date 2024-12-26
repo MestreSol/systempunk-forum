@@ -1,6 +1,6 @@
 main {
-    position: absolute;
-    width: 100vw;
-    height: 60vh;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-  }
+  position: relative;
+  width: 100vw;
+  height: 70vh;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}

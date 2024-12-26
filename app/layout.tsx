@@ -6,7 +6,7 @@ export const meta: Metadata = {
   title: 'Root Layout',
   description: 'Root layout for the app',
   keywords: ['root', 'layout'],
-  icons: ['/favicon.ico'],
+  icons: ['/favicon.ico']
 }
 
 export default function RootLayout({

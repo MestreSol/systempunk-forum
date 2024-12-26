@@ -6,11 +6,11 @@
 }
 
 .cards {
-  position: absolute;
-  display:flex;
+  position: relative;
+  display: flex;
   flex-direction: row;
-  width:100%;
+  width: 100%;
   justify-content: space-around;
-  margin-top:65vh;
   margin-left: 1vw;
+  margin-top: 5vh;
 }

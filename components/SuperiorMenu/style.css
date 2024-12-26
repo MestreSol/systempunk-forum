@@ -1,68 +1,68 @@
-.superior-menu{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #420000;
-    border-bottom: 1px solid #e9ecef;
+.superior-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #420000;
+  border-bottom: 1px solid #e9ecef;
 }
 
-.brand-area{
-    display: flex;
-    align-items: center;
+.brand-area {
+  display: flex;
+  align-items: center;
 }
 
-.brand-area img{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+.brand-area img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.brand-area h1{
-    color: #fff;
-    font-size: 1.5rem;
+.brand-area h1 {
+  color: #fff;
+  font-size: 1.5rem;
 }
 
-.menu-area ul{
-    display: flex;
-    list-style: none;
+.menu-area ul {
+  display: flex;
+  list-style: none;
 }
 
-.menu-area ul li{
-    margin-right: 20px;
+.menu-area ul li {
+  margin-right: 20px;
 }
 
-.menu-area ul li a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
+.menu-area ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
 }
 
-.menu-area ul li a:hover{
-    color: #e9ecef;
+.menu-area ul li a:hover {
+  color: #e9ecef;
 }
 
-.user-area{
-    display: flex;
-    align-items: center;
+.user-area {
+  display: flex;
+  align-items: center;
 }
 
-.user-area img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
+.user-area img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.user-area h3{
-    color: #fff;
-    font-size: 1.2rem;
+.user-area h3 {
+  color: #fff;
+  font-size: 1.2rem;
 }
 
-.user-area a{
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin-right: 20px;
+.user-area a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-right: 20px;
 }

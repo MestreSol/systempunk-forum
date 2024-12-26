@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import Theme from "./Theme";
+import { createGlobalStyle } from 'styled-components'
+import Theme from './Theme'
 
 export const GlobalStyle = createGlobalStyle`
     *{
@@ -16,4 +16,4 @@ export const GlobalStyle = createGlobalStyle`
         font-family: ${Theme.fontFamily.primary};
         background-color: #1e1e1e;
     }
-`;
+`
