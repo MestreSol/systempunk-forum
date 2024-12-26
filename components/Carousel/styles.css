@@ -1,17 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  main {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-  }
-
-  .item {
+.item {
     width: 200px;
     height: 300px;
     list-style-type: none;
@@ -148,3 +135,4 @@
       &:nth-child(6) { left: calc(50% + 420px); opacity: 0; }
     }
   }
+
