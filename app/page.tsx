@@ -5,6 +5,7 @@ import Carousel from '@/components/Carousel'
 import Card from '@/components/Card'
 import './globals.css'
 import MainHub from '@/containers/MainHub'
+import Footer from '@/containers/Footer'
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <Card />
       </div>
       <MainHub></MainHub>
+      <Footer></Footer>
     </div>
   )
 }

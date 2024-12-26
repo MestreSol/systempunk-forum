@@ -115,6 +115,8 @@ hr{
   .main-hub {
     flex-direction: column;
     align-items: center;
+    margin-left:10px;
+    margin-right: 10px;
   }
   .update-area {
     width: 100vw;

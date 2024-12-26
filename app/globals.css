@@ -4,7 +4,9 @@ main {
     height: 70vh;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
-
+*{
+    font-family: "Markazi Text", serif;
+}
 /* Media query para telas menores */
 @media (max-width: 768px) {
     main {
