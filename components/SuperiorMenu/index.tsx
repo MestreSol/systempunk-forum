@@ -19,6 +19,28 @@ export default function SuperiorMenu() {
       <div className="hamburger" onClick={toggleMenu}>
         &#9776;
       </div>
+      <div className='menu-area'>
+        <ul>
+          <li className="menu-item">
+            <a href="#">Home</a>
+          </li>
+          <li className="menu-item">
+            <a href="#">Universe</a>
+          </li>
+          <li className="menu-item">
+            <a href="#">Timeline</a>
+          </li>
+          <li className="menu-item">
+            <a href="#">Projects</a>
+          </li>
+          <li className="menu-item">
+            <a href="#">Contribute</a>
+          </li>
+          <li className="menu-item">
+            <a href="#">About</a>
+          </li>
+        </ul>
+      </div>
       <div className={`side-menu ${menuActive ? 'active' : ''}`}>
         <ul>
           <li className="menu-item">

@@ -3,9 +3,22 @@ import './globals.css'
 import SuperiorMenu from '@/components/SuperiorMenu'
 
 export const metadata: Metadata = {
-  title: 'Root Layout',
-  description: 'Root layout for the app',
-  keywords: ['root', 'layout'],
+  title: 'Systempunk',
+  description: 'A collaborative worldbuilding project',
+  keywords: [
+    'worldbuilding',
+    'collaborative',
+    'fiction',
+    'scifi',
+    'fantasy',
+    'universe',
+    'timeline',
+    'projects',
+    'contribute',
+    'unreal',
+    'unity',
+    'games'
+  ],
   icons: {
     icon: '/favicon.ico'
   }

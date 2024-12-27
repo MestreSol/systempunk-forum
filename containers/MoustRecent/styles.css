@@ -1,0 +1,24 @@
+.card-area
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.most-recent
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    color:#fff;
+}
+
+.most-recent h2
+{
+    font-size: 30px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #fff;
+}
