@@ -1,17 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Salsa&display=swap");
-
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Salsa&display=swap');
 
 .swiper {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -46,7 +37,7 @@ html, body {
 }
 
 .content h1 {
-  font-family: "Salsa", cursive;
+  font-family: 'Salsa', cursive;
   font-size: clamp(2rem, 3vw, 6rem);
   margin-bottom: 20px;
   opacity: 0;
@@ -87,31 +78,31 @@ html, body {
 
 /* background */
 
-.background[data-item="one"] {
+.background[data-item='one'] {
   background: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/dd28eb02-d6b1-401e-bc10-aead024e9ebf);
   background-size: cover;
   background-position: 50% 40%;
 }
 
-.background[data-item="two"] {
+.background[data-item='two'] {
   background: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/fc70e01c-17f9-4e74-a967-f039285524c5);
   background-size: cover;
   background-position: 50% 50%;
 }
 
-.background[data-item="three"] {
+.background[data-item='three'] {
   background: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/4e3edcf1-1b68-408f-87e2-ee9fd477bf87);
   background-size: cover;
   background-position: 50% 40%;
 }
 
-.background[data-item="four"] {
+.background[data-item='four'] {
   background: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/b772933f-6340-4c95-8d06-d809c4c9b739);
   background-size: cover;
   background-position: 50% 60%;
 }
 
-.background[data-item="five"] {
+.background[data-item='five'] {
   background: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/9f0fab6b-c28d-47e9-80f0-868e00562c3f);
   background-size: cover;
   background-position: 50% 40%;
@@ -127,6 +118,22 @@ html, body {
   overflow: hidden;
   opacity: 0;
   z-index: 1;
+  background-position: center;
+  background-size: cover;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0)
+  );
+  filter: blur(10px); /* Ajuste o valor do desfoque conforme necessário */
+  z-index: 2;
 }
 
 .animation {
@@ -238,135 +245,4 @@ html, body {
 
 .logo img {
   width: 120px;
-}
-
-@media (max-width: 890px) {
-  .logo {
-  right: -10px;
-  bottom: -20px;
-}
-
- .logo img {
-  width: 80px;
-  }
-}
-
-/* media queries */
-
-@media (max-width: 1200px) {
-  .content {
-    top: 18%;
-  }
-
-  .content[data-content="two"],
-  .content[data-content="three"] {
-    top: 5%;
-    width: 50%;
-  }
-}
-
-@media (max-width: 900px) {
-  .content,
-  .content[data-content="three"] {
-    top: 55%;
-    left: 2%;
-    width: 60%;
-  }
-
-  .content[data-content="two"] {
-    top: 10%;
-  }
-
-  .content h1 {
-    margin-bottom: 14px;
-  }
-
-  .content p {
-    font-size: 1rem;
-    line-height: 1.4;
-  }
-
-  .feature i {
-    font-size: 1.3rem;
-  }
-
-  .feature p {
-    font-size: 1rem;
-  }
-
-  .btn {
-    padding: 8px 16px;
-  }
-}
-
-@media (max-width: 790px) {
-  .footer {
-    column-gap: 10px;
-  }
-
-  .feature i {
-    font-size: 1.1rem;
-  }
-
-  .feature p {
-    font-size: 0.9rem;
-  }
-
-  .feature small {
-    font-size: 0.8rem;
-  }
-
-  .btn {
-    font-size: 0.8rem;
-    padding: 8px 12px;
-  }
-}
-
-@media (max-width: 660px) {
-  .content,
-  .content[data-content="two"],
-  .content[data-content="three"] {
-    top: unset;
-    left: 2%;
-    bottom: 3%;
-    width: 80%;
-  }
-
-  .content p {
-    font-size: 0.9rem;
-    line-height: 1.2;
-  }
-
-  .background[data-item="two"] {
-    background-position: 40% 50%;
-  }
-
-  .swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
-  }
-
-  .swiper-pagination-bullet-active {
-    height: 24px;
-  }
-
-  .footer {
-    column-gap: 0;
-    left: unset;
-    bottom: unset;
-    top: 20px;
-    right: -30px;
-    padding: 0;
-    border-radius: 0;
-    border: 0;
-    background-color: transparent;
-    box-shadow: unset;
-    -webkit-backdrop-filter: blur(0);
-    backdrop-filter: blur(0);
-  }
-
-  .feature,
-  hr {
-    display: none;
-  }
 }
