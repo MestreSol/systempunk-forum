@@ -13,8 +13,8 @@ export default {
     large: '20px'
   },
   fontFamily: {
-    primary: 'Arial',
-    secondary: 'Arial'
+    InclusiveSans: 'Inclusive Sans, sans-serif',
+    BarlowCondensed: 'Barlow Condensed, serif'
   },
   spacing: {
     small: '4px',

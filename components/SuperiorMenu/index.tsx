@@ -22,22 +22,22 @@ export default function SuperiorMenu() {
       <div className="menu-area">
         <ul>
           <li className="menu-item">
-            <a href="#">Home</a>
+            <a href="/">Home</a>
           </li>
           <li className="menu-item">
-            <a href="#">Universe</a>
+            <a href="/Universe">Universe</a>
           </li>
           <li className="menu-item">
-            <a href="#">Timeline</a>
+            <a href="/timeline">Timeline</a>
           </li>
           <li className="menu-item">
-            <a href="#">Projects</a>
+            <a href="/projects">Projects</a>
           </li>
           <li className="menu-item">
-            <a href="#">Contribute</a>
+            <a href="/contribute">Contribute</a>
           </li>
           <li className="menu-item">
-            <a href="#">About</a>
+            <a href="/about">About</a>
           </li>
         </ul>
       </div>
