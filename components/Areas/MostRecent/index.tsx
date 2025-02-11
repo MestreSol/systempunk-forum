@@ -1,5 +1,5 @@
 import Card from '@/components/Areas/Card'
-import style from './style.module.scss'
+import style from './style.module.css'
 
 const MostRecent = () => {
   return (

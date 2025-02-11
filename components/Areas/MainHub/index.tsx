@@ -1,103 +1,96 @@
-import './styles.css'
+import style from './style.module.css'
 const MainHub = () => {
   return (
-    <div className="main-hub">
-      <div className="update-area">
-        <h2>Update Area</h2>
-        <h1>Version 1.0</h1>
-        <p className="update-time">January 1, 2024 by USER</p>
-        <div className="update-content">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut
-            mattis ligula. Maecenas congue, ipsum nec congue scelerisque, risus
-            arcu placerat ligula, at fringilla massa justo ut erat. Mauris sed
-            tellus est. Aenean fringilla, lectus vitae vehicula sollicitudin,
-            mauris ex tempus dui, in consectetur nisl quam ac felis. Donec eu
-            laoreet velit, sed fermentum lectus. Pellentesque habitant morbi
-            tristique senectus et netus et malesuada fames ac turpis egestas.
-            Mauris pellentesque nibh id erat pulvinar vestibulum. Duis id nisl
-            mi. Praesent eu justo dolor. Fusce congue lectus et turpis varius
-            accumsan. Vestibulum porta libero sit amet magna tincidunt
-            vestibulum. Sed quis lobortis nulla. Phasellus in mattis tellus.
-            Vestibulum dolor mi, vehicula sed iaculis ac, blandit sit amet
-            nulla. Sed sollicitudin eget ex sit amet dapibus.
+    <div className={style.mainHub}>
+      <div className={style.content}>
+        <h2 className={style.contentTitle}>Update Area</h2>
+        <h1 className={style.contentSubTitle}>
+          📢 Systempunk Forum - Atualização Inicial
+        </h1>
+        <p className={style.updateTime}>February 11, 2025 by MestreSol</p>
+        <div className={style.updateContent}>
+          <p className={style.sectionTitle}>
+            Bem-vindo ao Nexus do Systempunk!
           </p>
-          <p>
-            Phasellus sem risus, fermentum nec metus at, sagittis maximus nulla.
-            Curabitur mattis metus eu sapien tincidunt dictum. Nullam tempor
-            mattis dui, vel pellentesque tortor. Ut tellus velit, placerat et
-            magna nec, pellentesque maximus lacus. Vestibulum ac leo sed sem
-            ornare laoreet eget vel eros. Pellentesque habitant morbi tristique
-            senectus et netus et malesuada fames ac turpis egestas. Curabitur
-            dui mi, commodo et consequat a, congue at mauris. Orci varius
-            natoque penatibus et magnis dis parturient montes, nascetur
-            ridiculus mus. In molestie ipsum ante, id porttitor lacus lobortis
-            eu. Mauris finibus ligula ipsum, sed lacinia mi posuere in. Sed
-            placerat dapibus odio, feugiat mollis orci pulvinar mollis. Integer
-            malesuada condimentum dignissim. Duis dictum risus felis, at
-            ullamcorper ipsum pellentesque eget. Nullam sit amet dolor
-            porttitor, aliquet ante eget, sagittis felis. Phasellus aliquam dui
-            quam, quis dapibus lacus laoreet id.
+          <p className={style.sectionContent}>
+            O tempo se curva, as eras se entrelaçam e a revolução nunca para.
+            Systempunk Forum nasce como o primeiro grande espaço para explorar,
+            discutir e expandir os mistérios e possibilidades deste universo em
+            constante evolução.
           </p>
-          <p>
-            Nullam pretium fringilla nunc sit amet mattis. Aliquam id libero
-            quam. Sed mollis nisl sed diam dictum, vitae accumsan nulla
-            tincidunt. Sed felis elit, pellentesque id mattis vitae, blandit sit
-            amet massa. Vestibulum accumsan neque mi, sit amet dapibus nisl
-            condimentum a. Proin ut maximus magna. Sed hendrerit neque quis
-            augue ornare tincidunt. Proin at augue eu mi lacinia sollicitudin
-            non a mi. In ac ornare risus. Proin ac eleifend sem. Nulla quis
-            finibus lacus. Suspendisse iaculis semper consectetur. Curabitur
-            volutpat scelerisque arcu, at posuere nibh imperdiet ac.
+          <p className={style.sectionContent}>
+            Seja você um viajante curioso, um criador de mundos ou um arquivista
+            do caos, este é o lugar onde as peças do passado e do futuro se
+            conectam. Aqui, cada ideia é uma fagulha, cada debate, uma explosão
+            de possibilidades. Estamos abrindo as portas para um projeto que
+            crescerá com vocês, os pioneiros deste novo mundo.
           </p>
-          <hr></hr>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut
-            mattis ligula. Maecenas congue, ipsum nec congue scelerisque, risus
-            arcu placerat ligula, at fringilla massa justo ut erat. Mauris sed
-            tellus est. Aenean fringilla, lectus vitae vehicula sollicitudin,
-            mauris ex tempus dui, in consectetur nisl quam ac felis. Donec eu
-            laoreet velit, sed fermentum lectus. Pellentesque habitant morbi
-            tristique senectus et netus et malesuada fames ac turpis egestas.
-            Mauris pellentesque nibh id erat pulvinar vestibulum. Duis id nisl
-            mi. Praesent eu justo dolor. Fusce congue lectus et turpis varius
-            accumsan. Vestibulum porta libero sit amet magna tincidunt
-            vestibulum. Sed quis lobortis nulla. Phasellus in mattis tellus.
-            Vestibulum dolor mi, vehicula sed iaculis ac, blandit sit amet
-            nulla. Sed sollicitudin eget ex sit amet dapibus.
+          <hr className={style.line}></hr>
+          <p className={style.sectionTitle}>
+            🔥 O que você encontrará por aqui?
           </p>
-          <p>
-            Phasellus sem risus, fermentum nec metus at, sagittis maximus nulla.
-            Curabitur mattis metus eu sapien tincidunt dictum. Nullam tempor
-            mattis dui, vel pellentesque tortor. Ut tellus velit, placerat et
-            magna nec, pellentesque maximus lacus. Vestibulum ac leo sed sem
-            ornare laoreet eget vel eros. Pellentesque habitant morbi tristique
-            senectus et netus et malesuada fames ac turpis egestas. Curabitur
-            dui mi, commodo et consequat a, congue at mauris. Orci varius
-            natoque penatibus et magnis dis parturient montes, nascetur
-            ridiculus mus. In molestie ipsum ante, id porttitor lacus lobortis
-            eu. Mauris finibus ligula ipsum, sed lacinia mi posuere in. Sed
-            placerat dapibus odio, feugiat mollis orci pulvinar mollis. Integer
-            malesuada condimentum dignissim. Duis dictum risus felis, at
-            ullamcorper ipsum pellentesque eget. Nullam sit amet dolor
-            porttitor, aliquet ante eget, sagittis felis. Phasellus aliquam dui
-            quam, quis dapibus lacus laoreet id.
+          <p className={style.sectionContent}>
+            <ul className={style.sectionList}>
+              <li className={style.sectionItem}>
+                <p className={style.sectionItemTitle}>
+                  🌍 Enciclopédia Viva do Systempunk
+                </p>
+                <p className={style.sectionItemContent}>
+                  Cada era, cada facção, cada tecnologia tem sua história – e
+                  agora, todas estão reunidas para serem exploradas, discutidas
+                  e aprofundadas.
+                </p>
+              </li>
+              <li className={style.sectionItem}>
+                <p className={style.sectionItemTitle}>
+                  🎲 Jogos, RPGs e Expansões
+                </p>
+                <p className={style.sectionItemContent}>
+                  Desde a criação de campanhas até adaptações de Systempunk para
+                  D&D, Pathfinder e outros sistemas, aqui é o espaço para quem
+                  quer transformar essa mitologia em uma experiência jogável.
+                </p>
+              </li>
+              <li className={style.sectionItem}>
+                <p className={style.sectionItemTitle}>
+                  🎮 Desenvolvimento de Jogos e Multimídia
+                </p>
+                <p className={style.sectionItemContent}>
+                  O universo de Systempunk já dá vida a projetos como Tower of
+                  Fallmora, NOVA, Void e Monocrom. Quer participar, compartilhar
+                  ideias ou simplesmente acompanhar as novidades? Esta é sua
+                  chance de fazer parte da construção desse legado.{' '}
+                </p>
+              </li>
+              <li className={style.sectionItem}>
+                <p className={style.sectionItemTitle}>
+                  🛠️ Fórum de Discussão e Teorias
+                </p>
+                <p className={style.sectionItemContent}>
+                  Detalhes ocultos, conexões entre eras, conspirações
+                  tecnológicas e visões do futuro – toda boa história nasce da
+                  curiosidade. Quais são suas teorias sobre o Systempunk?
+                </p>
+              </li>
+            </ul>
           </p>
-          <p>
-            Nullam pretium fringilla nunc sit amet mattis. Aliquam id libero
-            quam. Sed mollis nisl sed diam dictum, vitae accumsan nulla
-            tincidunt. Sed felis elit, pellentesque id mattis vitae, blandit sit
-            amet massa. Vestibulum accumsan neque mi, sit amet dapibus nisl
-            condimentum a. Proin ut maximus magna. Sed hendrerit neque quis
-            augue ornare tincidunt. Proin at augue eu mi lacinia sollicitudin
-            non a mi. In ac ornare risus. Proin ac eleifend sem. Nulla quis
-            finibus lacus. Suspendisse iaculis semper consectetur. Curabitur
-            volutpat scelerisque arcu, at posuere nibh imperdiet ac.
+          <hr className={style.line}></hr>
+          <p className={style.sectionTitle}>
+            🚀 Próximos Passos – O Futuro Está Sendo Escrito
+          </p>
+          <p className={style.sectionContent}>
+            Este é apenas o início. Estamos preparando novas funcionalidades,
+            espaços para colaboração e conteúdos exclusivos para expandir ainda
+            mais o alcance deste universo. Aqui, a evolução nunca cessa.
+          </p>
+          <p className={style.sectionContent}>
+            💬 Junte-se à conversa, compartilhe ideias e construa conosco o
+            futuro do Systempunk! A revolução começou. Você está pronto?
           </p>
         </div>
       </div>
-      <div className="sidebar">
-        <div className="about">
+      <div className={style.sidebar}>
+        <div className={style.about}>
           <h2>About</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut
@@ -106,10 +99,10 @@ const MainHub = () => {
             tellus est. Aenean fringilla, lectus vitae vehicula sollicitud
           </p>
         </div>
-        <div className="trends">
+        <div className={style.trends}>
           <h2>Trends</h2>
-          <ul className="trends-list">
-            <li className="trend">
+          <ul className={style.trendsList}>
+            <li className={style.trend}>
               <img src="/vercel.svg"></img>
               <div>
                 <h3>Exemple Post</h3>
