@@ -1,4 +1,4 @@
-main{
+main {
   position: relative;
 }
 .item {
@@ -48,14 +48,8 @@ main{
 }
 
 .content {
-    height: 30vh;
-  width: min(30vw, 4
-  996422839
-
-
-
-
-  00px);
+  height: 40vh;
+  width: min(30vw, 400px);
   position: absolute;
   top: 50%;
   left: 3rem;
@@ -85,9 +79,9 @@ main{
     color: white;
     border: 2px solid white;
     border-radius: 0.25rem;
-    padding: 0.60rem;
+    padding: 0.6rem;
     cursor: pointer;
-      text-decoration: none;
+    text-decoration: none;
   }
 }
 
@@ -109,7 +103,7 @@ main{
 
 .nav {
   position: absolute;
-    display: flex;
+  display: flex;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
