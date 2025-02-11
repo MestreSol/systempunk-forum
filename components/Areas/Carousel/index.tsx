@@ -30,14 +30,17 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">Lossless Youths</h2>
+            <h2 className="title">Culturas do Systempunk</h2>
             <p className="description">
               {' '}
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
-              fuga voluptatum, iure corporis inventore praesentium nisi. Id
-              laboriosam ipsam enim.{' '}
+              No universo de Systempunk, culturas evoluem e colidem, moldadas
+              pela tecnologia, pelas crenças e pelo caos de cada era. De
+              civilizações primitivas a impérios cibernéticos, cada sociedade
+              carrega sua própria identidade, suas lendas e sua luta pelo
+              futuro. Quer entender como esses mundos se entrelaçam e impactam o
+              destino do universo? Explore mais e descubra!{' '}
             </p>
-            <button>Read More</button>
+            <a href={'article?id=1'}>Read More</a>
           </div>
         </li>
         <li
@@ -50,11 +53,14 @@ export default function Carousel() {
             <h2 className="title">Estrange Bond</h2>
             <p className="description">
               {' '}
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
-              fuga voluptatum, iure corporis inventore praesentium nisi. Id
-              laboriosam ipsam enim.{' '}
+              E se a grandiosidade de Dungeons & Dragons encontrasse a
+              profundidade tecnológica e cultural do Systempunk? Neste artigo,
+              exploramos como misturar eras, artefatos e temáticas punk ao
+              universo de fantasia clássica, criando aventuras únicas e
+              imprevisíveis. Quer descobrir como trazer esse multiverso para sua
+              mesa? Veja nossos conteudos Homebrew{' '}
             </p>
-            <button>Read More</button>
+            <a href={'/universo/homebrew'}>Read More</a>
           </div>
         </li>
         <li
@@ -64,12 +70,15 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">The Gate Keeper</h2>
+            <h2 className="title">Explore o Universo Systempunk</h2>
             <p className="description">
               {' '}
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
-              fuga voluptatum, iure corporis inventore praesentium nisi. Id
-              laboriosam ipsam enim.{' '}
+              O Systempunk vai muito além de um conceito — é um universo vivo,
+              repleto de histórias, jogos e mundos interconectados. Do suspense
+              de As Sombras do Relógio à ação intensa de Monocrom, cada projeto
+              mergulha em uma era única, cheia de mistérios e revoluções
+              tecnológicas. Quer descobrir mais e se aprofundar nesse
+              multiverso? Explore nossos projetos e escolha seu próximo destino!{' '}
             </p>
             <button>Read More</button>
           </div>
@@ -81,13 +90,15 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">Last Trace Of Us</h2>
+            <h2 className="title">O Passado e o Futuro Colidem</h2>
             <p className="description">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
-              fuga voluptatum, iure corporis inventore praesentium nisi. Id
-              laboriosam ipsam enim.
+              No Systempunk, cada era conta uma história de ascensão e queda,
+              onde a tecnologia e a cultura se entrelaçam em um ciclo sem fim.
+              De reinos arcaicos a civilizações movidas por máquinas
+              conscientes, a linha entre magia e ciência se dissolve, criando
+              mundos repletos de mistério, exploração e revolução.
             </p>
-            <button>Read More</button>
+            <a>Read More</a>
           </div>
         </li>
         <li
@@ -97,11 +108,13 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">Urban Decay</h2>
+            <h2 className="title">Escolhas que Moldam Universos</h2>
             <p className="description">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
-              fuga voluptatum, iure corporis inventore praesentium nisi. Id
-              laboriosam ipsam enim.
+              Aqui, não existem apenas heróis ou vilões, mas sociedades inteiras
+              lutando para sobreviver e evoluir. Governos colapsam, corporações
+              dominam, conhecimentos ancestrais ressurgem – e cada decisão pode
+              alterar o curso da história. Você está pronto para mergulhar nos
+              múltiplos caminhos do Systempunk?
             </p>
             <button>Read More</button>
           </div>
@@ -113,12 +126,14 @@ export default function Carousel() {
           }}
         >
           <div className="content">
-            <h2 className="title">The Migration</h2>
+            <h2 className="title">Seu Portal para Novas Aventuras</h2>
             <p className="description">
               {' '}
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore
-              fuga voluptatum, iure corporis inventore praesentium nisi. Id
-              laboriosam ipsam enim.{' '}
+              Quer desvendar os segredos ocultos nas sombras do tempo? Construir
+              sua própria narrativa em meio ao caos das eras? O Systempunk Forum
+              é o ponto de encontro para aqueles que desafiam o destino e
+              exploram o desconhecido. Entre e expanda os limites do seu
+              universo!{' '}
             </p>
             <button>Read More</button>
           </div>
