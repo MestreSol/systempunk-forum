@@ -1,5 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect } from 'react'
 import './styles.css'
+
 export default function Carousel() {
   useEffect(() => {
     const slider = document.querySelector('.slider')
@@ -123,8 +126,11 @@ export default function Carousel() {
       </ul>
       <nav className="nav">
         <div className="btn prev" data-name="arrow-back-outline">
+          <FontAwesomeIcon icon={faArrowLeft} />
         </div>
-        <div className="btn next" data-name="arrow-forward-outline" />
+        <div className="btn next" data-name="arrow-forward-outline">
+          <FontAwesomeIcon icon={faArrowRight} />
+        </div>
       </nav>
       <script
         type="module"
