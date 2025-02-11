@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import SuperiorMenu from '@/components/SuperiorMenu'
+import SuperiorMenu from '@/components/Areas/SuperiorMenu'
 
 export const metadata: Metadata = {
   title: 'Systempunk',

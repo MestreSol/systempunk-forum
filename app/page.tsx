@@ -1,7 +1,7 @@
 'use client'
 import styles from './page.module.css'
 import { GlobalStyle } from '@/global/GlobalStyle'
-import Carousel from '@/components/Carousel'
+import Carousel from '@/components/Areas/Carousel'
 import './globals.css'
 import MainHub from '@/containers/MainHub'
 import Footer from '@/containers/Footer'
