@@ -6,6 +6,13 @@ import './globals.css'
 import MainHub from '@/components/Areas/MainHub'
 import Footer from '@/components/Areas/Footer'
 import MostRecent from '@/components/Areas/MostRecent'
+function LoadingScreen() {
+  return (
+    <div className={styles.loadingScreen}>
+      <h1>Loading...</h1>
+    </div>
+  )
+}
 
 export default function Home() {
   return (
