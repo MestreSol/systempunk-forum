@@ -1,4 +1,4 @@
-main {
+.container {
   position: relative;
 }
 .item {
@@ -133,7 +133,7 @@ main {
     & .description {
       font-size: 0.7rem;
     }
-    & button {
+    & a {
       font-size: 0.7rem;
     }
   }
@@ -165,7 +165,7 @@ main {
     & .description {
       font-size: 0.65rem;
     }
-    & button {
+    & a {
       font-size: 0.7rem;
     }
   }
