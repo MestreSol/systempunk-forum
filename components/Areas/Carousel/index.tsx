@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect } from 'react'
 import style from './style.module.css'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 type Props = {
   slides: {
@@ -32,22 +34,32 @@ export default function Carousel({ slides }: Props) {
   return (
     <main className={style.container}>
       <ul className={style.slider} id={'slider'}>
-        {slides.map((slide, index) => (
-          <li
-            key={index}
-            className={style.item}
-            style={{
-              backgroundImage: `url(${slide.image})`
-            }}
-            id={'item'}
-          >
-            <div className={style.content}>
-              <h2 className={style.title}>{slide.title}</h2>
-              <p className={style.description}> {slide.description} </p>
-              <a href={'article?id=1'}>Read More</a>
-            </div>
+        {slides ? (
+          slides.map((slide, index) => (
+            <li
+              key={index}
+              className={style.item}
+              style={{
+                backgroundImage: `url(${slide.image})`
+              }}
+              id={'item'}
+            >
+              <div className={style.content}>
+                <h2 className={style.title}>{slide.title}</h2>
+                <p className={style.description}>{slide.description}</p>
+                <a href={'article?id=1'}>Read More</a>
+              </div>
+            </li>
+          ))
+        ) : (
+          <li className={style.item} id={'item'}>
+            <SkeletonTheme baseColor="#202020" highlightColor="#444">
+              <p>
+                <Skeleton height={'50vh'} />
+              </p>
+            </SkeletonTheme>
           </li>
-        ))}
+        )}
       </ul>
       <nav className={style.nav}>
         <div className={style.btn} data-name="arrow-back-outline" id={'prev'}>
