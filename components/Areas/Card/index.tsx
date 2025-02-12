@@ -1,16 +1,15 @@
 import React from 'react'
-import './styles.css'
-import CardTags from '@/components/Atomic/CardTags'
-import CardTitle from '@/components/Atomic/CardTitle'
-import CardData from '@/components/Atomic/CardData'
-import CardDescription from '@/components/Atomic/CardDescription'
-import CardButton from '@/components/Atomic/CardButton'
-import CardImage from '@/components/Atomic/CardImage'
-
+import CardTags from '@/components/Atomic/Card/CardTags'
+import CardTitle from '@/components/Atomic/Card/CardTitle'
+import CardData from '@/components/Atomic/Card/CardData'
+import CardDescription from '@/components/Atomic/Card/CardDescription'
+import CardButton from '@/components/Atomic/Card/CardButton'
+import CardImage from '@/components/Atomic/Card/CardImage'
+import style from './styles.module.css'
 const Card = () => {
   return (
-    <div className="card">
-      <div className="card-left">
+    <div className={style.card}>
+      <div className={style.cardContent}>
         <CardTags />
         <CardTitle />
         <CardData />

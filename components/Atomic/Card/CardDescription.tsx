@@ -1,8 +1,8 @@
 import React from 'react'
-
+import style from './style.module.css'
 const CardDescription = () => {
   return (
-    <p className="card-description">
+    <p className={style.cardDescription}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
       scelerisque ante lorem, pretium faucibus dolor ornare nec. Donec elit
       sapien, ornare at ex aliquam, consequat semper magna. Nam sit amet
