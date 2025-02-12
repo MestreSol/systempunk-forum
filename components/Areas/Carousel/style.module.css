@@ -190,23 +190,23 @@
 }
 
 @media (max-width: 900px) {
-    .item {
-        width: 160px;
-        height: 270px;
-    }
-    .content {
-        width: 80%;
-        left: 10%;
-    }
+  .item {
+    width: 160px;
+    height: 270px;
+  }
+  .content {
+    width: 80%;
+    left: 10%;
+  }
 }
 
 @media (max-width: 650px) {
-    .item {
-        width: 130px;
-        height: 220px;
-    }
-    .content {
-        width: 90%;
-        left: 5%;
-    }
+  .item {
+    width: 130px;
+    height: 220px;
+  }
+  .content {
+    width: 90%;
+    left: 5%;
+  }
 }

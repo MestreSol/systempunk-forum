@@ -23,7 +23,8 @@ const eslintConfig = [
     rules: {
       'prettier/prettier': 'error',
       'react/react-in-jsx-scope': 'off'
-    }
+    },
+    ignores: ['.next', 'node_modules']
   }
 ]
 

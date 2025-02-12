@@ -1,25 +1,25 @@
 .card {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: 45vw;
-    justify-content: space-around;
-    border: 1px solid #7e7e7e;
-    border-radius: 10px;
-    margin: 10px;
-    float: left;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 45vw;
+  justify-content: space-around;
+  border: 1px solid #7e7e7e;
+  border-radius: 10px;
+  margin: 10px;
+  float: left;
 }
 
 @media (max-width: 768px) {
-    .card {
-        width: 90vw;
-        flex-direction: column;
-    }
+  .card {
+    width: 90vw;
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 480px) {
-    .card {
-        width: 100vw;
-        margin: 5px;
-    }
+  .card {
+    width: 100vw;
+    margin: 5px;
+  }
 }
