@@ -1,0 +1,154 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 45vw;
+  justify-content: space-around;
+  border: 1px solid #7e7e7e;
+  border-radius: 10px;
+}
+
+.card-left {
+  display: relative;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.card-right {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  justify-content: space-around;
+}
+
+.card-right img {
+  width: 20vw;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-left .card-tags {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  top: 0px;
+}
+
+.card-left .card-tags .tag {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5vh;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: blue;
+  background-color: orange;
+  font-size: 18px;
+}
+
+.card-title {
+  font-size: 35px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.card-data {
+  font-size: 20px;
+  margin-top: 0px;
+  margin-left: 10px;
+  margin-bottom: 0;
+  color: #838383;
+}
+
+.card-description {
+  text-align: justify;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+.card-button {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  color: #fff;
+  background-color: #7e7e7e;
+  border: 1px solid #7e7e7e;
+  border-radius: 10px;
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    width: 90vw;
+  }
+
+  .card-right {
+    width: 100%;
+    order: -1;
+  }
+
+  .card-title {
+    font-size: 1.2em;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-bottom: 0;
+    color: #fff;
+  }
+
+  .card-data {
+    font-size: 0.8rem;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-bottom: 0;
+    color: #838383;
+  }
+
+  .card-description {
+    font-size: 10px;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .card-button {
+    margin-bottom: 10px;
+  }
+
+  .card-left .card-tags {
+    margin-top: 10px;
+    top: 10px;
+  }
+
+  .card-right img {
+    width: 100%;
+    height: 30vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .card-right {
+    width: 100%;
+  }
+
+  .card-right img {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -1,0 +1,92 @@
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  padding-left: 50px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.footer-text {
+  width: 20vw;
+}
+.footer-text .brand-area {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.text-area {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.text-area p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  width: 20vw;
+}
+
+.footer-links h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.social-links a {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.social-links a img {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+.company-links {
+  width: 20vw;
+}
+
+.company-links h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.company-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.company-links ul li {
+  margin-bottom: 10px;
+}
+
+.company-links ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    display: none;
+  }
+}

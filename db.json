@@ -1,0 +1,322 @@
+{
+  "punks": [
+    {
+      "id": 1,
+      "name": "Apunk",
+      "data": "As três [[Supra-Singularidade]], criadas pelo [[Desconhecido]], vagaram pelo vazio, cada uma com um fragmento de seu poder. Unidas, deram origem à chama da existência, moldando-a e criando os 12 aspectos, artefatos que moldam a realidade. Espalhados pelo universo, esses artefatos convergiram na Terra, dando origem à [[Profecia do Fim]]. Na [[Grande Queda]], as [[Divindades]] realizaram um sacrifício final, criando os [[Abismos da sombra]] para aprisionar a [[Quimera]], encerrando a era com a batalha decisiva.",
+      "image": "/punks/Apunk.png"
+    },
+    {
+      "id": 2,
+      "name": "Stonepunk",
+      "data": "",
+      "image": "/punks/Stonepunk.png"
+    },
+    {
+      "id": 3,
+      "name": "Bronzepunk",
+      "data": "",
+      "image": "/punks/Bronzepunk.png"
+    },
+    {
+      "id": 4,
+      "name": "Rococopunk",
+      "data": "",
+      "image": "/punks/Rococopunk.png"
+    },
+    {
+      "id": 5,
+      "name": "Hopepunk",
+      "data": "",
+      "image": "/punks/Hopepunk.png"
+    },
+    {
+      "id": 6,
+      "name": "Silkpunk",
+      "data": "",
+      "image": "/punks/Silkpunk.png"
+    },
+    {
+      "id": 7,
+      "name": "Weird Rococopunk",
+      "data": "",
+      "image": "/punks/WeirdRococpunk.png"
+    },
+    {
+      "id": 8,
+      "name": "Dungeonpunk",
+      "data": "",
+      "image": "/punks/Dungeonpunk.png"
+    },
+    {
+      "id": 9,
+      "name": "Clockpunk",
+      "data": "",
+      "image": "/punks/Clockpunk.png"
+    },
+    {
+      "id": 10,
+      "name": "Steampunk",
+      "data": "",
+      "image": "/punks/Steampunk.png"
+    },
+    {
+      "id": 11,
+      "name": "Wear Steampunk",
+      "data": "",
+      "image": "/punks/WearSteampunk.png"
+    },
+    {
+      "id": 12,
+      "name": "Cattlepunk",
+      "data": "",
+      "image": "/punks/Cattlepunk.png"
+    },
+    {
+      "id": 13,
+      "name": "Weird Westpunk",
+      "data": "",
+      "image": "/punks/WeirdWestpunk.png"
+    },
+    {
+      "id": 14,
+      "name": "Dieselpunk",
+      "data": "",
+      "image": "/punks/Dieselpunk.png"
+    },
+    {
+      "id": 15,
+      "name": "Weird Dieselpunk",
+      "data": "",
+      "image": "/punks/WeirdDieselpunk.png"
+    },
+    {
+      "id": 16,
+      "name": "World War Dieselpunk",
+      "data": "",
+      "image": "/punks/WorldWarDieselpunk.png"
+    },
+    {
+      "id": 17,
+      "name": "Transistorpunk",
+      "data": "",
+      "image": "/punks/Transistorpunk.png"
+    },
+    {
+      "id": 18,
+      "name": "Teslapunk",
+      "data": "",
+      "image": "/punks/Teslapunk.png"
+    },
+    {
+      "id": 19,
+      "name": "Cyberpunk",
+      "data": "",
+      "image": "/punks/Cyberpunk.png"
+    },
+    {
+      "id": 20,
+      "name": "Virtual Reality",
+      "data": "",
+      "image": "/punks/VirtualReality.png"
+    },
+    {
+      "id": 21,
+      "name": "Cyberpunk Noir",
+      "data": "",
+      "image": "/punks/CyberpunkNoir.png"
+    },
+    {
+      "id": 22,
+      "name": "Cyberwar",
+      "data": "",
+      "image": "/punks/Cyberwar.png"
+    },
+    {
+      "id": 23,
+      "name": "Splatterpunk",
+      "data": "",
+      "image": "/punks/Splatterpunk.png"
+    },
+    {
+      "id": 24,
+      "name": "Organicpunk",
+      "data": "",
+      "image": "/punks/Rococopunk.png"
+    },
+    {
+      "id": 25,
+      "name": "Gothicpunk",
+      "data": "",
+      "image": "/punks/Gothicpunk.png"
+    },
+    {
+      "id": 26,
+      "name": "Weird Gothicpunk",
+      "data": "",
+      "image": "/punks/WeirdGothicpunk.png"
+    },
+    {
+      "id": 27,
+      "name": "Scavengedpunk",
+      "data": "",
+      "image": "/punks/Scavengedpunk.png"
+    },
+    {
+      "id": 28,
+      "name": "Biopunk",
+      "data": "",
+      "image": "/punks/Biopunk.png"
+    },
+    {
+      "id": 29,
+      "name": "Biohackerpunk",
+      "data": "",
+      "image": "/punks/Biohackerpunk.png"
+    },
+    {
+      "id": 30,
+      "name": "BiopunkRebellion",
+      "data": "",
+      "image": "/punks/BiopunkRebellion.png"
+    },
+    {
+      "id": 31,
+      "name": "Nanopunk",
+      "data": "",
+      "image": "/punks/Nanopunk.png"
+    },
+    {
+      "id": 32,
+      "name": "Nanopunk Noir",
+      "data": "",
+      "image": "/punks/NanopunkNoir.png"
+    },
+    {
+      "id": 33,
+      "name": "Solar War",
+      "data": "",
+      "image": "/punks/SolarWar.png"
+    },
+    {
+      "id": 34,
+      "name": "Oceanpunk",
+      "data": "",
+      "image": "/punks/Oceanpunk.png"
+    },
+    {
+      "id": 34,
+      "name": "Ocean World War",
+      "data": "",
+      "image": "/punks/OcenaWorldWar.png"
+    },
+    {
+      "id": 35,
+      "name": "Colorpunk",
+      "data": "",
+      "image": "/punks/Colorpunk.png"
+    },
+    {
+      "id": 36,
+      "name": "Monopunk",
+      "data": "",
+      "image": "/punks/Monopunk.png"
+    },
+    {
+      "id": 37,
+      "name": "War Colorpunk",
+      "data": "",
+      "image": "/punks/WarColorpunk.png"
+    },
+    {
+      "id": 38,
+      "name": "Timepunk",
+      "data": "",
+      "image": "/punks/Timepunk.png"
+    },
+    {
+      "id": 39,
+      "name": "Frostpunk",
+      "data": "",
+      "image": "/punks/Frostpunk.png"
+    },
+    {
+      "id": 40,
+      "name": "Desertpunk",
+      "data": "",
+      "image": "/punks/Desertpunk.png"
+    },
+    {
+      "id": 41,
+      "name": "Necropunk",
+      "data": "",
+      "image": "/punks/Necropunk.png"
+    },
+    {
+      "id": 42,
+      "name": "Petrolpunk",
+      "data": "",
+      "image": "/punks/Petrolpunk.png"
+    },
+    {
+      "id": 43,
+      "name": "Class War",
+      "data": "",
+      "image": "/punks/ClassWar.png"
+    },
+    {
+      "id": 44,
+      "name": "Solarpunk",
+      "data": "",
+      "image": "/punks/Solarpunk.png"
+    },
+    {
+      "id": 45,
+      "name": "Mythpunk",
+      "data": "",
+      "image": "/punks/Mythpunk.png"
+    },
+    {
+      "id": 46,
+      "name": "Myth War",
+      "data": "",
+      "image": "/punks/MythWar.png"
+    },
+    {
+      "id": 47,
+      "name": "Cyber Urban Fantasy",
+      "data": "",
+      "image": "/punks/CyberUbanFantasy.png"
+    },
+    {
+      "id": 48,
+      "name": "Spacialpunk",
+      "data": "",
+      "image": "/punks/Spacialpunk.png"
+    },
+    {
+      "id": 49,
+      "name": "Rococopunk",
+      "data": "",
+      "image": "/punks/Rococopunk.png"
+    },
+    {
+      "id": 50,
+      "name": "Hi Militar",
+      "data": "",
+      "image": "/punks/HiMilitar.png"
+    },
+    {
+      "id": 51,
+      "name": "Social War",
+      "data": "",
+      "image": "/punks/SocialWar.png"
+    },
+    {
+      "id": 52,
+      "name": "Cosmic Prophecy",
+      "data": "",
+      "image": "/punks/CosmicProphecy.png"
+    }
+  ]
+}
