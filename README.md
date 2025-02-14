@@ -34,8 +34,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
+# Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
 # Systempunk Forum
 
 Systempunk Forum é um projeto para um universo chamado Systempunk. A ideia é que os usuários possam ler a história oficial do universo e criar suas próprias contribuições. Outros usuários podem acessar esse conteúdo, fazer análises, comentários ou melhorias nas contribuições de outros.
@@ -91,4 +91,5 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull re
 ## Licença
 
 Este projeto está licenciado sob a licença [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/).
->>>>>>> 605858d0075b12dd304514c1bed5bb3b884e2105
+
+> > > > > > > 605858d0075b12dd304514c1bed5bb3b884e2105

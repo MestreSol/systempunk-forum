@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-export default function TimelinePage() {
-  return (
-    <div>
-      <h1>Timeline</h1>
-    </div>
-  )
-}
-=======
 'use client'
 import React, { useEffect, useState } from 'react'
 import { GlobalStyle } from '@/global/GlobalStyle'
@@ -127,4 +118,3 @@ export default function TimelinePage() {
     </Swiper>
   )
 }
->>>>>>> 605858d0075b12dd304514c1bed5bb3b884e2105

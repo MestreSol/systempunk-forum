@@ -1,5 +1,5 @@
 'use client'
-import { GlobalStyle } from "@/global/GlobalStyle"
+import { GlobalStyle } from '@/global/GlobalStyle'
 
 export default function Universe() {
   return (

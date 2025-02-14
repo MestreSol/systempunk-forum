@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* filepath: /home/mestresol/Documents/projects/systempunk-forum/app/page.module.css */
 .page {
   display: flex;
@@ -25,20 +24,3 @@
     margin-left: 0;
   }
 }
-=======
-/* filepath: /home/mestresol/Documents/projects/systempunk-forum/app/page.module.css */
-.page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Media query para telas menores */
-@media (max-width: 768px) {
-  .cards {
-    flex-direction: column; /* Muda para coluna em telas menores */
-    align-items: center;
-    margin-left: 0;
-  }
-}
->>>>>>> 605858d0075b12dd304514c1bed5bb3b884e2105

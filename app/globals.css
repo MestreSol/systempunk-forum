@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 main {
   position: relative;
   width: 100vw;
@@ -21,27 +20,3 @@ main {
     height: 40vh; /* Ajuste a altura para telas muito pequenas */
   }
 }
-=======
-main {
-  position: relative;
-  width: 100vw;
-  height: 70vh;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-}
-* {
-  font-family: 'Markazi Text', serif;
-}
-/* Media query para telas menores */
-@media (max-width: 768px) {
-  main {
-    height: 50vh; /* Ajuste a altura para telas menores */
-  }
-}
-
-/* Media query para telas muito pequenas */
-@media (max-width: 480px) {
-  main {
-    height: 40vh; /* Ajuste a altura para telas muito pequenas */
-  }
-}
->>>>>>> 605858d0075b12dd304514c1bed5bb3b884e2105
