@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import './style.css'
+import Image from 'next/image'
 type MenuProps = {
   type: 'superior' | 'lateral'
   hidden: boolean
@@ -19,7 +20,7 @@ export default function SuperiorMenu(MenuProps: MenuProps) {
   return (
     <nav className="superior-menu">
       <div className="brand-area">
-        <img src="logo.png" alt="Systempunk Logo" />
+        <Image src="logo.png" alt="Systempunk Logo" width={100} height={100} />
         <h1>Systempunk</h1>
       </div>
       <div className="hamburger" onClick={toggleMenu}>

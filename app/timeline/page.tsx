@@ -25,7 +25,6 @@ export default function TimelinePage() {
   }, [])
 
   const handleSlideChange = (swiper: any) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     swiper.slides.forEach((slide: HTMLElement) => {
       const background = slide.querySelector('.background')
       if (background) {

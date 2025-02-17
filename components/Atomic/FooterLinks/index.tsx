@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 interface FooterLinksProps {
   title: string
@@ -13,7 +14,7 @@ const FooterLinks: React.FC<FooterLinksProps> = ({ title, links }) => {
         {links.map((link, index) =>
           link.src ? (
             <a key={index} href={link.href}>
-              <img src={link.src} alt={title} />
+              <Image src={link.src} alt={title} width={100} height={100} />
             </a>
           ) : (
             <ul key={index}>

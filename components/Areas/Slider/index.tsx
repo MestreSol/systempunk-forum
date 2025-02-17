@@ -6,6 +6,7 @@ import 'swiper/css/pagination'
 import SliderButtons from '@/components/Atomic/SliderButtons'
 import './styles.css'
 import { GlobalStyle } from '@/global/GlobalStyle'
+import Image from 'next/image'
 export interface Slide {
   id: number
   title: string
@@ -47,7 +48,13 @@ const Slider: React.FC<Props> = ({ data }) => {
                     <p>{slide.tagline}</p>
                     <SliderButtons buttons={slide.buttons} />
                   </div>
-                  <img src={slide.image} alt={slide.title} />
+                  <Image
+                    src={slide.image}
+                    alt={slide.title}
+                    title={slide.title}
+                    width={100}
+                    height={100}
+                  />
                 </div>
               </SwiperSlide>
             ))}
