@@ -40,7 +40,7 @@
       "id": 7,
       "name": "Weird Rococopunk",
       "data": "",
-      "image": "/punks/WeirdRococpunk.png"
+      "image": "/punks/WeirdRococo.png"
     },
     {
       "id": 8,
@@ -70,7 +70,7 @@
       "id": 12,
       "name": "Cattlepunk",
       "data": "",
-      "image": "/punks/Cattlepunk.png"
+      "image": "/punks/Cattlepunk.webp"
     },
     {
       "id": 13,
@@ -94,7 +94,7 @@
       "id": 16,
       "name": "World War Dieselpunk",
       "data": "",
-      "image": "/punks/WorldWarDieselpunk.png"
+      "image": "/punks/WorldWarDieselpunk.webp"
     },
     {
       "id": 17,
@@ -124,13 +124,13 @@
       "id": 21,
       "name": "Cyberpunk Noir",
       "data": "",
-      "image": "/punks/CyberpunkNoir.png"
+      "image": "/punks/CyberpunkNior.webp"
     },
     {
       "id": 22,
       "name": "Cyberwar",
       "data": "",
-      "image": "/punks/Cyberwar.png"
+      "image": "/punks/CyberwarPunk.webp"
     },
     {
       "id": 23,
@@ -142,7 +142,7 @@
       "id": 24,
       "name": "Organicpunk",
       "data": "",
-      "image": "/punks/Rococopunk.png"
+      "image": "/punks/Organicpunk.png"
     },
     {
       "id": 25,
@@ -190,13 +190,13 @@
       "id": 32,
       "name": "Nanopunk Noir",
       "data": "",
-      "image": "/punks/NanopunkNoir.png"
+      "image": "/punks/NanopunkNior.png"
     },
     {
       "id": 33,
       "name": "Solar War",
       "data": "",
-      "image": "/punks/SolarWar.png"
+      "image": "/punks/SolarWar.webp"
     },
     {
       "id": 34,
@@ -208,13 +208,13 @@
       "id": 34,
       "name": "Ocean World War",
       "data": "",
-      "image": "/punks/OcenaWorldWar.png"
+      "image": "/punks/OceanWorldWar.png"
     },
     {
       "id": 35,
       "name": "Colorpunk",
       "data": "",
-      "image": "/punks/Colorpunk.png"
+      "image": "/punks/Colorpunk.webp"
     },
     {
       "id": 36,
