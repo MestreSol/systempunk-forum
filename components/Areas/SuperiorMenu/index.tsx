@@ -2,14 +2,20 @@
 
 import React, { useState } from 'react'
 import './style.css'
-
-export default function SuperiorMenu() {
+type MenuProps = {
+  type: 'superior' | 'lateral'
+  hidden: boolean
+}
+export default function SuperiorMenu(MenuProps: MenuProps) {
   const [menuActive, setMenuActive] = useState(false)
 
   const toggleMenu = () => {
     setMenuActive(!menuActive)
   }
 
+  if (MenuProps.hidden) {
+    return null
+  }
   return (
     <nav className="superior-menu">
       <div className="brand-area">

@@ -16,8 +16,6 @@ interface Punk {
 
 export default function TimelinePage() {
   const [punks, setPunks] = useState<Punk[]>([])
-  const numberOfSlides = punks.length
-  const panels = Array.from({ length: numberOfSlides }, (_, i) => i + 1)
 
   useEffect(() => {
     fetch('http://localhost:3000/api/v1/punks')
@@ -27,6 +25,7 @@ export default function TimelinePage() {
   }, [])
 
   const handleSlideChange = (swiper: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     swiper.slides.forEach((slide: HTMLElement) => {
       const background = slide.querySelector('.background')
       if (background) {

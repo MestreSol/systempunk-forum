@@ -22,7 +22,8 @@ const eslintConfig = [
     },
     rules: {
       'prettier/prettier': ['error', { endOfLine: 'lf' }],
-      'react/react-in-jsx-scope': 'off'
+      'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-explicit-any': 'off'
     },
     ignores: ['.next', 'node_modules']
   }

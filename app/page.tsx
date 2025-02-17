@@ -7,6 +7,7 @@ import MainHub from '@/components/Areas/MainHub'
 import Footer from '@/components/Areas/Footer'
 import MostRecent from '@/components/Areas/MostRecent'
 import React from 'react'
+import SuperiorMenu from '@/components/Areas/SuperiorMenu'
 
 const MockSlides = [
   {
@@ -188,15 +189,18 @@ const MockMainHub = {
 }
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <GlobalStyle />
-      <Carousel slides={MockSlides} />
-      <MostRecent cards={MockCards}></MostRecent>
-      <MainHub
-        update={MockMainHub.update}
-        trends={MockMainHub.trends}
-      ></MainHub>
-      <Footer></Footer>
-    </div>
+    <>
+      <SuperiorMenu type={'superior'} hidden={false} />
+      <div className={styles.page}>
+        <GlobalStyle />
+        <Carousel slides={MockSlides} />
+        <MostRecent cards={MockCards}></MostRecent>
+        <MainHub
+          update={MockMainHub.update}
+          trends={MockMainHub.trends}
+        ></MainHub>
+        <Footer></Footer>
+      </div>
+    </>
   )
 }
