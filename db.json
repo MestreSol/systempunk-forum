@@ -3,109 +3,109 @@
     {
       "id": 1,
       "name": "Apunk",
-      "data": "As três [[Supra-Singularidade]], criadas pelo [[Desconhecido]], vagaram pelo vazio, cada uma com um fragmento de seu poder. Unidas, deram origem à chama da existência, moldando-a e criando os 12 aspectos, artefatos que moldam a realidade. Espalhados pelo universo, esses artefatos convergiram na Terra, dando origem à [[Profecia do Fim]]. Na [[Grande Queda]], as [[Divindades]] realizaram um sacrifício final, criando os [[Abismos da sombra]] para aprisionar a [[Quimera]], encerrando a era com a batalha decisiva.",
+      "data": "O início se dá com a criação de três Supra-Singularidade pelo Desconhecido, cada uma carregando um fragmento de seu poder e vagando pelo grande vazio. No auge, elas se unem para formar a chama da existência, moldando-a com seus aspectos para evitar sua extinção, enquanto 12 artefatos poderosos emergem, espalhando-se pelo universo e convergindo na Terra, resultando na Profecia do Fim. Na queda, as Divindades se erguem para a batalha final e, em um sacrifício coletivo, criam os Abismos da Sombra para aprisionar a Quimera, evento conhecido como a Grande Queda.",
       "image": "/punks/Apunk.png"
     },
     {
       "id": 2,
       "name": "Stonepunk",
-      "data": "",
-      "image": "/punks/Stonepunk.png"
+      "data": "Após a Grande Queda, a divindade Hego criou três monstruosidades para forçar as tribos primitivas a se refugiarem na região da Torre de Fallmora, um lugar de mistério e poder. Com o tempo, uma civilização unificada surgiu, prosperando sob a proteção de Hego e a influência da torre. No entanto, a ambição do Culto Carmezim levou à libertação do Limiar dos Caídos, uma força destrutiva além da compreensão. Para impedir sua expansão, Hego se sacrificou, paralisando o Limiar no tempo e garantindo que nunca fosse encontrado novamente.",
+      "image": "/punks/Stonepunk.webp"
     },
     {
       "id": 3,
       "name": "Bronzepunk",
-      "data": "",
+      "data": "Após o colapso de Fallmora, os sobreviventes reconstruíram suas vidas com os restos de uma tecnologia perdida. Três reinos emergiram: Abismarca, dominando a mineração subterrânea; Aureum Sanctus, acumulando riqueza e influência; e Trivale, sustentando os demais com sua produção agrícola. Durante décadas, o equilíbrio entre eles trouxe estabilidade e avanços culturais. Contudo, Abismarca sucumbiu à sua própria ambição, e Trivale entrou em colapso por não suportar as demandas crescentes, encerrando a Idade do Bronze de forma caótica.",
       "image": "/punks/Bronzepunk.png"
     },
     {
       "id": 4,
       "name": "Rococopunk",
-      "data": "",
+      "data": "Após o colapso de Trivale e a fragmentação de Abismarca, Aureum Sanctus tornou-se a potência dominante, expandindo sua cultura e sua obsessão pelo ouro. O império atingiu seu auge com cidades opulentas e uma sociedade marcada pelo luxo e pela ostentação. No entanto, a desigualdade social e a exploração desenfreada esgotaram seus recursos, levando a revoltas internas. O declínio foi acelerado pela ameaça externa e pelo ressurgimento do Limiar dos Caídos, cuja corrupção começou a corroer o império.",
       "image": "/punks/Rococopunk.png"
     },
     {
       "id": 5,
       "name": "Hopepunk",
-      "data": "",
+      "data": "A decadência de Aureum Sanctus impulsionou grupos rebeldes a fugirem para o Oriente, formando comunidades baseadas em esperança e resiliência. Com o tempo, essas sociedades cresceram, estabelecendo cidades fortificadas e promovendo a colaboração. No entanto, a ameaça do império ressurgiu quando o imperador, temendo perder sua influência, lançou uma campanha militar para subjugá-los. Enquanto isso, tensões internas dividiram os rebeldes entre os que queriam expandir e os que temiam repetir os erros do passado.",
       "image": "/punks/Hopepunk.png"
     },
     {
       "id": 6,
       "name": "Silkpunk",
-      "data": "",
+      "data": "As cidades orientais prosperaram ao desenvolver tecnologias inovadoras baseadas em energia eólica e hidráulica, garantindo sua autonomia contra Aureum Sanctus. Uma imensa muralha separou o Oriente do Ocidente, simbolizando sua independência. No auge, dirigíveis e sofisticados sistemas de transporte redefiniram a sociedade, elevando a cultura e a engenharia a novos patamares. Porém, a descoberta da Fagulha Liminal nas minas ocidentais corrompeu o ouro e seus habitantes, mergulhando o Ocidente em crise. A investida contra o Oriente foi cancelada, deixando o império à beira do colapso e forçando o Oriente a enfrentar as consequências dessa catástrofe.",
       "image": "/punks/Silkpunk.png"
     },
     {
       "id": 7,
       "name": "Weird Rococopunk",
-      "data": "",
+      "data": "O império Aureum Sanctus foi lentamente corrompido pela Fagulha Liminal, que contaminou seu ouro e seus habitantes. O ressurgimento do Culto Carmezim intensificou o caos com rituais sombrios que fortaleceram a influência do Limiar. Com a doença se espalhando, a capital tornou-se um epicentro de destruição, e a muralha do Oriente passou a ser uma barreira contra a contaminação. O colapso do império deixou cidades abandonadas e infectadas, enquanto a crise de refugiados no Oriente gerou disputas por recursos, mergulhando o mundo em um estado de fragmentação e incerteza.",
       "image": "/punks/WeirdRococo.png"
     },
     {
       "id": 8,
       "name": "Dungeonpunk",
-      "data": "",
+      "data": "Buscando conter os efeitos da Fagulha Liminal, cientistas do Oriente descobriram Nova Parpola, uma cidade perdida onde fendas temporais conectavam presente e passado de forma caótica. Essas fissuras, mantidas por Objetos Âncora, passaram a ser exploradas por aventureiros em busca de segredos e riquezas. No entanto, o uso imprudente das tecnologias recuperadas agravou as fraturas temporais, ameaçando a estabilidade do tempo. Disputas violentas surgiram por artefatos temporais, e muitos aventureiros se perderam em eras distantes, levando o mundo a questionar o custo desse conhecimento proibido.",
       "image": "/punks/Dungeonpunk.png"
     },
     {
       "id": 9,
       "name": "Clockpunk",
-      "data": "",
+      "data": "Após o caos da era Dungeonpunk, os sobreviventes rejeitaram o ouro e o bronze, adotando o ferro e tecnologias mecânicas baseadas em pêndulos para restaurar a estabilidade. Relógios, autômatos e sistemas de transporte precisos moldaram as cidades, com o Oriente liderando a inovação. No entanto, a crescente demanda por energia superou os limites das engrenagens, gerando disputas por recursos. O declínio dessas máquinas abriu caminho para tecnologias a vapor, encerrando a era dos pêndulos e iniciando uma nova revolução industrial.",
       "image": "/punks/Clockpunk.png"
     },
     {
       "id": 10,
       "name": "Steampunk",
-      "data": "",
+      "data": "Com as limitações das tecnologias de pêndulos, o vapor tornou-se a principal fonte de energia, impulsionando a industrialização. Máquinas a vapor transformaram vilas em grandes centros industriais, cidades cresceram verticalmente e os primeiros países organizados surgiram. No auge, arranha-céus e redes de transporte movidas a vapor conectavam regiões. No entanto, a poluição, a desigualdade social e a exploração desenfreada geraram instabilidade, levando a greves e revoltas que desafiaram a elite industrial e marcaram o fim da era do vapor.",
       "image": "/punks/Steampunk.png"
     },
     {
       "id": 11,
       "name": "Wear Steampunk",
-      "data": "",
+      "data": "Com Londres como epicentro do progresso, a era do vapor expandiu-se globalmente, impulsionando colonizações e avanços tecnológicos. No entanto, uma névoa densa e anormal começou a assolar a cidade, causando mortes misteriosas. Ignorada pelas elites, a expansão continuou, até que o fenômeno revelou-se uma manifestação do Limiar, corrompendo máquinas e humanos. O pânico tomou conta das ruas, enquanto a colonização enfrentava resistência e falhas tecnológicas, marcando o declínio da confiança no poder ilimitado do vapor.",
       "image": "/punks/WearSteampunk.png"
     },
     {
       "id": 12,
       "name": "Cattlepunk",
-      "data": "",
+      "data": "Com as grandes navegações a vapor, colônias foram estabelecidas nas Américas, mas as terras áridas tornaram as máquinas a vapor impraticáveis. Colonizadores adaptaram tecnologias locais, e a ausência de leis deu origem aos cowboys, que atuavam como guardiões da ordem. Vilarejos prosperaram, mas as tensões com povos nativos e a fragmentação do controle levaram ao crescimento do crime organizado e a disputas violentas. Conflitos entre cowboys e elites tecnológicas marcaram o declínio dessa era, abrindo caminho para tempos mais sombrios.",
       "image": "/punks/Cattlepunk.webp"
     },
     {
       "id": 13,
       "name": "Weird Westpunk",
-      "data": "",
+      "data": "Enquanto as colônias americanas lidavam com disputas territoriais, fenômenos sobrenaturais surgiram, com tempestades colossais e criaturas monstruosas devastando comunidades. Os cowboys tornaram-se heróis contra essas ameaças, fortificando vilas e adaptando tecnologias a vapor para a sobrevivência. No entanto, a escalada dos ataques e o avanço das tempestades tornaram muitas regiões inabitáveis. Vilas foram abandonadas, os cowboys desapareceram, e o Velho Oeste mergulhou no caos, abrindo caminho para uma nova era tecnológica.",
       "image": "/punks/WeirdWestpunk.png"
     },
     {
       "id": 14,
       "name": "Dieselpunk",
-      "data": "",
+      "data": "Enquanto o Velho Oeste sucumbia ao caos sobrenatural, a Europa desenvolveu os motores a diesel, revolucionando a indústria com uma alternativa eficiente ao vapor. No auge, dirigíveis, automóveis e máquinas a diesel modernizaram as cidades, consolidando a Europa como centro tecnológico. No entanto, a crescente demanda por combustível levou ao uso do perigoso Rufanol, derivado de sangue humano. O controle autoritário sobre sua produção gerou tensões políticas e sociais, preparando o cenário para conflitos devastadores.",
       "image": "/punks/Dieselpunk.png"
     },
     {
       "id": 15,
       "name": "Weird Dieselpunk",
-      "data": "",
+      "data": "Para suprir a crescente demanda por energia, cientistas e governantes criaram o Rufanol, um combustível derivado de sangue humano, impulsionando a indústria e consolidando regimes autoritários. No auge, cidades industriais floresceram com máquinas avançadas movidas a Rufanol, mas sua exploração levou a abusos e revoltas. Rumores sobre seus efeitos colaterais e a tensão global resultaram no colapso de governos e na preparação para um conflito mundial.",
       "image": "/punks/WeirdDieselpunk.png"
     },
     {
       "id": 16,
       "name": "World War Dieselpunk",
-      "data": "",
+      "data": "A dependência do Rufanol desencadeou uma guerra global, onde exércitos utilizavam máquinas de guerra altamente avançadas movidas a esse combustível. A indústria militar prosperou, mas o uso prolongado do Rufanol causou mutações e instabilidade, levando ao colapso das forças armadas e revoltas em colônias exploradas. A guerra devastou o mundo, deixando cidades em ruínas e populações desesperadas, abrindo caminho para a era Transistorpunk.",
       "image": "/punks/WorldWarDieselpunk.webp"
     },
     {
       "id": 17,
       "name": "Transistorpunk",
-      "data": "",
+      "data": "Após a devastação da guerra movida a Rufanol, cientistas desenvolveram os primeiros transistores e redes elétricas em larga escala, marcando uma nova era de inovação e conectividade. No auge, a eletricidade transformou cidades e impulsionou a reconstrução global, liderada pelo Oriente. No entanto, a desigualdade no acesso à energia e disputas pelo controle das redes levaram a novos conflitos, preparando o cenário para a era Teslapunk.",
       "image": "/punks/Transistorpunk.png"
     },
     {
       "id": 18,
       "name": "Teslapunk",
-      "data": "",
+      "data": "A eletricidade sem fio e máquinas altamente eficientes revolucionaram o mundo, promovendo um período de prosperidade e sustentabilidade. No auge, cidades brilhavam com sistemas de indução elétrica, eliminando a poluição e impulsionando a inovação. Contudo, a centralização da energia por corporações gerou desigualdade e instabilidade social. O avanço da automação e a integração entre humanos e máquinas criaram tensões, preparando o terreno para a era Cyberpunk.",
       "image": "/punks/Teslapunk.png"
     },
     {
@@ -178,7 +178,7 @@
       "id": 30,
       "name": "BiopunkRebellion",
       "data": "",
-      "image": "/punks/BiopunkRebellion.png"
+      "image": "/punks/BiopunkRebellion.webp"
     },
     {
       "id": 31,
@@ -220,79 +220,79 @@
       "id": 36,
       "name": "Monopunk",
       "data": "",
-      "image": "/punks/Monopunk.png"
+      "image": "/punks/Monopunk.webp"
     },
     {
       "id": 37,
       "name": "War Colorpunk",
       "data": "",
-      "image": "/punks/WarColorpunk.png"
+      "image": "/punks/WarColorpunk.webp"
     },
     {
       "id": 38,
       "name": "Timepunk",
       "data": "",
-      "image": "/punks/Timepunk.png"
+      "image": "/punks/Timepunk.webp"
     },
     {
       "id": 39,
       "name": "Frostpunk",
       "data": "",
-      "image": "/punks/Frostpunk.png"
+      "image": "/punks/Frostpunk.webp"
     },
     {
       "id": 40,
       "name": "Desertpunk",
       "data": "",
-      "image": "/punks/Desertpunk.png"
+      "image": "/punks/Desertpunk.webp"
     },
     {
       "id": 41,
       "name": "Necropunk",
       "data": "",
-      "image": "/punks/Necropunk.png"
+      "image": "/punks/Necropunk.webp"
     },
     {
       "id": 42,
       "name": "Petrolpunk",
       "data": "",
-      "image": "/punks/Petrolpunk.png"
+      "image": "/punks/Petrolpunk.webp"
     },
     {
       "id": 43,
       "name": "Class War",
       "data": "",
-      "image": "/punks/ClassWar.png"
+      "image": "/punks/ClassWar.webp"
     },
     {
       "id": 44,
       "name": "Solarpunk",
       "data": "",
-      "image": "/punks/Solarpunk.png"
+      "image": "/punks/Solarpunk.webp"
     },
     {
       "id": 45,
       "name": "Mythpunk",
       "data": "",
-      "image": "/punks/Mythpunk.png"
+      "image": "/punks/Mythpunk.webp"
     },
     {
       "id": 46,
       "name": "Myth War",
       "data": "",
-      "image": "/punks/MythWar.png"
+      "image": "/punks/MythWar.webp"
     },
     {
       "id": 47,
       "name": "Cyber Urban Fantasy",
       "data": "",
-      "image": "/punks/CyberUbanFantasy.png"
+      "image": "/punks/CyberUrbanFantazy.webp"
     },
     {
       "id": 48,
       "name": "Spacialpunk",
       "data": "",
-      "image": "/punks/Spacialpunk.png"
+      "image": "/punks/Spacialpunk.webp"
     },
     {
       "id": 49,
@@ -304,19 +304,19 @@
       "id": 50,
       "name": "Hi Militar",
       "data": "",
-      "image": "/punks/HiMilitar.png"
+      "image": "/punks/HiMilitar.webp"
     },
     {
       "id": 51,
       "name": "Social War",
       "data": "",
-      "image": "/punks/SocialWar.png"
+      "image": "/punks/SocialWar.webp"
     },
     {
       "id": 52,
       "name": "Cosmic Prophecy",
       "data": "",
-      "image": "/punks/CosmicProphecy.png"
+      "image": "/punks/CosmicProphecy.webp"
     }
   ]
 }
