@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import SuperiorMenu from '@/components/SuperiorMenu'
 
 export const metadata: Metadata = {
   title: 'Systempunk',
@@ -31,10 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <SuperiorMenu />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

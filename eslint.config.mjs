@@ -21,9 +21,11 @@ const eslintConfig = [
       'react-hooks': reactHooksPlugin
     },
     rules: {
-      'prettier/prettier': 'error',
-      'react/react-in-jsx-scope': 'off'
-    }
+      'prettier/prettier': ['error', { endOfLine: 'lf' }],
+      'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-explicit-any': 'off'
+    },
+    ignores: ['.next', 'node_modules']
   }
 ]
 

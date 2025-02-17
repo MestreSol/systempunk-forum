@@ -1,0 +1,10 @@
+.mainHub {
+  position: relative;
+  margin-top: 3vh;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
