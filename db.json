@@ -111,211 +111,205 @@
     {
       "id": 19,
       "name": "Cyberpunk",
-      "data": "",
+      "data": "A era começou com a popularização dos implantes cibernéticos, tornando-se indispensáveis na sociedade. No auge, megacorporações dominaram o mundo, transformando cidades em metrópoles neon conectadas digitalmente. No entanto, a dependência dos implantes gerou exploração, desigualdade e resistência hacker, enquanto o controle das corporações levou à vigilância absoluta. A crescente opressão e decadência social abriram caminho para a Virtual Reality, onde a fuga digital se tornou a única alternativa para muitos.",
       "image": "/punks/Cyberpunk.png"
     },
     {
       "id": 20,
       "name": "Virtual Reality",
-      "data": "",
+      "data": "A realidade virtual tornou-se um refúgio absoluto, com mundos digitais sofisticados e acessíveis. No auge, corporações controlavam a sociedade ao trocar o acesso vitalício a esses mundos pelo uso dos cérebros dos usuários como processadores. Porém, a dependência extrema levou a um colapso social, com grupos rebeldes tentando libertar os \"prisioneiros digitais\". O colapso da infraestrutura virtual deixou muitos em estados mentais irreversíveis, preparando o cenário para a Cyberpunk Noir, marcada pela decadência e controle absoluto.",
       "image": "/punks/VirtualReality.png"
     },
     {
       "id": 21,
       "name": "Cyberpunk Noir",
-      "data": "",
+      "data": "Após o colapso das realidades virtuais, as megacorporações intensificaram o controle, transformando cidades em prisões de dados e vigilância total. No auge, espionagem avançada e manipulação social dominaram a sociedade, mas a sobrecarga de controle levou à sabotagem e ao caos. O colapso da ordem corporativa preparou o cenário para a Cyberwar Punk, uma guerra pelo domínio absoluto.",
       "image": "/punks/CyberpunkNior.webp"
     },
     {
       "id": 22,
       "name": "Cyberwar",
-      "data": "",
+      "data": "Sem governos, as megacorporações travaram uma guerra total por recursos e territórios. No auge, exércitos privados, drones e armas biológicas devastaram cidades inteiras. No entanto, a guerra atingiu um ponto de exaustão, levando ao colapso global. A destruição da infraestrutura e a anarquia resultante mergulharam o mundo na Splatterpunk, onde o colapso social e tecnológico traria horrores ainda mais profundos.",
       "image": "/punks/CyberwarPunk.webp"
     },
     {
       "id": 23,
       "name": "Splatterpunk",
-      "data": "",
+      "data": "Após o colapso das megacorporações, um vírus se espalhou pelos implantes cibernéticos, causando alucinações e extrema violência. As cidades se tornaram zonas de morte, com sobreviventes lutando para escapar dos Corrompidos. Relatos de experimentos corporativos alimentaram teorias de conspiração, enquanto corporações remanescentes apagaram registros dessa era, resultando na maior queima de arquivos da humanidade. Os poucos que resistiram buscaram refúgio, preparando o caminho para a Organicpunk.",
       "image": "/punks/Splatterpunk.png"
     },
     {
       "id": 24,
       "name": "Organicpunk",
-      "data": "",
+      "data": "Para reconstruir a sociedade, sobreviventes adotaram biotecnologia e aprimoramentos genéticos, criando uma geração adaptada a ambientes extremos. No auge, cidades biotecnológicas floresceram com sistemas vivos e redes neurais naturais. No entanto, os aprimoramentos trouxeram instabilidade mental e conflitos internos. A manipulação excessiva da biologia levou a horrores biológicos e ao colapso de várias cidades, abrindo caminho para a Gothicpunk, onde o declínio tecnológico mergulharia o mundo em escuridão perpétua.",
       "image": "/punks/Organicpunk.png"
     },
     {
       "id": 25,
       "name": "Gothicpunk",
-      "data": "",
+      "data": "Com o colapso das tecnologias biológicas, as cidades perderam suas infraestruturas e mergulharam em escuridão perpétua. Relíquias tecnológicas tornaram-se sagradas, e ordens religiosas emergiram para protegê-las. No auge, a sociedade misturou arquitetura gótica e tecnologia perdida, mas aberrações biológicas e o abandono das elites tornaram as cidades inóspitas. O terror crescente abriu caminho para a Weird Gothicpunk.",
       "image": "/punks/Gothicpunk.png"
     },
     {
       "id": 26,
       "name": "Weird Gothicpunk",
-      "data": "",
+      "data": "As aberrações biológicas evoluíram, transformando cidades em territórios de caça. Cavaleiros urbanos tornaram-se caçadores de monstros, enquanto cultos ao Limiar realizavam sacrifícios para obter poder. No auge, um equilíbrio frágil se manteve, mas ataques massivos destruíram refúgios e levaram a sociedade ao colapso. Com a civilização em ruínas, os sobreviventes recorreram aos restos do passado, preparando o cenário para a Scavengedpunk.",
       "image": "/punks/WeirdGothicpunk.png"
     },
     {
       "id": 27,
       "name": "Scavengedpunk",
-      "data": "",
+      "data": "Após a queda das cidades, sobreviventes passaram a reutilizar restos tecnológicos para sobreviver. Pequenas comunidades surgiram em depósitos de sucata, onde criatividade e adaptação eram essenciais. No auge, redes comerciais começaram a se formar, e antigas tecnologias foram adaptadas. No entanto, escassez de recursos e conflitos internos levaram ao colapso dessas sociedades, preparando o caminho para a Biopunk.",
       "image": "/punks/Scavengedpunk.png"
     },
     {
       "id": 28,
       "name": "Biopunk",
-      "data": "",
+      "data": "Com os avanços tecnológicos esgotados, cientistas voltaram-se para a biotecnologia, criando humanos geneticamente modificados e organismos híbridos para restaurar o equilíbrio ambiental. No auge, plantas purificavam o ar e novos seres eram usados como transporte e ferramentas. Porém, mutações descontroladas e um fungo geneticamente alterado ameaçaram a humanidade, levando a medidas extremas e abrindo caminho para a Biohackerpunk.",
       "image": "/punks/Biopunk.png"
     },
     {
       "id": 29,
       "name": "Biohackerpunk",
-      "data": "",
+      "data": "Governos e corporações tentaram conter o fungo da era Biopunk com tecnologias biológicas invasivas, mas isso gerou a revolta dos biohackers, que modificaram seus próprios genes para resistir ao controle. No auge, comunidades inteiras aderiram à resistência, mas experimentos descontrolados causaram mutações perigosas e colapsaram sistemas de controle. O mundo mergulhou no caos, preparando o cenário para a Biopunk Rebellion.",
       "image": "/punks/Biohackerpunk.png"
     },
     {
       "id": 30,
       "name": "BiopunkRebellion",
-      "data": "",
+      "data": "A resistência biohacker tornou-se uma guerra global contra as megacorporações, que perpetuavam a crise biológica para manter o controle. No auge, cientistas dissidentes e sobreviventes atacaram laboratórios e usaram mutações como armas. No entanto, os avanços biotecnológicos desestabilizaram ecossistemas e geraram mutações incontroláveis. Com o colapso das megacorporações, o mundo entrou em uma nova era baseada na nanotecnologia, dando início à Nanopunk.",
       "image": "/punks/BiopunkRebellion.webp"
     },
     {
       "id": 31,
       "name": "Nanopunk",
-      "data": "",
+      "data": "Governos e cientistas usaram nanotecnologia para restaurar a ordem, com nanorrobôs regenerando corpos, purificando recursos e monitorando a saúde. No auge, cidades renasceram com alta eficiência, mas governos autoritários usaram os nanorrobôs para controle total. Grupos rebeldes hackearam essa tecnologia, causando falhas e mutações imprevisíveis. O colapso iminente levou a humanidade a buscar refúgio e recursos fora da Terra, preparando o cenário para a Solar War.",
       "image": "/punks/Nanopunk.png"
     },
     {
       "id": 32,
       "name": "Nanopunk Noir",
-      "data": "",
+      "data": "Os nanorrobôs foram hackeados e transformados em armas imprevisíveis, mergulhando o mundo no caos. No auge, regiões inteiras foram contaminadas, enquanto governos impuseram vigilância extrema para conter insurgências. No entanto, a sociedade desmoronou, e os últimos remanescentes tecnológicos voltaram-se para a exploração espacial como única saída. Assim, as potências iniciaram a corrida para colonizar e explorar o sistema solar, dando início à Solar War.",
       "image": "/punks/NanopunkNior.png"
     },
     {
       "id": 33,
       "name": "Solar War",
-      "data": "",
+      "data": "Com a Terra em colapso, nações e corporações voltaram-se para a exploração espacial, colonizando Marte, a Lua e asteroides. No auge, estações orbitais e cidades interplanetárias prosperaram, mas a disputa por recursos levou à militarização do espaço. A guerra devastou colônias e interrompeu o comércio interplanetário, fragmentando a humanidade e preparando o cenário para novas formas de exploração e conflito, como a Oceanpunk.",
       "image": "/punks/SolarWar.webp"
     },
     {
       "id": 34,
       "name": "Oceanpunk",
-      "data": "",
+      "data": "Enquanto o sistema solar se tornava um campo de batalha, a busca por refúgio levou à construção das Cidades Abissais, comunidades submersas sustentáveis e tecnologicamente avançadas. No auge, essas cidades floresceram como centros de pesquisa e inovação, enquanto a superfície enfrentava o colapso. No entanto, tensões entre a elite submersa e os sobreviventes da superfície resultaram em disputas violentas, culminando na Ocean World War, um conflito total pelo controle dos oceanos.\n\n\n\n\n\n\n\n",
       "image": "/punks/Oceanpunk.png"
     },
     {
       "id": 34,
       "name": "Ocean World War",
-      "data": "",
+      "data": "As tensões entre as Cidades Abissais e a superfície escalaram para uma guerra total. No auge, combates submarinos e sabotagens destruíram as colônias submersas e enfraqueceram a Terra, enquanto colônias espaciais tentaram intervir, mas colapsaram. A guerra deixou os oceanos tóxicos e inabitáveis, forçando a humanidade a abandonar a colonização aquática e espacial. No vácuo de poder, emergiu uma nova força: a corporação que moldaria a era Colorpunk.",
       "image": "/punks/OceanWorldWar.png"
     },
     {
       "id": 35,
       "name": "Colorpunk",
-      "data": "",
+      "data": "Após a destruição da guerra oceânica e espacial, uma corporação surgiu oferecendo \"pacotes de cores\", infundidos com magia do Limiar, para restaurar o mundo. No auge, as cores moldavam cidades, culturas e até a psique humana. No entanto, a tentativa de manipular as cores primárias desencadeou um cataclismo mágico, extinguindo toda a vida no universo. Após séculos de caos, o cosmos se reorganizou em esferas cromáticas, onde novas formas de vida surgiram, adaptadas a esses reinos coloridos.",
       "image": "/punks/Colorpunk.webp"
     },
     {
       "id": 36,
       "name": "Monopunk",
-      "data": "",
+      "data": "Após o cataclismo da era Colorpunk, a magia estabilizou-se em três reinos baseados nas cores primárias, cada um sustentado por um cristal de energia mágica. No auge, os reinos prosperaram, mas o Império Rubro tentou dominar todos os cristais, desestabilizando o equilíbrio. Um robô sobrevivente das antigas corporações interveio, recolhendo os cristais e removendo a fonte de poder dos reinos, colapsando o império e preparando o cenário para a War Colorpunk.",
       "image": "/punks/Monopunk.webp"
     },
     {
       "id": 37,
       "name": "War Colorpunk",
-      "data": "",
+      "data": "Sem os cristais mágicos, os reinos entraram em caos e fragmentação. No auge, a magia residual das cores instáveis alimentou guerras violentas por territórios e tentativas de recriação dos cristais. No entanto, experimentos descontrolados geraram desequilíbrios catastróficos, transformando vastas regiões em zonas inabitáveis de energia cromática pura. O colapso da magia fragmentou a população, levando à Timepunk, onde o controle do tempo seria a última esperança de reordenar o universo.",
       "image": "/punks/WarColorpunk.webp"
     },
     {
       "id": 38,
       "name": "Timepunk",
-      "data": "",
+      "data": "Após o colapso da magia cromática, o universo fragmentado encontrou na manipulação do tempo uma nova força primordial. No auge, cidades surgiram moldando o tempo para otimizar sociedades e corrigir erros históricos. No entanto, o uso desenfreado criou paradoxos e fendas temporais, colapsando regiões inteiras e tornando a realidade instável. O colapso dessa era deu origem à Frostpunk, onde a luta pela sobrevivência se tornaria uma batalha contra o frio extremo.",
       "image": "/punks/Timepunk.webp"
     },
     {
       "id": 39,
       "name": "Frostpunk",
-      "data": "",
+      "data": "As rupturas temporais da era anterior mergulharam o universo em um inverno perpétuo. Comunidades ergueram cidades fortificadas ao redor de geradores de calor movidos por energia residual do tempo. No auge, tecnologias adaptadas ao frio extremo garantiram a sobrevivência, mas o declínio começou quando geradores falharam e tensões internas levaram a revoltas. Conforme o frio consumia as últimas civilizações, o mundo congelado cedeu lugar a um cenário árido e desolado, dando início à Desertpunk.",
       "image": "/punks/Frostpunk.webp"
     },
     {
       "id": 40,
       "name": "Desertpunk",
-      "data": "",
+      "data": "Após a era Frostpunk, rupturas climáticas transformaram o mundo em vastos desertos áridos. No auge, civilizações se adaptaram ao ambiente hostil, construindo cidades em torno de fontes subterrâneas e desenvolvendo tecnologias para extrair umidade do ar. No entanto, guerras incessantes por água e territórios destruíram comunidades inteiras, levando ao colapso da sociedade e preparando o terreno para Necropunk, onde a morte e o pós-vida tornaram-se centrais.",
       "image": "/punks/Desertpunk.webp"
     },
     {
       "id": 41,
       "name": "Necropunk",
-      "data": "",
+      "data": "Com a fragmentação do mundo, fenômenos espirituais ligaram os vivos ao pós-vida. No auge, tecnologias necromânticas transformaram os mortos em fontes de energia e conhecimento, enquanto Guardiões dos Limiares protegiam portais entre os reinos físico e espiritual. O abuso da necromancia gerou rupturas na realidade, permitindo invasões sobrenaturais que consumiram cidades inteiras. O colapso dessa era levou à Heavenpunk, onde a busca pela harmonia espiritual tornou-se a única esperança de reconstrução.",
       "image": "/punks/Necropunk.webp"
     },
     {
       "id": 42,
       "name": "Petrolpunk",
-      "data": "",
+      "data": "Após o colapso da era Necropunk, os sobreviventes redescobriram reservas de petróleo e maquinários antigos, iniciando um renascimento tecnológico rudimentar. No auge, cidades industriais prosperaram, movidas por combustíveis fósseis e pela nostalgia de eras passadas. No entanto, o uso desenfreado do petróleo gerou conflitos por recursos, degradação ambiental e falhas tecnológicas, levando ao declínio da era Petrolpunk e preparando o terreno para a Class War, onde as desigualdades levariam a uma revolta global.",
       "image": "/punks/Petrolpunk.webp"
     },
     {
       "id": 43,
       "name": "Class War",
-      "data": "",
+      "data": "Com a desigualdade social extrema da era Petrolpunk, as elites controlaram as reservas de petróleo enquanto as massas eram exploradas. No auge, rebeliões armadas tomaram cidades industriais, desafiando o domínio das elites, mas foram brutalmente suprimidas por forças militares e manipulação política. Para evitar novos levantes, um modelo de reconstrução baseado em energia renovável e harmonia ambiental foi implementado, garantindo um futuro mais sustentável, mas ainda controlado pelas elites, marcando a transição para a era Solarpunk.",
       "image": "/punks/ClassWar.webp"
     },
     {
       "id": 44,
       "name": "Solarpunk",
-      "data": "",
+      "data": "Após a Class War, as elites evitaram novos levantes promovendo um mundo sustentável baseado em tecnologia verde e energia renovável. No auge, cidades-jardins floresceram, simbolizando equilíbrio entre progresso e meio ambiente. No entanto, o controle dos recursos continuou nas mãos das elites, e a harmonia era uma ilusão mantida por propaganda. À medida que desigualdades ocultas surgiam, tensões começaram a crescer, preparando o caminho para Mythpunk, onde magia e tecnologia se fundiriam.",
       "image": "/punks/Solarpunk.webp"
     },
     {
       "id": 45,
       "name": "Mythpunk",
-      "data": "",
+      "data": "A fusão entre magia e tecnologia transformou o mundo, criando cidades encantadas e avanços científicos místicos. No auge, mitos e ciência coexistiam, alimentando sociedades sustentáveis e repletas de maravilhas. Porém, um movimento insurgente, temendo que essa união levasse a novos cataclismos, iniciou ataques e sabotagens. O conflito escalou para a Myth War, ameaçando desestabilizar a civilização e redefinir o futuro.",
       "image": "/punks/Mythpunk.webp"
     },
     {
       "id": 46,
       "name": "Myth War",
-      "data": "",
+      "data": "A rejeição dos insurgentes à fusão de magia e tecnologia levou a uma guerra contra o Conselho dos Magos, resultando na destruição de cidades e da infraestrutura mágica-tecnológica. No auge, o conselho venceu e consolidou seu domínio, mas ao custo do equilíbrio conquistado na era Solarpunk. Com a vitória, a busca pelo crescimento desenfreado tomou conta, levando ao abandono da natureza e à ascensão de megacidades verticais, preparando o terreno para a era Cyber Urban Fantasy, onde magia e tecnologia moldariam um mundo artificial e hipertecnológico.",
       "image": "/punks/MythWar.webp"
     },
     {
       "id": 47,
       "name": "Cyber Urban Fantasy",
-      "data": "",
+      "data": "A fusão de magia e tecnologia impulsionou megacidades verticais, habitadas por humanos, criaturas encantadas e máquinas vivas, mas governadas por elites mágicas. No auge, redes mágicas de transporte e inteligências artificiais encantadas redefiniram a sociedade, embora aprofundando desigualdades. O crescimento acelerado levou à exploração de colônias espaciais abandonadas da era pré-cataclísmica, reacendendo o sonho da expansão interplanetária e marcando a transição para a era Spacialpunk, onde a humanidade voltaria a conquistar as estrelas.",
       "image": "/punks/CyberUrbanFantazy.webp"
     },
     {
       "id": 48,
       "name": "Spacialpunk",
-      "data": "",
+      "data": "A redescoberta de arquivos da era pré-cataclísmica revelou a responsabilidade das elites na destruição das civilizações passadas, gerando um golpe interno no Conselho dos Magos e instaurando um regime militarizado. No auge, a expansão espacial foi impulsionada por colônias orbitais fortificadas e tecnologia híbrida magia-ciência, garantindo controle absoluto sobre os territórios conquistados. No entanto, a repressão extrema e o tratamento das colônias como meros recursos geraram revoltas, resultando em tensões crescentes que levariam ao colapso da era Spacialpunk e à ascensão do Hi-Militar, onde o conflito intergaláctico se tornaria inevitável.",
       "image": "/punks/Spacialpunk.webp"
-    },
-    {
-      "id": 49,
-      "name": "Rococopunk",
-      "data": "",
-      "image": "/punks/Rococopunk.png"
     },
     {
       "id": 50,
       "name": "Hi Militar",
-      "data": "",
+      "data": "A militarização total da humanidade consolidou-se, com frotas de naves mágicas-tecnológicas e cidades orbitais operando sob um regime autoritário. No auge, exércitos implacáveis patrulhavam o espaço, expandindo territórios intergalácticos e desenvolvendo armas capazes de destruir planetas inteiros. No entanto, a desigualdade entre colônias e a Terra alimentou rebeliões que se intensificaram até culminar em batalhas massivas pelo controle das galáxias. A fragmentação definitiva do domínio central levou ao colapso da era Hi-Militar, dando início à Social War, onde as colônias lutariam pela sua soberania e identidade.",
       "image": "/punks/HiMilitar.webp"
     },
     {
       "id": 51,
       "name": "Social War",
-      "data": "",
+      "data": "A revolta das colônias contra o domínio da Terra e Marte atingiu seu ápice após décadas de repressão durante a era Hi-Militar. Batalhas épicas foram travadas em órbitas planetárias e cinturões de asteroides, enquanto facções como a Liga da Liberdade de Júpiter e o Coletivo Lunar lutavam por autonomia. No entanto, após anos de destruição, um cessar-fogo foi estabelecido, resultando em um sistema solar fragmentado em territórios independentes. Para evitar novos conflitos e reafirmar sua influência, Terra e Marte uniram-se para colonizar o último planeta conhecido, um mundo misterioso na borda do universo observável.",
       "image": "/punks/SocialWar.webp"
     },
     {
       "id": 52,
       "name": "Cosmic Prophecy",
-      "data": "",
+      "data": "A expedição ao planeta Ex Nihilo simbolizou a última tentativa da humanidade de recomeçar. Cientistas e colonizadores transformaram-no em um novo lar, descobrindo uma energia primordial conectada a todas as eras passadas. No entanto, sinais do Limiar e fenômenos inexplicáveis começaram a surgir, indicando que a profecia do fim poderia estar se concretizando. À medida que fendas na realidade se abriam, trazendo ecos de civilizações extintas, a humanidade enfrentava sua escolha final: aceitar o destino ou desafiar o inevitável, encerrando o ciclo do Systempunk.",
       "image": "/punks/CosmicProphecy.webp"
     }
   ]
