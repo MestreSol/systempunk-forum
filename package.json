@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --verbose",
+    "dev": "npm run services:up && next dev",
+    "services:up": "docker compose -f infra/compose.yaml --env-file .env.development up -d",
+    "services:stop" : "docker compose -f infra/compose.yaml --env-file .env.development stop",
+    "services:down": "docker compose -f infra/compose.yaml --env-file .env.development down",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -12,9 +15,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
-    "test:verbose": "jest --verbose",
-    "docker:up": "docker compose -f infra/compose.yaml --env-file .env up -d",
-    "docker:down": "docker compose -f infra/compose.yaml down"
+    "test:verbose": "jest --verbose"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
