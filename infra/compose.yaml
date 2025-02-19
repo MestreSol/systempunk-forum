@@ -17,21 +17,6 @@ services:
       timeout: 10s
       retries: 5
 
-  app:
-    image: 'node:18-alpine'
-    restart: always
-    working_dir: /usr/src/app
-    volumes:
-      - .:/usr/src/app
-    ports:
-      - '3000:3000'
-    environment:
-      NODE_ENV: development
-      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}
-    depends_on:
-      - database
-    command: sh -c "npm install && npm run dev"
-
   redis:
     image: 'redis:7.0-alpine'
     restart: always
