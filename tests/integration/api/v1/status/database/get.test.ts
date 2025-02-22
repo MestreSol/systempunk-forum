@@ -7,6 +7,7 @@ test('Get to /api/v1/status/global should return 200', async () => {
     true
   )
   expect(body.dependencies.database.active_connections).toBeGreaterThan(0)
+
   expect(Number.isInteger(body.dependencies.database.max_connections)).toBe(
     true
   )
