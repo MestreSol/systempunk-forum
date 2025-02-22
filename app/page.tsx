@@ -72,6 +72,7 @@ const MockSlides = [
 ]
 const MockCards = [
   {
+    id: 1,
     title: 'Lorem Ipsum',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: 'https://i.redd.it/tc0aqpv92pn21.jpg',
@@ -79,6 +80,7 @@ const MockCards = [
     tags: [{ name: 'Lorem Ipsum', type: 'Lorem Ipsum' }]
   },
   {
+    id: 2,
     title: 'Lorem Ipsum',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: 'https://i.redd.it/tc0aqpv92pn21.jpg',

@@ -3,6 +3,7 @@ import style from './style.module.css'
 
 type Props = {
   cards: {
+    id: number
     title: string
     description: string
     image: string
@@ -24,7 +25,7 @@ const MostRecent = ({ cards }: Props) => {
           image={card.image}
           link={card.link}
           tags={card.tags}
-          key={card.title}
+          key={card.id}
         />
       ))}
     </div>

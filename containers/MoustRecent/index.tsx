@@ -1,4 +1,3 @@
-import Card from '@/components/Areas/Card'
 import './styles.css'
 const MoustRecent = () => {
   return (
