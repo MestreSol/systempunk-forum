@@ -250,3 +250,67 @@
 .hightlight {
   color: #f09819;
 }
+
+.readMore {
+  display: block;
+  margin-top: 20px;
+  color: #f09819;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.hamburger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #420000;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  transition: right 0.3s ease;
+  display: none;
+  flex-direction: column;
+}
+
+.side-menu.active {
+  right: 0;
+  display: flex;
+}
+
+.close-btn {
+  align-self: flex-end;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.side-menu ul {
+  top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.side-menu ul li {
+  margin-bottom: 20px;
+}
+
+.side-menu ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.side-menu ul li a:hover {
+  color: #e9ecef;
+}
