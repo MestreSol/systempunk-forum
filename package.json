@@ -21,6 +21,8 @@
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "aframe": "^1.7.0",
+    "aframe-extras": "^7.5.4",
     "font-awesome": "^4.7.0",
     "fontawesome": "^5.6.3",
     "formik": "^2.4.6",
@@ -28,12 +30,16 @@
     "pg": "^8.13.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-force-graph": "^1.47.3",
+    "react-force-graph-2d": "^1.27.0",
     "react-icons": "^5.4.0",
     "react-input-mask": "^2.0.4",
     "react-loading-skeleton": "^3.5.0",
     "react-redux": "^9.2.0",
     "styled-components": "^6.1.13",
-    "swiper": "^11.2.3"
+    "swiper": "^11.2.3",
+    "three": "^0.173.0",
+    "three-spritetext": "^1.9.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

@@ -1,0 +1,4038 @@
+{
+  "nodes": [
+    {
+      "id": "Concelho dos mil"
+    },
+    {
+      "id": "Entropia"
+    },
+    {
+      "id": "Essências de Minerva"
+    },
+    {
+      "id": "Eterna"
+    },
+    {
+      "id": "Fio da Ordem"
+    },
+    {
+      "id": "Caos"
+    },
+    {
+      "id": "Dualidade"
+    },
+    {
+      "id": "Energia"
+    },
+    {
+      "id": "Espaço"
+    },
+    {
+      "id": "Esperança"
+    },
+    {
+      "id": "Harmonia"
+    },
+    {
+      "id": "Magia"
+    },
+    {
+      "id": "Medo"
+    },
+    {
+      "id": "Morte"
+    },
+    {
+      "id": "Tempo"
+    },
+    {
+      "id": "Vida"
+    },
+    {
+      "id": "_Conceitos - Fundamentos"
+    },
+    {
+      "id": "Grande Plano"
+    },
+    {
+      "id": "Ignitário"
+    },
+    {
+      "id": "Arcânicas"
+    },
+    {
+      "id": "Magia Banida"
+    },
+    {
+      "id": "Magia Branca"
+    },
+    {
+      "id": "Magia Obscura"
+    },
+    {
+      "id": "_Conceitos - Cátedras Arcanas"
+    },
+    {
+      "id": "Exordio"
+    },
+    {
+      "id": "_Conceitos - Magia"
+    },
+    {
+      "id": "Mistério da dualidade"
+    },
+    {
+      "id": "Rasgo do universo"
+    },
+    {
+      "id": "Singularidades"
+    },
+    {
+      "id": "Supra-Singularidade"
+    },
+    {
+      "id": "Série de Flux"
+    },
+    {
+      "id": "Ângulos de Eliphas Levi"
+    },
+    {
+      "id": "Divindades Ancestrais"
+    },
+    {
+      "id": "Divindades Arcanas"
+    },
+    {
+      "id": "Divindades da Guerra"
+    },
+    {
+      "id": "Divindades das Artes"
+    },
+    {
+      "id": "Divindades do Caos"
+    },
+    {
+      "id": "Divindades do Conhecimento"
+    },
+    {
+      "id": "Divindades Elementais"
+    },
+    {
+      "id": "Divindades Místicas"
+    },
+    {
+      "id": "Divindades Naturais"
+    },
+    {
+      "id": "Divindades Neutras"
+    },
+    {
+      "id": "Divindades Temporais"
+    },
+    {
+      "id": "_Conceito - Panteões Maiores"
+    },
+    {
+      "id": "_Conceito - Panteões menores"
+    },
+    {
+      "id": "_Conceitos - Divindades"
+    },
+    {
+      "id": "Abyssethar"
+    },
+    {
+      "id": "Dimensão Inferior"
+    },
+    {
+      "id": "Ethereon"
+    },
+    {
+      "id": "Primordiz"
+    },
+    {
+      "id": "Prismora"
+    },
+    {
+      "id": "_Conceito - Planícies da concretude"
+    },
+    {
+      "id": "Ascendora"
+    },
+    {
+      "id": "Aurorium"
+    },
+    {
+      "id": "Creatiônio"
+    },
+    {
+      "id": "Devotário"
+    },
+    {
+      "id": "Purifis"
+    },
+    {
+      "id": "Sapienscia"
+    },
+    {
+      "id": "Serenix"
+    },
+    {
+      "id": "Unitarius"
+    },
+    {
+      "id": "_Conceito - Crepúsculo Sereno"
+    },
+    {
+      "id": "Agonius"
+    },
+    {
+      "id": "Anguistius"
+    },
+    {
+      "id": "Corruptis"
+    },
+    {
+      "id": "Despairon"
+    },
+    {
+      "id": "Desperon"
+    },
+    {
+      "id": "Destrucion"
+    },
+    {
+      "id": "Odium"
+    },
+    {
+      "id": "Perdicius"
+    },
+    {
+      "id": "Pyronix"
+    },
+    {
+      "id": "Remorius"
+    },
+    {
+      "id": "Torturis"
+    },
+    {
+      "id": "Umbra"
+    },
+    {
+      "id": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "id": "Omniverso"
+    },
+    {
+      "id": "_Conceito - Domínios Etéreos"
+    },
+    {
+      "id": "a.C."
+    },
+    {
+      "id": "Apunk"
+    },
+    {
+      "id": "Biohackerpunk"
+    },
+    {
+      "id": "Biopunk Rebellion"
+    },
+    {
+      "id": "Biopunk"
+    },
+    {
+      "id": "Bronzepunk"
+    },
+    {
+      "id": "Cattlepunk"
+    },
+    {
+      "id": "Class War"
+    },
+    {
+      "id": "Clockpunk"
+    },
+    {
+      "id": "Colorpunk"
+    },
+    {
+      "id": "Cyber Urban Fantasy"
+    },
+    {
+      "id": "Cyberpunk Noir"
+    },
+    {
+      "id": "Cyberpunk"
+    },
+    {
+      "id": "Cyberwar Punk"
+    },
+    {
+      "id": "Desertpunk"
+    },
+    {
+      "id": "Dieselpunk"
+    },
+    {
+      "id": "Dungeonpunk"
+    },
+    {
+      "id": "Ending Punk"
+    },
+    {
+      "id": "Frostpunk"
+    },
+    {
+      "id": "Gothicpunk"
+    },
+    {
+      "id": "Hi-Militar"
+    },
+    {
+      "id": "Hopepunk"
+    },
+    {
+      "id": "Monopunk"
+    },
+    {
+      "id": "Myth War"
+    },
+    {
+      "id": "Mythpunk"
+    },
+    {
+      "id": "Nanopunk Noir"
+    },
+    {
+      "id": "Nanopunk"
+    },
+    {
+      "id": "Necropunk"
+    },
+    {
+      "id": "Ocean World War"
+    },
+    {
+      "id": "Oceanpunk"
+    },
+    {
+      "id": "Organicpunk"
+    },
+    {
+      "id": "Petrolpunk"
+    },
+    {
+      "id": "Rococopunk"
+    },
+    {
+      "id": "Scavengedpunk"
+    },
+    {
+      "id": "Silkpunk"
+    },
+    {
+      "id": "Social War"
+    },
+    {
+      "id": "Solar War"
+    },
+    {
+      "id": "Solarpunk"
+    },
+    {
+      "id": "Space Opera"
+    },
+    {
+      "id": "Spacialpunk"
+    },
+    {
+      "id": "Splatterpunk"
+    },
+    {
+      "id": "Steampunk"
+    },
+    {
+      "id": "Stonepunk"
+    },
+    {
+      "id": "Teslapunk"
+    },
+    {
+      "id": "Timepunk"
+    },
+    {
+      "id": "Transistorpunk"
+    },
+    {
+      "id": "Virtual Reality"
+    },
+    {
+      "id": "War Colorpunk"
+    },
+    {
+      "id": "Wear Steampunk"
+    },
+    {
+      "id": "Weird Diesel Punk"
+    },
+    {
+      "id": "Weird Gothicpunk"
+    },
+    {
+      "id": "Weird Rococo"
+    },
+    {
+      "id": "Weird Westpunk"
+    },
+    {
+      "id": "World War Dieselpunk"
+    },
+    {
+      "id": "_Conceito - Eras Menores"
+    },
+    {
+      "id": "Cataclisma Mágico"
+    },
+    {
+      "id": "Grande exílio"
+    },
+    {
+      "id": "Primavera Magica"
+    },
+    {
+      "id": "Tratado Universal das Divindades"
+    },
+    {
+      "id": "Arco voltaico"
+    },
+    {
+      "id": "Grande Queda"
+    },
+    {
+      "id": "Guerra das cores"
+    },
+    {
+      "id": "Ritual do tripudiar"
+    },
+    {
+      "id": "Tormentos de Grayhall"
+    },
+    {
+      "id": "Celestiais"
+    },
+    {
+      "id": "Frostveil"
+    },
+    {
+      "id": "Luminarion"
+    },
+    {
+      "id": "Monstruosidades de Hego"
+    },
+    {
+      "id": "Quimera"
+    },
+    {
+      "id": "Desconhecido"
+    },
+    {
+      "id": "Singularidade"
+    },
+    {
+      "id": "Aelon"
+    },
+    {
+      "id": "Aevum Primus"
+    },
+    {
+      "id": "Ego"
+    },
+    {
+      "id": "Fringilla"
+    },
+    {
+      "id": "Hego"
+    },
+    {
+      "id": "Illiphar"
+    },
+    {
+      "id": "Limiar"
+    },
+    {
+      "id": "Mitu"
+    },
+    {
+      "id": "Nihilus"
+    },
+    {
+      "id": "Noctus"
+    },
+    {
+      "id": "Aldric Blotíbac"
+    },
+    {
+      "id": "Alexander Clark"
+    },
+    {
+      "id": "Alice Dravas Lord"
+    },
+    {
+      "id": "Anastácia Fallmora"
+    },
+    {
+      "id": "Bogart"
+    },
+    {
+      "id": "Callista"
+    },
+    {
+      "id": "Cialion Glorius"
+    },
+    {
+      "id": "Cyprianus"
+    },
+    {
+      "id": "Dona Lurdes SilverHand"
+    },
+    {
+      "id": "Fallmora"
+    },
+    {
+      "id": "Grande caçador"
+    },
+    {
+      "id": "Harmonius Agathós"
+    },
+    {
+      "id": "Hermes"
+    },
+    {
+      "id": "Krifirus"
+    },
+    {
+      "id": "Lecrino Seguro"
+    },
+    {
+      "id": "Mestre Dimitri Fallmora"
+    },
+    {
+      "id": "Orcrus X"
+    },
+    {
+      "id": "Professor Thalassor"
+    },
+    {
+      "id": "Valorian"
+    },
+    {
+      "id": "Évori a curandeira"
+    },
+    {
+      "id": "império Rubro"
+    },
+    {
+      "id": "Sacro Império de Meijiraf"
+    },
+    {
+      "id": "BioForge Industries"
+    },
+    {
+      "id": "Bitware"
+    },
+    {
+      "id": "CloudForge"
+    },
+    {
+      "id": "Energex Corporation"
+    },
+    {
+      "id": "HealthTec"
+    },
+    {
+      "id": "Helix Conglomerate"
+    },
+    {
+      "id": "NeuroSys"
+    },
+    {
+      "id": "Novera Corp"
+    },
+    {
+      "id": "PharmaCo"
+    },
+    {
+      "id": "SynVera Entertainment"
+    },
+    {
+      "id": "Zenith Dynamics"
+    },
+    {
+      "id": "Culto carmezin"
+    },
+    {
+      "id": "Igreja das Luzes"
+    },
+    {
+      "id": "Seguidores de Callista"
+    },
+    {
+      "id": "Autarquia dos Magos"
+    },
+    {
+      "id": "Conselho dos Magos"
+    },
+    {
+      "id": "Cátedras arcanas"
+    },
+    {
+      "id": "Divindades caidas"
+    },
+    {
+      "id": "Emissários de Equitaria"
+    },
+    {
+      "id": "Inquisidores de Hermes"
+    },
+    {
+      "id": "Ordem dos Firmamentos"
+    },
+    {
+      "id": "Ordens cardinais"
+    },
+    {
+      "id": "Westerbarrow"
+    },
+    {
+      "id": "Forte de Rosvalia"
+    },
+    {
+      "id": "Frélla"
+    },
+    {
+      "id": "Sombravale"
+    },
+    {
+      "id": "Vila das Brumas"
+    },
+    {
+      "id": "Abismarca"
+    },
+    {
+      "id": "Aureum Sanctus"
+    },
+    {
+      "id": "Ilha do Infortúnio"
+    },
+    {
+      "id": "Teocracia de Rosvalia"
+    },
+    {
+      "id": "Trivale"
+    },
+    {
+      "id": "Sol"
+    },
+    {
+      "id": "Akróma"
+    },
+    {
+      "id": "Arre"
+    },
+    {
+      "id": "Estrela Guia"
+    },
+    {
+      "id": "Mosteiro de São Antão"
+    },
+    {
+      "id": "Portal de Esfora"
+    },
+    {
+      "id": "Torre de Fallmora"
+    },
+    {
+      "id": "Vitália"
+    },
+    {
+      "id": "Bengala da Desordem"
+    },
+    {
+      "id": "Profecia do fim"
+    },
+    {
+      "id": "Celestina"
+    },
+    {
+      "id": "Fragmentos da Existencia"
+    },
+    {
+      "id": "Fragmentos do Vazio"
+    },
+    {
+      "id": "Game - Aureum Sanctus"
+    },
+    {
+      "id": "Game - Profecia do fim"
+    },
+    {
+      "id": "Monocrom"
+    },
+    {
+      "id": "NOVA"
+    },
+    {
+      "id": "Sombras de Fallmora"
+    },
+    {
+      "id": "Tower Of Fallmora"
+    },
+    {
+      "id": "Untitled"
+    },
+    {
+      "id": "Ville"
+    },
+    {
+      "id": "A Pior coisa do mundo"
+    },
+    {
+      "id": "As Sombras do relógio"
+    },
+    {
+      "id": "Eu confio em voce"
+    },
+    {
+      "id": "Não sinto minhas mãos"
+    },
+    {
+      "id": "O Legado do Autor - A Queda do Criador"
+    },
+    {
+      "id": "Guerreiros espirituais"
+    },
+    {
+      "id": "Acruans"
+    },
+    {
+      "id": "Blattídeos"
+    },
+    {
+      "id": "Dragões"
+    },
+    {
+      "id": "Elfos"
+    },
+    {
+      "id": "Eternívoros"
+    },
+    {
+      "id": "Orcs"
+    },
+    {
+      "id": "Visionárias Cegas"
+    },
+    {
+      "id": "Vulpinideos"
+    },
+    {
+      "id": "To Make"
+    },
+    {
+      "id": "TODO"
+    }
+  ],
+  "links": [
+    {
+      "source": "Essências de Minerva",
+      "target": "Singularidades"
+    },
+    {
+      "source": "Essências de Minerva",
+      "target": "Divindades"
+    },
+    {
+      "source": "Eterna",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Caos",
+      "target": "Caos.webp"
+    },
+    {
+      "source": "Caos",
+      "target": "Harmonia"
+    },
+    {
+      "source": "Caos",
+      "target": "Eterna"
+    },
+    {
+      "source": "Caos",
+      "target": "Fringilla"
+    },
+    {
+      "source": "Caos",
+      "target": "ArtefatoDoCaos.webp"
+    },
+    {
+      "source": "Caos",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Caos",
+      "target": "Bengala da Desordem"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Fringilla"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Noctus"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Dualidade"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Eterna"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Rasgo do universo"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Energia"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Mistério da dualidade"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Mosteiro de São Antão"
+    },
+    {
+      "source": "Dualidade",
+      "target": "Fio da Ordem"
+    },
+    {
+      "source": "Energia",
+      "target": "Entropia"
+    },
+    {
+      "source": "Energia",
+      "target": "Conceitos/Conceitos Fundamentais/Caos|Caos"
+    },
+    {
+      "source": "Energia",
+      "target": "Energia"
+    },
+    {
+      "source": "Energia",
+      "target": "Ritual do tripudiar"
+    },
+    {
+      "source": "Energia",
+      "target": "Eterna"
+    },
+    {
+      "source": "Energia",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Energia",
+      "target": "Bogart"
+    },
+    {
+      "source": "Espaço",
+      "target": "Tempo"
+    },
+    {
+      "source": "Espaço",
+      "target": "Energia"
+    },
+    {
+      "source": "Espaço",
+      "target": "Espaço Absoluto"
+    },
+    {
+      "source": "Espaço",
+      "target": "Espaço Relativo"
+    },
+    {
+      "source": "Espaço",
+      "target": "Espaço"
+    },
+    {
+      "source": "Harmonia",
+      "target": "Eterna"
+    },
+    {
+      "source": "Harmonia",
+      "target": "Essências de Minerva"
+    },
+    {
+      "source": "Harmonia",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Harmonia",
+      "target": "Harmonia"
+    },
+    {
+      "source": "Harmonia",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Harmonia",
+      "target": "Caos"
+    },
+    {
+      "source": "Harmonia",
+      "target": "Harmonius Agathós"
+    },
+    {
+      "source": "Morte",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Morte",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "Morte",
+      "target": "Vida"
+    },
+    {
+      "source": "Morte",
+      "target": "Eterna"
+    },
+    {
+      "source": "Morte",
+      "target": "Ethereon"
+    },
+    {
+      "source": "Morte",
+      "target": "Prismora"
+    },
+    {
+      "source": "Tempo",
+      "target": "Prismora"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Fundamentos.webp"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Supra-Singularidade|Supra-Singularidades"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Fringilla"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Caos"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Medo"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Morte"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Noctus"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Conceitos/Fundamentos/Esperança"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Harmonia"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Vida"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Illiphar"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Dualidade"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Tempo"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Espaço"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Grande Plano"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "_Conceitos - Fundamentos",
+      "target": "Objetos/Lendarios/Profecia do fim"
+    },
+    {
+      "source": "Grande Plano",
+      "target": "GrandePlano.png"
+    },
+    {
+      "source": "Grande Plano",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "Grande Plano",
+      "target": "Eterna"
+    },
+    {
+      "source": "Grande Plano",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Grande Plano",
+      "target": "Grande Plano"
+    },
+    {
+      "source": "Grande Plano",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Grande Plano",
+      "target": "Nihilus"
+    },
+    {
+      "source": "Grande Plano",
+      "target": "Objetos/Lendarios/Profecia do fim"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Ignitario.png"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Abyssethar"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Eterna"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Tempo"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Espaço"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Domínios Etéreos"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Energia"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Vida"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Morte"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Dualidade"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Caos"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Medo"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Conceitos/Conceitos Fundamentais/Esperança"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Harmonia"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Singularidades"
+    },
+    {
+      "source": "Ignitário",
+      "target": "Objetos/Lendarios/Profecia do fim"
+    },
+    {
+      "source": "Arcânicas",
+      "target": "Arcânicas"
+    },
+    {
+      "source": "Arcânicas",
+      "target": "Ordens e Clans/Cátedras arcanas|Cátedras arcanas"
+    },
+    {
+      "source": "Arcânicas",
+      "target": "mágia"
+    },
+    {
+      "source": "Arcânicas",
+      "target": "Cátedra Oculta"
+    },
+    {
+      "source": "Arcânicas",
+      "target": "Arcanicas\\Arcanica"
+    },
+    {
+      "source": "Magia Banida",
+      "target": "Cátedra Oculta"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "CatedraArcana.webp"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Magia"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Systempunk"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Cataclisma Mágico"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Primavera Mágica"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Noctus"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Exordio"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Idrytes"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Velho Dicionário"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Primavera Magica"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Rei Arcani"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Tormentos de Grayhall"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Axiomata Arcana"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Ordinis Mystica"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Umbracantus Occultum"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Excidium Interdicta"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Magia Branca"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Magia Obscura"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Magia Banida"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Ocultistas"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Arcânicas"
+    },
+    {
+      "source": "_Conceitos - Cátedras Arcanas",
+      "target": "Space Opera"
+    },
+    {
+      "source": "Exordio",
+      "target": "Historia/Systempunk/Eventos/Cataclisma Mágico|Cataclisma Mágico"
+    },
+    {
+      "source": "Exordio",
+      "target": "Historia/Systempunk/Conceitos/Supra-Singularidade|Supra-Singularidades"
+    },
+    {
+      "source": "Exordio",
+      "target": "Historia/Systempunk/Conceitos/Desconhecido|Desconhecido"
+    },
+    {
+      "source": "Exordio",
+      "target": "Lentes Arcanas"
+    },
+    {
+      "source": "Exordio",
+      "target": "Historia/Systempunk/Eras/Eras Menores/50. Space Opera|Space Opera"
+    },
+    {
+      "source": "Exordio",
+      "target": "Ordens e Clans/Cátedras Arcanas|Cátedras Arcanas"
+    },
+    {
+      "source": "Exordio",
+      "target": "Arcânicas"
+    },
+    {
+      "source": "Exordio",
+      "target": "Historia/Systempunk/Conceitos/Ignitário|Ignitário"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Historia/Systempunk/Eventos/Cataclisma Mágico|Cataclisma Mágico"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Exordio"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Série de Flux"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Historia/Systempunk/Eras/Eras Menores/Monopunk|Monopunk"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Ordens e Clans/Cátedras arcanas|Cátedras Arcanas"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "império Rubro"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Cialion Glorius"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Bile de Jerren"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Corrupção Mágica"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Conselho dos Magos"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Autarquia dos Magos"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Arcânicas"
+    },
+    {
+      "source": "_Conceitos - Magia",
+      "target": "Cátedra Oculta"
+    },
+    {
+      "source": "Singularidades",
+      "target": "Singularidades.jpg"
+    },
+    {
+      "source": "Singularidades",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "Singularidades",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Singularidades",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Singularidades",
+      "target": "Eterna"
+    },
+    {
+      "source": "Supra-Singularidade",
+      "target": "SupraSingularidades.jpg"
+    },
+    {
+      "source": "Supra-Singularidade",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Supra-Singularidade",
+      "target": "Noctus"
+    },
+    {
+      "source": "Supra-Singularidade",
+      "target": "Fringilla"
+    },
+    {
+      "source": "Supra-Singularidade",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Supra-Singularidade",
+      "target": "Abyssethar"
+    },
+    {
+      "source": "Supra-Singularidade",
+      "target": "Matéria Nula"
+    },
+    {
+      "source": "Supra-Singularidade",
+      "target": "Singularidades"
+    },
+    {
+      "source": "Ângulos de Eliphas Levi",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Ângulos de Eliphas Levi",
+      "target": "Planícies da concretude"
+    },
+    {
+      "source": "Ângulos de Eliphas Levi",
+      "target": "Crepúsculos Serenos"
+    },
+    {
+      "source": "Divindades Ancestrais",
+      "target": "DivindadesAncestrais.png"
+    },
+    {
+      "source": "Divindades Ancestrais",
+      "target": "Divindades Ancestrais"
+    },
+    {
+      "source": "Divindades Ancestrais",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Divindades Ancestrais",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Divindades Ancestrais",
+      "target": "Eterna"
+    },
+    {
+      "source": "Divindades Ancestrais",
+      "target": "Essências de Minerva"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "DivindadesArcanas.png"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Magia"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Singularidades"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Omniverso"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Ordens cardinais"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Cátedras arcanas"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Magia Branca"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Magia Obscura"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Magia Banida"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Estrela Guia"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Divindades Arcanas"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Inquisidores de Hermes"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Divindade Arcana"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Hermes"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Emissários de Equitaria"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Divindades Arcanas",
+      "target": "Cataclisma Mágico"
+    },
+    {
+      "source": "Divindades da Guerra",
+      "target": "DivindadesDaGuerra.png"
+    },
+    {
+      "source": "Divindades das Artes",
+      "target": "DivindadesDasArtes.png"
+    },
+    {
+      "source": "Divindades do Caos",
+      "target": "DivindadesDoCaos.png"
+    },
+    {
+      "source": "Divindades do Conhecimento",
+      "target": "DivindadesDoConhecimento.png"
+    },
+    {
+      "source": "Divindades Elementais",
+      "target": "DivindadesElementais.png"
+    },
+    {
+      "source": "Divindades Místicas",
+      "target": "DivindadesMisticas.jpg"
+    },
+    {
+      "source": "Divindades Naturais",
+      "target": "DivindadesNaturais.png"
+    },
+    {
+      "source": "Divindades Neutras",
+      "target": "DivindadesNeutras.png"
+    },
+    {
+      "source": "Divindades Temporais",
+      "target": "DivindadesTemporais.png"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades.png"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Abyssethar"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Eterna"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Aevum Primus"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Singularidade"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Illiphar"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades Elementais"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades Temporais"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades Naturais"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades da Guerra"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades Arcanas"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades Ancestrais"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades do Conhecimento"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades das Artes"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades do Caos"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades Místicas"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades Neutras"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Panteões gerais"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Panteões menores"
+    },
+    {
+      "source": "_Conceitos - Divindades",
+      "target": "Divindades caidas"
+    },
+    {
+      "source": "Abyssethar",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Abyssethar",
+      "target": "Singularidades"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Ethereon.png"
+    },
+    {
+      "source": "Ethereon",
+      "target": "_Conceito - Planícies da concretude|planícies da concretude"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Nihilus"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Prismora"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Ethereon_1.png"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Vitália"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Domínio dos Renegados"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Forte dos ossos"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Domínio dos renegados"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Clavis Artesanus"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Fenescorte"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Bahia dos esquecidos"
+    },
+    {
+      "source": "Ethereon",
+      "target": "Rio Stix"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Primordia.png"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Guerreiros espirituais"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Visionárias Cegas"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Etherisil"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Prismora"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Primordiz"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Domínios etéreos"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Celestina"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Esperança"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Guerreiros Espirituais"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Portal de Esfora"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Grande exílio"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Orcrus X"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Divindades"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Crepúsculos Serenos"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Tratado Universal das Divindades"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Eternívoros"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Domínio dos Renegados"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Ito"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Otu"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Verla"
+    },
+    {
+      "source": "Primordiz",
+      "target": "Gor"
+    },
+    {
+      "source": "Prismora",
+      "target": "Prismora.png"
+    },
+    {
+      "source": "Prismora",
+      "target": "_Conceito - Planícies da concretude|planícies da concretude"
+    },
+    {
+      "source": "Prismora",
+      "target": "Primordiz"
+    },
+    {
+      "source": "_Conceito - Planícies da concretude",
+      "target": "_Conceito - Domínios Etéreos|Domínios Etéreos"
+    },
+    {
+      "source": "Ascendora",
+      "target": "Unitarius"
+    },
+    {
+      "source": "Ascendora",
+      "target": "_Conceito - Crepúsculo Sereno"
+    },
+    {
+      "source": "Aurorium",
+      "target": "Aurorium.png"
+    },
+    {
+      "source": "Aurorium",
+      "target": "_Conceito - Crepúsculo Sereno|Crepúsculos Serenos"
+    },
+    {
+      "source": "Aurorium",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Aurorium",
+      "target": "Ethereon"
+    },
+    {
+      "source": "Aurorium",
+      "target": "Sapienscia"
+    },
+    {
+      "source": "Aurorium",
+      "target": "Prismora"
+    },
+    {
+      "source": "Aurorium",
+      "target": "Nexus Celestialis"
+    },
+    {
+      "source": "Creatiônio",
+      "target": "Devotário"
+    },
+    {
+      "source": "Creatiônio",
+      "target": "_Conceito - Crepúsculo Sereno|Crepúsculos Serenos"
+    },
+    {
+      "source": "Devotário",
+      "target": "Purifis"
+    },
+    {
+      "source": "Devotário",
+      "target": "_Conceito - Crepúsculo Sereno|Crepúsculos Serenos"
+    },
+    {
+      "source": "Purifis",
+      "target": "Ascendora"
+    },
+    {
+      "source": "Purifis",
+      "target": "_Conceito - Crepúsculo Sereno|Crepúsculos Serenos"
+    },
+    {
+      "source": "Sapienscia",
+      "target": "Verdades"
+    },
+    {
+      "source": "Sapienscia",
+      "target": "Herdade"
+    },
+    {
+      "source": "Sapienscia",
+      "target": "Verdade"
+    },
+    {
+      "source": "Sapienscia",
+      "target": "Serenix"
+    },
+    {
+      "source": "Sapienscia",
+      "target": "_Conceito - Crepúsculo Sereno|Crepúsculos Serenos"
+    },
+    {
+      "source": "Sapienscia",
+      "target": "Grifos de hamelin"
+    },
+    {
+      "source": "Serenix",
+      "target": "Creatiônio"
+    },
+    {
+      "source": "Serenix",
+      "target": "_Conceito - Crepúsculo Sereno|Crepúsculos Serenos"
+    },
+    {
+      "source": "Unitarius",
+      "target": "_Conceito - Crepúsculo Sereno|Crepúsculos Serenos"
+    },
+    {
+      "source": "Agonius",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Agonius",
+      "target": "Pyronix"
+    },
+    {
+      "source": "Anguistius",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Anguistius",
+      "target": "Glypharum"
+    },
+    {
+      "source": "Anguistius",
+      "target": "Anguistius"
+    },
+    {
+      "source": "Anguistius",
+      "target": "sentinelas espirituais"
+    },
+    {
+      "source": "Anguistius",
+      "target": "James Cook"
+    },
+    {
+      "source": "Anguistius",
+      "target": "Vila dos cômodos"
+    },
+    {
+      "source": "Anguistius",
+      "target": "Nascente de Furat"
+    },
+    {
+      "source": "Corruptis",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Corruptis",
+      "target": "Despairon"
+    },
+    {
+      "source": "Despairon",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Despairon",
+      "target": "Destrucion"
+    },
+    {
+      "source": "Desperon",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Desperon",
+      "target": "Torturis"
+    },
+    {
+      "source": "Destrucion",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Destrucion",
+      "target": "Anguistius"
+    },
+    {
+      "source": "Odium",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Odium",
+      "target": "Corruptis"
+    },
+    {
+      "source": "Perdicius",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Perdicius",
+      "target": "Odium"
+    },
+    {
+      "source": "Pyronix",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Pyronix",
+      "target": "Desperon"
+    },
+    {
+      "source": "Remorius",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Remorius",
+      "target": "Agonius"
+    },
+    {
+      "source": "Torturis",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Torturis",
+      "target": "Perdicius"
+    },
+    {
+      "source": "Umbra",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "Umbra",
+      "target": "Remorius"
+    },
+    {
+      "source": "_Conceito - Abismos da Sombra",
+      "target": "Domínios etéreos"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "DominiosEterios.png"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "_Conceito - Abismos da Sombra"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "Crepúsculos Serenos"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "Planícies da Concretude"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "Nihilus"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "Domínio dos renegados"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "Dimensão inferior"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "Planícies da concretude"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "Etherisil"
+    },
+    {
+      "source": "_Conceito - Domínios Etéreos",
+      "target": "Primordiz"
+    },
+    {
+      "source": "Apunk",
+      "target": "Notas de versão"
+    },
+    {
+      "source": "Apunk",
+      "target": "Apunk.png"
+    },
+    {
+      "source": "Apunk",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "Apunk",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Apunk",
+      "target": "Abyssethar"
+    },
+    {
+      "source": "Apunk",
+      "target": "Noctus"
+    },
+    {
+      "source": "Apunk",
+      "target": "Fringilla"
+    },
+    {
+      "source": "Apunk",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Apunk",
+      "target": "Singularidades"
+    },
+    {
+      "source": "Apunk",
+      "target": "Lâmina φ"
+    },
+    {
+      "source": "Apunk",
+      "target": "Eterna"
+    },
+    {
+      "source": "Apunk",
+      "target": "Supra-singularidade"
+    },
+    {
+      "source": "Apunk",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Apunk",
+      "target": "Aevum Primus"
+    },
+    {
+      "source": "Apunk",
+      "target": "Singularidade"
+    },
+    {
+      "source": "Apunk",
+      "target": "Divindade"
+    },
+    {
+      "source": "Apunk",
+      "target": "Ordem dos Firmamentos"
+    },
+    {
+      "source": "Apunk",
+      "target": "Aelon"
+    },
+    {
+      "source": "Apunk",
+      "target": "Valorian"
+    },
+    {
+      "source": "Apunk",
+      "target": "Solara"
+    },
+    {
+      "source": "Apunk",
+      "target": "Callista"
+    },
+    {
+      "source": "Apunk",
+      "target": "Sol"
+    },
+    {
+      "source": "Apunk",
+      "target": "Arre"
+    },
+    {
+      "source": "Apunk",
+      "target": "Divindades"
+    },
+    {
+      "source": "Apunk",
+      "target": "Seguidores de Callista"
+    },
+    {
+      "source": "Apunk",
+      "target": "Dimensão inferior"
+    },
+    {
+      "source": "Apunk",
+      "target": "a.C."
+    },
+    {
+      "source": "Apunk",
+      "target": "Hego"
+    },
+    {
+      "source": "Apunk",
+      "target": "Akróma"
+    },
+    {
+      "source": "Apunk",
+      "target": "Fallmora"
+    },
+    {
+      "source": "Apunk",
+      "target": "Cyprianus"
+    },
+    {
+      "source": "Apunk",
+      "target": "Acruans"
+    },
+    {
+      "source": "Apunk",
+      "target": "Mitu"
+    },
+    {
+      "source": "Apunk",
+      "target": "Stonepunk"
+    },
+    {
+      "source": "Biohackerpunk",
+      "target": "Biohackerpunk.png"
+    },
+    {
+      "source": "Biohackerpunk",
+      "target": "Biopunk Rebellion"
+    },
+    {
+      "source": "Biopunk Rebellion",
+      "target": "BiopunkRebellion.png"
+    },
+    {
+      "source": "Biopunk Rebellion",
+      "target": "Nanopunk"
+    },
+    {
+      "source": "Biopunk",
+      "target": "Biopunk.png"
+    },
+    {
+      "source": "Biopunk",
+      "target": "Biohackerpunk"
+    },
+    {
+      "source": "Bronzepunk",
+      "target": "Bronzepunk.png"
+    },
+    {
+      "source": "Bronzepunk",
+      "target": "Fallmora"
+    },
+    {
+      "source": "Bronzepunk",
+      "target": "Abismarca"
+    },
+    {
+      "source": "Bronzepunk",
+      "target": "Aureum Sanctus"
+    },
+    {
+      "source": "Bronzepunk",
+      "target": "Trivale"
+    },
+    {
+      "source": "Bronzepunk",
+      "target": "Rococopunk"
+    },
+    {
+      "source": "Cattlepunk",
+      "target": "Weird Westpunk"
+    },
+    {
+      "source": "Cattlepunk",
+      "target": "Eras/Eras Menores/Cattlepunk.webp"
+    },
+    {
+      "source": "Class War",
+      "target": "ClassWar.webp"
+    },
+    {
+      "source": "Clockpunk",
+      "target": "Clockpunk.png"
+    },
+    {
+      "source": "Clockpunk",
+      "target": "Dungeonpunk"
+    },
+    {
+      "source": "Colorpunk",
+      "target": "Images/Punks/Colorpunk.webp"
+    },
+    {
+      "source": "Cyber Urban Fantasy",
+      "target": "CyberUrbanFantazy.webp"
+    },
+    {
+      "source": "Cyberpunk Noir",
+      "target": "Images/Punks/CyberpunkNior.webp"
+    },
+    {
+      "source": "Cyberpunk Noir",
+      "target": "Cyberwar Punk"
+    },
+    {
+      "source": "Cyberpunk",
+      "target": "Cyberpunk.png"
+    },
+    {
+      "source": "Cyberpunk",
+      "target": "Virtual Reality"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "Images/Punks/CyberwarPunk.webp"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "Splatterpunk"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "Bitware"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "HealthTec"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "Energex Corporation"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "CloudForge"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "BioForge Industries"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "Helix Conglomerate"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "Novera Corp"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "SynVera Entertainment"
+    },
+    {
+      "source": "Cyberwar Punk",
+      "target": "Zenith Dynamics"
+    },
+    {
+      "source": "Desertpunk",
+      "target": "Desertpunk.webp"
+    },
+    {
+      "source": "Dieselpunk",
+      "target": "Dieselpunk.png"
+    },
+    {
+      "source": "Dieselpunk",
+      "target": "Weird Diesel Punk"
+    },
+    {
+      "source": "Dungeonpunk",
+      "target": "Dungeonpunk.png"
+    },
+    {
+      "source": "Dungeonpunk",
+      "target": "Fagulha Liminal"
+    },
+    {
+      "source": "Dungeonpunk",
+      "target": "Nova Parpola"
+    },
+    {
+      "source": "Dungeonpunk",
+      "target": "Objeto Âncora"
+    },
+    {
+      "source": "Dungeonpunk",
+      "target": "Eras/Eras Menores/Clockpunk"
+    },
+    {
+      "source": "Ending Punk",
+      "target": "Ending Punk"
+    },
+    {
+      "source": "Frostpunk",
+      "target": "Images/Frostpunk.webp"
+    },
+    {
+      "source": "Gothicpunk",
+      "target": "Gothicpunk.png"
+    },
+    {
+      "source": "Gothicpunk",
+      "target": "Weird Gothicpunk"
+    },
+    {
+      "source": "Hi-Militar",
+      "target": "HiMilitar.webp"
+    },
+    {
+      "source": "Hopepunk",
+      "target": "Hopepunk.png"
+    },
+    {
+      "source": "Hopepunk",
+      "target": "Aureum Sanctus"
+    },
+    {
+      "source": "Hopepunk",
+      "target": "Trivale"
+    },
+    {
+      "source": "Hopepunk",
+      "target": "Silkpunk"
+    },
+    {
+      "source": "Monopunk",
+      "target": "CataclismaMagico.png"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Cataclisma Mágico"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Cosmos Explorer 7"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Guerra das cores"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Limiar"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Primavera Magica"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Monstruosidades de Hego"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Luminarion"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Celestiais"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Frostveil"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Vulpinideos"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Professor Thalassor"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Blattídeos"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Aldric Blotíbac"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Elfos"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Orcs"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Dragões"
+    },
+    {
+      "source": "Monopunk",
+      "target": "39. Desertpunk"
+    },
+    {
+      "source": "Monopunk",
+      "target": "Monopunk.webp"
+    },
+    {
+      "source": "Myth War",
+      "target": "MythWar.webp"
+    },
+    {
+      "source": "Mythpunk",
+      "target": "Mythpunk.webp"
+    },
+    {
+      "source": "Nanopunk Noir",
+      "target": "Images/NanopunkNior.png"
+    },
+    {
+      "source": "Nanopunk Noir",
+      "target": "Solar War"
+    },
+    {
+      "source": "Nanopunk",
+      "target": "Images/Nanopunk.png"
+    },
+    {
+      "source": "Nanopunk",
+      "target": "Nanopunk Noir"
+    },
+    {
+      "source": "Necropunk",
+      "target": "Necropunk.webp"
+    },
+    {
+      "source": "Ocean World War",
+      "target": "OceanWorldWar.png"
+    },
+    {
+      "source": "Oceanpunk",
+      "target": "Oceanpunk.png"
+    },
+    {
+      "source": "Oceanpunk",
+      "target": "34. Ocean World War"
+    },
+    {
+      "source": "Organicpunk",
+      "target": "Organicpunk.png"
+    },
+    {
+      "source": "Organicpunk",
+      "target": "Gothicpunk"
+    },
+    {
+      "source": "Petrolpunk",
+      "target": "Petrolpunk.webp"
+    },
+    {
+      "source": "Rococopunk",
+      "target": "Rococopunk.png"
+    },
+    {
+      "source": "Rococopunk",
+      "target": "Trivale"
+    },
+    {
+      "source": "Rococopunk",
+      "target": "Abismarca"
+    },
+    {
+      "source": "Rococopunk",
+      "target": "Aureum Sanctus"
+    },
+    {
+      "source": "Rococopunk",
+      "target": "Limiar|Limiar dos Caídos"
+    },
+    {
+      "source": "Rococopunk",
+      "target": "Hopepunk"
+    },
+    {
+      "source": "Scavengedpunk",
+      "target": "Scavengedpunk.png"
+    },
+    {
+      "source": "Scavengedpunk",
+      "target": "Biopunk"
+    },
+    {
+      "source": "Silkpunk",
+      "target": "Silkpunk.png"
+    },
+    {
+      "source": "Silkpunk",
+      "target": "Aureum Sanctus"
+    },
+    {
+      "source": "Silkpunk",
+      "target": "Fagulha Liminal"
+    },
+    {
+      "source": "Silkpunk",
+      "target": "Weird Rococo"
+    },
+    {
+      "source": "Social War",
+      "target": "SocialWar.webp"
+    },
+    {
+      "source": "Solar War",
+      "target": "Images/SolarWar.webp"
+    },
+    {
+      "source": "Solar War",
+      "target": "Eras/Eras Menores/Oceanpunk"
+    },
+    {
+      "source": "Solarpunk",
+      "target": "Solarpunk.webp"
+    },
+    {
+      "source": "Space Opera",
+      "target": "Ending Punk"
+    },
+    {
+      "source": "Spacialpunk",
+      "target": "Spacialpunk.webp"
+    },
+    {
+      "source": "Splatterpunk",
+      "target": "Splatterpunk.png"
+    },
+    {
+      "source": "Splatterpunk",
+      "target": "Organicpunk"
+    },
+    {
+      "source": "Steampunk",
+      "target": "Steampunk.png"
+    },
+    {
+      "source": "Steampunk",
+      "target": "Wear Steampunk"
+    },
+    {
+      "source": "Stonepunk",
+      "target": "Stonepunk.png"
+    },
+    {
+      "source": "Stonepunk",
+      "target": "Grande Queda"
+    },
+    {
+      "source": "Stonepunk",
+      "target": "Torre de Fallmora"
+    },
+    {
+      "source": "Stonepunk",
+      "target": "Fallmora"
+    },
+    {
+      "source": "Stonepunk",
+      "target": "Hego"
+    },
+    {
+      "source": "Stonepunk",
+      "target": "Culto carmezin"
+    },
+    {
+      "source": "Stonepunk",
+      "target": "Limiar|Limiar dos Caidos"
+    },
+    {
+      "source": "Stonepunk",
+      "target": "Limiar"
+    },
+    {
+      "source": "Stonepunk",
+      "target": "Bronzepunk"
+    },
+    {
+      "source": "Teslapunk",
+      "target": "Teslapunk.png"
+    },
+    {
+      "source": "Teslapunk",
+      "target": "Cyberpunk"
+    },
+    {
+      "source": "Timepunk",
+      "target": "Timepunk.webp"
+    },
+    {
+      "source": "Transistorpunk",
+      "target": "Transistorpunk.png"
+    },
+    {
+      "source": "Transistorpunk",
+      "target": "Teslapunk"
+    },
+    {
+      "source": "Virtual Reality",
+      "target": "VirtualReality.png"
+    },
+    {
+      "source": "Virtual Reality",
+      "target": "Cyberpunk Noir"
+    },
+    {
+      "source": "War Colorpunk",
+      "target": "WarColorpunk.webp"
+    },
+    {
+      "source": "Wear Steampunk",
+      "target": "WearSteampunk.png"
+    },
+    {
+      "source": "Wear Steampunk",
+      "target": "Cattlepunk"
+    },
+    {
+      "source": "Weird Diesel Punk",
+      "target": "WeirdDieselpunk.png"
+    },
+    {
+      "source": "Weird Diesel Punk",
+      "target": "World War Dieselpunk"
+    },
+    {
+      "source": "Weird Gothicpunk",
+      "target": "WeirdGothicpunk.png"
+    },
+    {
+      "source": "Weird Gothicpunk",
+      "target": "Scavengedpunk"
+    },
+    {
+      "source": "Weird Rococo",
+      "target": "WeirdRococo.png"
+    },
+    {
+      "source": "Weird Rococo",
+      "target": "Aureum Sanctus"
+    },
+    {
+      "source": "Weird Rococo",
+      "target": "Fagulha Liminal"
+    },
+    {
+      "source": "Weird Rococo",
+      "target": "Culto carmezin"
+    },
+    {
+      "source": "Weird Rococo",
+      "target": "Dungeonpunk"
+    },
+    {
+      "source": "Weird Westpunk",
+      "target": "WeirdWestpunk.png"
+    },
+    {
+      "source": "Weird Westpunk",
+      "target": "Dieselpunk"
+    },
+    {
+      "source": "World War Dieselpunk",
+      "target": "WorldWarDieselpunk.webp"
+    },
+    {
+      "source": "World War Dieselpunk",
+      "target": "Transistorpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Apunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Apunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Objetos/Lendarios/Profecia do fim"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "_Conceitos - Divindades|Divindades"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "_Conceito - Abismos da Sombra|Abismos da sombra"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Quimera"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Grande Queda"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Projetos/Jogos/Profecia do fim|Profecia do Fim"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Stonepunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Stonepunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Torre de Fallmora"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Fallmora"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Hego"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Culto carmezin"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Limiar|Limiar dos Caidos"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Limiar"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Bronzepunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Bronzepunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Abismarca"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Aureum Sanctus"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Trivale"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Rococopunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Rococopunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Limiar|Limiar dos Caídos"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Hopepunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Hopepunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Silkpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Silkpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Weird Rococo"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "WeirdRococo.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Dungeonpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Dungeonpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Eras/Clockpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Clockpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Steampunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Steampunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Wear Steampunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "WearSteampunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Cattlepunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Eras/Eras Menores/Cattlepunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Weird Westpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "WeirdWestpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Dieselpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Dieselpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Weird Diesel Punk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "WeirdDieselpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "World War Dieselpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "WorldWarDieselpunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Transistorpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Transistorpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Teslapunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Teslapunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Cyberpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Cyberpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Virtual Reality"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "VirtualReality.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Cyberpunk Noir"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Images/Punks/CyberpunkNior.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Cyberwar Punk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Images/Punks/CyberwarPunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Splatterpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Splatterpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Organicpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Organicpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Gothicpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Gothicpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Weird Gothicpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "WeirdGothicpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Scavengedpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Scavengedpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Biopunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Biopunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Biohackerpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Biohackerpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Biopunk Rebellion"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "BiopunkRebellion.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Nanopunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Images/Nanopunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Nanopunk Noir"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Images/NanopunkNior.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Solar War"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Images/SolarWar.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Eventos/Oceanpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Oceanpunk.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Ocean World War"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "OceanWorldWar.png"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Colorpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Images/Punks/Colorpunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Monopunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Monopunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "War Colorpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "WarColorpunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Timepunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Timepunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Frostpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Frostpunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Desertpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Desertpunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Necropunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Necropunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Petrolpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Petrolpunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Class War"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "ClassWar.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Solarpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Solarpunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Mythpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Mythpunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Myth War"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "MythWar.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Cyber Urban Fantasy"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "CyberUrbanFantazy.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Spacialpunk"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Spacialpunk.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Hi-Militar"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "HiMilitar.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Social War"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "SocialWar.webp"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "Cosmic Prophecy"
+    },
+    {
+      "source": "_Conceito - Eras Menores",
+      "target": "CosmicProphecy.webp"
+    },
+    {
+      "source": "Grande exílio",
+      "target": "Guerreiros espirituais"
+    },
+    {
+      "source": "Grande exílio",
+      "target": "Primordiz"
+    },
+    {
+      "source": "Grande exílio",
+      "target": "Grande caçador"
+    },
+    {
+      "source": "Celestiais",
+      "target": "Celestiais.png"
+    },
+    {
+      "source": "Celestiais",
+      "target": "Celestiais"
+    },
+    {
+      "source": "Celestiais",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Celestiais",
+      "target": "Eterna"
+    },
+    {
+      "source": "Frostveil",
+      "target": "Frostveil.png"
+    },
+    {
+      "source": "Frostveil",
+      "target": "Frostveil"
+    },
+    {
+      "source": "Luminarion",
+      "target": "Luminarion.png"
+    },
+    {
+      "source": "Monstruosidades de Hego",
+      "target": "Hego"
+    },
+    {
+      "source": "Monstruosidades de Hego",
+      "target": "Cyprianus"
+    },
+    {
+      "source": "Monstruosidades de Hego",
+      "target": "Acruans"
+    },
+    {
+      "source": "Monstruosidades de Hego",
+      "target": "Mitu"
+    },
+    {
+      "source": "Desconhecido",
+      "target": "Desconhecido.png"
+    },
+    {
+      "source": "Desconhecido",
+      "target": "Domínios Etéreos"
+    },
+    {
+      "source": "Desconhecido",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "Desconhecido",
+      "target": "Eterna"
+    },
+    {
+      "source": "Desconhecido",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Desconhecido",
+      "target": "Abismo das Sombras"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Noctus"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Lâmina φ"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Eterna"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Profecia dos 3"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Abyssethar"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Morte"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Medo"
+    },
+    {
+      "source": "Fringilla",
+      "target": "Systempunk/Conceitos/Conceitos Fundamentais/Caos|Caos"
+    },
+    {
+      "source": "Illiphar",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "Illiphar",
+      "target": "Dualidade"
+    },
+    {
+      "source": "Illiphar",
+      "target": "Noctus"
+    },
+    {
+      "source": "Illiphar",
+      "target": "Fringilla"
+    },
+    {
+      "source": "Illiphar",
+      "target": "Illiphar"
+    },
+    {
+      "source": "Illiphar",
+      "target": "Eterna"
+    },
+    {
+      "source": "Illiphar",
+      "target": "Objetos/Lendarios/Profecia do fim"
+    },
+    {
+      "source": "Illiphar",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Illiphar",
+      "target": "Singularidade"
+    },
+    {
+      "source": "Limiar",
+      "target": "Divindades caidas"
+    },
+    {
+      "source": "Limiar",
+      "target": "Aevum Primus"
+    },
+    {
+      "source": "Limiar",
+      "target": "Dimensão inferior"
+    },
+    {
+      "source": "Noctus",
+      "target": "Fringilla"
+    },
+    {
+      "source": "Noctus",
+      "target": "Lâmina φ"
+    },
+    {
+      "source": "Noctus",
+      "target": "Eterna"
+    },
+    {
+      "source": "Noctus",
+      "target": "Abyssethar"
+    },
+    {
+      "source": "Noctus",
+      "target": "Singularidade"
+    },
+    {
+      "source": "Noctus",
+      "target": "Ignitário"
+    },
+    {
+      "source": "Noctus",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Noctus",
+      "target": "Vida"
+    },
+    {
+      "source": "Noctus",
+      "target": "Tempo"
+    },
+    {
+      "source": "Noctus",
+      "target": "Conceitos/Conceitos Fundamentais/Esperança|Esperança"
+    },
+    {
+      "source": "Noctus",
+      "target": "Harmonia"
+    },
+    {
+      "source": "Noctus",
+      "target": "Espaço"
+    },
+    {
+      "source": "Noctus",
+      "target": "Energia"
+    },
+    {
+      "source": "Dona Lurdes SilverHand",
+      "target": "Sombravale"
+    },
+    {
+      "source": "Grande caçador",
+      "target": "Prismora"
+    },
+    {
+      "source": "Grande caçador",
+      "target": "Etherisil"
+    },
+    {
+      "source": "Grande caçador",
+      "target": "Visionárias Cegas"
+    },
+    {
+      "source": "Grande caçador",
+      "target": "Guerreiros espirituais"
+    },
+    {
+      "source": "Grande caçador",
+      "target": "Primordiz"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "ProfessorThalassor.png.png"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Frélla"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Cataclisma Mágico"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Krifirus"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Guerra das Cores"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Mestre Dimitri Fallmora"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Cosmos Explorer 7"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Anastácia Fallmora"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Alexander Clark"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Arco Voltaico"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Concelho dos Mil"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Professor Thalassor"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Monopunk"
+    },
+    {
+      "source": "Professor Thalassor",
+      "target": "Primavera Magica"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "BioForge Industries"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "Rafael Forge Amado"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "Neo Brasília"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "Rafael Forge Amado|Rafael Amado"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "HealthTec"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "Rafael Forge Amado|Rafael"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "BioForge Industries|BioForge"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": " BioForge Industries"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "Cyberwar Punk|Cyberwar Punk"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "Cyberwar Punk|Cyberwar"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "Glasmeer"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "Zonas Desmilitarizadas do Pacífico"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "Bitware"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "BioForge Industries",
+      "target": "CloudForge"
+    },
+    {
+      "source": "Bitware",
+      "target": "General Viktor Halstrom"
+    },
+    {
+      "source": "Bitware",
+      "target": "Federação Nórdica"
+    },
+    {
+      "source": "Bitware",
+      "target": "General Viktor Halstrom|Viktor Halstrom"
+    },
+    {
+      "source": "Bitware",
+      "target": "Guerra das Cidades-Estado"
+    },
+    {
+      "source": "Bitware",
+      "target": "General Viktor Halstrom|Halstrom"
+    },
+    {
+      "source": "Bitware",
+      "target": "Bitware"
+    },
+    {
+      "source": "Bitware",
+      "target": "Nova Berlim"
+    },
+    {
+      "source": "Bitware",
+      "target": "União Europeia."
+    },
+    {
+      "source": "Bitware",
+      "target": "DMA|drone militar autônomo"
+    },
+    {
+      "source": "Bitware",
+      "target": "Valkyrie Mk I"
+    },
+    {
+      "source": "Bitware",
+      "target": "Liga Pan-Asiática"
+    },
+    {
+      "source": "Bitware",
+      "target": "Cyberwar Punk|Cyberwar"
+    },
+    {
+      "source": "Bitware",
+      "target": "Projeto Ragnarok"
+    },
+    {
+      "source": "Bitware",
+      "target": "HealthTec"
+    },
+    {
+      "source": "Bitware",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "Bitware",
+      "target": "Energex Corporation"
+    },
+    {
+      "source": "Bitware",
+      "target": "CloudForge"
+    },
+    {
+      "source": "CloudForge",
+      "target": "Bitware"
+    },
+    {
+      "source": "CloudForge",
+      "target": "HealthTec"
+    },
+    {
+      "source": "CloudForge",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "CloudForge",
+      "target": "Energex Corporation"
+    },
+    {
+      "source": "Energex Corporation",
+      "target": "Bitware"
+    },
+    {
+      "source": "Energex Corporation",
+      "target": "HealthTec"
+    },
+    {
+      "source": "Energex Corporation",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "Energex Corporation",
+      "target": "CloudForge"
+    },
+    {
+      "source": "HealthTec",
+      "target": "HealthTec"
+    },
+    {
+      "source": "Helix Conglomerate",
+      "target": "Bitware"
+    },
+    {
+      "source": "Helix Conglomerate",
+      "target": "HealthTec"
+    },
+    {
+      "source": "Helix Conglomerate",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "Helix Conglomerate",
+      "target": "Energex Corporation"
+    },
+    {
+      "source": "Helix Conglomerate",
+      "target": "CloudForge"
+    },
+    {
+      "source": "NeuroSys",
+      "target": "Bitware"
+    },
+    {
+      "source": "NeuroSys",
+      "target": "HealthTec"
+    },
+    {
+      "source": "NeuroSys",
+      "target": "CloudForge"
+    },
+    {
+      "source": "Novera Corp",
+      "target": "Bitware"
+    },
+    {
+      "source": "Novera Corp",
+      "target": "HealthTec"
+    },
+    {
+      "source": "Novera Corp",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "Novera Corp",
+      "target": "CloudForge"
+    },
+    {
+      "source": "Novera Corp",
+      "target": "Energex Corporation"
+    },
+    {
+      "source": "PharmaCo",
+      "target": "PharmaCo"
+    },
+    {
+      "source": "PharmaCo",
+      "target": "Bitware"
+    },
+    {
+      "source": "PharmaCo",
+      "target": "HealthTec"
+    },
+    {
+      "source": "PharmaCo",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "PharmaCo",
+      "target": "CloudForge"
+    },
+    {
+      "source": "SynVera Entertainment",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "SynVera Entertainment",
+      "target": "CloudForge"
+    },
+    {
+      "source": "SynVera Entertainment",
+      "target": "HealthTec"
+    },
+    {
+      "source": "SynVera Entertainment",
+      "target": "Energex Corporation"
+    },
+    {
+      "source": "Zenith Dynamics",
+      "target": "Bitware"
+    },
+    {
+      "source": "Zenith Dynamics",
+      "target": "NeuroSys"
+    },
+    {
+      "source": "Zenith Dynamics",
+      "target": "CloudForge"
+    },
+    {
+      "source": "Zenith Dynamics",
+      "target": "HealthTec"
+    },
+    {
+      "source": "Zenith Dynamics",
+      "target": "Energex Corporation"
+    },
+    {
+      "source": "Westerbarrow",
+      "target": "Elyssia"
+    },
+    {
+      "source": "Westerbarrow",
+      "target": "Igreja das Luzes"
+    },
+    {
+      "source": "Westerbarrow",
+      "target": "Patrulheiros da Alvorada"
+    },
+    {
+      "source": "Westerbarrow",
+      "target": "Pirorn"
+    },
+    {
+      "source": "Westerbarrow",
+      "target": "Grunch"
+    },
+    {
+      "source": "Forte de Rosvalia",
+      "target": "Forte De Rosvalia.jpg"
+    },
+    {
+      "source": "Forte de Rosvalia",
+      "target": "Forte De Rosvalia_Cidade.jpg"
+    },
+    {
+      "source": "Vila das Brumas",
+      "target": "Vulpinideos"
+    },
+    {
+      "source": "Akróma",
+      "target": "Hego"
+    },
+    {
+      "source": "Akróma",
+      "target": "Limiar"
+    },
+    {
+      "source": "Akróma",
+      "target": "Culto carmezin"
+    },
+    {
+      "source": "Portal de Esfora",
+      "target": "Primordiz"
+    },
+    {
+      "source": "Portal de Esfora",
+      "target": "Celestina"
+    },
+    {
+      "source": "Portal de Esfora",
+      "target": "Singularidades"
+    },
+    {
+      "source": "Portal de Esfora",
+      "target": "Grande Plano"
+    },
+    {
+      "source": "Vitália",
+      "target": "Ethereon"
+    },
+    {
+      "source": "Vitália",
+      "target": "Primordiz"
+    },
+    {
+      "source": "Vitália",
+      "target": "Domínio dos renegados"
+    },
+    {
+      "source": "Esperança",
+      "target": "Esperantria.png"
+    },
+    {
+      "source": "Esperança",
+      "target": "Objetos/Plantas/Esperança"
+    },
+    {
+      "source": "Esperança",
+      "target": "Eterna"
+    },
+    {
+      "source": "Esperança",
+      "target": "Primordiz"
+    },
+    {
+      "source": "Fragmentos da Existencia",
+      "target": "Apunk"
+    },
+    {
+      "source": "Game - Aureum Sanctus",
+      "target": "Aureum Sanctus"
+    },
+    {
+      "source": "Game - Aureum Sanctus",
+      "target": "Limiar dos Caídos"
+    },
+    {
+      "source": "Game - Aureum Sanctus",
+      "target": "Limiar"
+    },
+    {
+      "source": "Game - Profecia do fim",
+      "target": "Apunk"
+    },
+    {
+      "source": "Game - Profecia do fim",
+      "target": "Abismos da Sombra"
+    },
+    {
+      "source": "Game - Profecia do fim",
+      "target": "Supra-Singularidade"
+    },
+    {
+      "source": "Game - Profecia do fim",
+      "target": "Grande Queda"
+    },
+    {
+      "source": "Game - Profecia do fim",
+      "target": "Profecia do Fim"
+    },
+    {
+      "source": "Game - Profecia do fim",
+      "target": "Desconhecido"
+    },
+    {
+      "source": "Game - Profecia do fim",
+      "target": "Divindades"
+    },
+    {
+      "source": "Game - Profecia do fim",
+      "target": "Quimera"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Monocrom-1.webp"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Cataclisma Mágico|cataclisma mágico"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Magia|magia"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Pedra Matiz|cristal"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Professor Thalassor|figura lendária"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Primavera Magica"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Novo Amanhã|Novo Amanhã"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Zona de Exclusão|Zona de Exclusão"
+    },
+    {
+      "source": "Monocrom",
+      "target": "DALL·E 2024-10-15 08.26.56 - In a monochromatic universe, the Red Empire stands out with its striking red hues against a grayscale world. Towering, militaristic fortresses adorned.webp"
+    },
+    {
+      "source": "Monocrom",
+      "target": " Ilha do Infortúnio"
+    },
+    {
+      "source": "Monocrom",
+      "target": "DALL·E 2024-10-15 08.30.04 - A scene set in a monochromatic medieval-fantasy world. The young princess, dressed in regal but simple clothing, stands in the middle of a grayscale c.webp"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Color.INC"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Novo Amanhã"
+    },
+    {
+      "source": "Monocrom",
+      "target": "Ilha do Infortúnio"
+    },
+    {
+      "source": "Monocrom",
+      "target": "87aa14bb-4566-49e1-9b25-0652f200de11.webp"
+    },
+    {
+      "source": "Monocrom",
+      "target": "dd05a219-9147-4225-aa0f-4973798ceb7d.webp"
+    },
+    {
+      "source": "Tower Of Fallmora",
+      "target": "Culto Carmesim"
+    },
+    {
+      "source": "Tower Of Fallmora",
+      "target": "Fallmora"
+    },
+    {
+      "source": "Tower Of Fallmora",
+      "target": "Torre de Fallmora"
+    },
+    {
+      "source": "Tower Of Fallmora",
+      "target": "Limiar dos Caídos"
+    },
+    {
+      "source": "Tower Of Fallmora",
+      "target": "Hego"
+    },
+    {
+      "source": "Tower Of Fallmora",
+      "target": "Limiar"
+    },
+    {
+      "source": "As Sombras do relógio",
+      "target": "bibliotecaLuxuosaA.png"
+    },
+    {
+      "source": "As Sombras do relógio",
+      "target": "MulherNoSofa.png"
+    },
+    {
+      "source": "As Sombras do relógio",
+      "target": "Quarto.png"
+    },
+    {
+      "source": "As Sombras do relógio",
+      "target": "DALL·E 2024-10-21 17.39.52 - An old grandfather clock with a classic wooden design, standing next to a rustic, vertical piano with a similar wooden design. Both have intricate car.webp"
+    },
+    {
+      "source": "Não sinto minhas mãos",
+      "target": "espelho limiar"
+    },
+    {
+      "source": "Não sinto minhas mãos",
+      "target": "Professor Thalassor"
+    },
+    {
+      "source": "Eternívoros",
+      "target": "Cataclisma Mágico"
+    },
+    {
+      "source": "Eternívoros",
+      "target": "Primavera Magica"
+    },
+    {
+      "source": "Orcs",
+      "target": "mestresol_a_Engineering_orc_but_he_evolution_of_a_frog_ecb3e6ce-da38-4f0a-a9ef-198b9331e3af.png"
+    },
+    {
+      "source": "Orcs",
+      "target": "Cataclisma Mágico"
+    },
+    {
+      "source": "Orcs",
+      "target": "Elfos"
+    },
+    {
+      "source": "Vulpinideos",
+      "target": "Vulpinideos.jpg"
+    }
+  ]
+}
