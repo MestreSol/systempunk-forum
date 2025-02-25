@@ -7,7 +7,7 @@ import MainHub from '@/components/Areas/MainHub'
 import Footer from '@/components/Areas/Footer'
 import MostRecent from '@/components/Areas/MostRecent'
 import React from 'react'
-import SuperiorMenu from '@/components/Areas/SuperiorMenu'
+import SuperiorMenu from '@/components/Areas/Menu'
 
 const MockSlides = [
   {

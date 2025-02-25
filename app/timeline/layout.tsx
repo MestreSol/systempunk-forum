@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import SuperiorMenu from '@/components/Areas/SuperiorMenu'
+import SuperiorMenu from '@/components/Areas/Menu'
 
 export const metadata: Metadata = {
   title: 'Systempunk',
