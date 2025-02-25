@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Apunk",
       "data": "O início se dá com a criação de três Supra-Singularidade pelo Desconhecido, cada uma carregando um fragmento de seu poder e vagando pelo grande vazio. No auge, elas se unem para formar a chama da existência, moldando-a com seus aspectos para evitar sua extinção, enquanto 12 artefatos poderosos emergem, espalhando-se pelo universo e convergindo na Terra, resultando na Profecia do Fim. Na queda, as Divindades se erguem para a batalha final e, em um sacrifício coletivo, criam os Abismos da Sombra para aprisionar a Quimera, evento conhecido como a Grande Queda.",
-      "image": "/punks/Apunk.png"
+      "image": "/punks/Apunk.webp"
     },
     {
       "id": 2,
@@ -16,55 +16,55 @@
       "id": 3,
       "name": "Bronzepunk",
       "data": "Após o colapso de Fallmora, os sobreviventes reconstruíram suas vidas com os restos de uma tecnologia perdida. Três reinos emergiram: Abismarca, dominando a mineração subterrânea; Aureum Sanctus, acumulando riqueza e influência; e Trivale, sustentando os demais com sua produção agrícola. Durante décadas, o equilíbrio entre eles trouxe estabilidade e avanços culturais. Contudo, Abismarca sucumbiu à sua própria ambição, e Trivale entrou em colapso por não suportar as demandas crescentes, encerrando a Idade do Bronze de forma caótica.",
-      "image": "/punks/Bronzepunk.png"
+      "image": "/punks/Bronzepunk.webp"
     },
     {
       "id": 4,
       "name": "Rococopunk",
       "data": "Após o colapso de Trivale e a fragmentação de Abismarca, Aureum Sanctus tornou-se a potência dominante, expandindo sua cultura e sua obsessão pelo ouro. O império atingiu seu auge com cidades opulentas e uma sociedade marcada pelo luxo e pela ostentação. No entanto, a desigualdade social e a exploração desenfreada esgotaram seus recursos, levando a revoltas internas. O declínio foi acelerado pela ameaça externa e pelo ressurgimento do Limiar dos Caídos, cuja corrupção começou a corroer o império.",
-      "image": "/punks/Rococopunk.png"
+      "image": "/punks/Rococopunk.webp"
     },
     {
       "id": 5,
       "name": "Hopepunk",
       "data": "A decadência de Aureum Sanctus impulsionou grupos rebeldes a fugirem para o Oriente, formando comunidades baseadas em esperança e resiliência. Com o tempo, essas sociedades cresceram, estabelecendo cidades fortificadas e promovendo a colaboração. No entanto, a ameaça do império ressurgiu quando o imperador, temendo perder sua influência, lançou uma campanha militar para subjugá-los. Enquanto isso, tensões internas dividiram os rebeldes entre os que queriam expandir e os que temiam repetir os erros do passado.",
-      "image": "/punks/Hopepunk.png"
+      "image": "/punks/Hopepunk.webp"
     },
     {
       "id": 6,
       "name": "Silkpunk",
       "data": "As cidades orientais prosperaram ao desenvolver tecnologias inovadoras baseadas em energia eólica e hidráulica, garantindo sua autonomia contra Aureum Sanctus. Uma imensa muralha separou o Oriente do Ocidente, simbolizando sua independência. No auge, dirigíveis e sofisticados sistemas de transporte redefiniram a sociedade, elevando a cultura e a engenharia a novos patamares. Porém, a descoberta da Fagulha Liminal nas minas ocidentais corrompeu o ouro e seus habitantes, mergulhando o Ocidente em crise. A investida contra o Oriente foi cancelada, deixando o império à beira do colapso e forçando o Oriente a enfrentar as consequências dessa catástrofe.",
-      "image": "/punks/Silkpunk.png"
+      "image": "/punks/Silkpunk.webp"
     },
     {
       "id": 7,
       "name": "Weird Rococopunk",
       "data": "O império Aureum Sanctus foi lentamente corrompido pela Fagulha Liminal, que contaminou seu ouro e seus habitantes. O ressurgimento do Culto Carmezim intensificou o caos com rituais sombrios que fortaleceram a influência do Limiar. Com a doença se espalhando, a capital tornou-se um epicentro de destruição, e a muralha do Oriente passou a ser uma barreira contra a contaminação. O colapso do império deixou cidades abandonadas e infectadas, enquanto a crise de refugiados no Oriente gerou disputas por recursos, mergulhando o mundo em um estado de fragmentação e incerteza.",
-      "image": "/punks/WeirdRococo.png"
+      "image": "/punks/WeirdRococo.webp"
     },
     {
       "id": 8,
       "name": "Dungeonpunk",
       "data": "Buscando conter os efeitos da Fagulha Liminal, cientistas do Oriente descobriram Nova Parpola, uma cidade perdida onde fendas temporais conectavam presente e passado de forma caótica. Essas fissuras, mantidas por Objetos Âncora, passaram a ser exploradas por aventureiros em busca de segredos e riquezas. No entanto, o uso imprudente das tecnologias recuperadas agravou as fraturas temporais, ameaçando a estabilidade do tempo. Disputas violentas surgiram por artefatos temporais, e muitos aventureiros se perderam em eras distantes, levando o mundo a questionar o custo desse conhecimento proibido.",
-      "image": "/punks/Dungeonpunk.png"
+      "image": "/punks/Dungeonpunk.webp"
     },
     {
       "id": 9,
       "name": "Clockpunk",
       "data": "Após o caos da era Dungeonpunk, os sobreviventes rejeitaram o ouro e o bronze, adotando o ferro e tecnologias mecânicas baseadas em pêndulos para restaurar a estabilidade. Relógios, autômatos e sistemas de transporte precisos moldaram as cidades, com o Oriente liderando a inovação. No entanto, a crescente demanda por energia superou os limites das engrenagens, gerando disputas por recursos. O declínio dessas máquinas abriu caminho para tecnologias a vapor, encerrando a era dos pêndulos e iniciando uma nova revolução industrial.",
-      "image": "/punks/Clockpunk.png"
+      "image": "/punks/Clockpunk.webp"
     },
     {
       "id": 10,
       "name": "Steampunk",
       "data": "Com as limitações das tecnologias de pêndulos, o vapor tornou-se a principal fonte de energia, impulsionando a industrialização. Máquinas a vapor transformaram vilas em grandes centros industriais, cidades cresceram verticalmente e os primeiros países organizados surgiram. No auge, arranha-céus e redes de transporte movidas a vapor conectavam regiões. No entanto, a poluição, a desigualdade social e a exploração desenfreada geraram instabilidade, levando a greves e revoltas que desafiaram a elite industrial e marcaram o fim da era do vapor.",
-      "image": "/punks/Steampunk.png"
+      "image": "/punks/Steampunk.webp"
     },
     {
       "id": 11,
       "name": "Wear Steampunk",
       "data": "Com Londres como epicentro do progresso, a era do vapor expandiu-se globalmente, impulsionando colonizações e avanços tecnológicos. No entanto, uma névoa densa e anormal começou a assolar a cidade, causando mortes misteriosas. Ignorada pelas elites, a expansão continuou, até que o fenômeno revelou-se uma manifestação do Limiar, corrompendo máquinas e humanos. O pânico tomou conta das ruas, enquanto a colonização enfrentava resistência e falhas tecnológicas, marcando o declínio da confiança no poder ilimitado do vapor.",
-      "image": "/punks/WearSteampunk.png"
+      "image": "/punks/WearSteampunk.webp"
     },
     {
       "id": 12,
@@ -76,19 +76,19 @@
       "id": 13,
       "name": "Weird Westpunk",
       "data": "Enquanto as colônias americanas lidavam com disputas territoriais, fenômenos sobrenaturais surgiram, com tempestades colossais e criaturas monstruosas devastando comunidades. Os cowboys tornaram-se heróis contra essas ameaças, fortificando vilas e adaptando tecnologias a vapor para a sobrevivência. No entanto, a escalada dos ataques e o avanço das tempestades tornaram muitas regiões inabitáveis. Vilas foram abandonadas, os cowboys desapareceram, e o Velho Oeste mergulhou no caos, abrindo caminho para uma nova era tecnológica.",
-      "image": "/punks/WeirdWestpunk.png"
+      "image": "/punks/WeirdWestpunk.webp"
     },
     {
       "id": 14,
       "name": "Dieselpunk",
       "data": "Enquanto o Velho Oeste sucumbia ao caos sobrenatural, a Europa desenvolveu os motores a diesel, revolucionando a indústria com uma alternativa eficiente ao vapor. No auge, dirigíveis, automóveis e máquinas a diesel modernizaram as cidades, consolidando a Europa como centro tecnológico. No entanto, a crescente demanda por combustível levou ao uso do perigoso Rufanol, derivado de sangue humano. O controle autoritário sobre sua produção gerou tensões políticas e sociais, preparando o cenário para conflitos devastadores.",
-      "image": "/punks/Dieselpunk.png"
+      "image": "/punks/Dieselpunk.webp"
     },
     {
       "id": 15,
       "name": "Weird Dieselpunk",
       "data": "Para suprir a crescente demanda por energia, cientistas e governantes criaram o Rufanol, um combustível derivado de sangue humano, impulsionando a indústria e consolidando regimes autoritários. No auge, cidades industriais floresceram com máquinas avançadas movidas a Rufanol, mas sua exploração levou a abusos e revoltas. Rumores sobre seus efeitos colaterais e a tensão global resultaram no colapso de governos e na preparação para um conflito mundial.",
-      "image": "/punks/WeirdDieselpunk.png"
+      "image": "/punks/WeirdDieselpunk.webp"
     },
     {
       "id": 16,
@@ -100,25 +100,25 @@
       "id": 17,
       "name": "Transistorpunk",
       "data": "Após a devastação da guerra movida a Rufanol, cientistas desenvolveram os primeiros transistores e redes elétricas em larga escala, marcando uma nova era de inovação e conectividade. No auge, a eletricidade transformou cidades e impulsionou a reconstrução global, liderada pelo Oriente. No entanto, a desigualdade no acesso à energia e disputas pelo controle das redes levaram a novos conflitos, preparando o cenário para a era Teslapunk.",
-      "image": "/punks/Transistorpunk.png"
+      "image": "/punks/Transistorpunk.webp"
     },
     {
       "id": 18,
       "name": "Teslapunk",
       "data": "A eletricidade sem fio e máquinas altamente eficientes revolucionaram o mundo, promovendo um período de prosperidade e sustentabilidade. No auge, cidades brilhavam com sistemas de indução elétrica, eliminando a poluição e impulsionando a inovação. Contudo, a centralização da energia por corporações gerou desigualdade e instabilidade social. O avanço da automação e a integração entre humanos e máquinas criaram tensões, preparando o terreno para a era Cyberpunk.",
-      "image": "/punks/Teslapunk.png"
+      "image": "/punks/Teslapunk.webp"
     },
     {
       "id": 19,
       "name": "Cyberpunk",
       "data": "A era começou com a popularização dos implantes cibernéticos, tornando-se indispensáveis na sociedade. No auge, megacorporações dominaram o mundo, transformando cidades em metrópoles neon conectadas digitalmente. No entanto, a dependência dos implantes gerou exploração, desigualdade e resistência hacker, enquanto o controle das corporações levou à vigilância absoluta. A crescente opressão e decadência social abriram caminho para a Virtual Reality, onde a fuga digital se tornou a única alternativa para muitos.",
-      "image": "/punks/Cyberpunk.png"
+      "image": "/punks/Cyberpunk.webp"
     },
     {
       "id": 20,
       "name": "Virtual Reality",
       "data": "A realidade virtual tornou-se um refúgio absoluto, com mundos digitais sofisticados e acessíveis. No auge, corporações controlavam a sociedade ao trocar o acesso vitalício a esses mundos pelo uso dos cérebros dos usuários como processadores. Porém, a dependência extrema levou a um colapso social, com grupos rebeldes tentando libertar os \"prisioneiros digitais\". O colapso da infraestrutura virtual deixou muitos em estados mentais irreversíveis, preparando o cenário para a Cyberpunk Noir, marcada pela decadência e controle absoluto.",
-      "image": "/punks/VirtualReality.png"
+      "image": "/punks/VirtualReality.webp"
     },
     {
       "id": 21,
@@ -136,43 +136,43 @@
       "id": 23,
       "name": "Splatterpunk",
       "data": "Após o colapso das megacorporações, um vírus se espalhou pelos implantes cibernéticos, causando alucinações e extrema violência. As cidades se tornaram zonas de morte, com sobreviventes lutando para escapar dos Corrompidos. Relatos de experimentos corporativos alimentaram teorias de conspiração, enquanto corporações remanescentes apagaram registros dessa era, resultando na maior queima de arquivos da humanidade. Os poucos que resistiram buscaram refúgio, preparando o caminho para a Organicpunk.",
-      "image": "/punks/Splatterpunk.png"
+      "image": "/punks/Splatterpunk.webp"
     },
     {
       "id": 24,
       "name": "Organicpunk",
       "data": "Para reconstruir a sociedade, sobreviventes adotaram biotecnologia e aprimoramentos genéticos, criando uma geração adaptada a ambientes extremos. No auge, cidades biotecnológicas floresceram com sistemas vivos e redes neurais naturais. No entanto, os aprimoramentos trouxeram instabilidade mental e conflitos internos. A manipulação excessiva da biologia levou a horrores biológicos e ao colapso de várias cidades, abrindo caminho para a Gothicpunk, onde o declínio tecnológico mergulharia o mundo em escuridão perpétua.",
-      "image": "/punks/Organicpunk.png"
+      "image": "/punks/Organicpunk.webp"
     },
     {
       "id": 25,
       "name": "Gothicpunk",
       "data": "Com o colapso das tecnologias biológicas, as cidades perderam suas infraestruturas e mergulharam em escuridão perpétua. Relíquias tecnológicas tornaram-se sagradas, e ordens religiosas emergiram para protegê-las. No auge, a sociedade misturou arquitetura gótica e tecnologia perdida, mas aberrações biológicas e o abandono das elites tornaram as cidades inóspitas. O terror crescente abriu caminho para a Weird Gothicpunk.",
-      "image": "/punks/Gothicpunk.png"
+      "image": "/punks/Gothicpunk.webp"
     },
     {
       "id": 26,
       "name": "Weird Gothicpunk",
       "data": "As aberrações biológicas evoluíram, transformando cidades em territórios de caça. Cavaleiros urbanos tornaram-se caçadores de monstros, enquanto cultos ao Limiar realizavam sacrifícios para obter poder. No auge, um equilíbrio frágil se manteve, mas ataques massivos destruíram refúgios e levaram a sociedade ao colapso. Com a civilização em ruínas, os sobreviventes recorreram aos restos do passado, preparando o cenário para a Scavengedpunk.",
-      "image": "/punks/WeirdGothicpunk.png"
+      "image": "/punks/WeirdGothicpunk.webp"
     },
     {
       "id": 27,
       "name": "Scavengedpunk",
       "data": "Após a queda das cidades, sobreviventes passaram a reutilizar restos tecnológicos para sobreviver. Pequenas comunidades surgiram em depósitos de sucata, onde criatividade e adaptação eram essenciais. No auge, redes comerciais começaram a se formar, e antigas tecnologias foram adaptadas. No entanto, escassez de recursos e conflitos internos levaram ao colapso dessas sociedades, preparando o caminho para a Biopunk.",
-      "image": "/punks/Scavengedpunk.png"
+      "image": "/punks/Scavengedpunk.webp"
     },
     {
       "id": 28,
       "name": "Biopunk",
       "data": "Com os avanços tecnológicos esgotados, cientistas voltaram-se para a biotecnologia, criando humanos geneticamente modificados e organismos híbridos para restaurar o equilíbrio ambiental. No auge, plantas purificavam o ar e novos seres eram usados como transporte e ferramentas. Porém, mutações descontroladas e um fungo geneticamente alterado ameaçaram a humanidade, levando a medidas extremas e abrindo caminho para a Biohackerpunk.",
-      "image": "/punks/Biopunk.png"
+      "image": "/punks/Biopunk.webp"
     },
     {
       "id": 29,
       "name": "Biohackerpunk",
       "data": "Governos e corporações tentaram conter o fungo da era Biopunk com tecnologias biológicas invasivas, mas isso gerou a revolta dos biohackers, que modificaram seus próprios genes para resistir ao controle. No auge, comunidades inteiras aderiram à resistência, mas experimentos descontrolados causaram mutações perigosas e colapsaram sistemas de controle. O mundo mergulhou no caos, preparando o cenário para a Biopunk Rebellion.",
-      "image": "/punks/Biohackerpunk.png"
+      "image": "/punks/Biohackerpunk.webp"
     },
     {
       "id": 30,
@@ -184,13 +184,13 @@
       "id": 31,
       "name": "Nanopunk",
       "data": "Governos e cientistas usaram nanotecnologia para restaurar a ordem, com nanorrobôs regenerando corpos, purificando recursos e monitorando a saúde. No auge, cidades renasceram com alta eficiência, mas governos autoritários usaram os nanorrobôs para controle total. Grupos rebeldes hackearam essa tecnologia, causando falhas e mutações imprevisíveis. O colapso iminente levou a humanidade a buscar refúgio e recursos fora da Terra, preparando o cenário para a Solar War.",
-      "image": "/punks/Nanopunk.png"
+      "image": "/punks/Nanopunk.webp"
     },
     {
       "id": 32,
       "name": "Nanopunk Noir",
       "data": "Os nanorrobôs foram hackeados e transformados em armas imprevisíveis, mergulhando o mundo no caos. No auge, regiões inteiras foram contaminadas, enquanto governos impuseram vigilância extrema para conter insurgências. No entanto, a sociedade desmoronou, e os últimos remanescentes tecnológicos voltaram-se para a exploração espacial como única saída. Assim, as potências iniciaram a corrida para colonizar e explorar o sistema solar, dando início à Solar War.",
-      "image": "/punks/NanopunkNior.png"
+      "image": "/punks/NanopunkNior.webp"
     },
     {
       "id": 33,
@@ -202,13 +202,13 @@
       "id": 34,
       "name": "Oceanpunk",
       "data": "Enquanto o sistema solar se tornava um campo de batalha, a busca por refúgio levou à construção das Cidades Abissais, comunidades submersas sustentáveis e tecnologicamente avançadas. No auge, essas cidades floresceram como centros de pesquisa e inovação, enquanto a superfície enfrentava o colapso. No entanto, tensões entre a elite submersa e os sobreviventes da superfície resultaram em disputas violentas, culminando na Ocean World War, um conflito total pelo controle dos oceanos.\n\n\n\n\n\n\n\n",
-      "image": "/punks/Oceanpunk.png"
+      "image": "/punks/Oceanpunk.webp"
     },
     {
       "id": 34,
       "name": "Ocean World War",
       "data": "As tensões entre as Cidades Abissais e a superfície escalaram para uma guerra total. No auge, combates submarinos e sabotagens destruíram as colônias submersas e enfraqueceram a Terra, enquanto colônias espaciais tentaram intervir, mas colapsaram. A guerra deixou os oceanos tóxicos e inabitáveis, forçando a humanidade a abandonar a colonização aquática e espacial. No vácuo de poder, emergiu uma nova força: a corporação que moldaria a era Colorpunk.",
-      "image": "/punks/OceanWorldWar.png"
+      "image": "/punks/OceanWorldWar.webp"
     },
     {
       "id": 35,
