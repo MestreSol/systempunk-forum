@@ -39,7 +39,7 @@ export default function SuperiorMenu(MenuProps: MenuProps) {
               <Link href="/">Home</Link>
             </li>
             <li className="menu-item">
-              <Link href={'/universe'}>Universe</Link>
+              <Link href={'/universo'}>Universe</Link>
             </li>
             <li className="menu-item">
               <Link href={'/timeline'}>Timeline</Link>

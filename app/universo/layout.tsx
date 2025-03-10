@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import './globals.css'
+import SuperiorMenu from '@/components/Areas/Menu'
 
 export const metadata: Metadata = {
   title: 'Systempunk',
@@ -23,14 +23,17 @@ export const metadata: Metadata = {
   }
 }
 
-export default function RootLayout({
+export default function layout({
   children
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SuperiorMenu type={'superior'} hidden={true}></SuperiorMenu>
+        {children}
+      </body>
     </html>
   )
 }

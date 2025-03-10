@@ -57,13 +57,13 @@ export default function TimelinePage() {
         </div>
         <ul>
           <li className="menu-item">
-            <Link href="/">Home</Link>
+            <Link href="/public">Home</Link>
           </li>
           <li className="menu-item">
             <Link href="/universe">Universe</Link>
           </li>
           <li className="menu-item">
-            <Link href="/timeline">Timeline</Link>
+            <Link href="/app/pages/timelinemeline">Timeline</Link>
           </li>
           <li className="menu-item">
             <Link href="/projects">Projects</Link>
@@ -91,7 +91,10 @@ export default function TimelinePage() {
             <div className="content" data-content={punk.id}>
               <h1>{punk.name}</h1>
               <p>{punk.data}</p>
-              <Link href={`/universo/eras/${punk.name}`} className="readMore">
+              <Link
+                href={`/app/universo/eras/${punk.name}`}
+                className="readMore"
+              >
                 Read More
               </Link>
             </div>
