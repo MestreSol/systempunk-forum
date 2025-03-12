@@ -18,7 +18,9 @@ export default function TimelinePage() {
   const [punks, setPunks] = useState<Punk[]>([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/v1/punks')
+    fetch(
+      'https://glorious-meme-xvw5r6qvwj5fvq44-3000.app.github.dev/api/v1/punks'
+    )
       .then((response) => response.json())
       .then((data) => setPunks(data))
       .catch((error) => console.error('Fetch failed:', error))
