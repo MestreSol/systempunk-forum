@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "image": "/logo.png",
+    "title": "Monocrom",
+    "subtitle": "Aventura em 2D"
+  },
+  "platforms": ["Steam", "Epic", "PlayStation", "Xbox"],
+  "fastDescription": {
+    "description": "Um jogo de plataforma 2D ambientado no universo Systempunk.",
+    "video": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  "lastNews": [
+    {
+      "tags": ["lançamento"],
+      "title": "Demo Disponível",
+      "subtitle": "Experimente agora mesmo",
+      "image": "/next.svg",
+      "year": 2024,
+      "readingTime": "2 min"
+    }
+  ],
+  "lore": [
+    {
+      "title": "Universo",
+      "description": "Descubra mundos monocromáticos cheios de mistério.",
+      "image": "/vercel.svg"
+    },
+    {
+      "title": "Personagens",
+      "description": "Heróis e vilões com histórias únicas.",
+      "image": "/file.svg"
+    }
+  ],
+  "media": ["/logo.png", "/systempunkBrand.png"],
+  "footer": {
+    "company": "Systempunk Studios",
+    "rating": "L",
+    "platforms": ["Steam", "Xbox", "PlayStation"],
+    "copyright": "© 2024"
+  },
+  "customCss": "/projects/jogo/mon-style.css"
+}
