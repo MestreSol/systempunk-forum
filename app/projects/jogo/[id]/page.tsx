@@ -66,92 +66,111 @@ export default async function GamePage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div>
-      {data.customCss && <link rel="stylesheet" href={data.customCss} />}
+    <div className="min-h-screen bg-background">
+      {data.customCss && (
+        <link rel="stylesheet" href={data.customCss} />
+      )}
 
-      <section className="text-center py-8" id="hero">
-        <Image src={data.hero.image} alt={data.hero.title} width={800} height={400} className="mx-auto" />
-        <h1 className="text-3xl font-bold animate-fade-in mt-4">{data.hero.title}</h1>
-        <p className="text-lg text-muted-foreground">{data.hero.subtitle}</p>
-      </section>
-
-      <section className="py-8" id="platforms">
-        <h2 className="text-2xl font-semibold mb-2">Plataformas</h2>
-        <ul className="flex flex-wrap gap-4">
-          {data.platforms.map((p) => (
-            <li key={p} className="flex items-center gap-2 capitalize">
-              <PlatformIcon name={p} />
-              <span>{p}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="py-8 flex flex-col md:flex-row gap-4" id="fast-description">
-        <div className="flex-1">
-          <iframe
-            src={data.fastDescription.video}
-            className="w-full aspect-video"
-            allow="autoplay; encrypted-media"
-            title="Trailer"
-          />
+      {/* HERO SECTION */}
+      <section
+        id="hero"
+        className="relative flex flex-col items-center justify-center text-center min-h-[70vh] md:min-h-[90vh] w-full py-0 px-0 bg-gradient-to-b from-black to-zinc-900 overflow-hidden"
+      >
+        <div className="absolute inset-0 -z-10 opacity-50">
+          <Image src={data.hero.image} alt={data.hero.title} fill style={{objectFit:'cover'}} priority />
         </div>
-        <p className="flex-1 self-center text-lg">{data.fastDescription.description}</p>
+        <div className="relative z-10 max-w-2xl mx-auto pt-24 pb-16">
+          <h1 className="text-5xl md:text-7xl font-extrabold drop-shadow-lg mb-4 animate-fade-in bg-gradient-to-r from-lime-400 to-green-500 bg-clip-text text-transparent">
+            {data.hero.title}
+          </h1>
+          <p className="text-2xl md:text-3xl text-lime-200 mb-8 animate-fade-in delay-100">{data.hero.subtitle}</p>
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {data.platforms.map((p) => (
+              <span key={p} className="inline-flex items-center gap-2 bg-black/60 px-4 py-2 rounded-full text-lime-300 border border-lime-500 text-base shadow">
+                <PlatformIcon name={p} />
+                {p}
+              </span>
+            ))}
+          </div>
+          <a href="#fast-description" className="inline-block bg-lime-500 hover:bg-lime-600 text-black font-bold px-10 py-4 rounded-full text-xl shadow-lg transition-all animate-bounce">Jogar agora</a>
+        </div>
       </section>
 
-      <section className="py-8" id="news">
-        <h2 className="text-2xl font-semibold mb-4">Últimas notícias</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {/* TRAILER & FAST DESCRIPTION */}
+      <section className="py-16 px-4 flex flex-col md:flex-row gap-8 items-center max-w-5xl mx-auto" id="fast-description">
+        <div className="flex-1 w-full max-w-xl">
+          <div className="aspect-video rounded-lg overflow-hidden shadow-lg border border-lime-500">
+            <iframe
+              src={data.fastDescription.video}
+              className="w-full h-full"
+              allow="autoplay; encrypted-media"
+              title="Trailer"
+            />
+          </div>
+        </div>
+        <div className="flex-1 text-lg text-zinc-100 bg-black/60 p-6 rounded-lg shadow">
+          {data.fastDescription.description}
+        </div>
+      </section>
+
+      {/* NEWS */}
+      <section className="py-16 px-4 max-w-6xl mx-auto" id="news">
+        <h2 className="text-3xl font-bold mb-6 text-lime-400">Últimas notícias</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.lastNews.map((n, idx) => (
-            <article key={idx} className="border rounded-md overflow-hidden">
-              <div className="relative">
-                <Image src={n.image} alt={n.title} width={400} height={200} />
-                <div className="absolute top-0 left-0 bg-black bg-opacity-60 text-white text-xs p-1">
+            <article key={idx} className="bg-zinc-900 border border-lime-700 rounded-lg overflow-hidden shadow-lg flex flex-col">
+              <div className="relative h-48">
+                <Image src={n.image} alt={n.title} fill style={{objectFit:'cover'}} />
+                <div className="absolute top-0 left-0 bg-black/70 text-lime-300 text-xs p-1 rounded-br">
                   {n.year} • {n.readingTime}
                 </div>
               </div>
-              <div className="p-2">
-                <div className="mb-1 text-xs text-muted-foreground flex gap-1">
+              <div className="p-4 flex-1 flex flex-col">
+                <div className="mb-2 text-xs flex gap-1 flex-wrap">
                   {n.tags.map((t) => (
-                    <span key={t} className="bg-muted px-1 rounded-sm">
+                    <span key={t} className="bg-lime-800/40 text-lime-300 px-2 py-0.5 rounded-full">
                       {t}
                     </span>
                   ))}
                 </div>
-                <h3 className="font-bold">{n.title}</h3>
-                <p className="text-sm text-muted-foreground">{n.subtitle}</p>
+                <h3 className="font-bold text-lg text-lime-200 mb-1">{n.title}</h3>
+                <p className="text-sm text-lime-100 flex-1">{n.subtitle}</p>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="py-8" id="lore">
+      {/* LORE */}
+      <section className="py-16 px-4 max-w-5xl mx-auto" id="lore">
+        <h2 className="text-3xl font-bold mb-6 text-lime-400">O Universo</h2>
         {data.lore.map((l, idx) => (
-          <div key={idx} className={`flex flex-col md:flex-row gap-4 mb-6 ${idx % 2 ? 'md:flex-row-reverse' : ''}`}>
-            <Image src={l.image} alt={l.title} width={400} height={200} className="flex-1" />
-            <div className="flex-1">
-              <h3 className="text-xl font-semibold mb-2">{l.title}</h3>
-              <p>{l.description}</p>
+          <div key={idx} className={`flex flex-col md:flex-row gap-8 mb-10 ${idx % 2 ? 'md:flex-row-reverse' : ''}`}>
+            <Image src={l.image} alt={l.title} width={400} height={240} className="rounded-lg shadow-lg border border-lime-700" />
+            <div className="flex-1 flex flex-col justify-center">
+              <h3 className="text-2xl font-semibold text-lime-200 mb-2">{l.title}</h3>
+              <p className="text-lime-100 text-lg">{l.description}</p>
             </div>
           </div>
         ))}
       </section>
 
-      <section className="py-8" id="media">
-        <h2 className="text-2xl font-semibold mb-4">Galeria</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+      {/* GALERIA */}
+      <section className="py-16 px-4 max-w-6xl mx-auto" id="media">
+        <h2 className="text-3xl font-bold mb-6 text-lime-400">Galeria</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {data.media.map((img, idx) => (
-            <Image key={idx} src={img} alt={`media-${idx}`} width={300} height={200} className="rounded" />
+            <Image key={idx} src={img} alt={`media-${idx}`} width={300} height={200} className="rounded-lg shadow border border-lime-700" />
           ))}
         </div>
       </section>
 
-      <footer className="py-8 text-center text-sm" id="footer">
-        <p>{data.footer.company}</p>
-        <p>{data.footer.platforms.join(', ')}</p>
-        <p>{data.footer.rating}</p>
-        <p>{data.footer.copyright}</p>
+      {/* FOOTER */}
+      <footer className="py-10 text-center text-lime-300 bg-black/80 mt-10 border-t border-lime-800">
+        <div className="mb-2 font-bold">{data.footer.company}</div>
+        <div className="mb-2">{data.footer.platforms.join(', ')}</div>
+        <div className="mb-2">{data.footer.rating}</div>
+        <div className="text-xs">{data.footer.copyright}</div>
       </footer>
     </div>
   );
