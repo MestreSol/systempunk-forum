@@ -85,10 +85,10 @@ export default function Menu() {
     return (
         <nav className="flex items-center justify-between pt-3 pb-2 pl-2 pr-2">
             <div className="flex items-center gap-7">
-                <a href="/" className="flex items-center" aria-label="Home">
+                <Link href="/" className="flex items-center" aria-label="Home">
                     <Image src="/logo.png" alt="Logo" width={40} height={40} className="h-10 w-10" />
                     <AnimatedTitle text="ystempunk" interval={1800} />
-                </a>
+                </Link>
                 <NavigationMenu>
                     <NavigationMenuList>
                         <NavigationMenuItem>
@@ -100,7 +100,7 @@ export default function Menu() {
                                 <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                                     <li className="row-span-5">
                                         <NavigationMenuLink asChild>
-                                            <a
+                                            <Link
                                                 className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
                                                 href="/"
                                                 style={{
@@ -116,7 +116,7 @@ export default function Menu() {
                                                 <p className="text-muted-foreground text-sm leading-tight">
                                                     Um universo, Muitas Historias.
                                                 </p>
-                                            </a>
+                                            </Link>
                                         </NavigationMenuLink>
                                     </li>
                                     <div className="row-span-2">
@@ -151,8 +151,7 @@ export default function Menu() {
                                         <div className="font-semibold mb-2">Jogos</div>
                                         <ul className="space-y-1">
                                             {projects.filter(p => p.type === "Jogo").map(project => (
-                                                <>
-                                                <NavigationMenuLink asChild>
+                                                <NavigationMenuLink asChild key={project.id}>
                                                     <a
                                                         className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
                                                         href={`/projects/jogo/${project.id}`}
@@ -171,7 +170,6 @@ export default function Menu() {
                                                         </p>
                                                     </a>
                                                 </NavigationMenuLink>
-                                                </>
                                             ))}
                                             <ListItem href="/projects/jogo" title="Todos os Jogos">
                                                 Descubra todos os jogos do universo Systempunk, cada um com sua própria aventura e desafios.
@@ -182,10 +180,10 @@ export default function Menu() {
                                         <div className="font-semibold mb-2">Livros</div>
                                         <ul className="space-y-1">
                                             {projects.filter(p => p.type === "Livro").map(project => (
-                                                <NavigationMenuLink asChild>
+                                                <NavigationMenuLink asChild key={project.id}>
                                                     <a
                                                         className="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
-                                                        href={`/projects/jogo/${project.id}`}
+                                                        href={project.link}
                                                         style={{
                                                             backgroundImage: `linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to)), url('/${project.id}.png')`,
                                                             backgroundSize: "cover",

@@ -2,41 +2,51 @@
   "hero": {
     "image": "/MON.png",
     "title": "Monocrom",
-    "subtitle": "Aventura em 2D"
+    "subtitle": "Restaure as cores. Redescubra o mundo."
   },
-  "platforms": ["Steam", "Epic", "PlayStation", "Xbox"],
+  "platforms": ["Steam", "Epic", "PC"],
   "fastDescription": {
-    "description": "Um jogo de plataforma 2D ambientado no universo Systempunk.",
-    "video": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    "description": "Explore um universo pós-cataclisma onde a cor foi perdida. Viva a jornada de XK210, um robô esquecido que pode ser a chave para restaurar a realidade fragmentada.",
+    "video": "https://www.youtube.com/embed/seu-video-aqui"
   },
   "lastNews": [
     {
-      "tags": ["lançamento"],
-      "title": "Demo Disponível",
-      "subtitle": "Experimente agora mesmo",
-      "image": "/next.svg",
-      "year": 2024,
-      "readingTime": "2 min"
+      "tags": ["lore", "atualização"],
+      "title": "Lore Completa Revelada",
+      "subtitle": "Conheça os mistérios da Pedra Matiz e da profecia das cores.",
+      "image": "/news-lore.svg",
+      "year": 2025,
+      "readingTime": "6 min"
     }
   ],
   "lore": [
     {
-      "title": "Universo",
-      "description": "Descubra mundos monocromáticos cheios de mistério.",
-      "image": "/vercel.svg"
+      "title": "O Mundo em Cinzas",
+      "description": "Após o Cataclisma Mágico, o mundo mergulhou na monocromia. Fragmentos da Pedra Matiz espalharam-se, alterando reinos, impérios e vidas.",
+      "image": "/lore-mundo-monocromatico.svg"
     },
     {
-      "title": "Personagens",
-      "description": "Heróis e vilões com histórias únicas.",
-      "image": "/file.svg"
+      "title": "A Jornada de XK210",
+      "description": "Um robô ancestral desperta nas ruínas da civilização. Sem memórias, mas com um destino traçado pela profecia das cores.",
+      "image": "/lore-xk210.svg"
+    },
+    {
+      "title": "Facções em Conflito",
+      "description": "Império Vermelho, Reino Verde, Ordem da Conservação e Culto das Cores. Escolha seu caminho no tabuleiro político deste novo mundo.",
+      "image": "/lore-faccoes.svg"
+    },
+    {
+      "title": "Do Subterrâneo ao Céu",
+      "description": "Das galerias escuras aos picos gelados das Montanhas Azuis, enfrente criaturas deformadas e decida o destino das cores.",
+      "image": "/lore-caminho.svg"
     }
   ],
-  "media": ["/logo.png", "/systempunkBrand.png"],
+  "media": ["/logo-monocrom.png", "/monocromBrand.png"],
   "footer": {
-    "company": "Systempunk Studios",
-    "rating": "L",
-    "platforms": ["Steam", "Xbox", "PlayStation"],
-    "copyright": "© 2024"
+    "company": "Old Barom",
+    "rating": "14+",
+    "platforms": ["Steam", "PC"],
+    "copyright": "© 2025"
   },
-  "customCss": "/projects/jogo/mon-style.css"
+  "customCss": "/projects/monocrom/style.css"
 }

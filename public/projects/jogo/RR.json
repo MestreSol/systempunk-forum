@@ -1,0 +1,109 @@
+{
+  "hero": {
+    "image": "/rr.png",
+    "title": "Retail Rush",
+    "subtitle": "Simulação Profunda de Supermercado em um Mundo Caótico"
+  },
+  "platforms": ["Steam", "PC"],
+  "fastDescription": {
+    "description": "Gerencie, expanda, investigue e sobreviva! Um simulador de supermercado que mistura economia, política, mistério e muito humor, com modos cooperativos, história e competição em tempo real.",
+    "video": "https://www.youtube.com/embed/seu-video-aqui"
+  },
+  "lastNews": [
+    {
+      "tags": ["atualização", "sistemas"],
+      "title": "Sistema de Espionagem e Leilão Agora Disponíveis",
+      "subtitle": "Sabote rivais ou ganhe os melhores fornecedores em tempo real!",
+      "image": "/news-espionagem-leilao.svg",
+      "year": 2025,
+      "readingTime": "3 min"
+    }
+  ],
+  "lore": [
+    {
+      "title": "Modos de Jogo",
+      "description": "Quatro modos disponíveis: História com narrativa e escolhas impactantes; Coop com foco em colaboração direta; Concorrência para disputa estratégica; e Modo Mercado para simulação pura e casual.",
+      "image": "/lore-modos.svg"
+    },
+    {
+      "title": "Sistemas de Gestão",
+      "description": "Controle conforto da loja, validade dos produtos, logística de entregas, estoques regionais, treinamento de funcionários e franquias em diferentes estágios.",
+      "image": "/lore-gestao.svg"
+    },
+    {
+      "title": "Economia Realista",
+      "description": "Flutuações de preços, inflação, eleições que alteram impostos e leis, promoções por e-mail, marketing segmentado e economia paralela.",
+      "image": "/lore-economia.svg"
+    },
+    {
+      "title": "Interação e Imersão",
+      "description": "Clientes com personalidades únicas, VIPs exigentes, funcionários com motivações próprias, problemas internos, greves, eventos sazonais e crises inesperadas.",
+      "image": "/lore-imersao.svg"
+    },
+    {
+      "title": "Mistério e Humor",
+      "description": "Participe do evento 'Desaparecido no Leite', descubra teorias da conspiração nos diálogos, e interaja com NPCs hilários e informativos.",
+      "image": "/lore-misterio.svg"
+    },
+    {
+      "title": "Competição em Tempo Real",
+      "description": "Dispute com mercados rivais controlados por IA ou jogadores. Manipule preços, use marketing, participe de leilões, espionagem e sabotagem para vencer.",
+      "image": "/lore-competicao.svg"
+    }
+  ],
+  "systems": {
+    "marketManagement": [
+      "Sistema de Conforto no Mercado",
+      "Sistema de Validade dos Produtos",
+      "Sistema de Venda por Região",
+      "Sistema de Works (nível de trabalho)",
+      "Sistema de Treinamento de Funcionários",
+      "Sistema de Franquia",
+      "Level Up do Mercado e do Jogador",
+      "Sistema de Entrega e Caminhão",
+      "Sistema de Fornecedores Dinâmicos",
+      "Sistema de Produção Própria"
+    ],
+    "economicSystems": [
+      "Sistema de Clima e Estações",
+      "Sistema de Inflação",
+      "Sistema de Eleições",
+      "Sistema de Economia Paralela",
+      "Sistema de Notícias",
+      "Sistema de Promoções por E-mail",
+      "Sistema de Marketing e Publicidade",
+      "Sistema de Crise e Emergências"
+    ],
+    "socialAndInteractive": [
+      "Sistema de Recompensa por Fidelidade",
+      "Sistema de Segurança e Furtos",
+      "Sistema de Parcerias Locais",
+      "Sistema de Lore nos Diálogos",
+      "Sistema de Funcionários com Personalidade",
+      "Sistema de Clientes VIP",
+      "Sistema de Eventos Temáticos",
+      "Sistema de Problemas Internos"
+    ],
+    "competitiveAndAdvanced": [
+      "Sistema de Concorrência em Tempo Real",
+      "Sistema de Leilão de Fornecedores",
+      "Sistema de Espionagem Empresarial",
+      "Sistema de Rivalidade Inteligente (IA ou Multiplayer)",
+      "Sistema de Expansão Modular",
+      "Sistema de Metas Semanais/Mensais"
+    ],
+    "uniqueFeatures": [
+      "Sistema de Desaparecido no Leite",
+      "Sistema de Decoração do Apartamento",
+      "Sistema de Progressão e Customização"
+    ]
+  },
+  "media": ["/logo-dawsonmiller.png", "/dawsonBrand.png", "/screenshots/gameplay1.png", "/screenshots/gameplay2.png"],
+  "footer": {
+    "company": "Old Barom",
+    "rating": "L",
+    "platforms": ["Steam", "PC"],
+    "copyright": "© 2025"
+  },
+  "customCss": "/projects/dawsonmillersystems/style.css"
+}

@@ -53,11 +53,14 @@ async function getGameData(id: string): Promise<GameData> {
     const json = await fs.readFile(filePath, 'utf-8');
     return JSON.parse(json) as GameData;
   } catch (e) {
+    console.error(`Error reading game data for ID ${id}:`, e);
+    console.error(`Error reading game data for ID ${id}:`, e);
     throw new Error('not-found');
   }
 }
 
-export default async function GamePage({ params }: { params: { id: string } }) {
+export default async function GamePage(props: { params: { id: string } }) {
+  const { params } = props;
   let data: GameData;
   try {
     data = await getGameData(params.id);
@@ -70,14 +73,19 @@ export default async function GamePage({ params }: { params: { id: string } }) {
       {data.customCss && (
         <link rel="stylesheet" href={data.customCss} />
       )}
-
       {/* HERO SECTION */}
       <section
         id="hero"
         className="relative flex flex-col items-center justify-center text-center min-h-[70vh] md:min-h-[90vh] w-full py-0 px-0 bg-gradient-to-b from-black to-zinc-900 overflow-hidden"
+         style={{
+            backgroundImage: `url(${data.hero.image})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+          }}
       >
-        <div className="absolute inset-0 -z-10 opacity-50">
-          <Image src={data.hero.image} alt={data.hero.title} fill style={{objectFit:'cover'}} priority />
+        <div
+          className="absolute inset-0 -z-10 opacity-50"
+        >
         </div>
         <div className="relative z-10 max-w-2xl mx-auto pt-24 pb-16">
           <h1 className="text-5xl md:text-7xl font-extrabold drop-shadow-lg mb-4 animate-fade-in bg-gradient-to-r from-lime-400 to-green-500 bg-clip-text text-transparent">
@@ -141,9 +149,26 @@ export default async function GamePage({ params }: { params: { id: string } }) {
         </div>
       </section>
 
-      {/* LORE */}
+      {/* FEATURES & SYSTEMS */}
+      <section className="py-16 px-4 max-w-6xl mx-auto" id="features">
+        <h2 className="text-3xl font-bold mb-6 text-lime-400">Sistemas e Features</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {Object.entries(data.systems || {}).map(([category, items]) => (
+            <div key={category} className="bg-zinc-900 border border-lime-700 rounded-lg p-6 shadow-lg flex flex-col">
+              <h3 className="text-xl font-semibold text-lime-300 mb-3 capitalize">{category.replace(/([A-Z])/g, ' $1')}</h3>
+              <ul className="list-disc list-inside text-lime-100 text-base space-y-1">
+                {(items as string[]).map((item, idx) => (
+                  <li key={idx}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* LORE (já existe, mas agora com título mais claro) */}
       <section className="py-16 px-4 max-w-5xl mx-auto" id="lore">
-        <h2 className="text-3xl font-bold mb-6 text-lime-400">O Universo</h2>
+        <h2 className="text-3xl font-bold mb-6 text-lime-400">Lore e História</h2>
         {data.lore.map((l, idx) => (
           <div key={idx} className={`flex flex-col md:flex-row gap-8 mb-10 ${idx % 2 ? 'md:flex-row-reverse' : ''}`}>
             <Image src={l.image} alt={l.title} width={400} height={240} className="rounded-lg shadow-lg border border-lime-700" />
@@ -153,6 +178,27 @@ export default async function GamePage({ params }: { params: { id: string } }) {
             </div>
           </div>
         ))}
+      </section>
+
+      {/* STATUS */}
+      <section className="py-16 px-4 max-w-4xl mx-auto" id="status">
+        <h2 className="text-3xl font-bold mb-6 text-lime-400">Status do Projeto</h2>
+        <div className="bg-zinc-900 border border-lime-700 rounded-lg p-6 shadow-lg text-lime-100 text-lg">
+          <p>Em desenvolvimento ativo. Última atualização: Junho de 2025.</p>
+          <p>Versão Alpha disponível para testes fechados.</p>
+        </div>
+      </section>
+
+      {/* ROADMAP */}
+      <section className="py-16 px-4 max-w-4xl mx-auto" id="roadmap">
+        <h2 className="text-3xl font-bold mb-6 text-lime-400">Roadmap</h2>
+        <div className="bg-zinc-900 border border-lime-700 rounded-lg p-6 shadow-lg">
+          <ul className="list-disc list-inside text-lime-100 text-base space-y-2">
+            <li>Q3 2025: Beta público e integração de feedback da comunidade</li>
+            <li>Q4 2025: Lançamento oficial na Steam e PC</li>
+            <li>2026: Novos modos de jogo, expansão de sistemas e suporte a mods</li>
+          </ul>
+        </div>
       </section>
 
       {/* GALERIA */}

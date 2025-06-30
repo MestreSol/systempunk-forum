@@ -13,23 +13,36 @@ const FONTS = [
   "'Brush Script MT', cursive"
 ];
 
-function getRandomFont(excludeFont) {
-  let font;
+function getRandomFont(excludeFont?: string): string {
+  let font: string;
   do {
     font = FONTS[Math.floor(Math.random() * FONTS.length)];
   } while (font === excludeFont);
   return font;
 }
 
-export default function AnimatedTitle({ text, interval = 2000 }) {
-  const [fonts, setFonts] = React.useState(() =>
-    Array.from({ length: text.length }, () => FONTS[Math.floor(Math.random() * FONTS.length)])
+interface AnimatedTitleProps {
+  text: string;
+  interval?: number;
+}
+
+export default function AnimatedTitle({ text, interval = 2000 }: AnimatedTitleProps) {
+  const [fonts, setFonts] = React.useState<string[]>(
+    () => Array.from({ length: text.length }, () => FONTS[Math.floor(Math.random() * FONTS.length)])
   );
+
+  // Reset fonts if text length changes
+  React.useEffect(() => {
+    setFonts((prev) => {
+      if (prev.length === text.length) return prev;
+      return Array.from({ length: text.length }, () => FONTS[Math.floor(Math.random() * FONTS.length)]);
+    });
+  }, [text.length]);
 
   React.useEffect(() => {
     const id = setInterval(() => {
       setFonts((prev) =>
-        prev.map((font, i) => (Math.random() < 0.5 ? getRandomFont(font) : font))
+        prev.map((font) => (Math.random() < 0.5 ? getRandomFont(font) : font))
       );
     }, interval);
     return () => clearInterval(id);
@@ -38,7 +51,15 @@ export default function AnimatedTitle({ text, interval = 2000 }) {
   return (
     <span style={{ display: "inline-flex", alignItems: "center" }}>
       {text.split("").map((char, i) => (
-        <span key={i} style={{ fontFamily: fonts[i], transition: "font-family 0.3s" }}>{char}</span>
+        <span
+          key={i}
+          style={{
+            fontFamily: fonts[i] || FONTS[0],
+            transition: "font-family 0.3s"
+          }}
+        >
+          {char}
+        </span>
       ))}
     </span>
   );
