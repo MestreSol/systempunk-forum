@@ -27,26 +27,33 @@ interface AnimatedTitleProps {
 }
 
 export default function AnimatedTitle({ text, interval = 2000 }: AnimatedTitleProps) {
-  const [fonts, setFonts] = React.useState<string[]>(
-    () => Array.from({ length: text.length }, () => FONTS[Math.floor(Math.random() * FONTS.length)])
-  );
+  const [fonts, setFonts] = React.useState<string[] | null>(null);
 
-  // Reset fonts if text length changes
+  // Only animate on client to avoid hydration mismatch
   React.useEffect(() => {
-    setFonts((prev) => {
-      if (prev.length === text.length) return prev;
-      return Array.from({ length: text.length }, () => FONTS[Math.floor(Math.random() * FONTS.length)]);
-    });
+    setFonts(Array.from({ length: text.length }, () => FONTS[Math.floor(Math.random() * FONTS.length)]));
   }, [text.length]);
 
   React.useEffect(() => {
+    if (!fonts) return;
     const id = setInterval(() => {
       setFonts((prev) =>
-        prev.map((font) => (Math.random() < 0.5 ? getRandomFont(font) : font))
+        prev
+          ? prev.map((font, i) => (Math.random() < 0.5 ? getRandomFont(font) : font))
+          : null
       );
     }, interval);
     return () => clearInterval(id);
-  }, [interval, text.length]);
+  }, [interval, text.length, fonts]);
+
+  // Render plain text on SSR, animated on client
+  if (!fonts) {
+    return (
+      <span style={{ display: "inline-flex", alignItems: "center" }}>
+        {text}
+      </span>
+    );
+  }
 
   return (
     <span style={{ display: "inline-flex", alignItems: "center" }}>

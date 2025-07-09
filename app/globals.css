@@ -120,3 +120,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Adicione em app/globals.css se necessário */
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+.data-\[state\=open\]\:animate-accordion-down {
+  animation: accordion-down 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+}
+.data-\[state\=closed\]\:animate-accordion-up {
+  animation: accordion-up 0.3s cubic-bezier(0.87, 0, 0.13, 1);
+}

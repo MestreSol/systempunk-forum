@@ -8,6 +8,7 @@ import * as React from "react";
 import Image from "next/image";
 import AnimatedTitle from "../ui/animated-title";
 import Link from "next/link";
+import { useState } from "react";
 
 // Placeholder for user authentication state
 type User = { name: string; avatarUrl?: string } | null;
@@ -82,9 +83,12 @@ export const projects: Project[] = [
 ];
 
 export default function Menu() {
+    const [mobileOpen, setMobileOpen] = useState(false);
+
     return (
-        <nav className="flex items-center justify-between pt-3 pb-2 pl-2 pr-2">
-            <div className="flex items-center gap-7">
+        <nav className="flex items-center justify-between pt-3 pb-2 pl-2 pr-2 relative">
+            {/* Desktop/Tablet Menu */}
+            <div className="hidden md:flex items-center gap-7">
                 <Link href="/" className="flex items-center" aria-label="Home">
                     <Image src="/logo.png" alt="Logo" width={40} height={40} className="h-10 w-10" />
                     <AnimatedTitle text="ystempunk" interval={1800} />
@@ -227,7 +231,68 @@ export default function Menu() {
                     </NavigationMenuList>
                 </NavigationMenu>
             </div>
-            <div className="flex items-center gap-2">
+            {/* Mobile Hamburger */}
+            <div className="flex md:hidden items-center justify-between w-full">
+                <Link href="/" className="flex items-center" aria-label="Home">
+                    <Image src="/logo.png" alt="Logo" width={40} height={40} className="h-10 w-10" />
+                    <span className="ml-2 font-bold text-lg">Systempunk</span>
+                </Link>
+                <button
+                    className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-400"
+                    aria-label="Abrir menu"
+                    onClick={() => setMobileOpen(true)}
+                >
+                    <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+            {/* Mobile Menu Overlay */}
+            {mobileOpen && (
+                <div className="fixed inset-0 z-50 bg-black/80 flex flex-col items-center justify-center md:hidden transition-all">
+                    <button
+                        className="absolute top-4 right-4 p-2 rounded-full bg-zinc-900 text-lime-400"
+                        aria-label="Fechar menu"
+                        onClick={() => setMobileOpen(false)}
+                    >
+                        <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" strokeWidth="2" strokeLinecap="round" d="M6 6l12 12M6 18L18 6"/>
+                        </svg>
+                    </button>
+                    <ul className="flex flex-col gap-6 items-center">
+                        <li>
+                            <Link href="/news" onClick={() => setMobileOpen(false)} className="text-2xl font-semibold text-lime-300">News</Link>
+                        </li>
+                        <li>
+                            <Link href="/about/introducao" onClick={() => setMobileOpen(false)} className="text-2xl font-semibold text-lime-300">Sobre</Link>
+                        </li>
+                        <li>
+                            <Link href="/projects/jogo" onClick={() => setMobileOpen(false)} className="text-2xl font-semibold text-lime-300">Jogos</Link>
+                        </li>
+                        <li>
+                            <Link href="/projects/livro" onClick={() => setMobileOpen(false)} className="text-2xl font-semibold text-lime-300">Livros</Link>
+                        </li>
+                        <li>
+                            <Link href="https://forum.systempunk.com.br" target="_blank" onClick={() => setMobileOpen(false)} className="text-2xl font-semibold text-lime-300">Forum</Link>
+                        </li>
+                        <li>
+                            <Link href="/contribuicoes" onClick={() => setMobileOpen(false)} className="text-2xl font-semibold text-lime-300">Contribuições</Link>
+                        </li>
+                        <li>
+                            <div className="flex gap-3 mt-4">
+                                <ThemeToggle />
+                                {user ? (
+                                    <Avatar />
+                                ) : (
+                                    <Button variant="outline" onClick={() => setMobileOpen(false)}>Login</Button>
+                                )}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            )}
+            {/* Desktop/Tablet Right Side */}
+            <div className="hidden md:flex items-center gap-2">
                 <ThemeToggle />
                 {user ? (
                     <Avatar>
