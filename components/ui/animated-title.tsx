@@ -39,7 +39,7 @@ export default function AnimatedTitle({ text, interval = 2000 }: AnimatedTitlePr
     const id = setInterval(() => {
       setFonts((prev) =>
         prev
-          ? prev.map((font, i) => (Math.random() < 0.5 ? getRandomFont(font) : font))
+          ? prev.map((font) => (Math.random() < 0.5 ? getRandomFont(font) : font))
           : null
       );
     }, interval);
