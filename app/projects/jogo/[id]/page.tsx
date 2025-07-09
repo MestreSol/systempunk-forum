@@ -59,34 +59,58 @@ interface GameData {
   media: string[];
   footer: Footer;
   customCss?: string;
+  systems?: Record<string, string[]>;
   sprints?: Sprint[];
   roadmap?: RoadmapItem[];
   team?: TeamMember[];
 }
 
 async function getGameData(id: string): Promise<GameData> {
-  const res = await fetch(`/projects/jogo/${id}.json`, { cache: "no-store" });
+  const res = await fetch(`/projects/jogo/${id}/${id}.json`, { cache: "no-store" });
   if (!res.ok) throw new Error('not-found');
   return res.json();
 }
 
+async function getMarkdownContent(id: string): Promise<MarkdownContent> {
+  try {
+    const [sprintsRes, todoRes] = await Promise.all([
+      fetch(`/projects/jogo/${id}/Sprints.md`, { cache: "no-store" }),
+      fetch(`/projects/jogo/${id}/TODO.md`, { cache: "no-store" })
+    ]);
+    
+    const sprints = sprintsRes.ok ? await sprintsRes.text() : '';
+    const todo = todoRes.ok ? await todoRes.text() : '';
+    
+    return { sprints, todo };
+  } catch {
+    return { sprints: '', todo: '' };
+  }
+}
+
 interface SprintActivity {
   name: string;
-  status: "done" | "ongoing" | "stopped";
+  status: "done" | "ongoing" | "stopped" | "todo";
 }
 interface Sprint {
   title: string;
   activities: SprintActivity[];
 }
 
+interface MarkdownContent {
+  sprints: string;
+  todo: string;
+}
+
 export default function GamePage(props: { params: Promise<{ id: string }> }) {
   // unwrap params using React.use
   const params = React.use(props.params);
   const [data, setData] = useState<GameData | null>(null);
+  const [markdownContent, setMarkdownContent] = useState<MarkdownContent>({ sprints: '', todo: '' });
   const [error, setError] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const [openSprint, setOpenSprint] = useState<number | null>(null);
   const [openRoadmap, setOpenRoadmap] = useState<number | null>(null);
+  const [openTodo, setOpenTodo] = useState<number | null>(null);
 
   // Helper to extract YouTube video ID
   function getYoutubeId(url: string) {
@@ -105,9 +129,185 @@ export default function GamePage(props: { params: Promise<{ id: string }> }) {
       .replace(/(^-|-$)+/g, "");
   }
 
+  // Helper para processar markdown das sprints
+  function parseSprintsMarkdown(content: string) {
+    const sections: Array<{ title: string; content: string }> = [];
+    const lines = content.split('\n');
+    
+    let currentSection: { title: string; content: string } | null = null;
+    
+    for (const line of lines) {
+      // Detectar início de uma nova sprint (## 🟦 Sprint...)
+      if (line.startsWith('## 🟦 Sprint')) {
+        if (currentSection) {
+          sections.push(currentSection);
+        }
+        currentSection = {
+          title: line.replace(/^## 🟦\s*/, '').trim(),
+          content: ''
+        };
+      } else if (currentSection && line.trim() !== '' && !line.startsWith('#') && !line.startsWith('---')) {
+        // Adicionar conteúdo da seção atual
+        currentSection.content += line + '\n';
+      }
+    }
+    
+    if (currentSection) {
+      sections.push(currentSection);
+    }
+    
+    return sections;
+  }
+
+  // Helper para processar markdown do TODO
+  function parseTodoMarkdown(content: string) {
+    const sections: Array<{ title: string; content: string }> = [];
+    const lines = content.split('\n');
+    
+    let currentSection: { title: string; content: string } | null = null;
+    
+    for (const line of lines) {
+      // Detectar início de uma nova seção (## título ou ### título)
+      if (line.match(/^##\s+[^#]/)) {
+        if (currentSection) {
+          sections.push(currentSection);
+        }
+        currentSection = {
+          title: line.replace(/^##\s*/, '').replace(/🎮|🛒|🤝|🔼|⚙️|🧪|📈/g, '').trim(),
+          content: ''
+        };
+      } else if (currentSection && line.trim() !== '' && !line.startsWith('#') && !line.startsWith('---')) {
+        // Adicionar conteúdo da seção atual
+        currentSection.content += line + '\n';
+      }
+    }
+    
+    if (currentSection) {
+      sections.push(currentSection);
+    }
+    
+    return sections;
+  }
+
+  // Helper para calcular progresso de uma seção
+  function calculateProgress(content: string) {
+    const lines = content.split('\n');
+    let totalItems = 0;
+    let completedItems = 0;
+    
+    lines.forEach((line) => {
+      line = line.trim();
+      if (line.startsWith('* ✅') || line.startsWith('* [x]') || line.startsWith('- [x]')) {
+        totalItems++;
+        completedItems++;
+      } else if (line.startsWith('* 🟡') || line.startsWith('* ⛔') || line.startsWith('* ⬜') || 
+                 line.startsWith('* [ ]') || line.startsWith('- [ ]')) {
+        totalItems++;
+      }
+    });
+    
+    return totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+  }
+
+  // Helper para renderizar markdown simples
+  function renderMarkdownContent(content: string) {
+    const lines = content.split('\n');
+    const elements: React.ReactNode[] = [];
+    
+    lines.forEach((line, index) => {
+      line = line.trim();
+      if (!line) return;
+      
+      if (line.startsWith('###')) {
+        elements.push(
+          <h4 key={index} className="text-lg font-semibold text-lime-300 mb-2 mt-3">
+            {line.replace(/^###\s*/, '')}
+          </h4>
+        );
+      } else if (line.startsWith('* [x]') || line.startsWith('- [x]')) {
+        elements.push(
+          <div key={index} className="flex items-center gap-2 mb-1">
+            <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+            <span className="text-lime-100 line-through opacity-70">
+              {line.replace(/^[*-]\s*\[x\]\s*/, '')}
+            </span>
+          </div>
+        );
+      } else if (line.startsWith('* [ ]') || line.startsWith('- [ ]')) {
+        elements.push(
+          <div key={index} className="flex items-center gap-2 mb-1">
+            <span className="w-3 h-3 bg-gray-500 rounded-full"></span>
+            <span className="text-lime-100">
+              {line.replace(/^[*-]\s*\[\s*\]\s*/, '')}
+            </span>
+          </div>
+        );
+      } else if (line.startsWith('* ✅')) {
+        elements.push(
+          <div key={index} className="flex items-center gap-2 mb-1">
+            <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+            <span className="text-lime-100 line-through opacity-70">
+              {line.replace(/^[*]\s*✅\s*/, '')}
+            </span>
+          </div>
+        );
+      } else if (line.startsWith('* 🟡')) {
+        elements.push(
+          <div key={index} className="flex items-center gap-2 mb-1">
+            <span className="w-3 h-3 bg-yellow-400 rounded-full"></span>
+            <span className="text-lime-100">
+              {line.replace(/^[*]\s*🟡\s*/, '')}
+            </span>
+          </div>
+        );
+      } else if (line.startsWith('* ⛔')) {
+        elements.push(
+          <div key={index} className="flex items-center gap-2 mb-1">
+            <span className="w-3 h-3 bg-red-500 rounded-full"></span>
+            <span className="text-lime-100 opacity-70">
+              {line.replace(/^[*]\s*⛔\s*/, '')}
+            </span>
+          </div>
+        );
+      } else if (line.startsWith('* ⬜')) {
+        elements.push(
+          <div key={index} className="flex items-center gap-2 mb-1">
+            <span className="w-3 h-3 bg-gray-500 rounded-full"></span>
+            <span className="text-lime-100">
+              {line.replace(/^[*]\s*⬜\s*/, '')}
+            </span>
+          </div>
+        );
+      } else if (line.startsWith('* ') || line.startsWith('- ')) {
+        elements.push(
+          <div key={index} className="flex items-start gap-2 mb-1">
+            <span className="w-2 h-2 bg-lime-400 rounded-full mt-2 flex-shrink-0"></span>
+            <span className="text-lime-100">
+              {line.replace(/^[*-]\s*/, '')}
+            </span>
+          </div>
+        );
+      } else if (line.length > 0) {
+        elements.push(
+          <p key={index} className="text-lime-100 mb-2">
+            {line}
+          </p>
+        );
+      }
+    });
+    
+    return elements;
+  }
+
   useEffect(() => {
-    getGameData(params.id)
-      .then(setData)
+    Promise.all([
+      getGameData(params.id),
+      getMarkdownContent(params.id)
+    ])
+      .then(([gameData, mdContent]) => {
+        setData(gameData);
+        setMarkdownContent(mdContent);
+      })
       .catch(() => setError(true));
   }, [params.id]);
 
@@ -118,8 +318,9 @@ export default function GamePage(props: { params: Promise<{ id: string }> }) {
     return <div className="min-h-screen flex items-center justify-center">Carregando...</div>;
   }
 
-  // Use sprints from JSON, fallback to empty array if not present
-  const sprints: Sprint[] = data.sprints || [];
+  // Parse markdown content
+  const sprintsSections = parseSprintsMarkdown(markdownContent.sprints);
+  const todoSections = parseTodoMarkdown(markdownContent.todo);
 
   // Use roadmap from JSON, fallback to empty array if not present
   const roadmap: RoadmapItem[] = data.roadmap || [];
@@ -292,61 +493,98 @@ export default function GamePage(props: { params: Promise<{ id: string }> }) {
         <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-lime-400">Status do Projeto</h2>
         <div className="bg-zinc-900 border border-lime-700 rounded-lg p-4 sm:p-6 shadow-lg text-lime-100 text-base sm:text-lg">
           {/* Accordion de Sprints */}
-          {sprints.map((sprint, idx) => (
-            <div key={idx} className="mb-4 border-b border-lime-800 last:border-b-0">
-              <button
-                className="w-full flex justify-between items-center py-3 px-2 text-left font-semibold text-lime-200 hover:bg-black/30 transition rounded"
-                onClick={() => setOpenSprint(openSprint === idx ? null : idx)}
-                aria-expanded={openSprint === idx}
-                aria-controls={`sprint-panel-${idx}`}
-              >
-                <span>{sprint.title}</span>
-                <svg
-                  className={`w-5 h-5 ml-2 transition-transform ${openSprint === idx ? "rotate-180" : ""}`}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                  viewBox="0 0 24 24"
+          {sprintsSections.map((sprint, idx) => {
+            const progress = calculateProgress(sprint.content);
+            return (
+              <div key={idx} className="mb-4 border-b border-lime-800 last:border-b-0">
+                <button
+                  className="w-full flex justify-between items-center py-3 px-2 text-left font-semibold text-lime-200 hover:bg-black/30 transition rounded"
+                  onClick={() => setOpenSprint(openSprint === idx ? null : idx)}
+                  aria-expanded={openSprint === idx}
+                  aria-controls={`sprint-panel-${idx}`}
                 >
-                  <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-              {openSprint === idx && (
-                <div id={`sprint-panel-${idx}`} className="py-2 px-2">
-                  <ul className="space-y-2">
-                    {sprint.activities.map((activity, i) => (
-                      <li key={i} className="flex items-center gap-3">
-                        <span
-                          className={`inline-block w-3 h-3 rounded-full ${
-                            activity.status === "done"
-                              ? "bg-green-500"
-                              : activity.status === "ongoing"
-                              ? "bg-yellow-400"
-                              : "bg-red-500"
-                          }`}
-                          title={
-                            activity.status === "done"
-                              ? "Concluído"
-                              : activity.status === "ongoing"
-                              ? "Em andamento"
-                              : "Parado"
-                          }
-                        ></span>
-                        <span className="flex-1">{activity.name}</span>
-                        <span className="text-xs text-lime-400">
-                          {activity.status === "done"
-                            ? "Concluído"
-                            : activity.status === "ongoing"
-                            ? "Em andamento"
-                            : "Parado"}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          ))}
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <span>{sprint.title}</span>
+                      <span className="text-xs text-lime-400 ml-2">{progress}%</span>
+                    </div>
+                    <div className="w-full bg-zinc-800 rounded-full h-2">
+                      <div
+                        className="bg-gradient-to-r from-lime-500 to-green-500 h-2 rounded-full transition-all duration-500"
+                        style={{ width: `${progress}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                  <svg
+                    className={`w-5 h-5 ml-4 transition-transform ${openSprint === idx ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {openSprint === idx && (
+                  <div id={`sprint-panel-${idx}`} className="py-2 px-2">
+                    <div className="space-y-2">
+                      {renderMarkdownContent(sprint.content)}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* TODO */}
+      <section className="py-10 sm:py-16 px-2 sm:px-4 max-w-4xl mx-auto" id="todo">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-lime-400">TODO - Sistemas em Desenvolvimento</h2>
+        <div className="bg-zinc-900 border border-lime-700 rounded-lg p-4 sm:p-6 shadow-lg text-lime-100 text-base sm:text-lg">
+          {/* Accordion do TODO */}
+          {todoSections.map((section, idx) => {
+            const progress = calculateProgress(section.content);
+            return (
+              <div key={idx} className="mb-4 border-b border-lime-800 last:border-b-0">
+                <button
+                  className="w-full flex justify-between items-center py-3 px-2 text-left font-semibold text-lime-200 hover:bg-black/30 transition rounded"
+                  onClick={() => setOpenTodo(openTodo === idx ? null : idx)}
+                  aria-expanded={openTodo === idx}
+                  aria-controls={`todo-panel-${idx}`}
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <span>{section.title}</span>
+                      <span className="text-xs text-lime-400 ml-2">{progress}%</span>
+                    </div>
+                    <div className="w-full bg-zinc-800 rounded-full h-2">
+                      <div
+                        className="bg-gradient-to-r from-lime-500 to-green-500 h-2 rounded-full transition-all duration-500"
+                        style={{ width: `${progress}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                  <svg
+                    className={`w-5 h-5 ml-4 transition-transform ${openTodo === idx ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                {openTodo === idx && (
+                  <div id={`todo-panel-${idx}`} className="py-2 px-2">
+                    <div className="space-y-2">
+                      {renderMarkdownContent(section.content)}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
 
