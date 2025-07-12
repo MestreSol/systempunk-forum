@@ -86,7 +86,7 @@ export default function Menu() {
     const [mobileOpen, setMobileOpen] = useState(false);
 
     return (
-        <nav className="flex items-center justify-between pt-3 pb-2 pl-2 pr-2 relative z-50 bg-zinc-950/95 backdrop-blur-sm">
+        <nav className="flex items-center justify-between pt-3 pb-2 pl-2 pr-2 relative z-50 bg-background-950/95 backdrop-blur-sm">
             {/* Desktop/Tablet Menu */}
             <div className="hidden md:flex items-center gap-7">
                 <Link href="/" className="flex items-center" aria-label="Home">
@@ -175,7 +175,7 @@ export default function Menu() {
                                                     </a>
                                                 </NavigationMenuLink>
                                             ))}
-                                            <ListItem href="/projects/jogo" title="Todos os Jogos">
+                                            <ListItem href="/projects" title="Todos os Jogos">
                                                 Descubra todos os jogos do universo Systempunk, cada um com sua própria aventura e desafios.
                                             </ListItem>
                                         </ul>
