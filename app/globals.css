@@ -120,13 +120,11 @@
     @apply bg-background text-foreground;
   }
   
-  /* Fix para evitar sobreposição de imagens */
   img {
     max-width: 100%;
     height: auto;
   }
   
-  /* Fix específico para Next.js Image com fill */
   img[data-nimg="fill"] {
     position: absolute !important;
     height: 100% !important;
