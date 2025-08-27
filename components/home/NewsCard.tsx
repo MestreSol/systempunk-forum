@@ -18,6 +18,7 @@ export default function NewsCard({ article }: NewsCardProps) {
     <Card
       className={`bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 p-0 overflow-hidden`} 
     >      <CardHeader className="p-0">
+
           {article.featuredImage ? (
             <CardMedia
         src={article.featuredImage}
@@ -27,7 +28,7 @@ export default function NewsCard({ article }: NewsCardProps) {
         sizes="(max-width: 768px) 100vw, 600px"
       />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-zinc-500">
+            <div className="w-full h-full flex items-center justify-center text-primary-500">
               <Calendar className="w-12 h-12" />
             </div>
           )}
@@ -35,12 +36,12 @@ export default function NewsCard({ article }: NewsCardProps) {
       
       <CardContent className="p-6">
         <div className="flex items-center gap-2 mb-3">
-          <Badge variant="secondary" className="text-xs bg-lime-600/20 text-lime-300 border-lime-500/30">
+          <Badge variant="secondary" className="text-xs bg-lime-200/20 text-lime-600 border-lime-500/30">
             {getCategoryLabel(article.category)}
           </Badge>
         </div>
 
-        <h3 className="text-lg font-bold text-lime-200 mb-2 line-clamp-2">
+        <h3 className="text-lg font-bold text-lime-600 mb-2 line-clamp-2">
           {article.title}
         </h3>
         <p className="text-zinc-400 text-sm mb-4 line-clamp-3">
