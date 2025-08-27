@@ -37,8 +37,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
-      {/* Hero Section */}
+    <div className="min-h-screen bg-background-950 text-primary">
       <HeroSection stats={stats} />
 
       {/* Featured Projects */}
@@ -46,7 +45,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-lime-400 mb-4">Nossos Projetos</h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-400 max-w-2xl mx-auto">
               Conheça os jogos que estamos desenvolvendo com paixão e dedicação.
             </p>
           </div>
@@ -59,7 +58,7 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Link href="/projects">
-              <Button variant="outline" className="border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+              <Button variant="outline" className="border-background-700 text-primary-300 hover:bg-background-800">
                 Ver Todos os Projetos
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
@@ -69,11 +68,11 @@ export default function Home() {
       </section>
 
       {/* Recent News */}
-      <section className="py-20 bg-zinc-900/30">
+      <section className="py-20 bg-zinc-900/10">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-lime-400 mb-4">Últimas Notícias</h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+            <p className="text-xl text-primary-400 max-w-2xl mx-auto">
               Fique por dentro das novidades, atualizações e lançamentos dos nossos projetos.
             </p>
           </div>
@@ -101,7 +100,7 @@ export default function Home() {
 
           <div className="text-center mt-12">
             <Link href="/news">
-              <Button variant="outline" className="border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+              <Button variant="outline" className="border-background-700 text-primary-300 hover:bg-background-800">
                 Ver Todas as Notícias
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
@@ -114,8 +113,8 @@ export default function Home() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-lime-400 mb-4">Por que SystemPunk?</h2>
-            <p className="text-xl text-zinc-400 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-lime-400 mb-4">Por que Systempunk?</h2>
+            <p className="text-xl text-background-400 max-w-2xl mx-auto">
               Somos apaixonados por criar experiências únicas e memoráveis para nossos jogadores.
             </p>
           </div>
@@ -129,10 +128,10 @@ export default function Home() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-lime-900/20 to-zinc-900">
+      <section className="py-20 bg-gradient-to-r from-lime-900/20 to-background-900">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-4xl font-bold text-lime-400 mb-4">Junte-se à Nossa Comunidade</h2>
-          <p className="text-xl text-zinc-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-primary-300 mb-8 max-w-2xl mx-auto">
             Faça parte da jornada SystemPunk. Descubra novos jogos, participe de discussões e 
             contribua com o desenvolvimento dos nossos projetos.
           </p>
@@ -144,7 +143,7 @@ export default function Home() {
               </Button>
             </Link>
             <Link href="/about">
-              <Button size="lg" variant="outline" className="border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+              <Button size="lg" variant="outline" className="border-background-700 text-primary-300 hover:bg-background-800">
                 <Globe className="w-5 h-5 mr-2" />
                 Sobre Nós
               </Button>

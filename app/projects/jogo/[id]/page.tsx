@@ -372,7 +372,7 @@ export default function GamePage(props: { params: Promise<{ id: string }> }) {
             aria-label="Assistir trailer"
           >
             <Image
-              src={"/Trailer.avif"}
+              src={"/Trailer.png"}
               alt="Trailer"
               fill
               style={{ objectFit: "cover" }}
