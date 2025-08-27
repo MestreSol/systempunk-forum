@@ -59,6 +59,15 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+type CardMediaProps = React.PropsWithChildren<{
+src?: string
+  alt?: string
+  priority?: boolean
+  className?: string
+  aspect?: string
+  sizes?: string
+}>;
+
 function CardMedia({
   src,
   alt,
@@ -66,14 +75,8 @@ function CardMedia({
   className,
   aspect = "aspect-video",
   sizes = "100vw",
-}: {
-  src: string
-  alt: string
-  priority?: boolean
-  className?: string
-  aspect?: string
-  sizes?: string
-}) {
+  children
+}: CardMediaProps) {
   return (
     <div
       data-slot="card-media"
@@ -87,8 +90,8 @@ function CardMedia({
       )}
     >
       <Image
-        src={src}
-        alt={alt}
+        src={src || "0"}
+        alt={alt || "0"}
         fill
         sizes={sizes}
         priority={priority}
