@@ -20,7 +20,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/Trailer.avif"
+          src="/Trailer.png"
           alt="SystemPunk Background"
           fill
           className="object-cover"
