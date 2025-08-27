@@ -1,3 +1,5 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -27,7 +29,7 @@ const categoryColors = {
 
 export default function ProjectCard({ project, viewMode = "grid" }: ProjectCardProps) {
   const CategoryIcon = categoryIcons[project.category];
-  
+
   if (viewMode === "list") {
     return (
       <Card className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300">
@@ -42,12 +44,19 @@ export default function ProjectCard({ project, viewMode = "grid" }: ProjectCardP
                   </Badge>
                 </div>
               )}
+
+              {/* Imagem preenchendo o container */}
               <Image
                 src={project.image}
                 alt={project.name}
                 fill
-                className="object-cover hover:scale-105 transition-transform duration-300"
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 12rem"
+                priority={project.featured}
               />
+
+              {/* Fade com gradiente no rodapé da imagem */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-zinc-900 to-transparent" />
             </div>
 
             {/* Content */}
@@ -100,9 +109,7 @@ export default function ProjectCard({ project, viewMode = "grid" }: ProjectCardP
                       {new Date(project.releaseDate).toLocaleDateString('pt-BR')}
                     </span>
                   )}
-                  {project.version && (
-                    <span>v{project.version}</span>
-                  )}
+                  {project.version && <span>v{project.version}</span>}
                 </div>
                 <Link href={`/projects/${project.id}`}>
                   <Button size="sm" className="bg-lime-600 hover:bg-lime-700">
@@ -118,25 +125,30 @@ export default function ProjectCard({ project, viewMode = "grid" }: ProjectCardP
   }
 
   return (
-    <Card className={`bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 ${project.featured ? 'ring-2 ring-lime-500/20' : ''}`}>
+    <Card className={`bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 ${project.featured ? "ring-2 ring-lime-500/20" : ""}`}>
       <CardHeader className="p-0">
+        {/* Wrapper da imagem com overflow + rounded para respeitar o card */}
         <div className="aspect-video bg-zinc-800 rounded-t-lg overflow-hidden relative z-0">
           {project.featured && (
             <div className="absolute top-3 left-3 z-10">
-              <Badge className="bg-lime-600 text-white font-semibold">
-                ⭐ Em Destaque
-              </Badge>
+              <Badge className="bg-lime-600 text-white font-semibold">⭐ Em Destaque</Badge>
             </div>
           )}
+
           <Image
             src={project.image}
             alt={project.name}
             fill
-            className="object-cover hover:scale-105 transition-transform duration-300"
+            className="object-cover object-center"
+            sizes="100vw"
+            priority={project.featured}
           />
+
+          {/* Fade com gradiente no rodapé da imagem */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-zinc-900 to-transparent" />
         </div>
       </CardHeader>
-      
+
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">

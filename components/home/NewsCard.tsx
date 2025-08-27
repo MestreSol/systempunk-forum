@@ -1,6 +1,8 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardMedia } from "@/components/ui/card";
 import { Calendar, Clock, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,23 +15,23 @@ interface NewsCardProps {
 
 export default function NewsCard({ article }: NewsCardProps) {
   return (
-    <Card className="bg-zinc-900 border-background-800 hover:border-background-700 transition-colors">
-      <CardHeader className="p-0">
-        <div className="aspect-video bg-background-800 rounded-t-lg overflow-hidden relative z-0">
+    <Card
+      className={`bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 p-0 overflow-hidden`} 
+    >      <CardHeader className="p-0">
+
           {article.featuredImage ? (
-            <Image
-              src={article.featuredImage}
-              alt={article.title}
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-300"
-              style={{ zIndex: 0 }}
-            />
+            <CardMedia
+        src={article.featuredImage}
+        alt="preview do projeto"
+        aspect="aspect-video"
+        priority
+        sizes="(max-width: 768px) 100vw, 600px"
+      />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-primary-500">
               <Calendar className="w-12 h-12" />
             </div>
           )}
-        </div>
       </CardHeader>
       
       <CardContent className="p-6">
