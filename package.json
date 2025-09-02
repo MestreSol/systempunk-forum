@@ -1,6 +1,6 @@
 {
   "name": "systempunk-forum",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -13,7 +13,7 @@
     "prepare": "husky",
     "release": "standard-version",
     "release:dry": "standard-version --dry-run",
-    "commit": "release:dry release git push origin HEAD --follow-tags"
+    "commit": "npm run release:dry && npm run release && git push origin HEAD --follow-tags"
   },
   "jest": {
     "moduleFileExtensions": [
