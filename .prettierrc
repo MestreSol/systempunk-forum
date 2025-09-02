@@ -1,17 +1,9 @@
-<<<<<<< HEAD
 {
-  "trailingComma": "none",
-  "semi": false,
   "singleQuote": true,
-  "endOfLine": "crlf",
+  "semi": true,
+  "printWidth": 100,
+  "trailingComma": "all",
+  "arrowParens": "always",
+  "endOfLine": "lf",
   "tabWidth": 2
 }
-=======
-{
-  "trailingComma": "none",
-  "semi": false,
-  "singleQuote": true,
-  "endOfLine": "crlf",
-  "tabWidth": 2
-}
->>>>>>> da2b41797bd50c4b665b2c02cadecae35b339ac2

@@ -1,156 +1,103 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Globe } from "lucide-react";
-import Link from "next/link";
-import { mockArticles, type NewsArticle } from "@/lib/data/newsData";
-import { projects, stats, features } from "@/lib/data/homeData";
-
-// Components
-import HeroSection from "@/components/home/HeroSection";
-import ProjectCard from "@/components/home/ProjectCard";
-import NewsCard from "@/components/home/NewsCard";
-import FeatureItem from "@/components/home/FeatureItem";
+import Image from "next/image";
 
 export default function Home() {
-  const [recentNews, setRecentNews] = useState<NewsArticle[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const loadRecentNews = async () => {
-      try {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        const publishedNews = mockArticles
-          .filter(article => article.status === 'published')
-          .sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime())
-          .slice(0, 3);
-        setRecentNews(publishedNews);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Erro ao carregar notícias:', error);
-        setIsLoading(false);
-      }
-    };
-
-    loadRecentNews();
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background-950 text-primary">
-      <HeroSection stats={stats} />
+    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <Image
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={180}
+          height={38}
+          priority
+        />
+        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
+          <li className="mb-2 tracking-[-.01em]">
+            Get started by editing{" "}
+            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
+              app/page.tsx
+            </code>
+            .
+          </li>
+          <li className="tracking-[-.01em]">
+            Save and see your changes instantly.
+          </li>
+        </ol>
 
-      {/* Featured Projects */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-lime-400 mb-4">Nossos Projetos</h2>
-            <p className="text-xl text-primary-400 max-w-2xl mx-auto">
-              Conheça os jogos que estamos desenvolvendo com paixão e dedicação.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {projects.filter(p => p.featured).map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/projects">
-              <Button variant="outline" className="border-background-700 text-primary-300 hover:bg-background-800">
-                Ver Todos os Projetos
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-          </div>
+        <div className="flex gap-4 items-center flex-col sm:flex-row">
+          <a
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className="dark:invert"
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={20}
+              height={20}
+            />
+            Deploy now
+          </a>
+          <a
+            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read our docs
+          </a>
         </div>
-      </section>
-
-      {/* Recent News */}
-      <section className="py-20 bg-zinc-900/10">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-lime-400 mb-4">Últimas Notícias</h2>
-            <p className="text-xl text-primary-400 max-w-2xl mx-auto">
-              Fique por dentro das novidades, atualizações e lançamentos dos nossos projetos.
-            </p>
-          </div>
-
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[...Array(3)].map((_, index) => (
-                <div key={index} className="bg-zinc-900 border border-zinc-800 rounded-lg animate-pulse">
-                  <div className="aspect-video bg-zinc-800 rounded-t-lg" />
-                  <div className="p-6">
-                    <div className="h-4 bg-zinc-800 rounded mb-2" />
-                    <div className="h-6 bg-zinc-800 rounded mb-4" />
-                    <div className="h-16 bg-zinc-800 rounded" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {recentNews.map((article) => (
-                <NewsCard key={article.id} article={article} />
-              ))}
-            </div>
-          )}
-
-          <div className="text-center mt-12">
-            <Link href="/news">
-              <Button variant="outline" className="border-background-700 text-primary-300 hover:bg-background-800">
-                Ver Todas as Notícias
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-lime-400 mb-4">Por que Systempunk?</h2>
-            <p className="text-xl text-background-400 max-w-2xl mx-auto">
-              Somos apaixonados por criar experiências únicas e memoráveis para nossos jogadores.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <FeatureItem key={index} {...feature} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-lime-900/20 to-background-900">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold text-lime-400 mb-4">Junte-se à Nossa Comunidade</h2>
-          <p className="text-xl text-primary-300 mb-8 max-w-2xl mx-auto">
-            Faça parte da jornada SystemPunk. Descubra novos jogos, participe de discussões e 
-            contribua com o desenvolvimento dos nossos projetos.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contribuicoes">
-              <Button size="lg" className="bg-lime-600 hover:bg-lime-700 text-white font-semibold">
-                <Users className="w-5 h-5 mr-2" />
-                Contribuir
-              </Button>
-            </Link>
-            <Link href="/about">
-              <Button size="lg" variant="outline" className="border-background-700 text-primary-300 hover:bg-background-800">
-                <Globe className="w-5 h-5 mr-2" />
-                Sobre Nós
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      </main>
+      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/file.svg"
+            alt="File icon"
+            width={16}
+            height={16}
+          />
+          Learn
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/window.svg"
+            alt="Window icon"
+            width={16}
+            height={16}
+          />
+          Examples
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/globe.svg"
+            alt="Globe icon"
+            width={16}
+            height={16}
+          />
+          Go to nextjs.org →
+        </a>
+      </footer>
     </div>
   );
 }
