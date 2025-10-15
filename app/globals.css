@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -120,13 +120,13 @@
   body {
     @apply bg-background text-foreground;
   }
-  
+
   img {
     max-width: 100%;
     height: auto;
   }
-  
-  img[data-nimg="fill"] {
+
+  img[data-nimg='fill'] {
     position: absolute !important;
     height: 100% !important;
     width: 100% !important;
@@ -137,25 +137,25 @@
     object-fit: cover;
     z-index: 0;
   }
-  
+
   /* Garantir que containers de imagem com fill sejam relativos */
   .aspect-video {
     position: relative;
     overflow: hidden;
   }
-  
+
   /* Garantir que elementos de navegação tenham z-index alto */
   nav {
     position: relative;
     z-index: 100;
   }
-  
+
   /* Garantir que overlays e conteúdo tenham z-index adequado */
   .featured-image-container {
     position: relative;
     z-index: 2;
   }
-  
+
   /* Fix para badges e elementos sobrepostos */
   .absolute {
     z-index: 10;
@@ -168,14 +168,14 @@
     position: relative;
     overflow: hidden;
   }
-  
+
   /* Controlar especificamente imagens em cards */
   .card-image-container {
     position: relative;
     overflow: hidden;
     z-index: 1;
   }
-  
+
   .card-image-container img {
     position: absolute;
     inset: 0;
@@ -188,12 +188,24 @@
 
 /* Adicione em app/globals.css se necessário */
 @keyframes accordion-down {
-  from { height: 0; opacity: 0; }
-  to { height: var(--radix-accordion-content-height); opacity: 1; }
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
 }
 @keyframes accordion-up {
-  from { height: var(--radix-accordion-content-height); opacity: 1; }
-  to { height: 0; opacity: 0; }
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
 }
 .data-\[state\=open\]\:animate-accordion-down {
   animation: accordion-down 0.3s cubic-bezier(0.87, 0, 0.13, 1);

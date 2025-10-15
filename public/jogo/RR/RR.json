@@ -111,74 +111,107 @@
     {
       "title": "Sprint 1 - Estrutura Inicial do Projeto",
       "activities": [
-        {"name": "Setup do repositório e versionamento", "status": "done"},
-        {"name": "Configuração inicial da Unity + Mirror", "status": "done"},
-        {"name": "Implementação do sistema de data, ciclo dia/noite e clima", "status": "done"},
-        {"name": "Sistema de apartamento inicial", "status": "ongoing"},
-        {"name": "Sistema de seleção de mundo e perfil", "status": "ongoing"}
+        { "name": "Setup do repositório e versionamento", "status": "done" },
+        { "name": "Configuração inicial da Unity + Mirror", "status": "done" },
+        {
+          "name": "Implementação do sistema de data, ciclo dia/noite e clima",
+          "status": "done"
+        },
+        { "name": "Sistema de apartamento inicial", "status": "ongoing" },
+        { "name": "Sistema de seleção de mundo e perfil", "status": "ongoing" }
       ]
     },
     {
       "title": "Sprint 2 - Estrutura de Gameplay Base",
       "activities": [
-        {"name": "Sistema de loja (estrutura e UI básica)", "status": "ongoing"},
-        {"name": "Sistema de estoque e validade dos produtos", "status": "ongoing"},
-        {"name": "Sistema de clientes e caixa", "status": "stopped"},
-        {"name": "Sistema de caminhão de entrega", "status": "todo"}
+        {
+          "name": "Sistema de loja (estrutura e UI básica)",
+          "status": "ongoing"
+        },
+        {
+          "name": "Sistema de estoque e validade dos produtos",
+          "status": "ongoing"
+        },
+        { "name": "Sistema de clientes e caixa", "status": "stopped" },
+        { "name": "Sistema de caminhão de entrega", "status": "todo" }
       ]
     },
     {
       "title": "Sprint 3 - Multiplayer e Interação",
       "activities": [
-        {"name": "Sistema de lobby com modo Coop e Concorrência", "status": "todo"},
-        {"name": "Sincronização de entidades com Mirror", "status": "todo"},
-        {"name": "Movimentação do jogador multiplayer", "status": "todo"},
-        {"name": "Sistema de interatividade com o mundo (checkpoints)", "status": "todo"}
+        {
+          "name": "Sistema de lobby com modo Coop e Concorrência",
+          "status": "todo"
+        },
+        { "name": "Sincronização de entidades com Mirror", "status": "todo" },
+        { "name": "Movimentação do jogador multiplayer", "status": "todo" },
+        {
+          "name": "Sistema de interatividade com o mundo (checkpoints)",
+          "status": "todo"
+        }
       ]
     },
     {
       "title": "Sprint 4 - Economia e Gestão do Mercado",
       "activities": [
-        {"name": "Sistema de economia com flutuação e inflação", "status": "todo"},
-        {"name": "Sistema de promoções por e-mail", "status": "todo"},
-        {"name": "Sistema de fornecedores dinâmicos", "status": "todo"},
-        {"name": "Sistema de marketing e publicidade", "status": "todo"}
+        {
+          "name": "Sistema de economia com flutuação e inflação",
+          "status": "todo"
+        },
+        { "name": "Sistema de promoções por e-mail", "status": "todo" },
+        { "name": "Sistema de fornecedores dinâmicos", "status": "todo" },
+        { "name": "Sistema de marketing e publicidade", "status": "todo" }
       ]
     },
     {
       "title": "Sprint 5 - Expansão e Concorrência",
       "activities": [
-        {"name": "Sistema de franquias", "status": "todo"},
-        {"name": "Sistema de concorrência em tempo real e rivalidade", "status": "todo"},
-        {"name": "Sistema de espionagem empresarial e sabotagem", "status": "todo"},
-        {"name": "Sistema de leilão de fornecedores", "status": "todo"}
+        { "name": "Sistema de franquias", "status": "todo" },
+        {
+          "name": "Sistema de concorrência em tempo real e rivalidade",
+          "status": "todo"
+        },
+        {
+          "name": "Sistema de espionagem empresarial e sabotagem",
+          "status": "todo"
+        },
+        { "name": "Sistema de leilão de fornecedores", "status": "todo" }
       ]
     },
     {
       "title": "Sprint 6 - Imersão e Lore",
       "activities": [
-        {"name": "Sistema de NPCs com personalidade e lore nos diálogos", "status": "todo"},
-        {"name": "Sistema de clientes VIP", "status": "todo"},
-        {"name": "Sistema de eventos temáticos e calendário", "status": "todo"},
-        {"name": "Sistema de conforto do mercado", "status": "todo"}
+        {
+          "name": "Sistema de NPCs com personalidade e lore nos diálogos",
+          "status": "todo"
+        },
+        { "name": "Sistema de clientes VIP", "status": "todo" },
+        {
+          "name": "Sistema de eventos temáticos e calendário",
+          "status": "todo"
+        },
+        { "name": "Sistema de conforto do mercado", "status": "todo" }
       ]
     },
     {
       "title": "Sprint 7 - Sistemas Avançados e Crises",
       "activities": [
-        {"name": "Sistema de emergências e crises", "status": "todo"},
-        {"name": "Sistema de segurança e furtos", "status": "todo"},
-        {"name": "Sistema de problemas internos", "status": "todo"},
-        {"name": "Sistema de fidelidade e recompensas", "status": "todo"}
+        { "name": "Sistema de emergências e crises", "status": "todo" },
+        { "name": "Sistema de segurança e furtos", "status": "todo" },
+        { "name": "Sistema de problemas internos", "status": "todo" },
+        { "name": "Sistema de fidelidade e recompensas", "status": "todo" }
       ]
     },
     {
       "title": "Sprint 8 - Progresso, Customização e Finalização",
       "activities": [
-        {"name": "Sistema de level up do mercado e do jogador", "status": "todo"},
-        {"name": "Sistema de personalização do mercado", "status": "todo"},
-        {"name": "Sistema de decoração do apartamento", "status": "todo"},
-        {"name": "Polimento, testes e balanceamento geral", "status": "todo"}
+        {
+          "name": "Sistema de level up do mercado e do jogador",
+          "status": "todo"
+        },
+        { "name": "Sistema de personalização do mercado", "status": "todo" },
+        { "name": "Sistema de decoração do apartamento", "status": "todo" },
+        { "name": "Polimento, testes e balanceamento geral", "status": "todo" }
       ]
     }
   ],
