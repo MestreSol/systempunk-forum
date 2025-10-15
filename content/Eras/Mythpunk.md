@@ -1,0 +1,20 @@
+{
+id="mythpunk",
+name="Mythpunk",
+tags=[],
+resumo="",
+historia="",
+context=[],
+importancia="critica",
+lastupdate=""
+}
+
+![[Mythpunk.webp]]
+**Início:**  
+Após o apogeu da era **Solarpunk**, o equilíbrio entre tecnologia e natureza começou a evoluir para algo ainda mais profundo. Pesquisadores, curiosos sobre os vestígios mágicos das eras anteriores, iniciaram experimentos para integrar magia e tecnologia harmônica. Essa união deu origem a uma nova vertente tecnológica: sistemas que utilizavam a energia mágica residual do mundo para ampliar os avanços tecnológicos sustentáveis. Cidades começaram a incorporar esses sistemas, criando ambientes que pareciam ter saído de contos de fadas.
+
+**Auge:**  
+A fusão de magia e tecnologia trouxe uma era de maravilhas. Máquinas que funcionavam com energia mágica alimentavam cidades inteiras, e dispositivos que combinavam ciência e magia transformaram a vida cotidiana. Elementos naturais, como florestas encantadas e rios com propriedades regenerativas, foram integrados às tecnologias urbanas, criando um mundo que parecia harmonizar o antigo e o moderno. Essa era também viu o renascimento de mitologias, com figuras e criaturas mágicas ganhando vida graças à união entre magia e ciência.
+
+**Queda:**  
+Apesar dos avanços, um movimento insurgente começou a ganhar força. Composto por indivíduos que rejeitavam a magia e a tecnologia como forças destrutivas, eles acreditavam que essa combinação havia sido a causa dos cataclismos que destruíram o velho mundo. O movimento cresceu em secretismo, sabotando instalações e questionando a moralidade da nova sociedade. A tensão culminou no início da **Myth War**, onde insurgentes atacaram abertamente os pilares da civilização **Mythpunk**, desencadeando um conflito que ameaçaria desfazer séculos de progresso.]]

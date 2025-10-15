@@ -1,0 +1,20 @@
+{
+id="timepunk",
+name="Timepunk",
+tags=[],
+resumo="",
+historia="",
+context=[],
+importancia="critica",
+lastupdate=""
+}
+
+![[Timepunk.webp]]
+**Início:**  
+Após o colapso da magia cromática na era **War Colorpunk**, o universo mergulhou em um estado de fragmentação e caos. Tentativas de reconstruir civilizações falharam repetidamente, pois as forças da magia instável continuavam a influenciar o tecido da realidade. Foi nesse cenário que surgiram exploradores e estudiosos que descobriram a manipulação do tempo como uma nova força primordial. Fragmentos do antigo poder cromático foram usados para criar dispositivos que permitiam controlar, alterar e observar diferentes linhas temporais.
+
+**Auge:**  
+Os dispositivos de manipulação temporal possibilitaram avanços sem precedentes. Cidades começaram a emergir em locais estratégicos, onde o tempo era moldado para otimizar a produtividade e corrigir erros históricos. Alguns líderes usaram o controle do tempo para expandir seus domínios, enquanto outros buscavam recuperar os segredos do passado. Essa era foi marcada por uma obsessão em manipular o fluxo temporal, criando cidades-estado especializadas, onde o tempo corria de formas distintas, como acelerado, desacelerado ou cíclico.
+
+**Queda:**  
+O uso desenfreado da manipulação temporal gerou rupturas massivas na realidade. Paradoxos começaram a se manifestar, com linhas temporais inteiras colidindo ou desaparecendo. Certos líderes, movidos pela ambição, tentaram concentrar o controle do tempo em si mesmos, resultando na criação de fendas temporais que engoliam cidades e regiões inteiras. O universo tornou-se instável, com o tempo se tornando tão fragmentado quanto o espaço. Essa instabilidade marcou o colapso dessa era, preparando o terreno para a **Frostpunk**, onde a luta pela sobrevivência seria definida pelo clima e pela escassez.]]

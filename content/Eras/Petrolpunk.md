@@ -1,0 +1,20 @@
+{
+id="petrolpunk",
+name="Petrolpunk",
+tags=[],
+resumo="",
+historia="",
+context=[],
+importancia="critica",
+lastupdate=""
+}
+
+![[Petrolpunk.webp]]
+**Início:**  
+Após o colapso da era **Necropunk** e o fim da exploração necromântica, os sobreviventes começaram a explorar os vestígios da tecnologia pré-cataclísmica. Em meio a ruínas de antigas civilizações, descobriram vastas reservas de petróleo intocadas e maquinários que poderiam ser reativados. Esse recurso fóssil tornou-se a base para a reconstrução, trazendo consigo um renascimento tecnológico rudimentar baseado em combustíveis fósseis.
+
+**Auge:**  
+A humanidade começou a se reerguer em torno de comunidades que dominavam o uso do petróleo. Máquinas antigas foram restauradas, e cidades industriais emergiram em zonas próximas a reservas petrolíferas. Essa era viu o retorno de carros, geradores e até armas movidas a combustíveis fósseis, possibilitando uma nova expansão territorial e econômica. Um renascimento cultural, inspirado pela nostalgia de eras passadas, também tomou forma, influenciando a arte e a arquitetura com uma estética funcional e robusta.
+
+**Queda:**  
+O uso desenfreado do petróleo, combinado com tecnologias arcaicas e mal compreendidas, gerou conflitos por recursos e uma rápida degradação ambiental. Governos emergentes lutaram por controle das reservas, enquanto a poluição e os desastres industriais começaram a ameaçar as comunidades recém-formadas. Tentativas de replicar os avanços tecnológicos do passado acabaram falhando, expondo as limitações desse renascimento. O declínio da era **Petrolpunk** abriu espaço para uma nova fase, onde a busca por equilíbrio e sustentabilidade guiará as escolhas, dando origem à era **Heavenpunk**, marcada pela espiritualidade e a reconexão com forças superiores.

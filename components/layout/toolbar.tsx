@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import AnimatedTitle from '../ui/animated-title'
@@ -64,6 +65,16 @@ export default function Toolbar({
   projects = defaultProjects
 }: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false)
+  const pathname = usePathname()
+
+  // Hide toolbar for timeline and historias interactive pages
+  if (
+    pathname?.startsWith('/linha-do-tempo') ||
+    pathname?.startsWith('/about/historias') ||
+    pathname?.startsWith('/about/linha-do-tempo')
+  ) {
+    return null
+  }
 
   return (
     <nav className="relative z-50 flex items-center justify-between bg-zinc-950/95 pt-3 pb-2 pl-2 pr-2 backdrop-blur-sm">
@@ -122,10 +133,7 @@ export default function Toolbar({
                       Explore a visão geral do universo Systempunk, suas
                       principais características e temas.
                     </ListItem>
-                    <ListItem
-                      href="/about/linha-do-tempo"
-                      title="Linha do Tempo"
-                    >
+                    <ListItem href="/linha-do-tempo" title="Linha do Tempo">
                       Conheça a linha do tempo do universo Systempunk, desde sua
                       criação até os eventos mais recentes.
                     </ListItem>

@@ -1,0 +1,20 @@
+{
+id="hi-militar",
+name="Hi-Militar",
+tags=[],
+resumo="",
+historia="",
+context=[],
+importancia="critica",
+lastupdate=""
+}
+
+![[HiMilitar.webp]]
+**Início:**  
+Com o domínio do **Conselho dos Magos** militarizado na era **Spacialpunk**, o espaço tornou-se uma extensão da Terra, onde colônias operavam sob rígido controle. Para manter a ordem e explorar o máximo dos recursos espaciais, a militarização alcançou níveis extremos. Armadas inteiras de naves mágicas-tecnológicas foram construídas, enquanto as forças terrestres patrulhavam as colônias com poder avassalador. Essa era marcou o auge do poderio militar da humanidade, com tecnologias de combate avançadas redefinindo os limites do conflito.
+
+**Auge:**  
+O controle centralizado do Conselho permitiu uma expansão sem precedentes. Cidades orbitais gigantes foram construídas, e territórios intergalácticos começaram a ser divididos em zonas de influência. A fusão de magia e ciência militar criou armas e frotas capazes de obliterar planetas inteiros. Esse avanço gerou uma sociedade onde o progresso dependia da obediência ao regime militar, enquanto a desigualdade entre colônias e a Terra se acentuava. O sistema parecia inquebrável, mas as tensões entre as colônias e a Terra começaram a crescer silenciosamente.
+
+**Queda:**  
+As colônias começaram a se rebelar contra o domínio autoritário da Terra, alegando exploração e falta de autonomia. A revolta atingiu um ponto crítico quando várias colônias se uniram para desafiar o poder central. As batalhas espaciais resultantes causaram devastação em várias regiões do sistema solar. A guerra dividiu completamente a humanidade, resultando na formação de novas organizações intergalácticas independentes, marcando o fim da era **Hi-Militar** e dando início à **Social War**, onde as colônias lutariam para estabelecer sua identidade e soberania.

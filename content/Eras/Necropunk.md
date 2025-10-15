@@ -1,0 +1,20 @@
+{
+id="necropunk",
+name="Necropunk",
+tags=[],
+resumo="",
+historia="",
+context=[],
+importancia="critica",
+lastupdate=""
+}
+
+![[Necropunk.webp]]
+**Início:**  
+Após o colapso da era **Desertpunk**, a humanidade começou a enfrentar fenômenos inexplicáveis relacionados à morte. As condições extremas do mundo desolado e o constante conflito geraram uma conexão mais próxima entre os vivos e o pós-vida. A energia residual de eras passadas começou a manifestar-se em forma de **ecos espirituais**, enquanto os mortos eram vistos como recursos valiosos, tanto para sabedoria quanto para energia.
+
+**Auge:**  
+Cidades começaram a se reorganizar em torno de tecnologias necromânticas, utilizando os restos dos mortos para gerar energia, construir materiais e até para transmitir conhecimento. Oráculos espirituais e necrotécnicos — máquinas que canalizavam almas — tornaram-se essenciais para a sobrevivência. A sociedade desenvolveu uma cultura que reverenciava a morte, tratando os mortos como participantes ativos na manutenção do mundo dos vivos. Essa era viu o surgimento de **Guardiões dos Limiares**, indivíduos que protegiam os portais entre os planos espirituais e físicos.
+
+**Queda:**  
+O uso imprudente da energia necromântica causou rupturas no tecido entre o mundo dos vivos e dos mortos. Almas presas em máquinas começaram a se rebelar, gerando desastres em grande escala. Os Guardiões dos Limiares, sobrecarregados, não puderam impedir que portais instáveis abrissem, permitindo a entrada de forças sobrenaturais hostis. Cidades inteiras foram consumidas por essas invasões, enquanto os vivos lutavam para manter o equilíbrio. O colapso da era **Necropunk** deu origem a **Heavenpunk**, onde a busca pela harmonia espiritual e celestial tornou-se a única esperança de reconstrução.

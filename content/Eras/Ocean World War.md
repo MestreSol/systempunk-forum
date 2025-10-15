@@ -1,0 +1,20 @@
+{
+id="ocean-world-war",
+name="Ocean World War",
+tags=[],
+resumo="",
+historia="",
+context=[],
+importancia="critica",
+lastupdate=""
+}
+
+![[OceanWorldWar.png]]
+**Início:**  
+As tensões entre as Cidades Abissais e a superfície culminaram em uma guerra total. Comunidades de superfície, exauridas pela falta de recursos e exclusão, uniram forças para atacar os refúgios submersos. A guerra começou com sabotagens e escalou para combates diretos, com submarinos armados e tecnologias híbridas transformando os oceanos em campos de batalha. O impacto ambiental foi devastador, comprometendo não apenas a vida marinha, mas também os sistemas de suporte vital das Cidades Abissais.
+
+**Auge:**  
+A guerra trouxe destruição sem precedentes. As Cidades Abissais, inicialmente superiores tecnologicamente, enfrentaram ataques implacáveis da superfície, que utilizava recursos remanescentes da guerra espacial e tecnologias adaptadas. Colônias espaciais ainda funcionais tentaram intervir, mas seus sistemas, dependentes de suprimentos terrestres, rapidamente colapsaram. As linhas de comunicação e comércio entre Terra e espaço foram cortadas, e as últimas estações espaciais foram abandonadas ou destruídas.
+
+**Queda:**  
+A Ocean World War terminou com a destruição quase total das Cidades Abissais e com as comunidades de superfície em ruínas. Os oceanos tornaram-se zonas mortais, repletas de resíduos tóxicos, submarinos afundados e fauna mutante. O impacto foi tão catastrófico que a humanidade abandonou as ideias de colonização aquática e espacial, voltando-se exclusivamente para reconstruir a superfície. Esse vácuo de poder e esperança deu espaço para uma nova força emergir: a corporação que moldaria a era **Colorpunk**, vendendo pacotes de cores para devolver a vitalidade ao mundo reconstruído.

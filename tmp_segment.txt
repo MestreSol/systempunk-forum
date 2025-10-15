@@ -1,0 +1,22 @@
+  // Quote unquoted scalar values for known keys
+  const scalarKeys = [
+    'id',
+    'name',
+    'resumo',
+    'historia',
+    'importancia',
+    'lastupdate',
+    'status',
+    'autor',
+    'author'
+  ]
+  for (const k of scalarKeys) {
+    const re = new RegExp(`(\"${k}\"\s*:\n?\s*)([^\s\"\[{][^,}\n]*)`, 'gi')
+    t = t.replace(re, (_m, p1, val) => {
+      const v = String(val).trim()
+      if (!v) return `${p1}""`
+      if (/^-?\d+(\.\d+)?$|^(true|false|null)$/i.test(v)) return `${p1}${v}`
+      return `${p1}"${v}"`
+    })
+  }
+

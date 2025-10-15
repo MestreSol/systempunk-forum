@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -80,6 +81,23 @@ export default function Footer({
   legal = defaultLegal,
   onSubscribe
 }: Props) {
+  // hide footer for full-bleed interactive pages
+  try {
+    // dynamic import safe-guard: next/navigation hooks only work in client
+    // but this file is client so usePathname is safe
+  } catch {}
+
+  // usePathname inside client component
+  const pathname = usePathname()
+
+  if (
+    pathname?.startsWith('/linha-do-tempo') ||
+    pathname?.startsWith('/about/historias') ||
+    pathname?.startsWith('/about/linha-do-tempo')
+  ) {
+    return null
+  }
+
   const currentYear = new Date().getFullYear()
 
   return (
