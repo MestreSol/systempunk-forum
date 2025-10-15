@@ -1,61 +1,86 @@
 'use client'
 
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
 import { Github, Twitter, Mail, Heart, MessageCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import SocialLinks from './footer/SocialLinks'
+import LinksColumn from './footer/LinksColumn'
+import NewsletterForm from './footer/NewsletterForm'
 
-export default function Footer() {
+type LinkItem = { label: string; href: string }
+type Social = {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  href: string
+  label: string
+  external?: boolean
+}
+
+type Props = {
+  socialLinks?: Social[]
+  quickLinks?: LinkItem[]
+  projects?: LinkItem[]
+  legal?: LinkItem[]
+  onSubscribe?: (email: string) => void
+}
+
+const defaultSocial: Social[] = [
+  {
+    icon: Github,
+    href: 'https://github.com/systempunk',
+    label: 'GitHub',
+    external: true
+  },
+  {
+    icon: MessageCircle,
+    href: 'https://discord.gg/systempunk',
+    label: 'Discord',
+    external: true
+  },
+  {
+    icon: Twitter,
+    href: 'https://twitter.com/systempunk',
+    label: 'Twitter',
+    external: true
+  },
+  {
+    icon: Mail,
+    href: 'mailto:contato@systempunk.com',
+    label: 'Email',
+    external: true
+  }
+]
+
+const defaultQuick: LinkItem[] = [
+  { label: 'Início', href: '/' },
+  { label: 'Sobre', href: '/about' },
+  { label: 'Projetos', href: '/projects' },
+  { label: 'Notícias', href: '/news' },
+  { label: 'Contribuições', href: '/contribuicoes' }
+]
+
+const defaultProjects: LinkItem[] = [
+  { label: 'Dawson Miller Supermarket', href: '/projects/jogo/RR' },
+  { label: 'Project MON', href: '/projects/jogo/MON' },
+  { label: 'N.O.V.A.', href: '/projects/jogo/NOV' },
+  { label: 'Sombras do Relógio', href: '/projects/livro/Sombras' }
+]
+
+const defaultLegal: LinkItem[] = [
+  { label: 'Política de Privacidade', href: '/privacy' },
+  { label: 'Termos de Uso', href: '/terms' },
+  { label: 'Licenças', href: '/licenses' },
+  { label: 'Contato', href: '/contact' }
+]
+
+export default function Footer({
+  socialLinks = defaultSocial,
+  quickLinks = defaultQuick,
+  projects = defaultProjects,
+  legal = defaultLegal,
+  onSubscribe
+}: Props) {
   const currentYear = new Date().getFullYear()
-
-  const socialLinks = [
-    {
-      icon: Github,
-      href: 'https://github.com/systempunk',
-      label: 'GitHub',
-      external: true
-    },
-    {
-      icon: MessageCircle,
-      href: 'https://discord.gg/systempunk',
-      label: 'Discord',
-      external: true
-    },
-    {
-      icon: Twitter,
-      href: 'https://twitter.com/systempunk',
-      label: 'Twitter',
-      external: true
-    },
-    {
-      icon: Mail,
-      href: 'mailto:contato@systempunk.com',
-      label: 'Email',
-      external: true
-    }
-  ]
-
-  const quickLinks = [
-    { label: 'Início', href: '/' },
-    { label: 'Sobre', href: '/about' },
-    { label: 'Projetos', href: '/projects' },
-    { label: 'Notícias', href: '/news' },
-    { label: 'Contribuições', href: '/contribuicoes' }
-  ]
-
-  const projects = [
-    { label: 'Dawson Miller Supermarket', href: '/projects/jogo/RR' },
-    { label: 'Project MON', href: '/projects/jogo/MON' },
-    { label: 'N.O.V.A.', href: '/projects/jogo/NOV' },
-    { label: 'Sombras do Relógio', href: '/projects/livro/Sombras' }
-  ]
-
-  const legal = [
-    { label: 'Política de Privacidade', href: '/privacy' },
-    { label: 'Termos de Uso', href: '/terms' },
-    { label: 'Licenças', href: '/licenses' },
-    { label: 'Contato', href: '/contact' }
-  ]
 
   return (
     <footer className="bg-zinc-900 border-t border-zinc-800">
@@ -80,76 +105,14 @@ export default function Footer() {
               Desenvolvemos jogos únicos e experiências interativas que desafiam
               o convencional. Criando o futuro dos jogos independentes.
             </p>
-            <div className="flex space-x-3">
-              {socialLinks.map((social) => (
-                <Link
-                  key={social.label}
-                  href={social.href}
-                  target={social.external ? '_blank' : undefined}
-                  rel={social.external ? 'noopener noreferrer' : undefined}
-                  className="text-zinc-400 hover:text-lime-400 transition-colors"
-                  aria-label={social.label}
-                >
-                  <social.icon className="w-5 h-5" />
-                </Link>
-              ))}
-            </div>
+            <SocialLinks links={socialLinks} />
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-lime-400 mb-4">Links Rápidos</h3>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-zinc-400 hover:text-zinc-300 transition-colors text-sm"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <LinksColumn title="Links Rápidos" items={quickLinks} />
 
-          {/* Projects */}
-          <div>
-            <h3 className="font-semibold text-lime-400 mb-4">
-              Nossos Projetos
-            </h3>
-            <ul className="space-y-2">
-              {projects.map((project) => (
-                <li key={project.href}>
-                  <Link
-                    href={project.href}
-                    className="text-zinc-400 hover:text-zinc-300 transition-colors text-sm"
-                  >
-                    {project.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <LinksColumn title="Nossos Projetos" items={projects} />
 
-          {/* Legal & Support */}
-          <div>
-            <h3 className="font-semibold text-lime-400 mb-4">
-              Suporte & Legal
-            </h3>
-            <ul className="space-y-2">
-              {legal.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-zinc-400 hover:text-zinc-300 transition-colors text-sm"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <LinksColumn title="Suporte & Legal" items={legal} />
         </div>
 
         {/* Newsletter signup */}
@@ -161,16 +124,7 @@ export default function Footer() {
             <p className="text-zinc-400 text-sm mb-4">
               Receba as últimas novidades sobre nossos projetos e lançamentos.
             </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Seu e-mail"
-                className="flex-1 px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-md text-white text-sm focus:outline-none focus:ring-2 focus:ring-lime-500"
-              />
-              <Button size="sm" className="bg-lime-600 hover:bg-lime-700">
-                Inscrever
-              </Button>
-            </div>
+            <NewsletterForm onSubscribe={onSubscribe} />
           </div>
         </div>
 
