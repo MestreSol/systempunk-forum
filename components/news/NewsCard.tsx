@@ -63,19 +63,12 @@ export function NewsCard({ article, featured = false }: NewsCardProps) {
     <Card
       className={`bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 group ${featured ? 'ring-2 ring-lime-500/20' : ''}`}
     >
-      <CardMedia
-        src="/images/projeto.jpg"
-        alt="preview do projeto"
-        aspect="aspect-video" // mude para aspect-[4/3], etc.
-        priority
-        sizes="(max-width: 768px) 100vw, 600px"
-      />
       <CardHeader className="p-0">
         <div className="aspect-video bg-zinc-800 rounded-t-lg overflow-hidden relative">
           {article.featuredImage ? (
             <CardMedia
               src={article.featuredImage}
-              alt="preview do projeto"
+              alt={article.title}
               aspect="aspect-video"
               priority
               sizes="(max-width: 768px) 100vw, 600px"
