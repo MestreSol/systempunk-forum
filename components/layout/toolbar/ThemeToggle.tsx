@@ -1,9 +1,14 @@
 'use client'
+
 import { useTheme } from 'next-themes'
 import React from 'react'
-import { Button } from '../../ui/button'
+import ToggleButton from '../../ui/toggle-button'
 
-export default function ThemeToggle() {
+type Props = {
+  ariaLabel?: string
+}
+
+export default function ThemeToggle({ ariaLabel = 'Toggle theme' }: Props) {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
@@ -14,11 +19,9 @@ export default function ThemeToggle() {
   if (!mounted) return null
 
   return (
-    <Button
-      variant="outline"
-      size="icon"
-      aria-label="Toggle theme"
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+    <ToggleButton
+      ariaLabel={ariaLabel}
+      onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       <span aria-hidden suppressHydrationWarning>
         {theme === 'dark' ? (
@@ -49,6 +52,6 @@ export default function ThemeToggle() {
           </svg>
         )}
       </span>
-    </Button>
+    </ToggleButton>
   )
 }
