@@ -1,48 +1,55 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Menu from "@/components/organism/menu";
-import Footer from "@/components/layout/Footer";
-import { ScrollToTop } from "@/components/ui/scroll-to-top";
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import type { Metadata } from 'next'
+import { Geist, Geist_Mono } from 'next/font/google'
+import './globals.css'
+import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import Toolbar from '@/components/layout/toolbar'
+import Footer from '@/components/layout/footer'
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin']
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin']
+})
 
 export const metadata: Metadata = {
-  title: "SystemPunk - Desenvolvemos Jogos Únicos",
-  description: "SystemPunk é uma desenvolvedora independente de jogos que cria experiências únicas e inovadoras. Conheça nossos projetos, atualizações e faça parte da nossa comunidade.",
-  keywords: ["SystemPunk", "jogos indie", "desenvolvimento de jogos", "simulação", "RPG", "jogos únicos"],
-  authors: [{ name: "SystemPunk Team" }],
+  title: 'Systempunk - Desenvolvemos Jogos Únicos',
+  description:
+    'Systempunk é uma desenvolvedora independente de jogos que cria experiências únicas e inovadoras. Conheça nossos projetos, atualizações e faça parte da nossa comunidade.',
+  keywords: [
+    'Systempunk',
+    'jogos indie',
+    'desenvolvimento de jogos',
+    'simulação',
+    'RPG',
+    'jogos únicos'
+  ],
+  authors: [{ name: 'Systempunk Team' }],
   openGraph: {
-    title: "SystemPunk - Desenvolvemos Jogos Únicos",
-    description: "Desenvolvedora independente de jogos únicos e inovadores",
-    type: "website",
-    locale: "pt_BR",
-    siteName: "SystemPunk",
+    title: 'Systempunk - Desenvolvemos Jogos Únicos',
+    description: 'Desenvolvedora independente de jogos únicos e inovadores',
+    type: 'website',
+    locale: 'pt_BR',
+    siteName: 'Systempunk'
   },
   twitter: {
-    card: "summary_large_image",
-    title: "SystemPunk",
-    description: "Desenvolvemos jogos únicos e experiências interativas",
+    card: 'summary_large_image',
+    title: 'Systempunk',
+    description: 'Desenvolvemos jogos únicos e experiências interativas'
   },
   robots: {
     index: true,
-    follow: true,
-  },
-};
+    follow: true
+  }
+}
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="pt-BR" className="dark" suppressHydrationWarning>
@@ -51,13 +58,12 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <div className="relative z-50">
-            <Menu />
+            <Toolbar></Toolbar>
           </div>
           <main className="relative z-10">{children}</main>
-          <Footer />
-          <ScrollToTop />
+          <Footer></Footer>
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

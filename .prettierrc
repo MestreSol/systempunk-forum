@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "trailingComma": "none",
   "semi": false,
@@ -6,12 +5,3 @@
   "endOfLine": "crlf",
   "tabWidth": 2
 }
-=======
-{
-  "trailingComma": "none",
-  "semi": false,
-  "singleQuote": true,
-  "endOfLine": "crlf",
-  "tabWidth": 2
-}
->>>>>>> da2b41797bd50c4b665b2c02cadecae35b339ac2
