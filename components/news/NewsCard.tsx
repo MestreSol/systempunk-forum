@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardMedia } from '@/components/ui/card'
+import { Card, CardContent, CardMedia } from '@/components/ui/card'
 import { getCategoryLabel } from '@/mocks/NewsArticles'
 import { NewsArticle } from '@/types/NewsArticle.type'
 import { Calendar, Eye, Clock } from 'lucide-react'
@@ -61,34 +61,32 @@ export function NewsCard({ article, featured = false }: NewsCardProps) {
 
   return (
     <Card
-      className={`bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 group ${featured ? 'ring-2 ring-lime-500/20' : ''}`}
+      className={`bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 group py-0 ${featured ? 'ring-2 ring-lime-500/20' : ''}`}
     >
-      <CardHeader className="p-0">
-        <div className="aspect-video bg-zinc-800 rounded-t-lg overflow-hidden relative">
-          {article.featuredImage ? (
-            <CardMedia
-              src={article.featuredImage}
-              alt={article.title}
-              aspect="aspect-video"
-              priority
-              sizes="(max-width: 768px) 100vw, 600px"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-zinc-500">
-              <Calendar className="w-12 h-12" />
-            </div>
-          )}
+      <div className="aspect-video bg-zinc-800 rounded-t-lg overflow-hidden relative">
+        {article.featuredImage ? (
+          <CardMedia
+            src={article.featuredImage}
+            alt={article.title}
+            aspect="aspect-video"
+            priority
+            sizes="(max-width: 768px) 100vw, 600px"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-zinc-500">
+            <Calendar className="w-12 h-12" />
+          </div>
+        )}
 
-          {/* Featured badge */}
-          {featured && (
-            <div className="absolute top-3 left-3">
-              <Badge className="bg-lime-600 text-white font-semibold">
-                ⭐ Destaque
-              </Badge>
-            </div>
-          )}
-        </div>
-      </CardHeader>
+        {/* Featured badge */}
+        {featured && (
+          <div className="absolute top-3 left-3">
+            <Badge className="bg-lime-600 text-white font-semibold">
+              ⭐ Destaque
+            </Badge>
+          </div>
+        )}
+      </div>
 
       <CardContent className="p-6">
         {/* Article metadata */}
