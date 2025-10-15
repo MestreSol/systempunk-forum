@@ -1,0 +1,143 @@
+/* CSS Customizado para Retail Rush */
+
+/* Estilo do hero principal */
+.hero-section {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  border: 2px solid #10b981;
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+}
+
+.hero-title {
+  color: #10b981;
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+  font-family: 'Orbitron', monospace;
+}
+
+.hero-subtitle {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* Estilo das seções de lore */
+.lore-section {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  transition: all 0.3s ease;
+}
+
+.lore-section:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.1);
+}
+
+.lore-title {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.lore-description {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* Botões customizados */
+.custom-button {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.custom-button:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Estilo dos acordeões */
+.accordion-section {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #10b981, #34d399);
+  height: 6px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+/* Footer customizado */
+.footer-section {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  border-top: 2px solid #10b981;
+}
+
+.footer-text {
+  color: #94a3b8;
+}
+
+.footer-highlight {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* Animações */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.6); }
+}
+
+.glow-effect {
+  animation: glow 2s infinite;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .lore-section {
+    margin: 1rem 0;
+  }
+}
+
+/* Estilo para código e elementos mono */
+.mono-text {
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #10b981;
+}
+
+/* Efeitos de partículas (opcional) */
+.particle-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.particle-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
