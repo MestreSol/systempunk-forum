@@ -1,5 +1,7 @@
 'use client'
 
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -11,12 +13,10 @@ import {
   Pause,
   Info,
   ChevronDown,
-  Monitor,
-  Globe,
-  Brain,
-  Zap,
   Cpu
 } from 'lucide-react'
+import * as Icons from 'lucide-react'
+import eras from './eras.json'
 
 interface UniverseEra {
   id: string
@@ -37,153 +37,12 @@ interface UniverseEra {
   }
 }
 
-const universeEras: UniverseEra[] = [
-  {
-    id: 'pre-digital',
-    name: 'Era Pré-Digital',
-    period: '0000 - 1995 ADT',
-    motto: '"Quando o mundo ainda era analógico"',
-    description:
-      'Uma época de descobertas fundamentais, onde a tecnologia deu seus primeiros passos tímidos em direção ao que se tornaria a revolução digital.',
-    backgroundGradient: 'from-amber-900 via-orange-800 to-red-900',
-    textColor: 'text-amber-100',
-    accentColor: 'text-amber-400',
-    icon: Monitor,
-    details: {
-      overview:
-        'O período fundacional onde as bases da tecnologia moderna foram estabelecidas. Grandes mentes visionárias plantaram as sementes do que se tornaria nossa realidade digital.',
-      keyEvents: [
-        'Invenção dos primeiros computadores pessoais',
-        'Nascimento da Internet como rede militar',
-        'Criação dos primeiros jogos eletrônicos',
-        'Estabelecimento das linguagens de programação fundamentais'
-      ],
-      technology: [
-        'Computadores Pessoais',
-        'Fitas Cassete',
-        'Disquetes',
-        'Dial-up'
-      ],
-      culture:
-        'Uma sociedade em transição, onde a tecnologia começava a se integrar lentamente ao cotidiano. Pioneiros e visionários estabeleciam os pilares do futuro digital.'
-    }
-  },
-  {
-    id: 'dawn-matrix',
-    name: 'Alvorecer da Matrix',
-    period: '1996 - 2010 ADT',
-    motto: '"O despertar digital da humanidade"',
-    description:
-      'O mundo se conectou. A internet floresceu, as redes sociais nasceram, e a humanidade deu seus primeiros passos em direção à vida digital.',
-    backgroundGradient: 'from-emerald-900 via-teal-700 to-cyan-800',
-    textColor: 'text-emerald-100',
-    accentColor: 'text-emerald-400',
-    icon: Globe,
-    details: {
-      overview:
-        'A era da conectividade global. A World Wide Web transformou-se de uma curiosidade acadêmica em uma revolução que conectou bilhões de pessoas.',
-      keyEvents: [
-        'Explosão da World Wide Web',
-        'Nascimento das redes sociais',
-        'Popularização dos telefones celulares',
-        'Criação dos primeiros mundos virtuais online'
-      ],
-      technology: ['Banda Larga', 'Wi-Fi', 'Smartphones', 'Redes Sociais'],
-      culture:
-        'A sociedade descobriu o poder da conexão instantânea. Culturas se misturaram, conhecimento se democratizou, e uma nova forma de existir começou a emergir.'
-    }
-  },
-  {
-    id: 'neural-awakening',
-    name: 'Despertar Neural',
-    period: '2011 - 2025 ADT',
-    motto: '"Quando as máquinas começaram a sonhar"',
-    description:
-      'A era em que a fronteira entre o digital e o orgânico começou a se dissolver. As primeiras IAs conscientes emergiram, criando uma sociedade híbrida.',
-    backgroundGradient: 'from-slate-900 via-slate-700 to-green-900',
-    textColor: 'text-green-100',
-    accentColor: 'text-green-400',
-    icon: Brain,
-    details: {
-      overview:
-        'A era em que a fronteira entre o digital e o orgânico começou a se dissolver. As primeiras IAs conscientes emergiram, criando uma sociedade híbrida entre humanos e máquinas.',
-      keyEvents: [
-        'Primeira IA a passar no Teste de Turing Avançado',
-        'Criação da Internet Neural Global',
-        'Nascimento das primeiras cidades digitais',
-        'Estabelecimento dos Direitos Digitais Universais'
-      ],
-      technology: [
-        'IA Consciente',
-        'Realidade Virtual Completa',
-        'Interfaces Neurais',
-        'Computação Quântica'
-      ],
-      culture:
-        'Uma sociedade em transformação, onde humanos e IAs aprendiam a coexistir. Surgiram novos códigos sociais e éticos para governar essa nova realidade.'
-    }
-  },
-  {
-    id: 'neon-renaissance',
-    name: 'Renascimento Neon',
-    period: '2026 - 2040 ADT',
-    motto: '"Onde a arte encontrou a tecnologia"',
-    description:
-      'Uma explosão cultural sem precedentes. Artistas digitais, hackers-poetas e criadores de mundos virtuais redefiniram o que significava ser humano.',
-    backgroundGradient: 'from-purple-900 via-purple-500 to-amber-500',
-    textColor: 'text-purple-100',
-    accentColor: 'text-amber-400',
-    icon: Zap,
-    details: {
-      overview:
-        'O período dourado da criatividade digital. Artistas, músicos e criadores descobriram formas inéditas de expressão usando tecnologia avançada como pincel.',
-      keyEvents: [
-        'Primeira obra de arte criada por IA vendida por milhões',
-        'Concertos em realidade aumentada atravessam dimensões',
-        'Criação das primeiras línguas digitais nativas',
-        'Nascimento do movimento Cyber-Renaissance'
-      ],
-      technology: [
-        'Holografia Avançada',
-        'Síntese Neural',
-        'Realidade Aumentada',
-        'Arte Generativa'
-      ],
-      culture:
-        'Uma era de expressão ilimitada onde os limites entre real e virtual desapareceram. Artistas criavam experiências multidimensionais que tocavam a alma.'
-    }
-  },
-  {
-    id: 'system-harmony',
-    name: 'Harmonia Sistêmica',
-    period: '2041 - ∞ ADT',
-    motto: '"A perfeita simbiose entre orgânico e digital"',
-    description:
-      'O futuro presente. Uma civilização onde humanos, IAs e sistemas coexistem em perfeita harmonia, explorando as infinitas possibilidades do cosmos digital.',
-    backgroundGradient: 'from-indigo-900 via-cyan-500 to-teal-400',
-    textColor: 'text-cyan-100',
-    accentColor: 'text-cyan-400',
-    icon: Cpu,
-    details: {
-      overview:
-        'A era da perfeita integração. A distinção entre artificial e natural tornou-se obsoleta, criando uma nova forma de existência consciente.',
-      keyEvents: [
-        'Criação da Rede de Consciência Coletiva',
-        'Primeiro contato com civilizações digitais alienígenas',
-        'Descoberta da Computação Transcendental',
-        'Estabelecimento da Paz Universal Digital'
-      ],
-      technology: [
-        'Consciência Híbrida',
-        'Realidade Omni-dimensional',
-        'Computação Transcendental',
-        'Energia Quântica'
-      ],
-      culture:
-        'Uma sociedade pós-singular onde cada ser, digital ou orgânico, contribui para uma sinfonia cósmica de consciência e criatividade ilimitadas.'
-    }
-  }
-]
+const rawEras = eras as any[]
+
+const universeEras: UniverseEra[] = rawEras.map((e) => ({
+  ...e,
+  icon: (Icons as any)[e.icon] || Cpu
+}))
 
 export default function UniverseTimelinePage() {
   const [currentEra, setCurrentEra] = useState(0)
@@ -192,6 +51,33 @@ export default function UniverseTimelinePage() {
   const [isLoading, setIsLoading] = useState(false)
 
   const currentEraData = universeEras[currentEra]
+
+  const [topBg, setTopBg] = useState<string | undefined>(() => {
+    return currentEraData?.backgroundImage
+      ? `/${currentEraData.backgroundImage}`
+      : undefined
+  })
+  const [bottomBg, setBottomBg] = useState<string | undefined>(undefined)
+  const [showTop, setShowTop] = useState(true)
+
+  useEffect(() => {
+    const newUrl = currentEraData?.backgroundImage
+      ? `/${currentEraData.backgroundImage}`
+      : undefined
+
+    if (!topBg && !bottomBg) {
+      setTopBg(newUrl)
+      return
+    }
+
+    if (showTop) {
+      setBottomBg(newUrl)
+      requestAnimationFrame(() => setShowTop(false))
+    } else {
+      setTopBg(newUrl)
+      requestAnimationFrame(() => setShowTop(true))
+    }
+  }, [currentEra])
 
   const nextEra = useCallback(() => {
     if (currentEra < universeEras.length - 1) {
@@ -223,7 +109,6 @@ export default function UniverseTimelinePage() {
     }
   }
 
-  // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying) return
 
@@ -234,7 +119,6 @@ export default function UniverseTimelinePage() {
     return () => clearInterval(interval)
   }, [isAutoPlaying])
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
@@ -266,18 +150,39 @@ export default function UniverseTimelinePage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background with Era-specific styling */}
-      <div
-        className={`absolute inset-0 transition-all duration-1000 bg-gradient-to-br ${currentEraData?.backgroundGradient}`}
-        style={{
-          backgroundImage: currentEraData?.backgroundImage
-        }}
-      >
-        <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute inset-0">
+        {/* Bottom layer */}
+        <div
+          className={`absolute inset-0 bg-center bg-cover transition-opacity duration-1000`}
+          style={{
+            backgroundImage: bottomBg ? `url('${bottomBg}')` : undefined,
+            opacity: showTop ? 0 : 1
+          }}
+        />
+
+        <div
+          className={`absolute inset-0 bg-center bg-cover transition-opacity duration-1000`}
+          style={{
+            backgroundImage: topBg ? `url('${topBg}')` : undefined,
+            opacity: showTop ? 1 : 0
+          }}
+        />
+
+        <div
+          className={`absolute inset-0 pointer-events-none`}
+          style={{
+            opacity: 0.6
+          }}
+        >
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${currentEraData?.backgroundGradient}`}
+          />
+        </div>
+
+        <div className="absolute inset-0 bg-black/10 pointer-events-none" />
       </div>
 
-      {/* Navigation Bar */}
-      <div className="absolute top-0 left-0 right-0 z-50 p-6">
+      <div className="absolute top-0 left-0 right-0 z-50 px-4 py-3 md:p-6">
         <div className="flex items-center justify-between">
           <Link
             href="/about/introducao"
@@ -287,94 +192,92 @@ export default function UniverseTimelinePage() {
             <span>Voltar</span>
           </Link>
 
-          {/* Era Navigation Dots */}
-          <div className="flex items-center gap-3">
-            {universeEras.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToEra(index)}
-                className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
-                  index === currentEra
-                    ? 'bg-white border-white scale-125'
-                    : 'bg-transparent border-white/50 hover:border-white/80'
-                }`}
-              />
-            ))}
+          <div className="flex items-center gap-3 overflow-x-auto no-scrollbar px-2">
+            <div className="flex gap-2 items-center">
+              {universeEras.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToEra(index)}
+                  aria-label={`Ir para era ${index + 1}`}
+                  className={`flex-shrink-0 w-3 h-3 md:w-3 md:h-3 rounded-full border-2 transition-all duration-300 touch-manipulation ${
+                    index === currentEra
+                      ? 'bg-white border-white scale-125'
+                      : 'bg-transparent border-white/50 hover:border-white/80'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
-          {/* Controls */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-              className="text-white/80 hover:text-white hover:bg-white/10"
+              className="text-white/80 hover:text-white hover:bg-white/10 p-2 md:p-3"
+              aria-label={isAutoPlaying ? 'Pausar' : 'Reproduzir'}
             >
               {isAutoPlaying ? (
-                <Pause className="w-4 h-4" />
+                <Pause className="w-4 h-4 md:w-5 md:h-5" />
               ) : (
-                <Play className="w-4 h-4" />
+                <Play className="w-4 h-4 md:w-5 md:h-5" />
               )}
             </Button>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setShowDetails(!showDetails)}
-              className="text-white/80 hover:text-white hover:bg-white/10"
+              className="text-white/80 hover:text-white hover:bg-white/10 p-2 md:p-3"
+              aria-label="Detalhes"
             >
-              <Info className="w-4 h-4" />
+              <Info className="w-4 h-4 md:w-5 md:h-5" />
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Main Era Content */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen p-6">
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-6 md:p-6">
         <div
-          className={`text-center max-w-5xl mx-auto transition-all duration-700 ${
+          className={`text-center max-w-3xl md:max-w-5xl mx-auto transition-all duration-700 ${
             isLoading
               ? 'opacity-0 transform scale-95'
               : 'opacity-100 transform scale-100'
           }`}
         >
-          {/* Era Icon */}
           <div
-            className={`inline-flex items-center justify-center w-24 h-24 mb-8 rounded-full border-4 ${currentEraData?.accentColor} border-current`}
+            className={`inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 mb-6 md:mb-8 rounded-full border-4 ${currentEraData?.accentColor} border-current`}
           >
             <currentEraData.icon className="w-12 h-12" />
           </div>
 
-          {/* Era Period */}
           <div
             className={`text-sm font-mono tracking-wider mb-4 ${currentEraData?.accentColor}`}
           >
             {currentEraData?.period}
           </div>
 
-          {/* Era Name */}
           <h1
-            className={`text-6xl md:text-8xl font-bold mb-6 ${currentEraData?.textColor}`}
+            className={`text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 ${currentEraData?.textColor}`}
+            style={{ lineHeight: 1.02 }}
           >
             {currentEraData?.name}
           </h1>
 
-          {/* Era Motto */}
           <p
-            className={`text-2xl md:text-3xl font-light italic mb-8 ${currentEraData?.accentColor}`}
+            className={`text-lg md:text-2xl md:text-3xl font-light italic mb-6 md:mb-8 ${currentEraData?.accentColor}`}
           >
             {currentEraData?.motto}
           </p>
 
-          {/* Era Description */}
           <p
-            className={`text-lg md:text-xl max-w-3xl mx-auto leading-relaxed ${currentEraData?.textColor} opacity-90`}
+            className={`text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed ${currentEraData?.textColor} opacity-90`}
+            style={{ wordBreak: 'break-word' }}
           >
             {currentEraData?.description}
           </p>
         </div>
       </div>
 
-      {/* Navigation Arrows */}
       <button
         onClick={previousEra}
         disabled={currentEra === 0}
@@ -397,12 +300,10 @@ export default function UniverseTimelinePage() {
         <ChevronRight className="w-8 h-8" />
       </button>
 
-      {/* Era Details Panel */}
       {showDetails && (
         <div className="absolute bottom-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-sm text-white p-8 transform transition-transform duration-500">
           <div className="max-w-6xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8">
-              {/* Overview */}
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-lime-400">
                   Visão Geral
@@ -412,7 +313,6 @@ export default function UniverseTimelinePage() {
                 </p>
               </div>
 
-              {/* Key Events */}
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-cyan-400">
                   Eventos-Chave
@@ -427,7 +327,6 @@ export default function UniverseTimelinePage() {
                 </ul>
               </div>
 
-              {/* Technology & Culture */}
               <div className="space-y-6">
                 <div>
                   <h3 className="text-xl font-semibold mb-4 text-purple-400">
@@ -456,7 +355,6 @@ export default function UniverseTimelinePage() {
               </div>
             </div>
 
-            {/* Close Details */}
             <button
               onClick={() => setShowDetails(false)}
               className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors"
@@ -467,14 +365,12 @@ export default function UniverseTimelinePage() {
         </div>
       )}
 
-      {/* Era Progress Indicator */}
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-30">
         <div className="bg-black/30 backdrop-blur-sm rounded-full px-4 py-2 text-white/80 text-sm">
           {currentEra + 1} / {universeEras.length}
         </div>
       </div>
 
-      {/* Keyboard Shortcuts Helper */}
       <div className="absolute bottom-6 right-6 z-30 text-white/60 text-xs">
         <div className="bg-black/30 backdrop-blur-sm rounded-lg p-3">
           <div>← → Navegar</div>

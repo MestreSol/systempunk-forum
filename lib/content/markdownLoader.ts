@@ -24,7 +24,6 @@ export type LoadedContent = {
 }
 
 const CATEGORY_MAP: Record<string, Story['category']> = {
-  // Portuguese folder names -> canonical categories
   personagens: 'character',
   personagem: 'character',
   characters: 'character',
@@ -96,7 +95,6 @@ function listMarkdownFiles(root: string): string[] {
 }
 
 function seededRandom(seed: string) {
-  // Simple xorshift32 seeded by string hash
   let h = 2166136261 >>> 0
   for (let i = 0; i < seed.length; i++) {
     h ^= seed.charCodeAt(i)
@@ -113,7 +111,6 @@ function seededRandom(seed: string) {
 
 function generatePositionFromId(id: string): { x: number; y: number; z: number } {
   const rnd = seededRandom(id)
-  // Spread nodes in a sphere shell-ish volume
   const r = 10 + rnd() * 30
   const theta = rnd() * Math.PI * 2
   const phi = Math.acos(2 * rnd() - 1)
@@ -125,14 +122,10 @@ function generatePositionFromId(id: string): { x: number; y: number; z: number }
 
 function normalizeJsonish(block: string): string {
   let t = block.trim()
-  // Replace backticks with quotes
   t = t.replace(/`/g, '"')
-  // Quote keys
   t = t.replace(/(\b[a-zA-Z_][a-zA-Z0-9_]*)\s*=/g, '"$1":')
-  // Remove trailing commas before } or ]
   t = t.replace(/,\s*([}\]])/g, '$1')
 
-    // Quote unquoted scalar values for ANY key at any depth\n  t = t.replace(/(\"[A-Za-z0-9_]+\"\s*:\s*)([^\s\"\[{][^,}\]]*)/g, (_m, p1, val) => {\n    const v = String(val).trim()\n    if (!v) return `${p1}\"\"`\n    if (/^-?\d+(\.\d+)?$|^(true|false|null)$/i.test(v)) return `${p1}${v}`\n    return `${p1}\"${v}\"`\n  })\n\n  // Quote bare items in arrays that do not contain objects/arrays
   t = t.replace(/\[(?![^\]]*[\{\[])([^\]]*)\]/gs, (m, inner) => {
     const parts = inner
       .split(',')
@@ -154,7 +147,6 @@ function toJsonLikeHeader(block: string): RawHeader | null {
     return parsed
   } catch {
     try {
-      // Fallback: aggressively quote any unquoted scalar property values at any depth
       let t2 = normalizeJsonish(block)
       t2 = t2.replace(/(\"[^\"]+\"\s*:\s*)([^\s\"\[{][^,}\]]*)/g, (_m, p1, val) => {
         const v = String(val).trim()
@@ -172,9 +164,7 @@ function toJsonLikeHeader(block: string): RawHeader | null {
 
 function extractHeaderAndBody(fileContent: string): { header: RawHeader | null; body: string } {
   const trimmed = fileContent.trimStart()
-  // Look for a leading JSON-like object that starts with {
   if (trimmed.startsWith('{')) {
-    // Find matching closing brace for the first block
     let depth = 0
     let endIndex = -1
     for (let i = 0; i < trimmed.length; i++) {
@@ -200,9 +190,9 @@ function extractHeaderAndBody(fileContent: string): { header: RawHeader | null; 
 }
 
 type IndexMaps = {
-  byId: Map<string, string> // id -> storyId
-  byName: Map<string, string> // lower(name) -> storyId
-  byFile: Map<string, string> // lower(file base) -> storyId
+  byId: Map<string, string>
+  byName: Map<string, string>
+  byFile: Map<string, string>
 }
 
 function buildIndexMaps(entries: { id: string; name: string; fileBase: string }[]): IndexMaps {
@@ -231,7 +221,6 @@ function parseWikiLinks(markdown: string): { linkText: string; targetKey: string
       linkText = inside.slice(0, pipeIdx).trim()
       key = inside.slice(pipeIdx + 1).trim()
     }
-    // Strip extension if present
     key = key.replace(/\.[a-zA-Z0-9]+$/, '')
     results.push({ linkText, targetKey: key, isEmbed })
   }
@@ -239,7 +228,6 @@ function parseWikiLinks(markdown: string): { linkText: string; targetKey: string
 }
 
 function resolveLinkTarget(key: string, index: IndexMaps): string | null {
-  // Try id, then name, then file base
   const direct = index.byId.get(key)
   if (direct) return direct
   const byName = index.byName.get(key.toLowerCase())
@@ -274,7 +262,7 @@ export async function loadStoriesFromMarkdown(contentRoot: string): Promise<Load
     const rel = path.relative(root, filePath)
     const parts = rel.split(path.sep)
     const topFolder = parts.length > 1 ? parts[0] : ''
-    const folderCategory = normalizeCategory(topFolder) // used only for analytics if needed
+    const folderCategory = normalizeCategory(topFolder)
 
     const content = fs.readFileSync(filePath, 'utf8')
     const { header, body } = extractHeaderAndBody(content)
@@ -332,15 +320,12 @@ export async function loadStoriesFromMarkdown(contentRoot: string): Promise<Load
     const status = statusMap[statusRaw] || 'draft'
     const author = t.header?.autor || t.header?.author
 
-    // Parse wikilinks for connections (non-embeds only)
     const links = parseWikiLinks(t.body).filter((l) => !l.isEmbed)
     const connections = links
       .map((l) => resolveLinkTarget(l.targetKey, index))
       .filter((id): id is string => Boolean(id) && id !== t.id)
-    // Deduplicate
     const uniqueConnections = Array.from(new Set(connections))
 
-    // Era not provided; default to a bucket for visualization
     const era: Story['era'] = 'neon-renaissance'
 
     const story: Story = {
@@ -365,7 +350,6 @@ export async function loadStoriesFromMarkdown(contentRoot: string): Promise<Load
     if (author) {
       ;(story as any).author = author
     }
-    // mark if category came from fallback (no header category)
     if (!t.header?.category) {
       ;(story as any).categorySource = 'fallback'
     } else {
@@ -375,7 +359,6 @@ export async function loadStoriesFromMarkdown(contentRoot: string): Promise<Load
     return story
   })
 
-  // Build graph connections (mentions as undirected edges by default)
   const connections: StoryConnection[] = []
   const storyMap = new Map(stories.map((s) => [s.id, s]))
   for (const s of stories) {
@@ -392,4 +375,3 @@ export async function loadStoriesFromMarkdown(contentRoot: string): Promise<Load
 
   return { stories, connections }
 }
-

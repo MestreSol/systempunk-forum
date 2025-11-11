@@ -10,6 +10,5 @@ export default function HistoriasLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Minimal layout: omit Toolbar and Footer for full-bleed interactive canvas pages
   return <div className="min-h-screen w-full overflow-hidden">{children}</div>
 }
