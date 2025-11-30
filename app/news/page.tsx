@@ -12,6 +12,7 @@ export default function NewsPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedStatus, setSelectedStatus] = useState('published')
+  const [sortBy, setSortBy] = useState('newest')
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -56,8 +57,32 @@ export default function NewsPage() {
       )
     }
 
+    // Apply sorting
+    switch (sortBy) {
+      case 'newest':
+        filtered.sort(
+          (a, b) =>
+            new Date(b.publishDate).getTime() -
+            new Date(a.publishDate).getTime()
+        )
+        break
+      case 'oldest':
+        filtered.sort(
+          (a, b) =>
+            new Date(a.publishDate).getTime() -
+            new Date(b.publishDate).getTime()
+        )
+        break
+      case 'views':
+        filtered.sort((a, b) => (b.views || 0) - (a.views || 0))
+        break
+      case 'title':
+        filtered.sort((a, b) => a.title.localeCompare(b.title))
+        break
+    }
+
     setFilteredArticles(filtered)
-  }, [articles, searchTerm, selectedCategory, selectedStatus])
+  }, [articles, searchTerm, selectedCategory, selectedStatus, sortBy])
 
   if (isLoading) {
     return (
@@ -73,10 +98,22 @@ export default function NewsPage() {
     )
   }
 
-  const featuredArticle = filteredArticles.find(
+  // Featured article is always the first published article, unaffected by filters
+  const featuredArticle = articles.find(
     (article) => article.status === 'published'
   )
-  const otherArticles = filteredArticles.slice(featuredArticle ? 1 : 0)
+  
+  // Filter out the featured article from the filtered results
+  const otherArticles = filteredArticles.filter(
+    (article) => article.id !== featuredArticle?.id
+  )
+
+  const handleClearFilters = () => {
+    setSearchTerm('')
+    setSelectedCategory('all')
+    setSelectedStatus('published')
+    setSortBy('newest')
+  }
 
   const activeBadges = [] as { label: string }[]
   if (selectedCategory !== 'all') {
@@ -94,6 +131,14 @@ export default function NewsPage() {
             ? 'Rascunhos'
             : 'Arquivados'
     })
+  }
+  if (sortBy !== 'newest') {
+    const sortLabels: Record<string, string> = {
+      oldest: 'Mais antigas',
+      views: 'Mais visualizadas',
+      title: 'A-Z'
+    }
+    activeBadges.push({ label: sortLabels[sortBy] || sortBy })
   }
   if (searchTerm) activeBadges.push({ label: `"${searchTerm}"` })
 
@@ -162,8 +207,13 @@ export default function NewsPage() {
           onCategoryChange={setSelectedCategory}
           selectedStatus={selectedStatus}
           onStatusChange={setSelectedStatus}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
           categoryOptions={categoryOptions}
           activeBadges={activeBadges}
+          resultsCount={filteredArticles.length}
+          totalCount={articles.length}
+          onClearFilters={handleClearFilters}
         />
 
         <ArticlesGrid
