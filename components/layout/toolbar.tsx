@@ -14,7 +14,6 @@ import {
 } from '../ui/navigation-menu'
 import { Button } from '../ui/button'
 import { Avatar } from '../ui/avatar'
-import ThemeToggle from './toolbar/ThemeToggle'
 import ListItem from './toolbar/ListItem'
 
 type User = {
@@ -367,7 +366,6 @@ export default function Toolbar({
             </li>
             <li>
               <div className="mt-4 flex gap-3">
-                <ThemeToggle />
                 {user ? (
                   <Avatar />
                 ) : (
@@ -386,7 +384,6 @@ export default function Toolbar({
 
       {/* Desktop Right Side */}
       <div className="hidden items-center gap-2 md:flex">
-        <ThemeToggle />
         {user ? (
           <Avatar>{/* AvatarImage / AvatarFallback aqui */}</Avatar>
         ) : (
