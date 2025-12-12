@@ -1,0 +1,1172 @@
+[
+  {
+    "id": "apunk",
+    "name": "Apunk",
+    "period": "Princípio - Pré-Tempo",
+    "motto": "\"A chama que deu origem à existência\"",
+    "description": "As Supra-Singularidades acendem a Chama da Existência e espalham 12 artefatos pelos cosmos.",
+    "backgroundGradient": "from-purple-900 via-indigo-800 to-black",
+    "backgroundImage": "eras/Apunk.webp",
+    "textColor": "text-violet-100",
+    "accentColor": "text-violet-400",
+    "icon": "Flame",
+    "details": {
+      "overview": "Cosmogonia do universo Systempunk: criação, aspectos e a Profecia do Fim.",
+      "keyEvents": [
+        "Criação das três Supra-Singularidades",
+        "Unificação e acendimento da Chama",
+        "Forja dos 12 Artefatos",
+        "Eclosão da Profecia do Fim"
+      ],
+      "technology": ["Artefatos Primordiais", "Magia Existencial", "Forja Cósmica"],
+      "culture": "Metafísica pura: entidades moldam leis da realidade antes das civilizações."
+    }
+  },
+  {
+    "id": "stonepunk",
+    "name": "Era Stonepunk",
+    "period": "Pós-Queda Primordial",
+    "motto": "\"Do barro e do medo nasceu a civilização\"",
+    "description": "Hego força tribos a migrarem à Torre de Fallmora, unificando fé e sobrevivência.",
+    "backgroundGradient": "from-stone-800 via-gray-700 to-amber-900",
+    "backgroundImage": "eras/Stonepunk.webp",
+    "textColor": "text-amber-100",
+    "accentColor": "text-amber-400",
+    "icon": "Mountain",
+    "details": {
+      "overview": "Primeiras cidades e religião ao redor da torre, entre monstros e milagres.",
+      "keyEvents": [
+        "Criação das três monstruosidades",
+        "Êxodo para Fallmora",
+        "Religião centrada na Torre",
+        "Sacrifício de Hego para selar o Limiar"
+      ],
+      "technology": ["Ferramentas de Pedra", "Runas Totêmicas", "Rituais Primordiais"],
+      "culture": "Tribal-teocrática, língua e mito nascem da necessidade de ordem."
+    }
+  },
+  {
+    "id": "bronzepunk",
+    "name": "Era Bronzepunk",
+    "period": "Idade dos Primeiros Reinos",
+    "motto": "\"Três reinos, um equilíbrio forjado no bronze\"",
+    "description": "Abismarca, Aureum Sanctus e Trivale estabelecem estabilidade e cultura.",
+    "backgroundGradient": "from-amber-900 via-yellow-700 to-orange-900",
+    "backgroundImage": "eras/Bronzepunk.webp",
+    "textColor": "text-amber-50",
+    "accentColor": "text-yellow-300",
+    "icon": "Shield",
+    "details": {
+      "overview": "Metalurgia e agricultura sustentam décadas de prosperidade até os colapsos.",
+      "keyEvents": [
+        "Apogeu tripartite",
+        "Mineração profunda de Abismarca",
+        "Trivale como celeiro",
+        "Queda em cascata dos reinos"
+      ],
+      "technology": ["Metalurgia do Bronze", "Ferramentas Agrícolas", "Engrenagens Rústicas"],
+      "culture": "Arte e culto cívico; equilíbrio frágil entre indústria, fé e colheita."
+    }
+  },
+  {
+    "id": "rococopunk",
+    "name": "Era Rococopunk",
+    "period": "Domínio do Dourado",
+    "motto": "\"O ouro que reluz também corrói\"",
+    "description": "Aureum Sanctus hegemoniza cultura, estética e poder com ouro.",
+    "backgroundGradient": "from-yellow-700 via-amber-600 to-yellow-900",
+    "backgroundImage": "eras/Rococopunk.webp",
+    "textColor": "text-yellow-100",
+    "accentColor": "text-amber-400",
+    "icon": "Crown",
+    "details": {
+      "overview": "Luxo e desigualdade; sinais do Limiar corroem a base do império.",
+      "keyEvents": [
+        "Hegemonia dourada",
+        "Cidades opulentas",
+        "Exploração extrema",
+        "Sussurros do Limiar"
+      ],
+      "technology": ["Arquitetura Dourada", "Tesouraria Imperial", "Ornamentos Rituais"],
+      "culture": "Ostentação como identidade; periferias revoltam-se."
+    }
+  },
+  {
+    "id": "hopepunk",
+    "name": "Era Hopepunk",
+    "period": "Êxodo e Resistência",
+    "motto": "\"Mesmo na escuridão, acendemos luzes\"",
+    "description": "Rebeldes fogem ao Oriente e constroem cidades de solidariedade.",
+    "backgroundGradient": "from-green-800 via-teal-700 to-blue-900",
+    "backgroundImage": "eras/Hopepunk.webp",
+    "textColor": "text-teal-100",
+    "accentColor": "text-emerald-400",
+    "icon": "Sun",
+    "details": {
+      "overview": "Redes de apoio, valores comunitários e defesa dos oprimidos.",
+      "keyEvents": [
+        "Fugas em massa",
+        "Fundação de cidades livres",
+        "Muralhas e milícias populares",
+        "Tensões internas pela expansão"
+      ],
+      "technology": ["Fortificações Simples", "Ferramentas Comunitárias", "Sinais de Vigília"],
+      "culture": "Cooperação, justiça social e esperança como política."
+    }
+  },
+  {
+    "id": "silkpunk",
+    "name": "Era Silkpunk",
+    "period": "Civilização do Oriente",
+    "motto": "\"A harmonia dos ventos e das marés\"",
+    "description": "Tecnologias eólica/hidráulica e dirigíveis de seda sustentam cidades muradas.",
+    "backgroundGradient": "from-rose-700 via-red-600 to-orange-700",
+    "backgroundImage": "eras/Silkpunk.webp",
+    "textColor": "text-rose-100",
+    "accentColor": "text-orange-400",
+    "icon": "Wind",
+    "details": {
+      "overview": "Engenharia inspirada na natureza, sustentabilidade e sofisticação.",
+      "keyEvents": [
+        "Levantamento da Grande Muralha",
+        "Dirigíveis de seda",
+        "Sistemas de transporte leves",
+        "Crise ocidental aborta guerra"
+      ],
+      "technology": ["Energia Eólica", "Rodas d'Água", "Dirigíveis de Seda"],
+      "culture": "Equilíbrio ecológico, artes refinadas e ciência aplicada."
+    }
+  },
+  {
+    "id": "weird-rococo",
+    "name": "Era Weird Rococo",
+    "period": "Corrupção do Ouro",
+    "motto": "\"O ouro agora sangra\"",
+    "description": "Fagulha Liminal infecta ouro; culto carmezim ressurge nas montanhas.",
+    "backgroundGradient": "from-yellow-800 via-red-800 to-black",
+    "backgroundImage": "eras/WeirdRococo.webp",
+    "textColor": "text-yellow-100",
+    "accentColor": "text-red-400",
+    "icon": "Gem",
+    "details": {
+      "overview": "Doença mental e física via ouro contaminado; Ocidente em colapso.",
+      "keyEvents": [
+        "Infecção mineral",
+        "Capitais apodrecem",
+        "Muralha vira barreira sanitária",
+        "Refugiados pressionam Oriente"
+      ],
+      "technology": ["Purificadores Rituais", "Máscaras Alquímicas", "Lacres de Contenção"],
+      "culture": "Paranoia, isolamento e florescimento de cultos sombrios."
+    }
+  },
+  {
+    "id": "dungeonpunk",
+    "name": "Era Dungeonpunk",
+    "period": "Ruínas e Fendas",
+    "motto": "\"Entre o tempo e as ruínas, o perigo espera\"",
+    "description": "Exploração de Nova Parpola revela fendas temporais e Objetos Âncora.",
+    "backgroundGradient": "from-gray-900 via-slate-800 to-indigo-900",
+    "backgroundImage": "eras/Dungeonpunk.webp",
+    "textColor": "text-indigo-100",
+    "accentColor": "text-indigo-400",
+    "icon": "Compass",
+    "details": {
+      "overview": "Aventuras letais por relíquias; tempo começa a fraturar.",
+      "keyEvents": [
+        "Descoberta de Nova Parpola",
+        "Primeiras fendas",
+        "Protocolos de Âncora",
+        "Expedições perdidas"
+      ],
+      "technology": ["Chaves Temporais", "Ganchos Âncora", "Mapas Não-euclidianos"],
+      "culture": "Guildas de exploradores, saber proibido e fatalismo."
+    }
+  },
+  {
+    "id": "clockpunk",
+    "name": "Era Clockpunk",
+    "period": "Ritmo dos Pêndulos",
+    "motto": "\"O tempo é a engrenagem da perfeição\"",
+    "description": "Cidades mecânicas e autômatos tentam estabilizar o fluxo temporal.",
+    "backgroundGradient": "from-gray-800 via-yellow-800 to-stone-900",
+    "backgroundImage": "eras/Clockpunk.webp",
+    "textColor": "text-yellow-100",
+    "accentColor": "text-yellow-400",
+    "icon": "Clock",
+    "details": {
+      "overview": "Padronização e precisão para conter instabilidades.",
+      "keyEvents": [
+        "Cidades de pêndulo",
+        "Autômatos civis",
+        "Fusos globais",
+        "Limites da energia mecânica"
+      ],
+      "technology": ["Relógios Mestrais", "Autômatos", "Sincronizadores"],
+      "culture": "Ordem e produtividade como virtude máxima."
+    }
+  },
+  {
+    "id": "steampunk",
+    "name": "Era Steampunk",
+    "period": "Industrial a Vapor",
+    "motto": "\"O progresso ergue-se sobre a fumaça\"",
+    "description": "Motores a vapor, fábricas e arranha-céus de fuligem.",
+    "backgroundGradient": "from-gray-900 via-stone-800 to-amber-800",
+    "backgroundImage": "eras/Steampunk.webp",
+    "textColor": "text-amber-100",
+    "accentColor": "text-orange-400",
+    "icon": "Factory",
+    "details": {
+      "overview": "Industrialização massiva; poluição e greves.",
+      "keyEvents": [
+        "Mecanização da produção",
+        "Megacidades fumegantes",
+        "Elites industriais",
+        "Revoltas operárias"
+      ],
+      "technology": ["Caldeiras", "Trilhos e Guindastes", "Autômatos a Vapor"],
+      "culture": "Capital e classe: riqueza inédita e miséria abissal."
+    }
+  },
+  {
+    "id": "wear-steampunk",
+    "name": "Era Wear Steampunk",
+    "period": "Névoa Letal",
+    "motto": "\"A névoa é mais pesada do que parece\"",
+    "description": "Londres apogeu; névoa anômala ligada ao Limiar mata nas ruas.",
+    "backgroundGradient": "from-slate-900 via-gray-800 to-black",
+    "backgroundImage": "eras/WearSteampunk.webp",
+    "textColor": "text-slate-100",
+    "accentColor": "text-emerald-300",
+    "icon": "CloudFog",
+    "details": {
+      "overview": "Navegações a vapor expandem colônias; terror invisível cresce.",
+      "keyEvents": [
+        "Grandes navegações",
+        "Colonização inicial",
+        "Mortes sem rastro",
+        "Declínio da fé no vapor"
+      ],
+      "technology": ["Navios a Vapor", "Lanternas Antinévoa", "Respiradores Primitivos"],
+      "culture": "Progresso mascarando pânico urbano e lendas negras."
+    }
+  },
+  {
+    "id": "cattlepunk",
+    "name": "Era Cattlepunk",
+    "period": "Fronteiras Secas",
+    "motto": "\"Lei curta, poeira longa\"",
+    "description": "Colônias nas Américas adaptam técnicas locais; cowboys viram guardiões.",
+    "backgroundGradient": "from-amber-900 via-orange-800 to-yellow-900",
+    "backgroundImage": "eras/Cattlepunk.webp",
+    "textColor": "text-amber-100",
+    "accentColor": "text-yellow-300",
+    "icon": "Lasso",
+    "details": {
+      "overview": "Máquinas pesadas falham; sobrevivência e contrabando regem vilarejos.",
+      "keyEvents": [
+        "Surgimento dos cowboys",
+        "Vilarejos de gado",
+        "Conflitos com nativos",
+        "Crime organizado ascende"
+      ],
+      "technology": ["Ferramentas Rústicas", "Armas de Repetição", "Diligências"],
+      "culture": "Código de honra, alianças frágeis e fronteiras violentas."
+    }
+  },
+  {
+    "id": "weird-westpunk",
+    "name": "Era Weird Westpunk",
+    "period": "Tempestades e Monstros",
+    "motto": "\"O oeste uiva de volta\"",
+    "description": "Tempestades colossais e criaturas do Limiar assombram as colônias.",
+    "backgroundGradient": "from-brown-900 via-red-800 to-black",
+    "backgroundImage": "eras/WeirdWestpunk.webp",
+    "textColor": "text-red-100",
+    "accentColor": "text-orange-300",
+    "icon": "Zap",
+    "details": {
+      "overview": "Engenhocas adaptadas caçam terrores; vilas fortificadas.",
+      "keyEvents": [
+        "Ataques de criaturas",
+        "Cowboys-paladinos",
+        "Tecnologia improvisada",
+        "Êxodo de áreas inabitáveis"
+      ],
+      "technology": ["Armas Modificadas", "Proteções Antitempestade", "Armadilhas Rúnicas"],
+      "culture": "Lendas vivas, coragem teimosa e baladas sombrias."
+    }
+  },
+  {
+    "id": "dieselpunk",
+    "name": "Era Dieselpunk",
+    "period": "Motores de Guerra",
+    "motto": "\"Eficiência com preço de sangue\"",
+    "description": "Europa domina com diesel; Rufanol surge como combustível proibido.",
+    "backgroundGradient": "from-gray-900 via-slate-800 to-yellow-800",
+    "backgroundImage": "eras/Dieselpunk.webp",
+    "textColor": "text-gray-100",
+    "accentColor": "text-yellow-400",
+    "icon": "Cog",
+    "details": {
+      "overview": "Cidade moderna e poder militar; ética cede à produtividade.",
+      "keyEvents": [
+        "Indústrias robustas",
+        "Céus cheios de dirigíveis",
+        "Rufanol em ascensão",
+        "Estados autoritários"
+      ],
+      "technology": ["Motores a Diesel", "Dirigíveis", "Arsenal Pesado"],
+      "culture": "Estética funcional, culto à máquina e propaganda."
+    }
+  },
+  {
+    "id": "weird-dieselpunk",
+    "name": "Era Weird Diesel Punk",
+    "period": "Ditadura do Rufanol",
+    "motto": "\"O combustível exige tributo\"",
+    "description": "Regimes exploram sangue humano como energia dominante.",
+    "backgroundGradient": "from-red-900 via-black to-red-800",
+    "backgroundImage": "eras/WeirdDieselpunk.webp",
+    "textColor": "text-rose-100",
+    "accentColor": "text-red-400",
+    "icon": "Droplet",
+    "details": {
+      "overview": "Extração em escala industrial; sociedade partida entre senhores e sacrifícios.",
+      "keyEvents": [
+        "Rufanol substitui diesel",
+        "Ditaduras sanguíneas",
+        "Mega-dirigíveis",
+        "Eclosão de revoltas"
+      ],
+      "technology": ["Refinarias de Rufanol", "Condensadores Hemáticos", "Motores Híbridos"],
+      "culture": "Desumanização total; eficiência como dogma."
+    }
+  },
+  {
+    "id": "world-war-dieselpunk",
+    "name": "Era World War Dieselpunk",
+    "period": "Guerra Global do Rufanol",
+    "motto": "\"Motores rugem, impérios ruem\"",
+    "description": "Alianças enfrentam ditadura expansionista movida a Rufanol.",
+    "backgroundGradient": "from-black via-slate-900 to-amber-900",
+    "backgroundImage": "eras/WorldWarDieselpunk.webp",
+    "textColor": "text-slate-100",
+    "accentColor": "text-amber-300",
+    "icon": "Plane",
+    "details": {
+      "overview": "Esforço bélico total; mutações e colapso industrial ao final.",
+      "keyEvents": [
+        "Mobilização planetária",
+        "Máquinas de guerra colossais",
+        "Mutações por exposição",
+        "Cidades em ruína"
+      ],
+      "technology": ["Blindados Rufanol", "Armas de Assalto", "Dirigíveis de Guerra"],
+      "culture": "Economia de guerra, racionamento e trauma coletivo."
+    }
+  },
+  {
+    "id": "transistorpunk",
+    "name": "Era Transistorpunk",
+    "period": "Renascimento Elétrico",
+    "motto": "\"Pequenos dispositivos, grandes mundos\"",
+    "description": "Projeto Warshing inaugura rede elétrica e primeiros transistores.",
+    "backgroundGradient": "from-slate-900 via-blue-900 to-indigo-900",
+    "backgroundImage": "eras/Transistorpunk.webp",
+    "textColor": "text-blue-100",
+    "accentColor": "text-sky-400",
+    "icon": "Radio",
+    "details": {
+      "overview": "Miniaturização e terminais urbanos; reconstrução pós-guerra.",
+      "keyEvents": [
+        "Descoberta de princípios elétricos",
+        "Transistores iniciais",
+        "Iluminação de metrópoles",
+        "Desigualdades energéticas"
+      ],
+      "technology": ["Transistores", "Redes Elétricas", "Terminais Públicos"],
+      "culture": "Otimismo técnico com periferias desconectadas."
+    }
+  },
+  {
+    "id": "teslapunk",
+    "name": "Era Teslapunk",
+    "period": "Energia Limpa Sem Fio",
+    "motto": "\"A luz atravessa o ar\"",
+    "description": "Transmissão sem fio e eficiência extrema remodelam cidades.",
+    "backgroundGradient": "from-indigo-900 via-violet-800 to-fuchsia-900",
+    "backgroundImage": "eras/Teslapunk.webp",
+    "textColor": "text-fuchsia-100",
+    "accentColor": "text-indigo-300",
+    "icon": "Sparkles",
+    "details": {
+      "overview": "Infraestruturas elegantes; corporações centralizam redes.",
+      "keyEvents": [
+        "Grades sem fio",
+        "Veículos elétricos",
+        "Automação em massa",
+        "Monopólios energéticos"
+      ],
+      "technology": ["Bobinas de Transmissão", "Indução Urbana", "Motores Elétricos"],
+      "culture": "Beleza funcional e ansiedade por dependência sistêmica."
+    }
+  },
+  {
+    "id": "cyberpunk",
+    "name": "Era Cyberpunk",
+    "period": "Neon e Implantes",
+    "motto": "\"Dados são sangue frio\"",
+    "description": "Megacorps controlam implantes e redes; humanos ampliados.",
+    "backgroundGradient": "from-black via-indigo-900 to-purple-900",
+    "backgroundImage": "eras/Cyberpunk.webp",
+    "textColor": "text-purple-100",
+    "accentColor": "text-cyan-400",
+    "icon": "Cpu",
+    "details": {
+      "overview": "Integração corpo-máquina e vigilância total; resistência hacker.",
+      "keyEvents": [
+        "Implantes de massa",
+        "IA corporativa",
+        "Cidades neon",
+        "Submundos de cracks"
+      ],
+      "technology": ["Neuroimplantes", "AR/VR", "Sistemas Oniscópicos"],
+      "culture": "Consumidores cativos de updates; liberdade como serviço."
+    }
+  },
+  {
+    "id": "virtual-reality",
+    "name": "Era Virtual Reality",
+    "period": "Fuga Perfeita",
+    "motto": "\"O paraíso cabe numa tomada\"",
+    "description": "Corporações vendem mundos virtuais; cérebros viram processadores.",
+    "backgroundGradient": "from-fuchsia-900 via-violet-900 to-black",
+    "backgroundImage": "eras/VirtualReality.webp",
+    "textColor": "text-fuchsia-100",
+    "accentColor": "text-purple-300",
+    "icon": "Vr",
+    "details": {
+      "overview": "Imersão total; colapsos de infraestrutura deixam danos mentais.",
+      "keyEvents": [
+        "Assinaturas vitalícias",
+        "Economias virtuais",
+        "Quedas de servidores",
+        "Prisioneiros digitais libertos"
+      ],
+      "technology": ["Capsulas Imersivas", "Cloud Neural", "Renderização Sináptica"],
+      "culture": "Divididos entre carne negligenciada e êxtase simulado."
+    }
+  },
+  {
+    "id": "cyberpunk-noir",
+    "name": "Era Cyberpunk Noir",
+    "period": "Cidades-Laboratório",
+    "motto": "\"Chuva ácida, olhos de vidro\"",
+    "description": "Megacorps transformam metrópoles em centros de vigilância e testes.",
+    "backgroundGradient": "from-slate-900 via-gray-900 to-black",
+    "backgroundImage": "eras/CyberpunkNoir.webp",
+    "textColor": "text-slate-100",
+    "accentColor": "text-cyan-300",
+    "icon": "Camera",
+    "details": {
+      "overview": "Espionagem ubíqua, dados infinitos e sistemas saturados.",
+      "keyEvents": [
+        "Chiqueiros de informação",
+        "Monitoramento biométrico",
+        "Sabotagem insurgente",
+        "Falhas sistêmicas em cascata"
+      ],
+      "technology": ["Matriz de Sensores", "Drones Civis", "Análise Comportamental"],
+      "culture": "Privacidade ilusória e melancolia perene."
+    }
+  },
+  {
+    "id": "cyberwar-punk",
+    "name": "Era Cyberwar Punk",
+    "period": "Mercado em Guerra",
+    "motto": "\"Quando corporações viram países\"",
+    "description": "Sem governos, megacorps travam guerras totais por recursos.",
+    "backgroundGradient": "from-red-900 via-black to-slate-900",
+    "backgroundImage": "eras/CyberwarPunk.webp",
+    "textColor": "text-red-100",
+    "accentColor": "text-rose-300",
+    "icon": "Swords",
+    "details": {
+      "overview": "Drones, bioarmas, implantes militares e milhões de mortos urbanos.",
+      "keyEvents": [
+        "Exércitos privados",
+        "Batalhas em megacidades",
+        "Absorção de corporações menores",
+        "Colapso de infraestrutura global"
+      ],
+      "technology": ["Enxames Autônomos", "Bio-armas de Precisão", "Implantes Táticos"],
+      "culture": "Populações descartáveis e ruínas como normalidade."
+    }
+  },
+  {
+    "id": "splatterpunk",
+    "name": "Era Splatterpunk",
+    "period": "Vírus dos Implantes",
+    "motto": "\"A mente sangra primeiro\"",
+    "description": "Vírus neural transforma implantados em Corrompidos violentos.",
+    "backgroundGradient": "from-red-950 via-rose-900 to-black",
+    "backgroundImage": "eras/Splatterpunk.webp",
+    "textColor": "text-rose-100",
+    "accentColor": "text-red-300",
+    "icon": "Skull",
+    "details": {
+      "overview": "Arquivo histórico queimado; civilização em terror contínuo.",
+      "keyEvents": [
+        "Infecção global",
+        "Colapso urbano",
+        "Queima de registros",
+        "Fuga para zonas remotas"
+      ],
+      "technology": ["Firewalls Neurais", "Selos Sanitários", "Quarentenas Offline"],
+      "culture": "Sobrevivência em pequenos bandos; teorias conspiratórias."
+    }
+  },
+  {
+    "id": "organicpunk",
+    "name": "Era Organicpunk",
+    "period": "Cidades Vivas",
+    "motto": "\"Deixe a cidade crescer\"",
+    "description": "Biotecnologia sustenta comunidades; humanos nascem aprimorados.",
+    "backgroundGradient": "from-green-900 via-emerald-800 to-teal-900",
+    "backgroundImage": "eras/Organicpunk.webp",
+    "textColor": "text-emerald-100",
+    "accentColor": "text-lime-300",
+    "icon": "Leaf",
+    "details": {
+      "overview": "Arquitetura orgânica e redes neurais naturais integram sociedade.",
+      "keyEvents": [
+        "Geração bio-otimizada",
+        "Edifícios autorreparáveis",
+        "Conexões psico-coletivas",
+        "Desvios mentais e colapsos"
+      ],
+      "technology": ["Tecidos Estruturais", "Simbiontes Urbanos", "Genômica Preditiva"],
+      "culture": "Simbiose e dilemas éticos sobre o que é ‘humano’."
+    }
+  },
+  {
+    "id": "gothicpunk",
+    "name": "Era Gothicpunk",
+    "period": "Noite Perpétua",
+    "motto": "\"Entre vitrais e neon moribundo\"",
+    "description": "DCTs falham; ordens religiosas guardam relíquias tecnológicas.",
+    "backgroundGradient": "from-black via-slate-900 to-zinc-900",
+    "backgroundImage": "eras/Gothicpunk.webp",
+    "textColor": "text-zinc-100",
+    "accentColor": "text-indigo-300",
+    "icon": "Church",
+    "details": {
+      "overview": "Cidades em trevas e cavaleiros urbanos defendem restos sagrados.",
+      "keyEvents": [
+        "Colapso dos DCTs",
+        "Cultos de tecnologia",
+        "Renascença sombria",
+        "Êxodo das elites"
+      ],
+      "technology": ["Relíquias Tecno-sagradas", "Lâminas Condutivas", "Luzes de Catedral"],
+      "culture": "Liturgias tecnognósticas e sobrevivência ritual."
+    }
+  },
+  {
+    "id": "weird-gothicpunk",
+    "name": "Era Weird Gothicpunk",
+    "period": "Caça nas Ruínas",
+    "motto": "\"O sangue chama do subsolo\"",
+    "description": "Aberrações biológicas organizam-se e sitiavam periferias.",
+    "backgroundGradient": "from-purple-950 via-black to-red-900",
+    "backgroundImage": "eras/WeirdGothicpunk.webp",
+    "textColor": "text-purple-100",
+    "accentColor": "text-rose-300",
+    "icon": "Moon",
+    "details": {
+      "overview": "Cavaleiros- caçadores e cultos liminares alimentam a carnificina.",
+      "keyEvents": [
+        "Domínio das zonas mortas",
+        "Caçadas urbanas",
+        "Sacrifícios ao Limiar",
+        "Ataques às áreas centrais"
+      ],
+      "technology": ["Lanças Arcano-fóricas", "Armaduras Improvisadas", "Sinos de Alarme"],
+      "culture": "Equilíbrio frágil entre fé, medo e violência."
+    }
+  },
+  {
+    "id": "scavengedpunk",
+    "name": "Era Scavengedpunk",
+    "period": "Do Lixo ao Lar",
+    "motto": "\"Reinventar é sobreviver\"",
+    "description": "Assentamentos reciclam restos das eras cibernéticas.",
+    "backgroundGradient": "from-yellow-900 via-amber-800 to-stone-900",
+    "textColor": "text-amber-100",
+    "accentColor": "text-yellow-300",
+    "icon": "Wrench",
+    "details": {
+      "overview": "Criatividade como moeda; redes frágeis de comércio de sucata.",
+      "keyEvents": [
+        "Feiras de refugo",
+        "Reparo de drones e armas",
+        "Rotas perigosas",
+        "Conflitos por depósitos valiosos"
+      ],
+      "technology": ["Kitbash Modular", "Geradores Velhos", "Drones Remendados"],
+      "culture": "Comunidades artesãs, mercadores nômades e piratas de sucata."
+    }
+  },
+  {
+    "id": "biopunk",
+    "name": "Era Biopunk",
+    "period": "Solução no DNA",
+    "motto": "\"Onde não há aço, há carne\"",
+    "description": "Manipulação genética sustenta ecossistemas e humanos resilientes.",
+    "backgroundGradient": "from-teal-900 via-green-900 to-lime-800",
+    "textColor": "text-lime-100",
+    "accentColor": "text-emerald-300",
+    "icon": "Dna",
+    "details": {
+      "overview": "Ambiente e corpo como plataforma tecnológica; esperança controlada.",
+      "keyEvents": [
+        "Plantas que purificam",
+        "Montarias bio-híbridas",
+        "Linhas humanas elite",
+        "Surto de fungo alterado"
+      ],
+      "technology": ["Crops Purificadores", "Biomecânica Viva", "CRISPR Extremo"],
+      "culture": "Renascimento biocêntrico com sombras de eugenia."
+    }
+  },
+  {
+    "id": "biohackerpunk",
+    "name": "Era Biohackerpunk",
+    "period": "Subversão do Genoma",
+    "motto": "\"Hackear é curar (ou corromper)\"",
+    "description": "Governos implementam controle biológico; rebeldes biohackers reagem.",
+    "backgroundGradient": "from-green-950 via-emerald-900 to-black",
+    "textColor": "text-emerald-100",
+    "accentColor": "text-green-300",
+    "icon": "Beaker",
+    "details": {
+      "overview": "Contracultura genética cria defesas e também monstros acidentais.",
+      "keyEvents": [
+        "Pulseiras de monitoramento genético",
+        "Laboratórios clandestinos",
+        "Neutralizações locais do fungo",
+        "Sabotagens biológicas"
+      ],
+      "technology": ["Wetware Aberto", "Ferramentas de Bancada DIY", "Nanofagos"],
+      "culture": "Comunidades P2P, riscos extremos e ética situacional."
+    }
+  },
+  {
+    "id": "biopunk-rebellion",
+    "name": "Era Biopunk Rebellion",
+    "period": "Guerra Viva",
+    "motto": "\"Liberdade respira por poros\"",
+    "description": "Rebeliões globais derrubam megacorps de biotecnologia a alto custo.",
+    "backgroundGradient": "from-red-900 via-rose-800 to-emerald-900",
+    "textColor": "text-rose-100",
+    "accentColor": "text-emerald-300",
+    "icon": "Biohazard",
+    "details": {
+      "overview": "Mutações como armas; despedaçamento de ecossistemas.",
+      "keyEvents": [
+        "Ataques a laboratórios",
+        "Libertação de populações",
+        "Mutações incontroláveis",
+        "Vácuo de poder global"
+      ],
+      "technology": ["Vírus Dirigidos", "Armas Bio-adaptativas", "Filtros de Zona"],
+      "culture": "Resistência triunfa, mas deixa cicatrizes irreversíveis."
+    }
+  },
+  {
+    "id": "nanopunk",
+    "name": "Era Nanopunk",
+    "period": "Vacinas de Máquinas",
+    "motto": "\"Controle absoluto, caos invisível\"",
+    "description": "Nanorrobôs curam, vigiam e sustentam novas megacidades limpas.",
+    "backgroundGradient": "from-gray-900 via-blue-900 to-cyan-800",
+    "textColor": "text-cyan-100",
+    "accentColor": "text-sky-400",
+    "icon": "Atom",
+    "details": {
+      "overview": "Ordem por nanorrede estatal até hackers retomarem o controle.",
+      "keyEvents": [
+        "Vacinação nano",
+        "Rastreamento total",
+        "Hackeamento rebelde",
+        "Falhas evolutivas dos nanos"
+      ],
+      "technology": ["Nanos Medicinais", "Redes de Monitoramento", "Filtros Nano-alimentares"],
+      "culture": "Conformidade pelo conforto; medo do invisível."
+    }
+  },
+  {
+    "id": "nanopunk-noir",
+    "name": "Era Nanopunk Noir",
+    "period": "Queda das Nanorredes",
+    "motto": "\"Sistemas pequenos, colapsos gigantes\"",
+    "description": "Reprogramações insurgentes e bugs tornam cidades incontroláveis.",
+    "backgroundGradient": "from-black via-slate-900 to-cyan-950",
+    "textColor": "text-cyan-100",
+    "accentColor": "text-teal-300",
+    "icon": "Bug",
+    "details": {
+      "overview": "Falências críticas; migração estratégica ao espaço começa.",
+      "keyEvents": [
+        "Sabotagens coordenadas",
+        "Contaminação de cadeias alimentares",
+        "Estado de sítio permanente",
+        "Corrida espacial reiniciada"
+      ],
+      "technology": ["Sandboxes Nano", "Jammers Genéticos", "Zonas Brancas"],
+      "culture": "Desconfiança universal e paranoia higienista."
+    }
+  },
+  {
+    "id": "solar-war",
+    "name": "Era Solar War",
+    "period": "Corrida Interplanetária",
+    "motto": "\"O céu é uma fronteira armada\"",
+    "description": "Colonização da Lua, Marte e asteroides; recursos viram casus belli.",
+    "backgroundGradient": "from-indigo-950 via-black to-amber-900",
+    "textColor": "text-indigo-100",
+    "accentColor": "text-amber-300",
+    "icon": "SunDim",
+    "details": {
+      "overview": "Estações orbitais e frotas solares em disputa; guerra fragmenta colonos.",
+      "keyEvents": [
+        "Cidades marcianas",
+        "Mineração de asteroides",
+        "Armas orbitais",
+        "Comércio interplanetário interrompido"
+      ],
+      "technology": ["Velas Solares", "Drones de Vácuo", "Canhões Orbitais"],
+      "culture": "Identidades coloniais emergem contra o planeta-mãe."
+    }
+  },
+  {
+    "id": "oceanpunk",
+    "name": "Era Oceanpunk",
+    "period": "Utopias Abissais",
+    "motto": "\"Respirar águas profundas\"",
+    "description": "Elites constroem cidades submersas autossuficientes e biotecnológicas.",
+    "backgroundGradient": "from-cyan-900 via-blue-900 to-teal-900",
+    "textColor": "text-cyan-100",
+    "accentColor": "text-teal-300",
+    "icon": "Waves",
+    "details": {
+      "overview": "Sociedades abissais refinadas; tensão com superfície cresce.",
+      "keyEvents": [
+        "Cúpulas geotérmicas",
+        "Redes vivas subaquáticas",
+        "Rompimento político com a superfície",
+        "Escalada para guerra"
+      ],
+      "technology": ["Habitat Pressurizado", "Cultivo Pelágico", "Submarinos Bio-assistidos"],
+      "culture": "Estética marinha, exclusividade e pesquisa de ponta."
+    }
+  },
+  {
+    "id": "ocean-world-war",
+    "name": "Era Ocean World War",
+    "period": "Guerra dos Abismos",
+    "motto": "\"Água ferve sob torpedos\"",
+    "description": "Sabotagens e combates diretos devastam mares e cidades abissais.",
+    "backgroundGradient": "from-blue-950 via-black to-cyan-950",
+    "textColor": "text-blue-100",
+    "accentColor": "text-cyan-300",
+    "icon": "Anchor",
+    "details": {
+      "overview": "Ruptura total: superfícies famintas vs. redutos submersos.",
+      "keyEvents": [
+        "Submarinos armados",
+        "Cortes a colônias espaciais",
+        "Abandono de estações orbitais",
+        "Oceanos tornados zonas mortas"
+      ],
+      "technology": ["Torpedos Híbridos", "Mina Bio-reativa", "Stealth Submerso"],
+      "culture": "Ambas as sociedades saem arruinadas e tóxicas."
+    }
+  },
+  {
+    "id": "colorpunk",
+    "name": "Era Colorpunk",
+    "period": "Pacotes de Cores",
+    "motto": "\"A magia tem espectro\"",
+    "description": "Corporação usa Limiar para vender cores que moldam realidade e psique.",
+    "backgroundGradient": "from-rose-600 via-yellow-400 to-blue-600",
+    "textColor": "text-white",
+    "accentColor": "text-black",
+    "icon": "Palette",
+    "details": {
+      "overview": "Regiões cromáticas com identidades e poderes próprios.",
+      "keyEvents": [
+        "Reencantamento do mundo",
+        "Anomalias por saturação",
+        "Manipulação das cores primárias",
+        "Cataclismo que extingue a vida"
+      ],
+      "technology": ["Cristais Croma", "Teias de Tom", "Arquitetura Espectral"],
+      "culture": "Cidades-código de cor; estética vira ontologia."
+    }
+  },
+  {
+    "id": "monopunk",
+    "name": "Era Monopunk",
+    "period": "Reinos Primários",
+    "motto": "\"Vermelho, Azul, Amarelo\"",
+    "description": "Reinos rubro, safira e áureo orbitam cristais de cor estabilizada.",
+    "backgroundGradient": "from-red-700 via-blue-700 to-yellow-600",
+    "textColor": "text-white",
+    "accentColor": "text-black",
+    "icon": "Cube",
+    "details": {
+      "overview": "Culturas monocrômicas evoluem; Império Rubro tenta unificar.",
+      "keyEvents": [
+        "Prosperidade tripla",
+        "Avanços específicos por cor",
+        "Expansão rubra",
+        "Robô da antiga corporação recolhe cristais"
+      ],
+      "technology": ["Forjas Rubras", "Bibliotecas Safira", "Mercados Áureos"],
+      "culture": "Identidade, magia e política definidas por tonalidade."
+    }
+  },
+  {
+    "id": "war-colorpunk",
+    "name": "Era War Colorpunk",
+    "period": "Guerra Residual",
+    "motto": "\"Cores em guerra, mundo em cinza\"",
+    "description": "Sem cristais, magia residual instável reacende conflitos intermináveis.",
+    "backgroundGradient": "from-yellow-600 via-red-700 to-blue-800",
+    "textColor": "text-gray-100",
+    "accentColor": "text-white",
+    "icon": "Sparkplug",
+    "details": {
+      "overview": "Tentativas falhas de recriar cristais devastam territórios.",
+      "keyEvents": [
+        "Exércitos cromáticos",
+        "Artefatos remanescentes",
+        "Experimentos desastrosos",
+        "Zonas de energia pura inabitáveis"
+      ],
+      "technology": ["Armas de Tom", "Catalisadores Falhos", "Escudos Prísma"],
+      "culture": "Alianças efêmeras e traições constantes."
+    }
+  },
+  {
+    "id": "timepunk",
+    "name": "Era Timepunk",
+    "period": "Domínio do Fluxo",
+    "motto": "\"O passado é recurso\"",
+    "description": "Dispositivos temporais coordenam cidades onde o tempo corre diferente.",
+    "backgroundGradient": "from-amber-800 via-indigo-800 to-cyan-900",
+    "textColor": "text-amber-100",
+    "accentColor": "text-indigo-300",
+    "icon": "Hourglass",
+    "details": {
+      "overview": "Cidades-estado manipulam tempo; paradoxos devoram regiões.",
+      "keyEvents": [
+        "Relógios de linha temporal",
+        "Zonas aceleradas e cíclicas",
+        "Líderes monopolizam fluxo",
+        "Rupturas massivas"
+      ],
+      "technology": ["Âncoras Temporais", "Metronomos de Linha", "Arquitetura Cronal"],
+      "culture": "Obras-primas de planejamento e tragédias paradoxais."
+    }
+  },
+  {
+    "id": "frostpunk",
+    "name": "Era Frostpunk",
+    "period": "Inverno Eterno",
+    "motto": "\"Calor é lei\"",
+    "description": "Rupturas temporais congelam o mundo; cidades em torno de geradores.",
+    "backgroundGradient": "from-blue-900 via-cyan-900 to-slate-900",
+    "textColor": "text-cyan-100",
+    "accentColor": "text-blue-300",
+    "icon": "Snowflake",
+    "details": {
+      "overview": "Disciplina rígida e estufas subterrâneas; geradores falham depois.",
+      "keyEvents": [
+        "Fortalezas térmicas",
+        "Economia de calor",
+        "Revoltas internas",
+        "Abandono de cidades"
+      ],
+      "technology": ["Geradores Crono-térmicos", "Estufas Subsolo", "Roupas Térmicas"],
+      "culture": "Sacrifício e autoritarismo pela sobrevivência."
+    }
+  },
+  {
+    "id": "desertpunk",
+    "name": "Era Desertpunk",
+    "period": "Sol Implacável",
+    "motto": "\"Água é trono\"",
+    "description": "Mundo vira deserto; cidades-oásis e caravanas armadas dominam.",
+    "backgroundGradient": "from-yellow-800 via-amber-700 to-orange-800",
+    "textColor": "text-amber-100",
+    "accentColor": "text-yellow-300",
+    "icon": "Sun",
+    "details": {
+      "overview": "Comércio de água e guerras por aquíferos arruínam o que restou.",
+      "keyEvents": [
+        "Extração do ar",
+        "Cidades-poço",
+        "Trilhas de mercenários",
+        "Armas de tecnologia antiga"
+      ],
+      "technology": ["Condensadores", "Purificadores Solares", "Blindados de Areia"],
+      "culture": "Pragmatismo extremo e códigos de rota."
+    }
+  },
+  {
+    "id": "necropunk",
+    "name": "Era Necropunk",
+    "period": "Economia dos Mortos",
+    "motto": "\"A morte trabalha\"",
+    "description": "Energia necromântica alimenta cidades; oráculos e necrotécnicos surgem.",
+    "backgroundGradient": "from-zinc-900 via-purple-900 to-black",
+    "textColor": "text-zinc-100",
+    "accentColor": "text-purple-300",
+    "icon": "Tombstone",
+    "details": {
+      "overview": "Portais instáveis liberam hostis; guardiões dos limiares colapsam.",
+      "keyEvents": [
+        "Máquinas de almas",
+        "Materiais funerários",
+        "Rebelião de consciências presas",
+        "Invasões espectrais"
+      ],
+      "technology": ["Reatores Anímicos", "Condutos de Véu", "Selos Funerários"],
+      "culture": "Culto reverente aos mortos e pragmatismo energético."
+    }
+  },
+  {
+    "id": "petrolpunk",
+    "name": "Era Petrolpunk",
+    "period": "Retromotor",
+    "motto": "\"O passado pega no tranco\"",
+    "description": "Reservas fósseis esquecidas reacendem indústria rudimentar.",
+    "backgroundGradient": "from-amber-900 via-rose-900 to-black",
+    "textColor": "text-amber-100",
+    "accentColor": "text-orange-300",
+    "icon": "Fuel",
+    "details": {
+      "overview": "Ressurreição de máquinas antigas e disputa por poços.",
+      "keyEvents": [
+        "Cidades-forja",
+        "Expansão territorial",
+        "Desastres industriais",
+        "Guerras por reservas"
+      ],
+      "technology": ["Motores a Combustão", "Geradores a Diesel", "Refinarias Rústicas"],
+      "culture": "Nostalgia industrial e pragmatismo poluente."
+    }
+  },
+  {
+    "id": "class-war",
+    "name": "Era Class War",
+    "period": "Proletários e Patriarcas",
+    "motto": "\"Quem manda no fogo?\"",
+    "description": "Elites do petróleo esmagam revoltas; reconstrução ‘verde’ controlada.",
+    "backgroundGradient": "from-red-900 via-amber-900 to-emerald-900",
+    "textColor": "text-emerald-100",
+    "accentColor": "text-amber-300",
+    "icon": "Scale",
+    "details": {
+      "overview": "Reformas esmagadas e transição ‘ecológica’ monopolizada.",
+      "keyEvents": [
+        "Greves e levantes",
+        "Exércitos privados",
+        "Supressão brutal",
+        "Narrativa de equilíbrio tecno-ambiental"
+      ],
+      "technology": ["Segurança Automatizada", "Yields Petro-verdes", "Propagandas de Sustentabilidade"],
+      "culture": "Paz social performática; desigualdade oculta."
+    }
+  },
+  {
+    "id": "solarpunk",
+    "name": "Era Solarpunk",
+    "period": "Jardins Tecnológicos",
+    "motto": "\"Tecnologia na sombra das árvores\"",
+    "description": "Cidades-jardim com energias renováveis e arquitetura viva.",
+    "backgroundGradient": "from-emerald-700 via-green-600 to-lime-600",
+    "textColor": "text-emerald-100",
+    "accentColor": "text-lime-300",
+    "icon": "LeafyGreen",
+    "details": {
+      "overview": "Autossuficiência local, mas recursos e redes seguem monopolizados.",
+      "keyEvents": [
+        "Fazendas verticais",
+        "Malhas solares",
+        "Transporte limpo",
+        "Movimentos subterrâneos críticos"
+      ],
+      "technology": ["Painéis Orgânicos", "Baterias Bio-salinas", "Arquitetura Regenerativa"],
+      "culture": "Harmonia exibida; fissuras sociais silenciadas."
+    }
+  },
+  {
+    "id": "mythpunk",
+    "name": "Era Mythpunk",
+    "period": "Tecnomagia",
+    "motto": "\"Contos de fadas em corrente alternada\"",
+    "description": "Magia residual integra-se à tecnologia sustentável.",
+    "backgroundGradient": "from-violet-800 via-emerald-700 to-amber-600",
+    "textColor": "text-emerald-100",
+    "accentColor": "text-amber-200",
+    "icon": "MagicWand",
+    "details": {
+      "overview": "Florestas encantadas plugadas a redes; mitos ganham corpo.",
+      "keyEvents": [
+        "Máquinas arcanas limpas",
+        "Rios regenerativos",
+        "Criaturas emergem",
+        "Insurgentes anti-tecnomagia"
+      ],
+      "technology": ["Nodos Arcanos", "Circuitos Druidicos", "Catalisadores de Mana"],
+      "culture": "Deslumbramento e reação ludita organizada."
+    }
+  },
+  {
+    "id": "myth-war",
+    "name": "Era Myth War",
+    "period": "Guerra Tecno-Mística",
+    "motto": "\"Desencantar ou perecer\"",
+    "description": "Insurgentes atacam pilares da tecnomagia; Conselho dos Magos vence.",
+    "backgroundGradient": "from-purple-900 via-red-900 to-black",
+    "textColor": "text-purple-100",
+    "accentColor": "text-rose-300",
+    "icon": "Wand2",
+    "details": {
+      "overview": "Criaturas e máquinas híbridas como armas; equilíbrio solarpunk se perde.",
+      "keyEvents": [
+        "Sabotagem de infraestruturas",
+        "Guardiões místicos",
+        "Supressão brutal",
+        "Centralização arcana"
+      ],
+      "technology": ["Gólems Cibernéticos", "Círculos de Contenção", "Torres de Foco"],
+      "culture": "Segurança a qualquer custo; territórios ‘encantados’ militarizados."
+    }
+  },
+  {
+    "id": "cyber-urban-fantasy",
+    "name": "Era Cyber Urban Fantasy",
+    "period": "Metrópoles Encantadas",
+    "motto": "\"Arranha-céus e runas\"",
+    "description": "Megacidades verticais movidas por magia e tecnologia aceleradas.",
+    "backgroundGradient": "from-indigo-900 via-fuchsia-900 to-amber-900",
+    "textColor": "text-fuchsia-100",
+    "accentColor": "text-amber-200",
+    "icon": "Building",
+    "details": {
+      "overview": "IA encantada, transporte arcano; desigualdade explode.",
+      "keyEvents": [
+        "Redes mágico-elétricas",
+        "Torres flutuantes",
+        "Classes arcanas dominantes",
+        "Reativação de instalações espaciais"
+      ],
+      "technology": ["Servidores Encantados", "Portais Urbanos", "Familiar-Bots"],
+      "culture": "Mistura de espécies e castas; brilho e decadência."
+    }
+  },
+  {
+    "id": "spacialpunk",
+    "name": "Era Spacialpunk",
+    "period": "Colonização Militarizada",
+    "motto": "\"As estrelas têm dono\"",
+    "description": "Conselho dos Magos sofre golpe e militariza expansão espacial.",
+    "backgroundGradient": "from-black via-indigo-950 to-gray-900",
+    "textColor": "text-indigo-100",
+    "accentColor": "text-slate-300",
+    "icon": "Rocket",
+    "details": {
+      "overview": "Colônias reativadas sob punho de ferro; resistência cresce.",
+      "keyEvents": [
+        "Arquivos dos cataclismos revelados",
+        "Frotas híbridas arcano-tec",
+        "Mineração orbital",
+        "Insurreições coloniais"
+      ],
+      "technology": ["Naves Rúnicas", "Escudos de Mana", "Anéis de Dobra"],
+      "culture": "Autoritarismo de origem ‘mística’; colônias exploradas."
+    }
+  },
+  {
+    "id": "hi-militar",
+    "name": "Hi-Militar",
+    "period": "Pico Bélico",
+    "motto": "\"Obediência é oxigênio\"",
+    "description": "Armadilhas planetárias, cidades orbitais e frotas capazes de obliterar mundos.",
+    "backgroundGradient": "from-red-950 via-black to-indigo-950",
+    "textColor": "text-red-100",
+    "accentColor": "text-indigo-300",
+    "icon": "ShieldCheck",
+    "details": {
+      "overview": "Divisão de zonas intergalácticas; tensões Terra-colônias explodem.",
+      "keyEvents": [
+        "Megaarmamento arcano-tec",
+        "Cidades orbitais gigantes",
+        "Revoltas conjuntas",
+        "Ruptura do sistema"
+      ],
+      "technology": ["Lanças Planetárias", "Frotas de Assalto", "Campos Nulificadores"],
+      "culture": "Sociedade militarizada da fábrica ao templo."
+    }
+  },
+  {
+    "id": "social-war",
+    "name": "Social War",
+    "period": "Guerras de Independência",
+    "motto": "\"Quem mora decide\"",
+    "description": "Alianças coloniais enfrentam Terra; Marte vira potência intermediária.",
+    "backgroundGradient": "from-amber-900 via-red-900 to-slate-900",
+    "textColor": "text-amber-100",
+    "accentColor": "text-red-300",
+    "icon": "Users",
+    "details": {
+      "overview": "Batalhas em órbitas e cinturões; cessar-fogo deixa sistema dividido.",
+      "keyEvents": [
+        "Liga de Júpiter e Coletivo Lunar",
+        "Neutralidade marciana quebrada",
+        "Uso de armas esquecidas",
+        "Trégua frágil"
+      ],
+      "technology": ["Cascas Orbitais", "Minas de Lagrange", "Armas Relíquias"],
+      "culture": "Famílias e territórios cindidos por soberanias locais."
+    }
+  },
+  {
+    "id": "cosmic-prophecy",
+    "name": "Última Era do Systempunk: Cosmic Prophecy",
+    "period": "Borda do Universo",
+    "motto": "\"Ex Nihilo, ad Nihilum?\"",
+    "description": "Terra e Marte colonizam Ex Nihilo; sinais do Limiar anunciam o fim.",
+    "backgroundGradient": "from-black via-indigo-950 to-purple-950",
+    "textColor": "text-indigo-100",
+    "accentColor": "text-purple-300",
+    "icon": "Galaxy",
+    "details": {
+      "overview": "Energia primordial conecta todas as eras; fendas trazem ecos do passado.",
+      "keyEvents": [
+        "Expedição unificada",
+        "Provas do Limiar",
+        "Rupturas na realidade",
+        "Escolha final: aceitar ou lutar contra o fim"
+      ],
+      "technology": ["Sensores de Horizonte", "Arquitetura Ex-Nihilo", "Bússolas de Véu"],
+      "culture": "Últimos remanescentes encaram destino cíclico e mito tornado história."
+    }
+  }
+]

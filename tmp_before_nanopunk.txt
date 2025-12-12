@@ -1,0 +1,26 @@
+﻿{
+id="nanopunk",
+name="Nanopunk",
+tags=["nano", "tecnologico"],
+resumo="Um grande cataclisma de tecnologia... e nano robos??",
+historia="Lula?",
+context=[{title = titlecontext, subtitle=subtitle}],
+importancia="critica",
+lastupdate="",
+status="draft"
+}
+
+>[!info] Devagar.
+>O conteÃºdo que vocÃª esta prestes a ler Ã© apenas um rascunho e nÃ£o esta pronto.
+
+![[Images/Nanopunk.png]]
+**InÃ­cio:**  
+ApÃ³s o colapso das megacorporaÃ§Ãµes na era **Biopunk Rebellion**, os governos e cientistas remanescentes voltaram-se para a nanotecnologia como soluÃ§Ã£o para restaurar a ordem. Vacinas contendo nanorrobÃ´s comeÃ§aram a ser injetadas na populaÃ§Ã£o, prometendo curar doenÃ§as, reparar mutaÃ§Ãµes genÃ©ticas e conter os remanescentes do fungo devastador. Essas soluÃ§Ãµes trouxeram esperanÃ§a, mas tambÃ©m um novo nÃ­vel de controle sobre a humanidade.
+
+**Auge:**  
+Os nanorrobÃ´s revolucionaram a sociedade. Eles curavam ferimentos em segundos, purificavam alimentos e Ã¡gua, e atÃ© mesmo monitoravam a saÃºde da populaÃ§Ã£o em tempo real. Grandes centros urbanos renasceram como cidades altamente tecnolÃ³gicas, alimentadas por redes de nanorrobÃ´s que garantiam ordem e eficiÃªncia. Governos autoritÃ¡rios usaram essa tecnologia para rastrear todos os cidadÃ£os, criando uma ilusÃ£o de paz e prosperidade. PorÃ©m, a resistÃªncia ao controle centralizado diminuiu, pois muitos temiam perder os benefÃ­cios dos nanorrobÃ´s.
+
+**Queda:**  
+A estabilidade foi abalada quando grupos rebeldes, descendentes dos biohackers, descobriram como reprogramar os nanorrobÃ´s. Esses grupos comeÃ§aram a hackear as redes governamentais, assumindo o controle da nanotecnologia para seus prÃ³prios fins. Isso gerou caos, com cidades inteiras sendo tomadas por revoltas ou sistemas falhando devido a sabotagens. AlÃ©m disso, os nanorrobÃ´s comeÃ§aram a apresentar defeitos, evoluindo de forma imprevisÃ­vel e ameaÃ§ando a prÃ³pria biologia humana. O mundo, mais uma vez, se viu Ã  beira do colapso, preparando o terreno para a **Solar War**, onde a humanidade buscaria refÃºgio e recursos alÃ©m da Terra.
+
+[[Nanopunk Noir]]
