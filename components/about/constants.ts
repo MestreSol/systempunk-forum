@@ -4,7 +4,6 @@ import { technologies as techs } from '@/mocks/Technology'
 import { capabilities as caps, metrics as mtrs } from '@/mocks/Capability'
 import { achievements as ach } from '@/mocks/Achievements'
 
-// Exports expected by about pages
 export const teamMembers = tm
 export const milestones = ms
 export const introStats = mtrs

@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Target, Star, Heart, Zap, Code, Clock } from 'lucide-react'
 
-// Import components
 import { HeroSection } from '@/components/about/HeroSection'
 import { StatsSection } from '@/components/about/StatsSection'
 import { TechnologyCards } from '@/components/about/TechnologyCards'
@@ -13,7 +12,6 @@ import { TeamSection } from '@/components/about/TeamSection'
 import { ProjectsTeaser } from '@/components/about/ProjectsTeaser'
 import { ContactCTA } from '@/components/about/ContactCTA'
 
-// Import constants
 import {
   teamMembers,
   milestones,
