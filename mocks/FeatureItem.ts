@@ -10,9 +10,9 @@ export const features: FeatureItem[] = [
   },
   {
     icon: Code,
-    title: 'Código Aberto',
+    title: 'Universo Aberto',
     description:
-      'Contribuímos com a comunidade através de projetos open source.'
+      'Nosso universo é expansivo e interconectado, permitindo exploração e interação contínuas.'
   },
   {
     icon: Zap,
@@ -22,6 +22,6 @@ export const features: FeatureItem[] = [
   {
     icon: Globe,
     title: 'Comunidade Global',
-    description: 'Uma comunidade ativa de jogadores ao redor do mundo.'
+    description: 'Nossa meta é construir uma comunidade diversificada e engajada.'
   }
 ]

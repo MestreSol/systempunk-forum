@@ -53,14 +53,14 @@ export const capabilities: Capability[] = [
     description:
       'Criação de jogos indie com narrativas envolventes e mecânicas inovadoras',
     icon: Gamepad2,
-    technologies: ['Unity', 'Unreal', 'Godot', 'C#', 'JavaScript'],
-    strength: 95
+    technologies: ['Unity', 'Unreal', 'Godot', 'C#', 'JavaScript', 'Blender', 'C++'],
+    strength: 45
   },
   {
     title: 'Web Development',
     description: 'Aplicações web modernas, responsivas e de alta performance',
     icon: Monitor,
-    technologies: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Tailwind'],
+    technologies: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Tailwind', 'NestJS'],
     strength: 90
   },
   {
@@ -68,14 +68,14 @@ export const capabilities: Capability[] = [
     description: 'Interfaces intuitivas e experiências de usuário excepcionais',
     icon: Palette,
     technologies: ['Figma', 'Adobe XD', 'Sketch', 'Framer', 'Principle'],
-    strength: 88
+    strength: 21
   },
   {
     title: 'Audio Design',
     description: 'Trilhas sonoras e efeitos que elevam a experiência',
     icon: Headphones,
     technologies: ['FMOD', 'Wwise', 'Logic Pro', 'Ableton', 'Pro Tools'],
-    strength: 85
+    strength: 60
   },
   {
     title: 'DevOps & Infrastructure',
@@ -88,13 +88,13 @@ export const capabilities: Capability[] = [
       'GitHub Actions',
       'Terraform'
     ],
-    strength: 82
+    strength: 55
   },
   {
     title: '3D & Animation',
     description: 'Modelagem 3D, animação e renderização de alta qualidade',
     icon: Camera,
     technologies: ['Blender', 'Maya', '3ds Max', 'Substance', 'Houdini'],
-    strength: 78
+    strength: 25
   }
 ]

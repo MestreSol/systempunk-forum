@@ -1,20 +1,7 @@
 'use client'
 import { useState } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import {
-  Users,
-  Gamepad2,
-  BarChart3,
-  Award,
-  Zap,
-  Heart,
-  Rocket,
-  Eye,
-  Coffee,
-  Target
-} from 'lucide-react'
+import { Tabs, TabsContent } from '@/components/ui/tabs'
+import { Users, Target, Eye, Heart } from 'lucide-react'
 
 // Import components
 import { MetricCard } from '@/components/about/MetricCard'
@@ -28,6 +15,12 @@ import { TeamOverview } from '@/components/about/TeamOverview'
 import { PageHeader } from '@/components/about/PageHeader'
 import { SummaryCard, ValueList } from '@/components/about/SummaryCard'
 import { FeaturedProjects } from '@/components/about/FeaturedProjects'
+import { FutureCTA } from '@/components/about/FutureCTA'
+import { NavigationTabs } from '@/components/about/NavigationTabs'
+import {
+  TabContentWrapper,
+  TabSectionHeader
+} from '@/components/about/TabContentWrapper'
 import { usePageVisibility } from '@/components/about/usePageVisibility'
 
 // Import constants
@@ -53,11 +46,7 @@ export default function VisaoGeralPage() {
     <div className="min-h-screen bg-zinc-950 text-white">
       <PageHeader
         title="Visão Geral"
-        description="Uma análise completa do SystemPunk: conquistas, capacidades e direção futura"
-        backLink={{
-          href: '/about/introducao',
-          label: 'Voltar à Introdução'
-        }}
+        description="Uma análise completa do Systempunk: conquistas, capacidades e direção futura"
         isVisible={isVisible}
       />
 
@@ -67,46 +56,11 @@ export default function VisaoGeralPage() {
           onValueChange={setActiveSection}
           className="space-y-8"
         >
-          <TabsList className="grid w-full grid-cols-5 bg-zinc-900 border-zinc-800">
-            <TabsTrigger
-              value="overview"
-              className="data-[state=active]:bg-lime-600"
-            >
-              <BarChart3 className="w-4 h-4 mr-2" />
-              Resumo
-            </TabsTrigger>
-            <TabsTrigger
-              value="projects"
-              className="data-[state=active]:bg-lime-600"
-            >
-              <Gamepad2 className="w-4 h-4 mr-2" />
-              Projetos
-            </TabsTrigger>
-            <TabsTrigger
-              value="capabilities"
-              className="data-[state=active]:bg-lime-600"
-            >
-              <Zap className="w-4 h-4 mr-2" />
-              Capacidades
-            </TabsTrigger>
-            <TabsTrigger
-              value="achievements"
-              className="data-[state=active]:bg-lime-600"
-            >
-              <Award className="w-4 h-4 mr-2" />
-              Conquistas
-            </TabsTrigger>
-            <TabsTrigger
-              value="future"
-              className="data-[state=active]:bg-lime-600"
-            >
-              <Rocket className="w-4 h-4 mr-2" />
-              Futuro
-            </TabsTrigger>
-          </TabsList>
+          <NavigationTabs />
 
           {/* Overview Tab */}
-          <TabsContent value="overview" className="space-y-8">
+          <TabsContent value="overview">
+            <TabContentWrapper>
             {/* Key Metrics */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {metrics.map((metric, index) => (
@@ -148,10 +102,12 @@ export default function VisaoGeralPage() {
 
             {/* Team Overview */}
             <TeamOverview teamData={teamComposition} totalMembers={8} />
-          </TabsContent>
+          </TabContentWrapper>
+        </TabsContent>
 
-          {/* Projects Tab */}
-          <TabsContent value="projects" className="space-y-8">
+        {/* Projects Tab */}
+        <TabsContent value="projects">
+          <TabContentWrapper>
             <div className="grid md:grid-cols-2 gap-8">
               <ProjectDistribution categories={projectCategories} />
               <ProjectStatus
@@ -163,61 +119,52 @@ export default function VisaoGeralPage() {
             </div>
 
             <FeaturedProjects />
-          </TabsContent>
+          </TabContentWrapper>
+        </TabsContent>
 
-          {/* Capabilities Tab */}
-          <TabsContent value="capabilities" className="space-y-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-lime-200 mb-4">
-                Nossas Capacidades
-              </h2>
-              <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-                Uma combinação única de habilidades técnicas e criativas que nos
-                permite criar experiências excepcionais
-              </p>
-            </div>
+        {/* Capabilities Tab */}
+        <TabsContent value="capabilities">
+          <TabContentWrapper>
+            <TabSectionHeader
+              title="Nossas Capacidades"
+              description="Uma combinação única de habilidades técnicas e criativas que nos permite criar experiências excepcionais"
+            />
 
             <div className="grid md:grid-cols-2 gap-8">
               {capabilities.map((capability, index) => (
                 <CapabilityCard key={index} capability={capability} />
               ))}
             </div>
-          </TabsContent>
+          </TabContentWrapper>
+        </TabsContent>
 
-          {/* Achievements Tab */}
-          <TabsContent value="achievements" className="space-y-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-lime-200 mb-4">
-                Conquistas e Marcos
-              </h2>
-              <p className="text-zinc-400 text-lg">
-                Uma jornada de crescimento, reconhecimento e inovação
-              </p>
-            </div>
+        {/* Achievements Tab */}
+        <TabsContent value="achievements">
+          <TabContentWrapper>
+            <TabSectionHeader
+              title="Conquistas e Marcos"
+              description="Uma jornada de crescimento, reconhecimento e inovação"
+            />
 
             <div className="space-y-6">
               {achievements.map((achievement, index) => (
                 <AchievementCard key={index} achievement={achievement} />
               ))}
             </div>
-          </TabsContent>
+          </TabContentWrapper>
+        </TabsContent>
 
-          {/* Future Tab */}
-          <TabsContent value="future" className="space-y-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-lime-200 mb-4">
-                Visão de Futuro
-              </h2>
-              <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-                Nossos planos, ambições e a direção que estamos tomando para os
-                próximos anos
-              </p>
-            </div>
+        {/* Future Tab */}
+        <TabsContent value="future">
+          <TabContentWrapper>
+            <TabSectionHeader
+              title="Visão de Futuro"
+              description="Nossos planos, ambições e a direção que estamos tomando para os próximos anos"
+            />
 
             <div className="grid md:grid-cols-2 gap-8">
               <FutureProjects
                 projects={futureProjects}
-                icon={Rocket}
                 title="Próximos Projetos"
               />
               <ExpansionPlans
@@ -227,33 +174,9 @@ export default function VisaoGeralPage() {
               />
             </div>
 
-            <Card className="bg-gradient-to-r from-lime-900/20 to-cyan-900/20 border-lime-500/30">
-              <CardContent className="p-8 text-center">
-                <Rocket className="w-16 h-16 mx-auto mb-4 text-lime-400" />
-                <h3 className="text-2xl font-bold text-lime-200 mb-4">
-                  Junte-se à Nossa Jornada
-                </h3>
-                <p className="text-zinc-300 mb-6 max-w-2xl mx-auto">
-                  Estamos sempre em busca de talentos apaixonados por tecnologia
-                  e criatividade. Venha fazer parte do futuro das experiências
-                  digitais!
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button className="bg-lime-600 hover:bg-lime-700">
-                    <Users className="w-4 h-4 mr-2" />
-                    Ver Vagas Abertas
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-zinc-700 hover:bg-zinc-800"
-                  >
-                    <Coffee className="w-4 h-4 mr-2" />
-                    Conhecer a Equipe
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
+            <FutureCTA />
+          </TabContentWrapper>
+        </TabsContent>
         </Tabs>
       </div>
     </div>
