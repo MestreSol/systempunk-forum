@@ -129,7 +129,7 @@ function normalizeJsonish(block: string): string {
   t = t.replace(/\[(?![^\]]*[\{\[])([^\]]*)\]/gs, (m, inner) => {
     const parts = inner
       .split(',')
-      .map((p) => {
+      .map((p: string) => {
         const q = p.trim()
         if (!q) return q
         if (/^\"|\{|\[|^-?\d+(\.\d+)?$|^(true|false|null)$/i.test(q)) return q

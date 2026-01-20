@@ -9,5 +9,6 @@ export interface TeamMember {
     twitter?: string
     linkedin?: string
     instagram?: string
+    portify?: string
   }
 }

@@ -3,20 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Users, Github, Twitter, Linkedin, Instagram } from 'lucide-react'
 import PortifyIcon from '@/components/ui/icons/Portify'
-
-interface TeamMember {
-  name: string
-  role: string
-  specialties: string[]
-  bio: string
-  socials: {
-    github?: string
-    twitter?: string
-    linkedin?: string
-    instagram?: string
-    portify?: string
-  }
-}
+import type { TeamMember } from '@/types/Team.type'
 
 interface TeamSectionProps {
   members: TeamMember[]

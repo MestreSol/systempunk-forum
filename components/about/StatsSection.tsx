@@ -1,9 +1,7 @@
+import { Metric } from '@/types/Capability.type'
+
 interface StatsSectionProps {
-  stats: {
-    label: string
-    value: string
-    icon: React.ComponentType<{ className?: string }>
-  }[]
+  stats: Metric[]
 }
 
 export function StatsSection({ stats }: StatsSectionProps) {
@@ -17,7 +15,7 @@ export function StatsSection({ stats }: StatsSectionProps) {
                 <stat.icon className="w-8 h-8 text-lime-400" />
               </div>
               <div className="text-3xl font-bold text-white mb-2">
-                {stat.value}
+                {stat.current}{stat.unit}
               </div>
               <div className="text-zinc-400">{stat.label}</div>
             </div>

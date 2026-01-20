@@ -7,11 +7,8 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, Calendar, Eye, Clock, Share } from 'lucide-react'
 import Link from 'next/link'
-import {
-  mockArticles,
-  getCategoryLabel,
-  type NewsArticle
-} from '@/lib/data/newsData'
+import { mockArticles, getCategoryLabel } from '@/mocks/NewsArticles'
+import type { NewsArticle } from '@/types/NewsArticle.type'
 
 // Helper para gerar slug a partir do título da notícia
 function slugify(text: string) {

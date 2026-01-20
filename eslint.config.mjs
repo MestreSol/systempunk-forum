@@ -25,7 +25,7 @@ const eslintConfig = [
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-explicit-any': 'off'
     },
-    ignores: ['.next', 'node_modules']
+    ignores: ['.next', 'node_modules', 'dist']
   }
 ]
 
