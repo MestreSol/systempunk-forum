@@ -1,0 +1,1 @@
+Um minério raro que brilha com uma luz azulada. Pode ser usado para criar itens poderosos que ajudam a encontrar Nihilus.

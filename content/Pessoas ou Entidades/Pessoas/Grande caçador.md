@@ -1,0 +1,1 @@
+Uma criatura de origem desconhecida e vontades misteriosas, surgiu em [[Prismora]] para caçar [[Etherisil]] eventualmente matando diversas [[Visionárias Cegas]], os [[Guerreiros espirituais]] sem visionárias fugiram para [[Primordiz]] afim de se proteger da criatura e passarem a existência como renegados

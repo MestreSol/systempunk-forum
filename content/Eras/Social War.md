@@ -1,0 +1,9 @@
+![[SocialWar.webp]]
+**Início:**  
+A revolta das colônias contra o domínio da Terra atingiu um ponto de ruptura após décadas de repressão durante a era **Hi-Militar**. As colônias, cansadas de exploração e sem representação política, uniram-se em alianças fragmentadas, buscando sua independência e liberdade. Este conflito, conhecido como a **Social War**, espalhou-se por todo o sistema solar, dividindo famílias, territórios e governos.
+
+**Auge:**  
+A guerra alcançou proporções épicas, com batalhas sendo travadas em órbitas planetárias, cinturões de asteroides e até mesmo em cidades espaciais. Novas facções surgiram, como a **Liga da Liberdade de Júpiter** e o **Coletivo Lunar**, que lutavam por autonomia, enquanto Marte, apesar de sua posição estratégica, tentava se manter neutro inicialmente. No entanto, à medida que a guerra avançava, Marte acabou se envolvendo diretamente, estabelecendo uma aliança tênue com a Terra para manter sua própria influência intergaláctica. A guerra também viu o uso de armas antigas e tecnologias esquecidas, recuperadas das eras anteriores.
+
+**Queda:**  
+Após anos de destruição, um cessar-fogo foi estabelecido entre a Terra e as colônias mais poderosas, particularmente Marte, que emergiu como uma potência intermediária. Esse acordo marcou o fim da guerra, mas deixou o sistema solar dividido em territórios independentes e alianças fragilizadas. A Terra e Marte, buscando reconstruir suas forças e reafirmar sua posição, uniram-se para um novo objetivo: a colonização do **último planeta conhecido no universo observável**, uma missão que simbolizaria um recomeço para a humanidade, mas que carregava a sombra da profecia do fim.

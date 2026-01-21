@@ -1,0 +1,1 @@
+Uma historia de uma pessoa que abusa da confiança de uma da outra

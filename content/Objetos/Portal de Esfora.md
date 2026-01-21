@@ -1,0 +1,3 @@
+Em meio as águas do vasto Mangue de [[Primordiz]] é natural o surgimento de grandes obeliscos magicamente iluminados por focos de luz que perfuram as densas copas das árvores de [[Celestina]].
+Estes obeliscos preto grafite, possuem uma pedra de mármore triangular na sua ponta, seu corpo é naturalmente trabalhado com símbolos antigos em tons dourados, todos referentes a jornada da alma que adentra-lo.
+O caminho da alma que está no pilar, costuma ser trabalhado cuidadosamente por uma [[Singularidades]] que obedece o [[Grande Plano]], porém a alma, em sua própria vontade, não é obrigada a seguir tal caminho.

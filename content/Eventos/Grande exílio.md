@@ -1,0 +1,1 @@
+Foi o movimento em que os [[Guerreiros espirituais]] se exilaram em [[Primordiz]] afim de se proteger do [[Grande caçador]]

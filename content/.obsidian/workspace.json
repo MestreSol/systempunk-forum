@@ -1,0 +1,221 @@
+{
+  "main": {
+    "id": "304613fad63466bd",
+    "type": "split",
+    "children": [
+      {
+        "id": "4aec75b66f77af4e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "100f543fd512eaab",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "59f4a5d311f10022",
+    "type": "split",
+    "children": [
+      {
+        "id": "e9d247e4b203584f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "491a29c45bbcf686",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de arquivos"
+            }
+          },
+          {
+            "id": "182461887979515b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Procurar"
+            }
+          },
+          {
+            "id": "ff1fdb232d1685c1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "873c0c87d4f3dca2",
+    "type": "split",
+    "children": [
+      {
+        "id": "7c5b18e01b2a654f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f2060dccff415812",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "93ca2e3aef7f2c1a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Links de saída"
+            }
+          },
+          {
+            "id": "c798d22f6ea910f8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "acfe3422fd2fa369",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "publish:Publicar mudanças": false,
+      "bases:Criar nova base": false
+    }
+  },
+  "active": "100f543fd512eaab",
+  "lastOpenFiles": [
+    "Domínio/Dominios das Planicies da concretude/Ethereon/O Calço da Realidade.md",
+    "Domínio/Dominios das Planicies da concretude/Ethereon/A Planície da Solidão.md",
+    "Domínio/Dominios das Planicies da concretude/Ethereon/A Fenda do Esquecimento.md",
+    "Domínio/Dominios das Planicies da concretude/Ethereon/A Bruma Exterior.md",
+    "Domínio/Dominios das Planicies da concretude/Ethereon.md",
+    "Domínio/Dominios do Crepusculo Sereno/8. Unitarius.md",
+    "Domínio/Dominios dos abismos da sombra/1. Umbra.md",
+    "Eras/Eras Menores/Apunk.md",
+    "Pessoas ou Entidades/Entidades/Hego.md",
+    "Eras/Eras Menores.md",
+    "Projetos/As Sombras do relógio - Primeira pessoa.md",
+    "Projetos/O velho senhor - Primeira pessoa (conflict 2024-11-07-17-46-23).md",
+    "Medo.md",
+    "Sem título.canvas",
+    "Sem título.base",
+    "Domínio/Dominios das Planicies da concretude/Ethereon/A Profundidade Alva.md",
+    "Domínio/Abismos da sombra.md",
+    "Domínio/Abyssethar.md",
+    "Images/Ethereon/Nebullis.webp",
+    "Images/Ethereon/Skarneon.webp",
+    "Images/Ethereon/Nihilus.webp",
+    "Images/Ethereon/Herbalux.webp",
+    "Images/Ethereon/Fonte dos Ossos.webp",
+    "Images/Ethereon/Flores Cinerárias.webp",
+    "Images/Ethereon/Ethereon.webp",
+    "Images/Ethereon/Cristais de Alma.webp",
+    "Images/Ethereon/Arvore das Memorias.webp",
+    "Images/Ethereon/A Fonte de Vitália.webp",
+    "Domínio/Dominios das Planicies da concretude/Ethereon",
+    "Images/Ethereon",
+    "Domínio/Crepúsculos Serenos.md",
+    "Domínio/Domínio dos renegados.md",
+    "Eras/Petrolpunk.md",
+    "Livro - Systempunk.md",
+    "Eras/Eras Menores/Nanopunk.md",
+    "Eras/Eras Menores/Biopunk Rebellion.md",
+    "Eras/Eras Menores/Biohackerpunk.md",
+    "Eras/Eras Menores/Gothicpunk.md",
+    "Eras/Eras Menores/Organicpunk.md",
+    "Eras/Eras Menores/Splatterpunk.md",
+    "Images/Eras",
+    "Untitled.base",
+    "Untitled.canvas",
+    "Untitled 1.canvas",
+    "Culturas",
+    "Lugares/Untitled 1",
+    "Lugares/Paises",
+    "RPG/Untitled",
+    "Untitled 1",
+    "Images/Nelson.canvas",
+    "Historia/Systempunk/Geral.canvas"
+  ]
+}

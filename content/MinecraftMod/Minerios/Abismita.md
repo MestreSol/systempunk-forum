@@ -1,0 +1,1 @@
+Um minério negro encontrado nas profundezas dos abismos. Usado para criar itens poderosos e perigosos.
