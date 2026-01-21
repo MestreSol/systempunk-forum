@@ -237,11 +237,31 @@ function resolveLinkTarget(key: string, index: IndexMaps): string | null {
   return null
 }
 
+// In-memory cache to avoid re-scanning files on every request
+let cachedData: LoadedContent | null = null
+let cachedRoot: string | null = null
+let lastModifiedTime = 0
+
 export async function loadStoriesFromMarkdown(contentRoot: string): Promise<LoadedContent> {
   const root = path.resolve(contentRoot)
 
   if (!fs.existsSync(root)) {
     return { stories: [], connections: [] }
+  }
+
+  // Check if cache is valid
+  try {
+    const rootStat = fs.statSync(root)
+    if (
+      cachedData &&
+      cachedRoot === root &&
+      rootStat.mtimeMs <= lastModifiedTime
+    ) {
+      return cachedData
+    }
+    lastModifiedTime = rootStat.mtimeMs
+  } catch (err) {
+    // If stat fails, continue with fresh load
   }
 
   const filesAll = listMarkdownFiles(root)
@@ -373,5 +393,11 @@ export async function loadStoriesFromMarkdown(contentRoot: string): Promise<Load
     }
   }
 
-  return { stories, connections }
+  const result = { stories, connections }
+  
+  // Update cache
+  cachedData = result
+  cachedRoot = root
+
+  return result
 }

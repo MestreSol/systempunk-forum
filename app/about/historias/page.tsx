@@ -1,16 +1,8 @@
 'use client'
 
-import { useState, useEffect, Suspense, useMemo, useRef } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import Link from 'next/link'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Vector2, Vector3, Plane, Raycaster } from 'three'
-import {
-  OrbitControls,
-  Html,
-  Line,
-  Sphere,
-  PerspectiveCamera
-} from '@react-three/drei'
+import dynamic from 'next/dynamic'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -32,17 +24,15 @@ import {
 import type { Story, StoryConnection } from '@/types/Story.type'
 import { storyCategories } from '@/mocks/Stories'
 
-interface StoryNodeProps {
-  story: Story
-  isSelected: boolean
-  isHighlighted: boolean
-  onClick: (story: Story) => void
-  onHover: (story: Story | null) => void
-  onDrag?: (id: string, pos: { x: number; y: number; z: number }) => void
-  onDragStart?: (id: string) => void
-  onDragEnd?: (id: string) => void
-  justSpawned?: boolean
-}
+// Dynamically import ForceGraph2D to avoid SSR issues
+const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center bg-zinc-950">
+      <div className="text-zinc-400">Carregando grafo...</div>
+    </div>
+  )
+})
 
 const categoryIcons = {
   character: Users,
@@ -53,344 +43,30 @@ const categoryIcons = {
   mystery: HelpCircle
 }
 
-function StoryNode({
-  story,
-  isSelected,
-  isHighlighted,
-  onClick,
-  onHover,
-  onDrag,
-  onDragStart,
-  onDragEnd,
-  justSpawned
-}: StoryNodeProps) {
-  const nodeGroupRef = useRef<any>(null)
-  const materialRef = useRef<any>(null)
-  const spawn = useRef<{ active: boolean; t: number }>({ active: false, t: 0 })
-
-  const IconComponent = categoryIcons[story.category]
-  const category = storyCategories.find((c) => c.id === story.category)
-
-  const scale = isSelected ? 1.5 : isHighlighted ? 1.2 : 1
-  const opacity = isHighlighted || isSelected ? 1 : 0.8
-
-  useEffect(() => {
-    if (justSpawned) {
-      spawn.current.active = true
-      spawn.current.t = 0
-    }
-  }, [justSpawned])
-
-  useFrame((_, delta) => {
-    if (!nodeGroupRef.current) return
-    let spawnScale = 1
-    let spawnOpacity = 1
-    if (spawn.current.active) {
-      spawn.current.t += delta
-      const dur = 0.18
-      const k = Math.min(1, spawn.current.t / dur)
-      const ease = 1 - Math.pow(1 - k, 2)
-      spawnScale = 0.3 + ease * 0.7
-      spawnOpacity = ease
-      if (k >= 1) spawn.current.active = false
-    }
-    const s = (isSelected ? 1.5 : isHighlighted ? 1.2 : 1) * spawnScale
-    nodeGroupRef.current.scale.set(s, s, s)
-    if (materialRef.current) {
-      materialRef.current.opacity =
-        (isHighlighted || isSelected ? 1 : 0.8) * spawnOpacity
-    }
-  })
-
-  return (
-    <DraggableGroup
-      story={story}
-      onDrag={onDrag}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-    >
-      <group
-        ref={nodeGroupRef}
-        position={[story.position.x, story.position.y, story.position.z]}
-      >
-        <Sphere
-          args={[0.8]}
-          scale={scale}
-          onClick={() => onClick(story)}
-          onPointerOver={() => onHover(story)}
-          onPointerOut={() => onHover(null)}
-        >
-          <meshStandardMaterial
-            ref={materialRef}
-            color={category?.color || '#ffffff'}
-            transparent
-            opacity={opacity}
-            emissive={isSelected ? category?.color || '#ffffff' : '#000000'}
-            emissiveIntensity={isSelected ? 0.3 : 0}
-          />
-        </Sphere>
-
-        <Html center>
-          <div
-            className={`transform transition-all duration-300 pointer-events-none ${
-              isSelected ? 'scale-150' : isHighlighted ? 'scale-120' : ''
-            }`}
-          >
-            <IconComponent
-              className="w-6 h-6 text-white drop-shadow-lg"
-              style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' }}
-            />
-          </div>
-        </Html>
-
-        {(isSelected || isHighlighted) && (
-          <Html position={[0, 2.4, 0]} center>
-            <div className="pointer-events-none select-none text-sm font-semibold text-white text-center drop-shadow">
-              <div className="bg-black/60 px-3 py-1 rounded-md max-w-[220px] w-max text-sm">
-                {story.title}
-              </div>
-            </div>
-          </Html>
-        )}
-      </group>
-    </DraggableGroup>
-  )
+interface GraphNode {
+  id: string
+  name: string
+  val: number
+  color: string
+  category: string
+  story: Story
+  x?: number
+  y?: number
+  vx?: number
+  vy?: number
 }
 
-function DraggableGroup({
-  story,
-  children,
-  onDrag,
-  onDragStart,
-  onDragEnd
-}: any) {
-  const { camera, gl } = useThree()
-  const draggingRef = useRef(false)
-  const planeRef = useRef(new Plane())
-  const intersectPoint = useRef(new Vector3())
-  const raycaster = useRef(new Raycaster())
-  const mouse = useRef(new Vector2())
-
-  const handlePointerDown = (e: any) => {
-    e.stopPropagation()
-    const target = e.target || e.currentTarget
-    try {
-      target.setPointerCapture(e.pointerId)
-    } catch {}
-    draggingRef.current = true
-    if (onDragStart) onDragStart(story.id)
-
-    const normal = camera.getWorldDirection(new Vector3()).negate()
-    planeRef.current.setFromNormalAndCoplanarPoint(
-      normal,
-      new Vector3(story.position.x, story.position.y, story.position.z)
-    )
-  }
-
-  const handlePointerMove = (e: any) => {
-    if (!draggingRef.current) return
-    e.stopPropagation()
-
-    const rect = gl.domElement.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1
-    const y = -((e.clientY - rect.top) / rect.height) * 2 + 1
-
-    raycaster.current.setFromCamera(mouse.current.set(x, y), camera)
-    const intersect = raycaster.current.ray.intersectPlane(
-      planeRef.current,
-      intersectPoint.current
-    )
-    if (intersect) {
-      const p = intersectPoint.current
-      if (onDrag) onDrag(story.id, { x: p.x, y: p.y, z: p.z })
-    }
-  }
-
-  const handlePointerUp = (e: any) => {
-    if (!draggingRef.current) return
-    e.stopPropagation()
-    const target = e.target || e.currentTarget
-    try {
-      target.releasePointerCapture(e.pointerId)
-    } catch {}
-    draggingRef.current = false
-    if (onDragEnd) onDragEnd(story.id)
-  }
-
-  return (
-    <group
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-    >
-      {children}
-    </group>
-  )
+interface GraphLink {
+  source: string
+  target: string
+  strength: number
 }
 
-function ConnectionLines({
-  selectedStory,
-  stories,
-  connections: baseConnections
-}: {
-  selectedStory: Story | null
-  stories: Story[]
-  connections: StoryConnection[]
-}) {
-  const connections = useMemo(() => {
-    const storyMap = new Map(stories.map((s) => [s.id, s]))
-
-    return baseConnections
-      .map((c) => {
-        const from = storyMap.get(c.from)
-        const to = storyMap.get(c.to)
-        if (!from || !to) return null
-        return {
-          from: from.position,
-          to: to.position,
-          strength: c.strength || 0.5,
-          type: c.type || 'mentions',
-          fromId: c.from,
-          toId: c.to
-        }
-      })
-      .filter(Boolean)
-  }, [stories, baseConnections])
-
-  const seenRef = useRef<Set<string>>(new Set())
-  const spawnMapRef = useRef<Map<string, number>>(new Map())
-
-  return (
-    <>
-      {connections.map((connection, index) => {
-        if (!connection) return null
-        const key = `${connection.fromId}->${connection.toId}`
-        if (!seenRef.current.has(key)) {
-          seenRef.current.add(key)
-          spawnMapRef.current.set(key, performance.now())
-        }
-        const connectsSelected = Boolean(
-          selectedStory &&
-            (selectedStory.id === connection.fromId ||
-              selectedStory.id === connection.toId)
-        )
-
-        const lineColor = connectsSelected ? '#00ffff' : '#335566'
-        const lineWidth = connectsSelected
-          ? connection.strength * 6 + 1
-          : connection.strength * 2
-        let baseOpacity = connectsSelected ? 0.9 : 0.35
-        const started = spawnMapRef.current.get(key) || 0
-        const elapsed = (performance.now() - started) / 1000
-        if (elapsed < 0.2) {
-          const k = Math.min(1, elapsed / 0.2)
-          const ease = 1 - Math.pow(1 - k, 2)
-          baseOpacity *= ease
-        }
-
-        return (
-          <Line
-            key={index}
-            points={[
-              [connection.from.x, connection.from.y, connection.from.z],
-              [connection.to.x, connection.to.y, connection.to.z]
-            ]}
-            color={lineColor}
-            lineWidth={lineWidth}
-            transparent
-            opacity={baseOpacity}
-          />
-        )
-      })}
-    </>
-  )
-}
-
-function Scene({
-  stories,
-  selectedStory,
-  hoveredStory,
-  onStoryClick,
-  onStoryHover,
-  visibleCategories,
-  onNodeDrag,
-  onNodeDragStart,
-  onNodeDragEnd,
-  isDragging,
-  connections,
-  spawnedIds
-}: {
-  stories: Story[]
-  selectedStory: Story | null
-  hoveredStory: Story | null
-  onStoryClick: (story: Story) => void
-  onStoryHover: (story: Story | null) => void
-  visibleCategories: Set<string>
-  onNodeDrag?: (id: string, pos: { x: number; y: number; z: number }) => void
-  onNodeDragStart?: (id: string) => void
-  onNodeDragEnd?: (id: string) => void
-  isDragging?: boolean
-  connections: StoryConnection[]
-  spawnedIds: Set<string>
-}) {
-  const filteredStories = stories.filter((story) =>
-    visibleCategories.has(story.category)
-  )
-
-  return (
-    <>
-      <PerspectiveCamera makeDefault position={[0, 0, 50]} />
-      <OrbitControls
-        enablePan={!isDragging}
-        enableZoom={!isDragging}
-        enableRotate={!isDragging}
-        minDistance={10}
-        maxDistance={100}
-        autoRotate={false}
-      />
-
-      <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={0.8} />
-      <pointLight position={[-10, -10, -10]} intensity={0.4} />
-
-      <color attach="background" args={[0.03, 0.03, 0.05]} />
-      <mesh>
-        <sphereGeometry args={[200, 64, 64]} />
-        <meshBasicMaterial color="#000033" transparent opacity={0.06} />
-      </mesh>
-
-      {filteredStories.map((story) => (
-        <StoryNode
-          key={story.id}
-          story={story}
-          isSelected={selectedStory?.id === story.id}
-          isHighlighted={Boolean(
-            hoveredStory?.id === story.id ||
-              (selectedStory && selectedStory.connections.includes(story.id))
-          )}
-          onClick={onStoryClick}
-          onHover={onStoryHover}
-          onDrag={onNodeDrag}
-          onDragStart={onNodeDragStart}
-          onDragEnd={onNodeDragEnd}
-          justSpawned={spawnedIds.has(story.id)}
-        />
-      ))}
-
-      <ConnectionLines
-        selectedStory={selectedStory}
-        stories={filteredStories}
-        connections={connections}
-      />
-    </>
-  )
-}
+type ViewMode = 'global' | 'local' | 'minimal'
 
 export default function HistoriasPage() {
   const [stories, setStories] = useState<Story[]>([])
   const [connections, setConnections] = useState<StoryConnection[]>([])
-  const pageSize = 24
-  const spawnedIdsRef = useRef<Set<string>>(new Set())
   const [selectedStory, setSelectedStory] = useState<Story | null>(null)
   const [hoveredStory, setHoveredStory] = useState<Story | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
@@ -400,17 +76,82 @@ export default function HistoriasPage() {
   const [showDetails, setShowDetails] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [showFilters, setShowFilters] = useState(false)
+  const [viewMode, setViewMode] = useState<ViewMode>('global')
+  const [localDepth, setLocalDepth] = useState(2)
+  const graphRef = useRef<any>(null)
+
+  // Helper function to get nodes within N hops from selected node
+  const getLocalSubgraph = useCallback((centerStoryId: string, depth: number): Set<string> => {
+    const visited = new Set<string>()
+    const queue: Array<{ id: string; depth: number }> = [{ id: centerStoryId, depth: 0 }]
+    
+    while (queue.length > 0) {
+      const { id, depth: currentDepth } = queue.shift()!
+      
+      if (visited.has(id) || currentDepth > depth) continue
+      visited.add(id)
+      
+      // Find connected stories
+      const story = stories.find(s => s.id === id)
+      if (story && currentDepth < depth) {
+        story.connections.forEach(connId => {
+          if (!visited.has(connId)) {
+            queue.push({ id: connId, depth: currentDepth + 1 })
+          }
+        })
+      }
+    }
+    
+    return visited
+  }, [stories])
 
   const filteredStories = useMemo(() => {
-    return stories.filter(
+    let filtered = stories.filter(
       (story) =>
-        story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        story.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        story.tags.some((tag) =>
-          tag.toLowerCase().includes(searchTerm.toLowerCase())
-        )
+        visibleCategories.has(story.category) &&
+        (story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          story.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          story.tags.some((tag) =>
+            tag.toLowerCase().includes(searchTerm.toLowerCase())
+          ))
     )
-  }, [searchTerm, stories])
+
+    // Apply view mode filtering
+    if (viewMode === 'local' && selectedStory) {
+      const localIds = getLocalSubgraph(selectedStory.id, localDepth)
+      filtered = filtered.filter(s => localIds.has(s.id))
+    } else if (viewMode === 'minimal') {
+      // Show only high importance stories when minimal mode
+      filtered = filtered.filter(s => 
+        s.importance === 'critical' || s.importance === 'high'
+      )
+    }
+
+    return filtered
+  }, [searchTerm, stories, visibleCategories, viewMode, selectedStory, localDepth, getLocalSubgraph])
+
+  // Transform data for force graph
+  const graphData = useMemo(() => {
+    const nodes: GraphNode[] = filteredStories.map((story) => ({
+      id: story.id,
+      name: story.title,
+      val: story.importance === 'critical' ? 20 : story.importance === 'high' ? 15 : story.importance === 'medium' ? 10 : 5,
+      color: story.color,
+      category: story.category,
+      story
+    }))
+
+    const visibleIds = new Set(filteredStories.map((s) => s.id))
+    const links: GraphLink[] = connections
+      .filter((c) => visibleIds.has(c.from) && visibleIds.has(c.to))
+      .map((c) => ({
+        source: c.from,
+        target: c.to,
+        strength: c.strength || 0.5
+      }))
+
+    return { nodes, links }
+  }, [filteredStories, connections])
 
   const handleCategoryToggle = (categoryId: string) => {
     const newVisible = new Set(visibleCategories)
@@ -429,45 +170,40 @@ export default function HistoriasPage() {
     setVisibleCategories(new Set(storyCategories.map((c) => c.id)))
   }
 
-  async function fetchBatches(reset = false) {
-    let cancelled = false
+  const fetchBatches = useCallback(async (reset = false) => {
+    const pageSize = 50
     if (reset) {
       setStories([])
       setConnections([])
     }
-    async function loadBatch(start: number) {
-      const params = new URLSearchParams({
-        offset: String(start),
-        limit: String(pageSize),
-        t: String(Date.now())
-      })
-      const res = await fetch(`/api/historias?${params.toString()}`, {
-        cache: 'no-store'
-      })
-      if (!res.ok) return null
-      const data = await res.json()
-      return data
-    }
+
     try {
-      let cur = 0
-      let more = true
-      while (!cancelled && more) {
-        const data = await loadBatch(cur)
+      let offset = 0
+      let hasMore = true
+
+      while (hasMore) {
+        const params = new URLSearchParams({
+          offset: String(offset),
+          limit: String(pageSize)
+        })
+        const res = await fetch(`/api/historias?${params.toString()}`, {
+          cache: 'no-store'
+        })
+
+        if (!res.ok) break
+
+        const data = await res.json()
         if (!data?.ok) break
+
         const newStories: Story[] = data.stories || []
         const newConnections: StoryConnection[] = data.connections || []
-
-        const incomingIds = newStories.map((s) => s.id)
-        incomingIds.forEach((id) => spawnedIdsRef.current.add(id))
-        setTimeout(() => {
-          incomingIds.forEach((id) => spawnedIdsRef.current.delete(id))
-        }, 500)
 
         setStories((prev) => {
           const byId = new Map(prev.map((s) => [s.id, s]))
           newStories.forEach((s) => byId.set(s.id, s))
           return Array.from(byId.values())
         })
+
         setConnections((prev) => {
           const key = (c: StoryConnection) => `${c.from}->${c.to}|${c.type}`
           const map = new Map(prev.map((c) => [key(c), c]))
@@ -475,35 +211,21 @@ export default function HistoriasPage() {
           return Array.from(map.values())
         })
 
-        cur += newStories.length
-        more = data.hasMore && newStories.length > 0
+        offset += newStories.length
+        hasMore = data.hasMore && newStories.length > 0
 
-        if (more) await new Promise((r) => setTimeout(r, 120))
+        if (hasMore) {
+          await new Promise((r) => setTimeout(r, 100))
+        }
       }
     } catch (e) {
-      console.error('Failed to progressively fetch historias', e)
+      console.error('Failed to fetch historias', e)
     }
-    return () => {
-      cancelled = true
-    }
-  }
+  }, [])
 
   useEffect(() => {
     fetchBatches(true)
-  }, [])
-
-  const hoverRef = useRef<{ raf?: number; lastId?: string | null }>({})
-  const setHoveredDebounced = (story: Story | null) => {
-    const newId = story ? story.id : null
-    if (hoverRef.current.lastId === newId) return
-    hoverRef.current.lastId = newId
-
-    if (hoverRef.current.raf) cancelAnimationFrame(hoverRef.current.raf)
-    hoverRef.current.raf = requestAnimationFrame(() => {
-      setHoveredStory(story)
-      hoverRef.current.raf = undefined
-    })
-  }
+  }, [fetchBatches])
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -523,6 +245,92 @@ export default function HistoriasPage() {
     window.addEventListener('keydown', handleKeyPress)
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [isFullscreen, showFilters])
+
+  const handleNodeClick = useCallback((node: any) => {
+    if (node && node.story) {
+      setSelectedStory(node.story)
+    }
+  }, [])
+
+  const handleNodeHover = useCallback((node: any) => {
+    setHoveredStory(node?.story || null)
+  }, [])
+
+  const paintNodeCanvas = useCallback(
+    (node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
+      if (!node || typeof node.x !== 'number' || typeof node.y !== 'number') return
+
+      const isSelected = selectedStory?.id === node.id
+      const isHighlighted =
+        hoveredStory?.id === node.id ||
+        (selectedStory && selectedStory.connections.includes(node.id))
+
+      // LOD: Simplify rendering based on zoom level
+      const isDetailed = globalScale > 0.8
+      const showLabels = globalScale > 0.5
+      
+      const size = isSelected ? node.val * 1.5 : isHighlighted ? node.val * 1.2 : node.val
+      const opacity = isHighlighted || isSelected ? 1 : globalScale < 0.5 ? 0.6 : 0.8
+
+      // Draw node circle
+      ctx.beginPath()
+      ctx.arc(node.x, node.y, size, 0, 2 * Math.PI, false)
+      ctx.fillStyle = node.color + Math.floor(opacity * 255).toString(16).padStart(2, '0')
+      ctx.fill()
+
+      // Draw border for selected/highlighted (skip when zoomed out for performance)
+      if ((isSelected || isHighlighted) && isDetailed) {
+        ctx.strokeStyle = isSelected ? '#00ffff' : node.color
+        ctx.lineWidth = isSelected ? 3 / globalScale : 2 / globalScale
+        ctx.stroke()
+      }
+
+      // Draw label for selected or highlighted (only when zoomed in enough)
+      if ((isSelected || isHighlighted) && showLabels) {
+        const fontSize = Math.max(10, 14 / globalScale)
+        ctx.font = `${fontSize}px Inter, sans-serif`
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        
+        // Add text shadow for better readability
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)'
+        ctx.shadowBlur = 4
+        ctx.fillStyle = '#ffffff'
+        ctx.fillText(node.name, node.x, node.y - size - 10 / globalScale)
+        ctx.shadowBlur = 0
+      }
+    },
+    [selectedStory, hoveredStory]
+  )
+
+  const paintLinkCanvas = useCallback(
+    (link: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
+      const connectsSelected =
+        selectedStory &&
+        (selectedStory.id === link.source.id || selectedStory.id === link.target.id)
+
+      if (!connectsSelected && !hoveredStory) {
+        ctx.strokeStyle = '#335566'
+        ctx.lineWidth = (link.strength || 0.5) * 1 / globalScale
+        ctx.globalAlpha = 0.2
+      } else if (connectsSelected) {
+        ctx.strokeStyle = '#00ffff'
+        ctx.lineWidth = (link.strength || 0.5) * 3 / globalScale
+        ctx.globalAlpha = 0.8
+      } else {
+        ctx.strokeStyle = '#335566'
+        ctx.lineWidth = (link.strength || 0.5) * 1 / globalScale
+        ctx.globalAlpha = 0.15
+      }
+
+      ctx.beginPath()
+      ctx.moveTo(link.source.x, link.source.y)
+      ctx.lineTo(link.target.x, link.target.y)
+      ctx.stroke()
+      ctx.globalAlpha = 1
+    },
+    [selectedStory, hoveredStory]
+  )
 
   return (
     <div
@@ -584,7 +392,7 @@ export default function HistoriasPage() {
       <div className="flex-1 relative">
         {/* Painel de Filtros Lateral */}
         {showFilters && (
-          <div className="fixed left-0 top-0 h-full w-80 md:w-80 sm:w-72 xs:w-64 bg-zinc-900/95 backdrop-blur-sm border-r border-zinc-700 z-50 shadow-2xl">
+          <div className="fixed left-0 top-0 h-full w-80 bg-zinc-900/95 backdrop-blur-sm border-r border-zinc-700 z-50 shadow-2xl overflow-y-auto">
             <div className="p-6 space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-lime-200">Filtros</h2>
@@ -635,7 +443,9 @@ export default function HistoriasPage() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => setVisibleCategories(new Set(storyCategories.map((c) => c.id)))}
+                      onClick={() =>
+                        setVisibleCategories(new Set(storyCategories.map((c) => c.id)))
+                      }
                       className="text-xs text-zinc-400 hover:text-white px-2 py-1 h-auto"
                       title="Selecionar todas"
                     >
@@ -669,9 +479,7 @@ export default function HistoriasPage() {
                             : 'text-zinc-400 hover:text-white'
                         }`}
                         style={{
-                          backgroundColor: isActive
-                            ? category.color + '15'
-                            : undefined,
+                          backgroundColor: isActive ? category.color + '15' : undefined,
                           borderColor: isActive ? category.color + '80' : undefined
                         }}
                       >
@@ -683,9 +491,8 @@ export default function HistoriasPage() {
                           <div className="font-medium">{category.name}</div>
                           <div className="text-xs text-zinc-500">
                             {
-                              filteredStories.filter(
-                                (s) => s.category === category.id
-                              ).length
+                              filteredStories.filter((s) => s.category === category.id)
+                                .length
                             }{' '}
                             histórias
                           </div>
@@ -693,6 +500,91 @@ export default function HistoriasPage() {
                       </Button>
                     )
                   })}
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-semibold text-amber-200">Modo de Visualização</h3>
+                </div>
+                <div className="space-y-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setViewMode('global')}
+                    className={`w-full justify-start gap-3 p-3 h-auto ${
+                      viewMode === 'global'
+                        ? 'bg-amber-500/20 text-white border border-amber-500/50'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    <BookOpen className="w-5 h-5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Global</div>
+                      <div className="text-xs text-zinc-500">
+                        Mostra todas as histórias ({stories.length} total)
+                      </div>
+                    </div>
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setViewMode('local')
+                      if (!selectedStory && filteredStories.length > 0) {
+                        setSelectedStory(filteredStories[0])
+                      }
+                    }}
+                    className={`w-full justify-start gap-3 p-3 h-auto ${
+                      viewMode === 'local'
+                        ? 'bg-cyan-500/20 text-white border border-cyan-500/50'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    <MapPin className="w-5 h-5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Local</div>
+                      <div className="text-xs text-zinc-500">
+                        Foco em história selecionada + vizinhos
+                      </div>
+                    </div>
+                  </Button>
+
+                  {viewMode === 'local' && (
+                    <div className="pl-4 pr-2">
+                      <label className="text-xs text-zinc-400 block mb-1">
+                        Profundidade: {localDepth} hop{localDepth > 1 ? 's' : ''}
+                      </label>
+                      <input
+                        type="range"
+                        min="1"
+                        max="4"
+                        value={localDepth}
+                        onChange={(e) => setLocalDepth(parseInt(e.target.value))}
+                        className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                      />
+                    </div>
+                  )}
+
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setViewMode('minimal')}
+                    className={`w-full justify-start gap-3 p-3 h-auto ${
+                      viewMode === 'minimal'
+                        ? 'bg-purple-500/20 text-white border border-purple-500/50'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    <Zap className="w-5 h-5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Minimal</div>
+                      <div className="text-xs text-zinc-500">
+                        Apenas histórias importantes
+                      </div>
+                    </div>
+                  </Button>
                 </div>
               </div>
 
@@ -705,112 +597,72 @@ export default function HistoriasPage() {
                   <RotateCcw className="w-4 h-4 mr-2" />
                   Reset Filtros
                 </Button>
-                
+
                 <Button
                   variant="outline"
-                  onClick={() => fetchBatches(true)}
+                  onClick={() => {
+                    setShowFilters(false)
+                    setShowDetails(true)
+                  }}
                   className="w-full text-zinc-400 hover:text-white border-zinc-600"
-                  title="Recarregar todas as histórias"
                 >
-                  <RotateCcw className="w-4 h-4 mr-2" />
-                  Recarregar Dados
+                  <Info className="w-4 h-4 mr-2" />
+                  Como Usar
                 </Button>
-              </div>
-
-              <div className="text-xs text-zinc-500 space-y-1">
-                <div>{filteredStories.length} histórias visíveis</div>
-                <div>{connections.length} conexões ativas</div>
-                <div>
-                  {visibleCategories.size}/{storyCategories.length} categorias
-                  selecionadas
-                </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Overlay para fechar o painel */}
-        {showFilters && (
-          <div
-            className="fixed inset-0 bg-black/30 z-40"
-            onClick={() => setShowFilters(false)}
-          />
-        )}
-
-        <div
-          className={`grid grid-cols-1 lg:grid-cols-4 h-screen transition-all duration-300 ${
-            showFilters ? 'lg:ml-80 md:ml-80 sm:ml-72' : ''
-          }`}
-        >
-          <div
-            className={`${selectedStory ? 'lg:col-span-3' : 'lg:col-span-4'} relative`}
-          >
-            <Suspense
-              fallback={
-                <div className="flex items-center justify-center h-full">
-                  <div className="text-center">
-                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-lime-400 mx-auto mb-4"></div>
-                    <p className="text-zinc-400">Carregando mapa mental...</p>
-                  </div>
-                </div>
-              }
-            >
-              <Canvas
-                gl={{ antialias: true, alpha: true }}
-                style={{ background: 'transparent' }}
-                className="bg-transparent"
-                onCreated={({ gl }) => {
-                  try {
-                    const canvas = gl.domElement
-                    const handleContextLost = (e: Event) => {
-                      e.preventDefault()
-                      console.warn('WebGL context lost, attempting to recover')
-                    }
-                    canvas.addEventListener(
-                      'webglcontextlost',
-                      handleContextLost,
-                      false
-                    )
-                  } catch {
-                    console.warn('Failed to set up WebGL context lost handler')
-                  }
-                }}
-              >
-                <Scene
-                  stories={filteredStories}
-                  selectedStory={selectedStory}
-                  hoveredStory={hoveredStory}
-                  onStoryClick={setSelectedStory}
-                  onStoryHover={setHoveredDebounced}
-                  visibleCategories={visibleCategories}
-                  connections={connections}
-                  spawnedIds={spawnedIdsRef.current}
-                />
-              </Canvas>
-            </Suspense>
-
-            {!selectedStory && !showFilters && (
-              <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg p-4 z-10">
-                <div className="text-sm text-white/80 space-y-1">
-                  <div>🖱️ Clique e arraste para rotacionar</div>
-                  <div>🔍 Scroll para zoom</div>
-                  <div>👆 Clique nas esferas para detalhes</div>
-                  <div>⌨️ F para tela cheia • ESC para sair</div>
-                </div>
-              </div>
-            )}
-
+        <div className={`grid ${selectedStory ? 'lg:grid-cols-3' : 'grid-cols-1'} h-[calc(100vh-140px)]`}>
+          <div className={`${selectedStory ? 'lg:col-span-2' : 'col-span-1'} relative bg-zinc-950`}>
+            {/* Stats overlay */}
             <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 z-10">
               <div className="text-sm text-white/80">
                 <div className="font-semibold text-lime-400">
                   {filteredStories.length} Histórias
+                  {viewMode !== 'global' && (
+                    <span className="text-xs text-zinc-400 ml-2">
+                      / {stories.length} total
+                    </span>
+                  )}
                 </div>
-                <div>{connections.length} Conexões</div>
+                <div>{graphData.links.length} Conexões</div>
                 <div>
                   {visibleCategories.size}/{storyCategories.length} Categorias
                 </div>
+                <div className="text-xs text-amber-400 mt-1">
+                  Modo: {viewMode === 'global' ? 'Global' : viewMode === 'local' ? 'Local' : 'Minimal'}
+                </div>
               </div>
             </div>
+
+            {/* Force Graph */}
+            <ForceGraph2D
+              ref={graphRef}
+              graphData={graphData}
+              nodeId="id"
+              nodeVal="val"
+              nodeLabel="name"
+              nodeColor="color"
+              linkSource="source"
+              linkTarget="target"
+              linkWidth={(link: any) => link.strength * 2}
+              onNodeClick={handleNodeClick}
+              onNodeHover={handleNodeHover}
+              nodeCanvasObject={paintNodeCanvas}
+              linkCanvasObject={paintLinkCanvas}
+              backgroundColor="#09090b"
+              enableNodeDrag={true}
+              enableZoomInteraction={true}
+              enablePanInteraction={true}
+              // Optimized physics for large graphs
+              cooldownTime={filteredStories.length > 200 ? 1500 : filteredStories.length > 100 ? 2000 : 3000}
+              d3VelocityDecay={0.4}
+              d3AlphaDecay={filteredStories.length > 200 ? 0.05 : 0.02}
+              warmupTicks={filteredStories.length > 200 ? 50 : 100}
+              cooldownTicks={0}
+            />
           </div>
 
           {selectedStory && (
@@ -825,17 +677,15 @@ export default function HistoriasPage() {
                       className="mb-4"
                       style={{
                         backgroundColor:
-                          storyCategories.find(
-                            (c) => c.id === selectedStory.category
-                          )?.color + '33',
+                          storyCategories.find((c) => c.id === selectedStory.category)
+                            ?.color + '33',
                         color: storyCategories.find(
                           (c) => c.id === selectedStory.category
                         )?.color
                       }}
                     >
-                      {selectedStory.categorySource === 'fallback'
-                        ? '?'
-                        : storyCategories.find((c) => c.id === selectedStory.category)?.name}
+                      {storyCategories.find((c) => c.id === selectedStory.category)
+                        ?.name}
                     </Badge>
                   </div>
                   <Button
@@ -855,23 +705,21 @@ export default function HistoriasPage() {
                   </p>
                 </div>
 
-                <div>
-                  <h3 className="font-semibold text-cyan-200 mb-2">História</h3>
-                  <p className="text-zinc-300 text-sm leading-relaxed">
-                    {selectedStory.intro || ''}
-                  </p>
-                </div>
+                {(selectedStory as any).intro && (
+                  <div>
+                    <h3 className="font-semibold text-cyan-200 mb-2">História</h3>
+                    <p className="text-zinc-300 text-sm leading-relaxed">
+                      {(selectedStory as any).intro}
+                    </p>
+                  </div>
+                )}
 
                 {selectedStory.tags.length > 0 && (
                   <div>
                     <h3 className="font-semibold text-purple-200 mb-2">Tags</h3>
                     <div className="flex flex-wrap gap-2">
                       {selectedStory.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="text-xs"
-                        >
+                        <Badge key={tag} variant="secondary" className="text-xs">
                           {tag}
                         </Badge>
                       ))}
@@ -881,14 +729,10 @@ export default function HistoriasPage() {
 
                 {selectedStory.connections.length > 0 && (
                   <div>
-                    <h3 className="font-semibold text-orange-200 mb-2">
-                      Conexões
-                    </h3>
+                    <h3 className="font-semibold text-orange-200 mb-2">Conexões</h3>
                     <div className="space-y-2">
                       {selectedStory.connections.map((connectionId) => {
-                        const connectedStory = stories.find(
-                          (s) => s.id === connectionId
-                        )
+                        const connectedStory = stories.find((s) => s.id === connectionId)
                         if (!connectedStory) return null
                         return (
                           <Button
@@ -920,8 +764,8 @@ export default function HistoriasPage() {
                       .replace('-', ' ')
                       .replace(/\b\w/g, (l) => l.toUpperCase())}
                   </div>
-                  {selectedStory.author && (
-                    <div>Autor: {selectedStory.author}</div>
+                  {(selectedStory as any).author && (
+                    <div>Autor: {(selectedStory as any).author}</div>
                   )}
                   <div>Importância: {selectedStory.importance}</div>
                   <div>Status: {selectedStory.status}</div>
@@ -952,39 +796,46 @@ export default function HistoriasPage() {
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-semibold text-cyan-200 mb-2">
-                    Navegação 3D
-                  </h3>
+                  <h3 className="font-semibold text-cyan-200 mb-2">Navegação</h3>
                   <ul className="text-sm text-zinc-300 space-y-1">
                     <li>
-                      • <strong>Rotacionar:</strong> Clique e arraste com o
-                      mouse
+                      • <strong>Zoom:</strong> Use a roda do mouse ou pinch no touchpad
                     </li>
                     <li>
-                      • <strong>Zoom:</strong> Use a roda do mouse
+                      • <strong>Mover:</strong> Clique e arraste o fundo
                     </li>
                     <li>
-                      • <strong>Mover:</strong> Botão direito + arrastar
+                      • <strong>Selecionar:</strong> Clique em um nó
                     </li>
                     <li>
-                      • <strong>Focar:</strong> Clique duplo em uma esfera
+                      • <strong>Mover nó:</strong> Arraste um nó para reposicioná-lo
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-purple-200 mb-2">
-                    Categorias
-                  </h3>
+                  <h3 className="font-semibold text-amber-200 mb-2">Modos de Visualização</h3>
+                  <ul className="text-sm text-zinc-300 space-y-2">
+                    <li>
+                      • <strong className="text-amber-300">Global:</strong> Mostra todas as histórias de uma vez. Ideal para visão geral, mas pode ficar lento com muitos nós (500+).
+                    </li>
+                    <li>
+                      • <strong className="text-cyan-300">Local:</strong> Mostra apenas a história selecionada e seus vizinhos (1-4 hops). Perfeito para explorar relações específicas. Similar ao grafo local do Obsidian.
+                    </li>
+                    <li>
+                      • <strong className="text-purple-300">Minimal:</strong> Mostra apenas histórias de alta importância (críticas e altas). Útil para focar no essencial em grandes datasets.
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-purple-200 mb-2">Categorias</h3>
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     {storyCategories.map((category) => {
                       const IconComponent =
                         categoryIcons[category.id as keyof typeof categoryIcons]
                       return (
-                        <div
-                          key={category.id}
-                          className="flex items-center gap-2"
-                        >
+                        <div key={category.id} className="flex items-center gap-2">
                           <IconComponent
                             className="w-4 h-4"
                             style={{ color: category.color }}
@@ -997,11 +848,9 @@ export default function HistoriasPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-orange-200 mb-2">
-                    Conexões
-                  </h3>
+                  <h3 className="font-semibold text-orange-200 mb-2">Conexões</h3>
                   <p className="text-sm text-zinc-300">
-                    Quando você seleciona uma história, linhas cyan aparecem
+                    Quando você seleciona uma história, as linhas cyan aparecem
                     conectando-a às histórias relacionadas. A espessura da linha
                     indica a força da conexão.
                   </p>
@@ -1016,9 +865,29 @@ export default function HistoriasPage() {
                       • <strong>F:</strong> Alternar tela cheia
                     </li>
                     <li>
-                      • <strong>ESC:</strong> Fechar detalhes/sair da tela cheia
+                      • <strong>ESC:</strong> Fechar detalhes/filtros
                     </li>
                   </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-lime-200 mb-2">Performance com Muitos Nós</h3>
+                  <div className="text-sm text-zinc-300 space-y-2">
+                    <p>
+                      Este mapa usa renderização em canvas 2D para melhor performance.
+                      O sistema se adapta automaticamente ao tamanho do dataset:
+                    </p>
+                    <ul className="list-disc pl-5 space-y-1">
+                      <li><strong>Até 100 nós:</strong> Performance excelente (60 fps) no modo Global</li>
+                      <li><strong>100-300 nós:</strong> Use modo Global com zoom. LOD simplifica nós distantes</li>
+                      <li><strong>300-1000 nós:</strong> Recomendado usar modo Local ou Minimal</li>
+                      <li><strong>1000+ nós:</strong> Use modo Local (mostra apenas subgrafo) para melhor UX</li>
+                    </ul>
+                    <p className="mt-2 text-cyan-300">
+                      💡 Dica: Para datasets grandes, comece no modo Minimal para visão geral, 
+                      depois mude para Local ao explorar histórias específicas.
+                    </p>
+                  </div>
                 </div>
               </div>
             </CardContent>
