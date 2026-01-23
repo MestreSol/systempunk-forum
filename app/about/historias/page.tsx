@@ -19,7 +19,11 @@ import {
   MapPin,
   Cpu,
   Palette,
-  HelpCircle
+  HelpCircle,
+  Settings,
+  Play,
+  Pause,
+  Sliders
 } from 'lucide-react'
 import type { Story, StoryConnection } from '@/types/Story.type'
 import { storyCategories } from '@/mocks/Stories'
@@ -69,6 +73,8 @@ export default function HistoriasPage() {
   const [connections, setConnections] = useState<StoryConnection[]>([])
   const [selectedStory, setSelectedStory] = useState<Story | null>(null)
   const [hoveredStory, setHoveredStory] = useState<Story | null>(null)
+  const [highlightNodes, setHighlightNodes] = useState<Set<string>>(new Set())
+  const [highlightLinks, setHighlightLinks] = useState<Set<string>>(new Set())
   const [searchTerm, setSearchTerm] = useState('')
   const [visibleCategories, setVisibleCategories] = useState<Set<string>>(
     new Set(storyCategories.map((c) => c.id))
@@ -76,9 +82,139 @@ export default function HistoriasPage() {
   const [showDetails, setShowDetails] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [showFilters, setShowFilters] = useState(false)
+  const [showControls, setShowControls] = useState(false)
   const [viewMode, setViewMode] = useState<ViewMode>('global')
   const [localDepth, setLocalDepth] = useState(2)
+
+  // Control menu states
+  const [chargeStrength, setChargeStrength] = useState(-120)
+  const [linkDistance, setLinkDistance] = useState(30)
+  const [showLabels, setShowLabels] = useState(true)
+  const [nodeSize, setNodeSize] = useState(1)
+  const [linkOpacity, setLinkOpacity] = useState(0.2)
+
+  // Dynamic/Obsidian-like physics parameters
+  const [dynamicsOpen, setDynamicsOpen] = useState(false)
+  const [physicsPreset, setPhysicsPreset] = useState<'obsidian' | 'tight' | 'wide' | 'custom'>('obsidian')
+  const [linkDistancePadding, setLinkDistancePadding] = useState(50)
+  const [linkStrengthMultiplier, setLinkStrengthMultiplier] = useState(0.6)
+  const [chargeStrengthFactor, setChargeStrengthFactor] = useState(3)
+  const [collisionPadding, setCollisionPadding] = useState(8)
+  const [centerForceStrength, setCenterForceStrength] = useState(0.1)
+  const [enableCenterForce, setEnableCenterForce] = useState(true)
+  const [enableGravity, setEnableGravity] = useState(true)
+  const [gravityStrength, setGravityStrength] = useState(0.05)
+  const [velocityDecay, setVelocityDecay] = useState(0.4)
+  const [alphaDecay, setAlphaDecay] = useState(0.02)
+  const [physicsActive, setPhysicsActive] = useState(true)
+  const [dagMode, setDagMode] = useState<'td' | 'bu' | 'lr' | 'rl' | undefined>(undefined)
+  const [enableParticles, setEnableParticles] = useState(true)
+  const [enableGlow, setEnableGlow] = useState(true)
+
   const graphRef = useRef<any>(null)
+
+  // Physics presets (Obsidian-like configurations)
+  const physicsPresets = useMemo(() => ({
+    obsidian: {
+      linkDistancePadding: 50,
+      linkStrengthMultiplier: 0.6,
+      chargeStrengthFactor: 3,
+      collisionPadding: 8,
+      centerForceStrength: 0.1,
+      enableCenterForce: true,
+      enableGravity: true,
+      gravityStrength: 0.05,
+      velocityDecay: 0.4,
+      alphaDecay: 0.02
+    },
+    tight: {
+      linkDistancePadding: 20,
+      linkStrengthMultiplier: 1.2,
+      chargeStrengthFactor: 1.5,
+      collisionPadding: 4,
+      centerForceStrength: 0.2,
+      enableCenterForce: true,
+      enableGravity: true,
+      gravityStrength: 0.08,
+      velocityDecay: 0.5,
+      alphaDecay: 0.03
+    },
+    wide: {
+      linkDistancePadding: 100,
+      linkStrengthMultiplier: 0.3,
+      chargeStrengthFactor: 4,
+      collisionPadding: 12,
+      centerForceStrength: 0.05,
+      enableCenterForce: true,
+      enableGravity: true,
+      gravityStrength: 0.03,
+      velocityDecay: 0.3,
+      alphaDecay: 0.015
+    },
+    custom: {
+      linkDistancePadding,
+      linkStrengthMultiplier,
+      chargeStrengthFactor,
+      collisionPadding,
+      centerForceStrength,
+      enableCenterForce,
+      enableGravity,
+      gravityStrength,
+      velocityDecay,
+      alphaDecay
+    }
+  }), [linkDistancePadding, linkStrengthMultiplier, chargeStrengthFactor, collisionPadding, centerForceStrength, enableCenterForce, enableGravity, gravityStrength, velocityDecay, alphaDecay])
+
+  // Apply preset function
+  const applyPreset = useCallback((preset: 'obsidian' | 'tight' | 'wide') => {
+    const config = physicsPresets[preset]
+    setLinkDistancePadding(config.linkDistancePadding)
+    setLinkStrengthMultiplier(config.linkStrengthMultiplier)
+    setChargeStrengthFactor(config.chargeStrengthFactor)
+    setCollisionPadding(config.collisionPadding)
+    setCenterForceStrength(config.centerForceStrength)
+    setEnableCenterForce(config.enableCenterForce)
+    setEnableGravity(config.enableGravity)
+    setGravityStrength(config.gravityStrength)
+    setVelocityDecay(config.velocityDecay)
+    setAlphaDecay(config.alphaDecay)
+    setPhysicsPreset(preset)
+  }, [physicsPresets])
+
+  // Save/Load physics settings from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('systempunk-graph-physics')
+    if (saved) {
+      try {
+        const config = JSON.parse(saved)
+        if (config.preset && config.preset !== 'custom') {
+          applyPreset(config.preset)
+        } else if (config.custom) {
+          setLinkDistancePadding(config.custom.linkDistancePadding ?? 50)
+          setLinkStrengthMultiplier(config.custom.linkStrengthMultiplier ?? 0.6)
+          setChargeStrengthFactor(config.custom.chargeStrengthFactor ?? 3)
+          setCollisionPadding(config.custom.collisionPadding ?? 8)
+          setCenterForceStrength(config.custom.centerForceStrength ?? 0.1)
+          setEnableCenterForce(config.custom.enableCenterForce ?? true)
+          setEnableGravity(config.custom.enableGravity ?? true)
+          setGravityStrength(config.custom.gravityStrength ?? 0.05)
+          setVelocityDecay(config.custom.velocityDecay ?? 0.4)
+          setAlphaDecay(config.custom.alphaDecay ?? 0.02)
+          setPhysicsPreset('custom')
+        }
+      } catch (e) {
+        console.warn('Failed to load physics settings', e)
+      }
+    }
+  }, [applyPreset])
+
+  useEffect(() => {
+    const config = {
+      preset: physicsPreset,
+      custom: physicsPreset === 'custom' ? physicsPresets.custom : undefined
+    }
+    localStorage.setItem('systempunk-graph-physics', JSON.stringify(config))
+  }, [physicsPreset, physicsPresets])
 
   // Helper function to get nodes within N hops from selected node
   const getLocalSubgraph = useCallback((centerStoryId: string, depth: number): Set<string> => {
@@ -153,6 +289,60 @@ export default function HistoriasPage() {
     return { nodes, links }
   }, [filteredStories, connections])
 
+  // Apply simple force-directed physics
+  useEffect(() => {
+    const g = graphRef.current
+    if (!g || typeof g.d3Force !== 'function') return
+
+    const applyForces = async () => {
+      try {
+        const mod: any = await import('d3-force')
+        const { forceManyBody, forceLink, forceCenter } = mod
+
+        console.log('🔧 Aplicando física:', {
+          chargeStrength,
+          linkDistance,
+          nodes: graphData.nodes.length,
+          links: graphData.links.length
+        })
+
+        // Repulsive force (controllable) - valores negativos afastam
+        const chargeForce = forceManyBody()
+          .strength(chargeStrength)
+          .distanceMax(500) // Limita alcance para melhor performance
+
+        g.d3Force('charge', chargeForce)
+        console.log('  ⚡ Charge force:', chargeStrength, '(valores negativos = repulsão)')
+
+        // Link force (controllable) - precisa do .id() para funcionar
+        const linkForce = forceLink()
+          .id((d: any) => d.id) // CRUCIAL: define como identificar nós
+          .distance(linkDistance) // Distância desejada
+          .strength(1) // Força total (1 = força máxima)
+
+        g.d3Force('link', linkForce)
+        console.log('  🔗 Link force:', linkDistance, 'px')
+
+        // Center force - mantém tudo centralizado
+        g.d3Force('center', forceCenter(0, 0).strength(0.05))
+        console.log('  🎯 Center force: 0.05')
+
+        // IMPORTANTE: Reaquece a simulação para aplicar as mudanças
+        if (typeof g.d3ReheatSimulation === 'function') {
+          console.log('  🔥 Reaquecendo simulação...')
+          g.d3ReheatSimulation()
+        }
+
+        console.log('✅ Física aplicada com sucesso!')
+
+      } catch (e) {
+        console.error('❌ Erro ao aplicar física:', e)
+      }
+    }
+
+    applyForces()
+  }, [graphData, chargeStrength, linkDistance])
+
   const handleCategoryToggle = (categoryId: string) => {
     const newVisible = new Set(visibleCategories)
     if (newVisible.has(categoryId)) {
@@ -162,6 +352,75 @@ export default function HistoriasPage() {
     }
     setVisibleCategories(newVisible)
   }
+
+  // Toggle physics simulation on/off
+  const togglePhysics = useCallback(() => {
+    setPhysicsActive(prev => !prev)
+  }, [])
+
+  // Reset node positions and restart physics
+  const resetGraphLayout = useCallback(() => {
+    const g = graphRef.current
+    if (!g) return
+
+    // Clear fixed positions and reset all position/velocity data
+    graphData.nodes.forEach((node: any) => {
+      // Remove fixed positions
+      delete node.fx
+      delete node.fy
+
+      // Reset positions to undefined to force recalculation
+      delete node.x
+      delete node.y
+
+      // Reset velocities
+      delete node.vx
+      delete node.vy
+    })
+
+    // Force the graph to reinitialize positions
+    if (typeof g.refresh === 'function') {
+      g.refresh()
+    }
+
+    // Restart simulation with full energy
+    if (typeof g.d3ReheatSimulation === 'function') {
+      g.d3ReheatSimulation()
+    }
+
+    setPhysicsActive(true)
+  }, [graphData])
+
+  // Shake graph - add random velocity to nodes to make physics more active
+  const shakeGraph = useCallback(() => {
+    const g = graphRef.current
+    if (!g) return
+
+    // Add random velocity to all nodes
+    graphData.nodes.forEach((node: any) => {
+      if (node.vx !== undefined) {
+        node.vx += (Math.random() - 0.5) * 50
+        node.vy += (Math.random() - 0.5) * 50
+      }
+    })
+
+    // Reheat simulation
+    if (typeof g.d3ReheatSimulation === 'function') {
+      g.d3ReheatSimulation()
+    }
+
+    if (!physicsActive) {
+      setPhysicsActive(true)
+    }
+  }, [graphData, physicsActive])
+
+  // Mark preset as custom when any parameter changes manually
+  const updatePhysicsParam = useCallback((setter: (val: any) => void, value: any) => {
+    setter(value)
+    if (physicsPreset !== 'custom') {
+      setPhysicsPreset('custom')
+    }
+  }, [physicsPreset])
 
   const resetView = () => {
     setSelectedStory(null)
@@ -254,82 +513,106 @@ export default function HistoriasPage() {
 
   const handleNodeHover = useCallback((node: any) => {
     setHoveredStory(node?.story || null)
-  }, [])
+
+    // Highlight neighbors
+    if (node) {
+      const neighbors = new Set<string>()
+      neighbors.add(node.id)
+
+      const links = new Set<string>()
+      graphData.links.forEach((link: any) => {
+        if (link.source.id === node.id) {
+          neighbors.add(link.target.id)
+          links.add(`${link.source.id}-${link.target.id}`)
+        }
+        if (link.target.id === node.id) {
+          neighbors.add(link.source.id)
+          links.add(`${link.source.id}-${link.target.id}`)
+        }
+      })
+
+      setHighlightNodes(neighbors)
+      setHighlightLinks(links)
+    } else {
+      setHighlightNodes(new Set())
+      setHighlightLinks(new Set())
+    }
+  }, [graphData])
 
   const paintNodeCanvas = useCallback(
     (node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
       if (!node || typeof node.x !== 'number' || typeof node.y !== 'number') return
 
       const isSelected = selectedStory?.id === node.id
-      const isHighlighted =
-        hoveredStory?.id === node.id ||
-        (selectedStory && selectedStory.connections.includes(node.id))
+      const isHighlighted = highlightNodes.has(node.id)
+      const isDimmed = (hoveredStory || selectedStory) && !isHighlighted && !isSelected
 
-      // LOD: Simplify rendering based on zoom level
-      const isDetailed = globalScale > 0.8
-      const showLabels = globalScale > 0.5
-      
-      const size = isSelected ? node.val * 1.5 : isHighlighted ? node.val * 1.2 : node.val
-      const opacity = isHighlighted || isSelected ? 1 : globalScale < 0.5 ? 0.6 : 0.8
+      // Node size - adjustable via control
+      const size = (node.val || 5) * nodeSize
 
-      // Draw node circle
+      // Draw node circle - clean and simple
       ctx.beginPath()
       ctx.arc(node.x, node.y, size, 0, 2 * Math.PI, false)
-      ctx.fillStyle = node.color + Math.floor(opacity * 255).toString(16).padStart(2, '0')
+
+      // Fill with slight transparency when dimmed
+      if (isDimmed) {
+        ctx.fillStyle = node.color + '40' // 25% opacity
+      } else {
+        ctx.fillStyle = node.color
+      }
       ctx.fill()
 
-      // Draw border for selected/highlighted (skip when zoomed out for performance)
-      if ((isSelected || isHighlighted) && isDetailed) {
-        ctx.strokeStyle = isSelected ? '#00ffff' : node.color
-        ctx.lineWidth = isSelected ? 3 / globalScale : 2 / globalScale
+      // Draw border for highlighted/selected nodes
+      if (isSelected || isHighlighted) {
+        ctx.strokeStyle = isSelected ? '#ffffff' : node.color
+        ctx.lineWidth = isSelected ? 2.5 : 1.5
         ctx.stroke()
       }
 
-      // Draw label for selected or highlighted (only when zoomed in enough)
-      if ((isSelected || isHighlighted) && showLabels) {
-        const fontSize = Math.max(10, 14 / globalScale)
-        ctx.font = `${fontSize}px Inter, sans-serif`
+      // Draw label only when enabled and zoomed in or selected
+      if (showLabels && (globalScale > 1.2 || isSelected || isHighlighted)) {
+        const fontSize = Math.max(10, 12 / globalScale)
+        ctx.font = `${fontSize}px Sans-Serif`
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
         
-        // Add text shadow for better readability
-        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)'
-        ctx.shadowBlur = 4
-        ctx.fillStyle = '#ffffff'
-        ctx.fillText(node.name, node.x, node.y - size - 10 / globalScale)
-        ctx.shadowBlur = 0
+        // Simple label without background
+        ctx.fillStyle = isDimmed ? '#ffffff60' : '#ffffff'
+        ctx.fillText(node.name, node.x, node.y + size + fontSize)
       }
     },
-    [selectedStory, hoveredStory]
+    [selectedStory, hoveredStory, highlightNodes, nodeSize, showLabels]
   )
 
   const paintLinkCanvas = useCallback(
     (link: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
-      const connectsSelected =
-        selectedStory &&
-        (selectedStory.id === link.source.id || selectedStory.id === link.target.id)
+      const linkId = `${link.source.id}-${link.target.id}`
+      const isHighlighted = highlightLinks.has(linkId)
+      const isDimmed = (hoveredStory || selectedStory) && !isHighlighted
 
-      if (!connectsSelected && !hoveredStory) {
-        ctx.strokeStyle = '#335566'
-        ctx.lineWidth = (link.strength || 0.5) * 1 / globalScale
-        ctx.globalAlpha = 0.2
-      } else if (connectsSelected) {
-        ctx.strokeStyle = '#00ffff'
-        ctx.lineWidth = (link.strength || 0.5) * 3 / globalScale
-        ctx.globalAlpha = 0.8
-      } else {
-        ctx.strokeStyle = '#335566'
-        ctx.lineWidth = (link.strength || 0.5) * 1 / globalScale
-        ctx.globalAlpha = 0.15
-      }
-
+      // Simple line rendering
       ctx.beginPath()
       ctx.moveTo(link.source.x, link.source.y)
       ctx.lineTo(link.target.x, link.target.y)
+
+      // Line styling - clean and minimal with adjustable opacity
+      if (isDimmed) {
+        ctx.strokeStyle = `#ffffff${Math.floor(linkOpacity * 25).toString(16).padStart(2, '0')}`
+        ctx.lineWidth = 0.5
+      } else if (isHighlighted) {
+        ctx.strokeStyle = link.source.color || '#ffffff'
+        ctx.lineWidth = 2
+        ctx.globalAlpha = 0.8
+      } else {
+        ctx.strokeStyle = `#ffffff${Math.floor(linkOpacity * 255).toString(16).padStart(2, '0')}`
+        ctx.lineWidth = 1
+        ctx.globalAlpha = linkOpacity * 2
+      }
+
       ctx.stroke()
       ctx.globalAlpha = 1
     },
-    [selectedStory, hoveredStory]
+    [selectedStory, hoveredStory, highlightLinks, linkOpacity]
   )
 
   return (
@@ -361,6 +644,15 @@ export default function HistoriasPage() {
           </div>
 
           <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowControls(!showControls)}
+              className={`${showControls ? 'text-lime-400 bg-lime-400/10' : 'text-white/80'} hover:text-white`}
+              title="Controles do Mapa"
+            >
+              <Sliders className="w-4 h-4" />
+            </Button>
             <Button
               variant="ghost"
               size="sm"
@@ -614,26 +906,199 @@ export default function HistoriasPage() {
           </div>
         )}
 
+        {/* Painel de Controles Lateral */}
+        {showControls && (
+          <div className="fixed right-0 top-0 h-full w-80 bg-zinc-900/95 backdrop-blur-sm border-l border-zinc-700 z-50 shadow-2xl overflow-y-auto">
+            <div className="p-6 space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-bold text-lime-200">Controles</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowControls(false)}
+                  className="text-zinc-400 hover:text-white"
+                >
+                  ✕
+                </Button>
+              </div>
+
+              {/* Physics Controls */}
+              <div>
+                <h3 className="font-semibold text-cyan-200 mb-3 flex items-center gap-2">
+                  <Zap className="w-4 h-4" />
+                  Física
+                </h3>
+
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-sm text-zinc-300">Repulsão</label>
+                      <span className="text-xs text-lime-400 font-mono">{Math.abs(chargeStrength)}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="20"
+                      max="300"
+                      value={Math.abs(chargeStrength)}
+                      onChange={(e) => setChargeStrength(-parseInt(e.target.value))}
+                      className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                    />
+                    <div className="text-xs text-zinc-500 mt-1 flex justify-between">
+                      <span>Fraca (20)</span>
+                      <span>Forte (300)</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-sm text-zinc-300">Distância Links</label>
+                      <span className="text-xs text-lime-400 font-mono">{linkDistance}px</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="10"
+                      max="150"
+                      value={linkDistance}
+                      onChange={(e) => setLinkDistance(parseInt(e.target.value))}
+                      className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                    />
+                    <div className="text-xs text-zinc-500 mt-1 flex justify-between">
+                      <span>Curta (10px)</span>
+                      <span>Longa (150px)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-px bg-zinc-700" />
+
+              {/* Visual Controls */}
+              <div>
+                <h3 className="font-semibold text-purple-200 mb-3 flex items-center gap-2">
+                  <Palette className="w-4 h-4" />
+                  Visual
+                </h3>
+
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-sm text-zinc-300">Tamanho dos Nós</label>
+                      <span className="text-xs text-lime-400 font-mono">{nodeSize.toFixed(1)}x</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0.5"
+                      max="2"
+                      step="0.1"
+                      value={nodeSize}
+                      onChange={(e) => setNodeSize(parseFloat(e.target.value))}
+                      className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-sm text-zinc-300">Opacidade Links</label>
+                      <span className="text-xs text-lime-400 font-mono">{Math.round(linkOpacity * 100)}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0.1"
+                      max="1"
+                      step="0.05"
+                      value={linkOpacity}
+                      onChange={(e) => setLinkOpacity(parseFloat(e.target.value))}
+                      className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm text-zinc-300">Mostrar Labels</label>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={showLabels}
+                        onChange={(e) => setShowLabels(e.target.checked)}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-px bg-zinc-700" />
+
+              {/* Actions */}
+              <div>
+                <h3 className="font-semibold text-amber-200 mb-3 flex items-center gap-2">
+                  <Settings className="w-4 h-4" />
+                  Ações
+                </h3>
+
+                <div className="space-y-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={resetGraphLayout}
+                    className="w-full text-amber-300 hover:bg-amber-900/20 border-amber-600/50"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Reorganizar
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const g = graphRef.current
+                      if (g && typeof g.zoomToFit === 'function') {
+                        g.zoomToFit(400, 50)
+                      }
+                    }}
+                    className="w-full text-cyan-300 hover:bg-cyan-900/20 border-cyan-600/50"
+                  >
+                    <Maximize className="w-4 h-4 mr-2" />
+                    Ajustar à Tela
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setChargeStrength(-120)
+                      setLinkDistance(30)
+                      setNodeSize(1)
+                      setLinkOpacity(0.2)
+                      setShowLabels(true)
+                    }}
+                    className="w-full text-zinc-400 hover:bg-zinc-700/50 border-zinc-600"
+                  >
+                    Resetar Padrões
+                  </Button>
+                </div>
+              </div>
+
+              <div className="text-xs text-zinc-400 bg-zinc-800/50 p-3 rounded space-y-1">
+                <div className="text-cyan-300 font-semibold mb-1">💡 Dicas:</div>
+                <div>• Repulsão alta = nós mais espaçados</div>
+                <div>• Distância maior = grafo mais largo</div>
+                <div>• Arraste nós para posicionamento manual</div>
+                <div>• Scroll para zoom, arraste para mover</div>
+              </div>
+            </div>
+          </div>
+        )}
+
         <div className={`grid ${selectedStory ? 'lg:grid-cols-3' : 'grid-cols-1'} h-[calc(100vh-140px)]`}>
           <div className={`${selectedStory ? 'lg:col-span-2' : 'col-span-1'} relative bg-zinc-950`}>
             {/* Stats overlay */}
-            <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 z-10">
-              <div className="text-sm text-white/80">
-                <div className="font-semibold text-lime-400">
-                  {filteredStories.length} Histórias
-                  {viewMode !== 'global' && (
-                    <span className="text-xs text-zinc-400 ml-2">
-                      / {stories.length} total
-                    </span>
-                  )}
+            <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 z-10">
+              <div className="text-xs text-white/80 space-y-0.5">
+                <div className="font-semibold text-white">
+                  {filteredStories.length} nodes
                 </div>
-                <div>{graphData.links.length} Conexões</div>
-                <div>
-                  {visibleCategories.size}/{storyCategories.length} Categorias
-                </div>
-                <div className="text-xs text-amber-400 mt-1">
-                  Modo: {viewMode === 'global' ? 'Global' : viewMode === 'local' ? 'Local' : 'Minimal'}
-                </div>
+                <div>{graphData.links.length} links</div>
               </div>
             </div>
 
@@ -647,21 +1112,16 @@ export default function HistoriasPage() {
               nodeColor="color"
               linkSource="source"
               linkTarget="target"
-              linkWidth={(link: any) => link.strength * 2}
               onNodeClick={handleNodeClick}
               onNodeHover={handleNodeHover}
               nodeCanvasObject={paintNodeCanvas}
               linkCanvasObject={paintLinkCanvas}
-              backgroundColor="#09090b"
+              backgroundColor="#000000"
               enableNodeDrag={true}
               enableZoomInteraction={true}
               enablePanInteraction={true}
-              // Optimized physics for large graphs
-              cooldownTime={filteredStories.length > 200 ? 1500 : filteredStories.length > 100 ? 2000 : 3000}
-              d3VelocityDecay={0.4}
-              d3AlphaDecay={filteredStories.length > 200 ? 0.05 : 0.02}
-              warmupTicks={filteredStories.length > 200 ? 50 : 100}
-              cooldownTicks={0}
+              cooldownTime={3000}
+              warmupTicks={100}
             />
           </div>
 
@@ -892,6 +1352,366 @@ export default function HistoriasPage() {
               </div>
             </CardContent>
           </Card>
+        </div>
+      )}
+
+      {/* Enhanced Dynamics Panel (Obsidian-like) */}
+      {dynamicsOpen && (
+        <div className="fixed right-6 top-24 z-50 bg-zinc-900/95 backdrop-blur-md border border-zinc-700 rounded-lg shadow-2xl w-80 max-h-[calc(100vh-120px)] overflow-y-auto">
+          <div className="sticky top-0 bg-zinc-900/95 backdrop-blur-md p-4 border-b border-zinc-700 flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-lime-200">⚙️ Física do Grafo</h3>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setDynamicsOpen(false)}
+              className="h-6 w-6 p-0 text-zinc-400 hover:text-white"
+            >
+              ✕
+            </Button>
+          </div>
+
+          <div className="p-4 space-y-4">
+            {/* Physics Presets */}
+            <div>
+              <label className="text-xs font-semibold text-cyan-200 mb-2 block">Presets</label>
+              <div className="grid grid-cols-2 gap-2">
+                <Button
+                  size="sm"
+                  variant={physicsPreset === 'obsidian' ? 'default' : 'ghost'}
+                  onClick={() => applyPreset('obsidian')}
+                  className={`text-xs ${physicsPreset === 'obsidian' ? 'bg-lime-600 hover:bg-lime-700' : ''}`}
+                >
+                  🌌 Obsidian
+                </Button>
+                <Button
+                  size="sm"
+                  variant={physicsPreset === 'tight' ? 'default' : 'ghost'}
+                  onClick={() => applyPreset('tight')}
+                  className={`text-xs ${physicsPreset === 'tight' ? 'bg-lime-600 hover:bg-lime-700' : ''}`}
+                >
+                  🔗 Compact
+                </Button>
+                <Button
+                  size="sm"
+                  variant={physicsPreset === 'wide' ? 'default' : 'ghost'}
+                  onClick={() => applyPreset('wide')}
+                  className={`text-xs ${physicsPreset === 'wide' ? 'bg-lime-600 hover:bg-lime-700' : ''}`}
+                >
+                  🌐 Disperso
+                </Button>
+                <Button
+                  size="sm"
+                  variant={physicsPreset === 'custom' ? 'default' : 'ghost'}
+                  disabled={physicsPreset !== 'custom'}
+                  className={`text-xs ${physicsPreset === 'custom' ? 'bg-purple-600 hover:bg-purple-700' : ''}`}
+                >
+                  🎨 Custom
+                </Button>
+              </div>
+            </div>
+
+            {/* DAG Layout Options */}
+            <div>
+              <label className="text-xs font-semibold text-pink-200 mb-2 block">Layout DAG</label>
+              <div className="grid grid-cols-3 gap-2 mb-2">
+                <Button
+                  size="sm"
+                  variant={dagMode === 'td' ? 'default' : 'ghost'}
+                  onClick={() => setDagMode(dagMode === 'td' ? null : 'td')}
+                  className={`text-xs ${dagMode === 'td' ? 'bg-pink-600 hover:bg-pink-700' : ''}`}
+                  title="Top-Down"
+                >
+                  ↓ TD
+                </Button>
+                <Button
+                  size="sm"
+                  variant={dagMode === 'lr' ? 'default' : 'ghost'}
+                  onClick={() => setDagMode(dagMode === 'lr' ? null : 'lr')}
+                  className={`text-xs ${dagMode === 'lr' ? 'bg-pink-600 hover:bg-pink-700' : ''}`}
+                  title="Left-Right"
+                >
+                  → LR
+                </Button>
+                <Button
+                  size="sm"
+                  variant={dagMode === null ? 'default' : 'ghost'}
+                  onClick={() => setDagMode(null)}
+                  className={`text-xs ${dagMode === null ? 'bg-zinc-600 hover:bg-zinc-700' : ''}`}
+                  title="Força Normal"
+                >
+                  ⊚ Off
+                </Button>
+              </div>
+              <p className="text-xs text-zinc-400">Layout hierárquico direcional</p>
+            </div>
+
+            {/* Physics Actions */}
+            <div>
+              <label className="text-xs font-semibold text-cyan-200 mb-2 block">Ações da Física</label>
+              <div className="space-y-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={shakeGraph}
+                  className="w-full text-xs text-amber-300 hover:bg-amber-900/20 border-amber-600/50"
+                  title="Adiciona energia aleatória aos nós"
+                >
+                  ⚡ Agitar Grafo
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={resetGraphLayout}
+                  className="w-full text-xs text-cyan-300 hover:bg-cyan-900/20 border-cyan-600/50"
+                  title="Reinicia posições e física"
+                >
+                  🔄 Reset Completo
+                </Button>
+                <div className="text-xs text-zinc-400 bg-zinc-800/50 p-2 rounded">
+                  💡 Arraste nós e solte para ativar a física automaticamente
+                </div>
+              </div>
+            </div>
+
+            {/* Visual Effects */}
+            <div>
+              <label className="text-xs font-semibold text-violet-200 mb-2 block">Efeitos Visuais</label>
+
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-xs text-zinc-300">Partículas Animadas</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={enableParticles}
+                    onChange={(e) => setEnableParticles(e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-9 h-5 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+                </label>
+              </div>
+
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-xs text-zinc-300">Efeito Glow</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={enableGlow}
+                    onChange={(e) => setEnableGlow(e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-9 h-5 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+                </label>
+              </div>
+
+              <p className="text-xs text-zinc-400 mt-2">Desative para melhor performance em grafos grandes</p>
+            </div>
+
+            {/* Physics State Controls */}
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant={physicsActive ? 'default' : 'outline'}
+                onClick={togglePhysics}
+                className={`flex-1 text-xs ${physicsActive ? 'bg-green-600 hover:bg-green-700' : 'bg-red-900/30 hover:bg-red-900/50'}`}
+              >
+                {physicsActive ? '⏸️ Pausar' : '▶️ Resumir'}
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={resetGraphLayout}
+                className="flex-1 text-xs"
+              >
+                🔄 Reset
+              </Button>
+            </div>
+
+            <div className="h-px bg-zinc-700" />
+
+            {/* Force Parameters */}
+            <div>
+              <label className="text-xs font-semibold text-amber-200 mb-3 block">Forças</label>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Repulsão</span>
+                  <span className="text-xs text-cyan-400 font-mono">{chargeStrengthFactor.toFixed(1)}x</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.5"
+                  max="6"
+                  step="0.1"
+                  value={chargeStrengthFactor}
+                  onChange={(e) => updatePhysicsParam(setChargeStrengthFactor, parseFloat(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-lime-500"
+                />
+              </div>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Distância Links</span>
+                  <span className="text-xs text-cyan-400 font-mono">{linkDistancePadding}px</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="150"
+                  value={linkDistancePadding}
+                  onChange={(e) => updatePhysicsParam(setLinkDistancePadding, parseInt(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-lime-500"
+                />
+              </div>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Força Links</span>
+                  <span className="text-xs text-cyan-400 font-mono">{linkStrengthMultiplier.toFixed(2)}x</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.1"
+                  max="2"
+                  step="0.05"
+                  value={linkStrengthMultiplier}
+                  onChange={(e) => updatePhysicsParam(setLinkStrengthMultiplier, parseFloat(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-lime-500"
+                />
+              </div>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Espaçamento Nós</span>
+                  <span className="text-xs text-cyan-400 font-mono">{collisionPadding}px</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="32"
+                  value={collisionPadding}
+                  onChange={(e) => updatePhysicsParam(setCollisionPadding, parseInt(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-lime-500"
+                />
+              </div>
+            </div>
+
+            <div className="h-px bg-zinc-700" />
+
+            {/* Gravity & Center Forces */}
+            <div>
+              <label className="text-xs font-semibold text-purple-200 mb-3 block">Gravidade</label>
+
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs text-zinc-300">Força Central</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={enableCenterForce}
+                    onChange={(e) => updatePhysicsParam(setEnableCenterForce, e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-9 h-5 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-lime-600"></div>
+                </label>
+              </div>
+
+              {enableCenterForce && (
+                <div className="mb-3 ml-4">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs text-zinc-400">Intensidade</span>
+                    <span className="text-xs text-cyan-400 font-mono">{centerForceStrength.toFixed(2)}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="0.5"
+                    step="0.01"
+                    value={centerForceStrength}
+                    onChange={(e) => updatePhysicsParam(setCenterForceStrength, parseFloat(e.target.value))}
+                    className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                  />
+                </div>
+              )}
+
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs text-zinc-300">Gravidade (X/Y)</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={enableGravity}
+                    onChange={(e) => updatePhysicsParam(setEnableGravity, e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-9 h-5 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-lime-600"></div>
+                </label>
+              </div>
+
+              {enableGravity && (
+                <div className="mb-3 ml-4">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs text-zinc-400">Intensidade</span>
+                    <span className="text-xs text-cyan-400 font-mono">{gravityStrength.toFixed(3)}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="0.2"
+                    step="0.005"
+                    value={gravityStrength}
+                    onChange={(e) => updatePhysicsParam(setGravityStrength, parseFloat(e.target.value))}
+                    className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                  />
+                </div>
+              )}
+            </div>
+
+            <div className="h-px bg-zinc-700" />
+
+            {/* Simulation Parameters */}
+            <div>
+              <label className="text-xs font-semibold text-orange-200 mb-3 block">Simulação</label>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Fricção</span>
+                  <span className="text-xs text-cyan-400 font-mono">{velocityDecay.toFixed(2)}</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.1"
+                  max="0.9"
+                  step="0.05"
+                  value={velocityDecay}
+                  onChange={(e) => updatePhysicsParam(setVelocityDecay, parseFloat(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
+                />
+              </div>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Resfriamento</span>
+                  <span className="text-xs text-cyan-400 font-mono">{alphaDecay.toFixed(3)}</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.005"
+                  max="0.1"
+                  step="0.005"
+                  value={alphaDecay}
+                  onChange={(e) => updatePhysicsParam(setAlphaDecay, parseFloat(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
+                />
+              </div>
+            </div>
+
+            {/* Help Text */}
+            <div className="text-xs text-zinc-400 bg-zinc-800/50 p-3 rounded space-y-1">
+              <div className="text-cyan-300 font-semibold mb-1">💡 Dicas:</div>
+              <div>• Repulsão alta = nós mais espaçados</div>
+              <div>• Gravidade puxa nós críticos ao centro</div>
+              <div>• Fricção alta = estabiliza mais rápido</div>
+              <div>• Pause para arrastar nós manualmente</div>
+            </div>
+          </div>
         </div>
       )}
     </div>
