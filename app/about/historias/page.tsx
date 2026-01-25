@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -23,7 +25,9 @@ import {
   Settings,
   Play,
   Pause,
-  Sliders
+  Sliders,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react'
 import type { Story, StoryConnection } from '@/types/Story.type'
 import { storyCategories } from '@/mocks/Stories'
@@ -45,6 +49,16 @@ const categoryIcons = {
   technology: Cpu,
   culture: Palette,
   mystery: HelpCircle
+}
+
+// Unicode icons for canvas rendering
+const categoryIconsUnicode = {
+  character: '👤',
+  event: '⚡',
+  location: '📍',
+  technology: '⚙️',
+  culture: '🎭',
+  mystery: '❓'
 }
 
 interface GraphNode {
@@ -85,10 +99,11 @@ export default function HistoriasPage() {
   const [showControls, setShowControls] = useState(false)
   const [viewMode, setViewMode] = useState<ViewMode>('global')
   const [localDepth, setLocalDepth] = useState(2)
+  const [showFullContent, setShowFullContent] = useState(false) // Estado para controlar expansão do conteúdo
 
   // Control menu states
   const [chargeStrength, setChargeStrength] = useState(-120)
-  const [linkDistance, setLinkDistance] = useState(30)
+  const [linkDistance, setLinkDistance] = useState(20)
   const [showLabels, setShowLabels] = useState(true)
   const [nodeSize, setNodeSize] = useState(1)
   const [linkOpacity, setLinkOpacity] = useState(0.2)
@@ -301,9 +316,7 @@ export default function HistoriasPage() {
 
         console.log('🔧 Aplicando física:', {
           chargeStrength,
-          linkDistance,
-          nodes: graphData.nodes.length,
-          links: graphData.links.length
+          linkDistance
         })
 
         // Repulsive force (controllable) - valores negativos afastam
@@ -327,7 +340,7 @@ export default function HistoriasPage() {
         g.d3Force('center', forceCenter(0, 0).strength(0.05))
         console.log('  🎯 Center force: 0.05')
 
-        // IMPORTANTE: Reaquece a simulação para aplicar as mudanças
+        // IMPORTANTE: Reaquece a simulação APENAS quando parâmetros de física mudam
         if (typeof g.d3ReheatSimulation === 'function') {
           console.log('  🔥 Reaquecendo simulação...')
           g.d3ReheatSimulation()
@@ -341,7 +354,44 @@ export default function HistoriasPage() {
     }
 
     applyForces()
-  }, [graphData, chargeStrength, linkDistance])
+  }, [chargeStrength, linkDistance]) // ✅ REMOVIDO graphData - não reaquece ao clicar em nós!
+
+  // Initialize forces when graph data changes (without reheating)
+  useEffect(() => {
+    const g = graphRef.current
+    if (!g || typeof g.d3Force !== 'function') return
+
+    const initForces = async () => {
+      try {
+        const mod: any = await import('d3-force')
+        const { forceManyBody, forceLink, forceCenter } = mod
+
+        console.log('🎯 Inicializando forças para novo graphData')
+
+        // Configure forces without reheating
+        const chargeForce = forceManyBody()
+          .strength(chargeStrength)
+          .distanceMax(500)
+
+        const linkForce = forceLink()
+          .id((d: any) => d.id)
+          .distance(linkDistance)
+          .strength(1)
+
+        g.d3Force('charge', chargeForce)
+        g.d3Force('link', linkForce)
+        g.d3Force('center', forceCenter(0, 0).strength(0.05))
+
+        // NÃO reaquece - deixa a simulação continuar naturalmente
+        console.log('✅ Forças configuradas (sem reheat)')
+
+      } catch (e) {
+        console.error('❌ Erro ao inicializar forças:', e)
+      }
+    }
+
+    initForces()
+  }, [graphData]) // Apenas quando graphData muda
 
   const handleCategoryToggle = (categoryId: string) => {
     const newVisible = new Set(visibleCategories)
@@ -430,55 +480,44 @@ export default function HistoriasPage() {
   }
 
   const fetchBatches = useCallback(async (reset = false) => {
-    const pageSize = 50
     if (reset) {
       setStories([])
       setConnections([])
     }
 
     try {
-      let offset = 0
-      let hasMore = true
+      // Carrega JSON pré-gerado para performance otimizada
+      const res = await fetch('/data/graph-data.json', {
+        cache: 'force-cache' // Cache agressivo para JSON estático
+      })
 
-      while (hasMore) {
-        const params = new URLSearchParams({
-          offset: String(offset),
-          limit: String(pageSize)
-        })
-        const res = await fetch(`/api/historias?${params.toString()}`, {
-          cache: 'no-store'
-        })
-
-        if (!res.ok) break
-
-        const data = await res.json()
-        if (!data?.ok) break
-
-        const newStories: Story[] = data.stories || []
-        const newConnections: StoryConnection[] = data.connections || []
-
-        setStories((prev) => {
-          const byId = new Map(prev.map((s) => [s.id, s]))
-          newStories.forEach((s) => byId.set(s.id, s))
-          return Array.from(byId.values())
-        })
-
-        setConnections((prev) => {
-          const key = (c: StoryConnection) => `${c.from}->${c.to}|${c.type}`
-          const map = new Map(prev.map((c) => [key(c), c]))
-          newConnections.forEach((c) => map.set(key(c), c))
-          return Array.from(map.values())
-        })
-
-        offset += newStories.length
-        hasMore = data.hasMore && newStories.length > 0
-
-        if (hasMore) {
-          await new Promise((r) => setTimeout(r, 100))
-        }
+      if (!res.ok) {
+        throw new Error(`Failed to load graph data: ${res.status}`)
       }
+
+      const data = await res.json()
+
+      setStories(data.stories || [])
+      setConnections(data.connections || [])
+
+      console.log('✅ Grafo carregado do JSON estático:', data.metadata?.stats)
     } catch (e) {
-      console.error('Failed to fetch historias', e)
+      console.error('❌ Erro ao carregar dados do grafo:', e)
+      // Fallback para API se JSON não existir
+      console.warn('⚠️  Tentando fallback para API...')
+      try {
+        const res = await fetch('/api/historias?offset=0&limit=500')
+        if (res.ok) {
+          const data = await res.json()
+          if (data?.ok) {
+            setStories(data.stories || [])
+            setConnections(data.connections || [])
+            console.log('✅ Fallback bem-sucedido via API')
+          }
+        }
+      } catch (fallbackError) {
+        console.error('❌ Fallback também falhou:', fallbackError)
+      }
     }
   }, [])
 
@@ -507,7 +546,11 @@ export default function HistoriasPage() {
 
   const handleNodeClick = useCallback((node: any) => {
     if (node && node.story) {
-      setSelectedStory(node.story)
+      const story = node.story as Story
+
+      // Open the story in the dedicated viewer page in a new tab
+      const url = `/historias/${story.id}`
+      window.open(url, '_blank', 'noopener,noreferrer')
     }
   }, [])
 
@@ -569,6 +612,20 @@ export default function HistoriasPage() {
         ctx.stroke()
       }
 
+      // Draw category icon inside the node
+      const icon = categoryIconsUnicode[node.category as keyof typeof categoryIconsUnicode] || '❓'
+      const iconSize = Math.max(size * 0.8, 10) // Icon scales with node size
+      ctx.font = `${iconSize}px sans-serif`
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+
+      // Draw icon with shadow for better visibility
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.8)'
+      ctx.shadowBlur = 4
+      ctx.fillStyle = isDimmed ? '#ffffff60' : '#ffffff'
+      ctx.fillText(icon, node.x, node.y)
+      ctx.shadowBlur = 0 // Reset shadow
+
       // Draw label only when enabled and zoomed in or selected
       if (showLabels && (globalScale > 1.2 || isSelected || isHighlighted)) {
         const fontSize = Math.max(10, 12 / globalScale)
@@ -576,9 +633,25 @@ export default function HistoriasPage() {
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
         
-        // Simple label without background
+        // Label with background for better readability
+        const labelText = node.name
+        const metrics = ctx.measureText(labelText)
+        const labelWidth = metrics.width
+        const labelHeight = fontSize * 1.2
+        const labelY = node.y + size + fontSize + 2
+
+        // Background
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+        ctx.fillRect(
+          node.x - labelWidth / 2 - 4,
+          labelY - labelHeight / 2,
+          labelWidth + 8,
+          labelHeight
+        )
+
+        // Text
         ctx.fillStyle = isDimmed ? '#ffffff60' : '#ffffff'
-        ctx.fillText(node.name, node.x, node.y + size + fontSize)
+        ctx.fillText(labelText, node.x, labelY)
       }
     },
     [selectedStory, hoveredStory, highlightNodes, nodeSize, showLabels]
@@ -1171,6 +1244,45 @@ export default function HistoriasPage() {
                     <p className="text-zinc-300 text-sm leading-relaxed">
                       {(selectedStory as any).intro}
                     </p>
+                  </div>
+                )}
+
+                {/* Conteúdo Markdown Completo */}
+                {selectedStory.content && (
+                  <div>
+                    <h3 className="font-semibold text-cyan-200 mb-3 flex items-center gap-2">
+                      <BookOpen className="w-4 h-4" />
+                      Conteúdo Completo
+                    </h3>
+                    <div className="prose prose-invert prose-sm max-w-none text-zinc-300 leading-relaxed">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          h1: (props) => <h1 className="text-2xl font-bold text-lime-300 mt-6 mb-4" {...props} />,
+                          h2: (props) => <h2 className="text-xl font-bold text-cyan-300 mt-5 mb-3" {...props} />,
+                          h3: (props) => <h3 className="text-lg font-semibold text-purple-300 mt-4 mb-2" {...props} />,
+                          h4: (props) => <h4 className="text-base font-semibold text-amber-300 mt-3 mb-2" {...props} />,
+                          p: (props) => <p className="text-zinc-300 mb-4 leading-relaxed" {...props} />,
+                          ul: (props) => <ul className="list-disc list-inside text-zinc-300 mb-4 space-y-1" {...props} />,
+                          ol: (props) => <ol className="list-decimal list-inside text-zinc-300 mb-4 space-y-1" {...props} />,
+                          li: (props) => <li className="text-zinc-300" {...props} />,
+                          a: (props) => <a className="text-lime-400 hover:text-lime-300 underline" {...props} />,
+                          blockquote: (props) => <blockquote className="border-l-4 border-cyan-500 pl-4 italic text-zinc-400 my-4" {...props} />,
+                          code: (props: any) => {
+                            const { inline, ...rest } = props
+                            return inline ? (
+                              <code className="bg-zinc-800 text-lime-400 px-1.5 py-0.5 rounded text-sm font-mono" {...rest} />
+                            ) : (
+                              <code className="block bg-zinc-800 text-lime-400 p-4 rounded-lg text-sm font-mono overflow-x-auto my-4" {...rest} />
+                            )
+                          },
+                          strong: (props) => <strong className="font-bold text-white" {...props} />,
+                          em: (props) => <em className="italic text-cyan-200" {...props} />,
+                        }}
+                      >
+                        {selectedStory.content}
+                      </ReactMarkdown>
+                    </div>
                   </div>
                 )}
 

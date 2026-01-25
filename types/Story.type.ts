@@ -31,6 +31,7 @@ export interface Story {
   lastModified: string
   author?: string
   categorySource?: 'header' | 'fallback'
+  filePath?: string // Relative path from content/ folder to the markdown file
 }
 
 export interface StoryConnection {

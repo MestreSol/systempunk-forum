@@ -11,7 +11,10 @@
     "prepare": "husky",
     "release": "standard-version",
     "release:dry": "standard-version --dry-run",
-    "commit": "npm run release:dry && npm run release && git push origin HEAD --follow-tags"
+    "commit": "npm run release:dry && npm run release && git push origin HEAD --follow-tags",
+    "generate:graph": "python scripts/generate_graph_json.py --input content/ --output public/data/graph-data.json --pretty",
+    "generate:graph:prod": "python scripts/generate_graph_json.py --input content/ --output public/data/graph-data.json",
+    "validate:graph": "python scripts/validate_graph_json.py --input public/data/graph-data.json"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -104,7 +107,10 @@
     "react-dom": "19.1.0",
     "react-force-graph-2d": "^1.29.0",
     "react-hook-form": "^7.71.1",
+    "react-markdown": "^10.1.0",
     "react-resizable-panels": "^4.4.1",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
     "three": "^0.180.0",
