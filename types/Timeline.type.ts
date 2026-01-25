@@ -9,6 +9,7 @@ export interface UniverseEra {
   textColor: string
   accentColor: string
   icon: any
+  storyPath?: string
   details: {
     overview: string
     keyEvents: string[]

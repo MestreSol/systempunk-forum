@@ -32,6 +32,7 @@ export interface Story {
   author?: string
   categorySource?: 'header' | 'fallback'
   filePath?: string // Relative path from content/ folder to the markdown file
+  headerImage?: string // Optional header/banner image for the story
 }
 
 export interface StoryConnection {
