@@ -1,0 +1,1 @@
+No centro de todas as cidades de [[Aurorium]] existe uma espécie de hotel, ele atua como uma ponte entre todos os planos dos [[Crepúsculos Serenos]], ele esta presente em todos a unica divergencia é sua forma, vez parecido com uma cabana no meio de uma floresta, vez como um prédio imponente no centro de uma cidade movimentada.

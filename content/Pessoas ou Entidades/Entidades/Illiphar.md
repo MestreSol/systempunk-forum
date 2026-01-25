@@ -1,0 +1,4 @@
+>[!info] Devagar.
+>O conteúdo que você esta prestes a ler é apenas um rascunho e não esta pronto.
+
+A [[Supra-Singularidade]] do equilíbrio, a ela foi dada apenas o aspecto da [[Dualidade]], seu papel é garantir que seus irmãos não se sobrecaiao um sobre o outro, quando [[Noctus]] foi morto pelo [[Fringilla]], [[Illiphar]] cuidou de [[Eterna]] por um tempo , até que se estabilizase, por livre e espontânea vontade ela escreveu a [[Profecia do Fim]] enquanto se sacrificava e se juntou a [[Eterna]] surgindo assim o [[Ignitário]], local onde ele repousa abaixo da [[Eterna]], antes ele deu as [[Singularidade]] o objetivo de manter a chama acessa até que eles voltasem 

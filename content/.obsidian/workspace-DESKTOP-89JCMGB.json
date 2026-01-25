@@ -1,0 +1,247 @@
+{
+  "main": {
+    "id": "304613fad63466bd",
+    "type": "split",
+    "children": [
+      {
+        "id": "4aec75b66f77af4e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "100f543fd512eaab",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Projetos/As Sombras do relógio - Primeira pessoa.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "As Sombras do relógio - Primeira pessoa"
+            }
+          },
+          {
+            "id": "7ce0020ab36a8ecf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Projetos/As Sombras do relógio - Primeira pessoa.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "As Sombras do relógio - Primeira pessoa"
+            }
+          },
+          {
+            "id": "99658b79b02cbd9b",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.10.3"
+              },
+              "icon": "lucide-book-up",
+              "title": "Release Notes 1.10.3"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "59f4a5d311f10022",
+    "type": "split",
+    "children": [
+      {
+        "id": "e9d247e4b203584f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "491a29c45bbcf686",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "182461887979515b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Procurar"
+            }
+          },
+          {
+            "id": "ff1fdb232d1685c1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "873c0c87d4f3dca2",
+    "type": "split",
+    "children": [
+      {
+        "id": "7c5b18e01b2a654f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f2060dccff415812",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "93ca2e3aef7f2c1a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Contos/O simples Senhor.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from O simples Senhor"
+            }
+          },
+          {
+            "id": "c798d22f6ea910f8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "acfe3422fd2fa369",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Contos/O simples Senhor.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of O simples Senhor"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "publish:Publish changes...": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "99658b79b02cbd9b",
+  "lastOpenFiles": [
+    "Projetos/O velho senhor - Primeira pessoa (conflict 2024-11-07-17-46-23).md",
+    "Medo.md",
+    "Projetos/As Sombras do relógio - Primeira pessoa.md",
+    "Sem título.canvas",
+    "Sem título.base",
+    "Domínio/Dominios das Planicies da concretude/Ethereon.md",
+    "Domínio/Dominios das Planicies da concretude/Ethereon/O Calço da Realidade.md",
+    "Domínio/Dominios das Planicies da concretude/Ethereon/A Profundidade Alva.md",
+    "Domínio/Dominios das Planicies da concretude/Ethereon/A Planície da Solidão.md",
+    "Domínio/Dominios das Planicies da concretude/Ethereon/A Fenda do Esquecimento.md",
+    "Domínio/Dominios das Planicies da concretude/Ethereon/A Bruma Exterior.md",
+    "Domínio/Abismos da sombra.md",
+    "Domínio/Abyssethar.md",
+    "Images/Ethereon/Nebullis.webp",
+    "Images/Ethereon/Skarneon.webp",
+    "Images/Ethereon/Nihilus.webp",
+    "Images/Ethereon/Herbalux.webp",
+    "Images/Ethereon/Fonte dos Ossos.webp",
+    "Images/Ethereon/Flores Cinerárias.webp",
+    "Images/Ethereon/Ethereon.webp",
+    "Images/Ethereon/Cristais de Alma.webp",
+    "Images/Ethereon/Arvore das Memorias.webp",
+    "Images/Ethereon/A Fonte de Vitália.webp",
+    "Domínio/Dominios das Planicies da concretude/Ethereon",
+    "Images/Ethereon",
+    "Domínio/Crepúsculos Serenos.md",
+    "Domínio/Domínio dos renegados.md",
+    "Eras/Eras Menores.md",
+    "Eras/Petrolpunk.md",
+    "Livro - Systempunk.md",
+    "Eras/Eras Menores/Nanopunk.md",
+    "Eras/Eras Menores/Biopunk Rebellion.md",
+    "Eras/Eras Menores/Biohackerpunk.md",
+    "Eras/Eras Menores/Gothicpunk.md",
+    "Eras/Eras Menores/Organicpunk.md",
+    "Eras/Eras Menores/Splatterpunk.md",
+    "Images/Eras",
+    "Supra-Singularidade.md",
+    "O Colapso dos Reinos.md",
+    "Nova - Dump.md",
+    "Notas de versão.md",
+    "Untitled.base",
+    "Untitled.canvas",
+    "Untitled 1.canvas",
+    "Culturas",
+    "Lugares/Untitled 1",
+    "Lugares/Paises",
+    "RPG/Untitled",
+    "Untitled 1",
+    "Images/Nelson.canvas",
+    "Historia/Systempunk/Geral.canvas"
+  ]
+}

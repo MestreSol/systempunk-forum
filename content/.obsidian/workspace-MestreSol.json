@@ -1,0 +1,220 @@
+{
+  "main": {
+    "id": "304613fad63466bd",
+    "type": "split",
+    "children": [
+      {
+        "id": "755b1a6d1ae71a39",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cdb49e1b1a366e8f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Conceitos/Conceitos Fundamentais/Caos.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "676af6695aeeac0b",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
+            }
+          },
+          {
+            "id": "9163acbcb6aeb415",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2024-05-01.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "59f4a5d311f10022",
+    "type": "split",
+    "children": [
+      {
+        "id": "e9d247e4b203584f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "491a29c45bbcf686",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "182461887979515b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ff1fdb232d1685c1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "873c0c87d4f3dca2",
+    "type": "split",
+    "children": [
+      {
+        "id": "7c5b18e01b2a654f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f2060dccff415812",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "2024-05-01.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "93ca2e3aef7f2c1a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "2024-05-01.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c798d22f6ea910f8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "acfe3422fd2fa369",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "2024-05-01.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "9163acbcb6aeb415",
+  "lastOpenFiles": [
+    "Untitled.md",
+    "2024-05-01.md",
+    "Conceitos/Conceitos Fundamentais/Dualidade.md",
+    "Conceitos/Dualidade.png",
+    "Images/Dualidade Inimigo.png",
+    "Images/Art/Caos.png",
+    "Conceitos/Conceitos Fundamentais/Caos.md",
+    "Sombravale.md",
+    "Conceitos/Conceitos Fundamentais/Esperança.md",
+    "Conceitos/Conceitos Fundamentais/Espaço.md",
+    "Conceitos/Conceitos Fundamentais/Energia.md",
+    "Pessoas ou Entidades/Pessoas/Professor Thalassor.md",
+    "Pessoas ou Entidades/Pessoas/Orcrus X.md",
+    "Pessoas ou Entidades/Pessoas/Mestre Dimitri Fallmora.md",
+    "Pessoas ou Entidades/Pessoas/Lecrino Seguro.md",
+    "Pessoas ou Entidades/Pessoas/Krifirus.md",
+    "Pessoas ou Entidades/Pessoas/Hermes.md",
+    "Pessoas ou Entidades/Pessoas/Harmonius Agathós.md",
+    "Pessoas ou Entidades/Pessoas/Grande caçador.md",
+    "Pessoas ou Entidades/Pessoas/Évori a curandeira.md",
+    "Pessoas ou Entidades/Pessoas/Dona Lurdes SilverHand.md",
+    "Pessoas ou Entidades/Pessoas/Cyprianus.md",
+    "Pessoas ou Entidades/Pessoas/Callista.md",
+    "Pessoas ou Entidades/Pessoas/Anastácia Fallmora.md",
+    "Pessoas ou Entidades/Pessoas/Alice Dravas Lord.md",
+    "Pessoas ou Entidades/Pessoas/Aldric Blotíbac.md",
+    "Pessoas ou Entidades/Pessoas/Alexander Clark.md",
+    "RPG/Personagens/Professor Thalassor Fallmora, O Archimago da Corrupção.md",
+    "Série de Flux.md",
+    "Images/Quarto.png",
+    "Systempunk/Conceitos/Conceitos Fundamentais",
+    "Systempunk/Conceitos",
+    "Systempunk",
+    "RPG/Itens/Magicos/Laminas",
+    "RPG/Itens/Magicos",
+    "RPG/Ataques",
+    "RPG/Personagens",
+    "RPG/Itens",
+    "RPG",
+    "Reinos",
+    "Material/Monocrom/Editado/Luminarion.png",
+    "Material/Monocrom/Editado/Celestials.png",
+    "Material/Monocrom/ZonaDeExclusão.png",
+    "Material/Monocrom/Vulpinideos.jpg",
+    "Material/Monocrom/VitoriaDoReinoEsmeralda.jpg",
+    "Material/Monocrom/Santuario da escrita.png",
+    "Historia/Systempunk/Geral.canvas"
+  ]
+}

@@ -1,16 +1,10 @@
 'use client'
 
-import { useState, useEffect, Suspense, useMemo, useRef } from 'react'
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import Link from 'next/link'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Vector2, Vector3, Plane, Raycaster } from 'three'
-import {
-  OrbitControls,
-  Html,
-  Line,
-  Sphere,
-  PerspectiveCamera
-} from '@react-three/drei'
+import dynamic from 'next/dynamic'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -27,22 +21,26 @@ import {
   MapPin,
   Cpu,
   Palette,
-  HelpCircle
+  HelpCircle,
+  Settings,
+  Play,
+  Pause,
+  Sliders,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react'
 import type { Story, StoryConnection } from '@/types/Story.type'
 import { storyCategories } from '@/mocks/Stories'
 
-interface StoryNodeProps {
-  story: Story
-  isSelected: boolean
-  isHighlighted: boolean
-  onClick: (story: Story) => void
-  onHover: (story: Story | null) => void
-  onDrag?: (id: string, pos: { x: number; y: number; z: number }) => void
-  onDragStart?: (id: string) => void
-  onDragEnd?: (id: string) => void
-  justSpawned?: boolean
-}
+// Dynamically import ForceGraph2D to avoid SSR issues
+const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center bg-zinc-950">
+      <div className="text-zinc-400">Carregando grafo...</div>
+    </div>
+  )
+})
 
 const categoryIcons = {
   character: Users,
@@ -53,346 +51,44 @@ const categoryIcons = {
   mystery: HelpCircle
 }
 
-function StoryNode({
-  story,
-  isSelected,
-  isHighlighted,
-  onClick,
-  onHover,
-  onDrag,
-  onDragStart,
-  onDragEnd,
-  justSpawned
-}: StoryNodeProps) {
-  const nodeGroupRef = useRef<any>(null)
-  const materialRef = useRef<any>(null)
-  const spawn = useRef<{ active: boolean; t: number }>({ active: false, t: 0 })
-
-  const IconComponent = categoryIcons[story.category]
-  const category = storyCategories.find((c) => c.id === story.category)
-
-  const scale = isSelected ? 1.5 : isHighlighted ? 1.2 : 1
-  const opacity = isHighlighted || isSelected ? 1 : 0.8
-
-  useEffect(() => {
-    if (justSpawned) {
-      spawn.current.active = true
-      spawn.current.t = 0
-    }
-  }, [justSpawned])
-
-  useFrame((_, delta) => {
-    if (!nodeGroupRef.current) return
-    let spawnScale = 1
-    let spawnOpacity = 1
-    if (spawn.current.active) {
-      spawn.current.t += delta
-      const dur = 0.18
-      const k = Math.min(1, spawn.current.t / dur)
-      const ease = 1 - Math.pow(1 - k, 2)
-      spawnScale = 0.3 + ease * 0.7
-      spawnOpacity = ease
-      if (k >= 1) spawn.current.active = false
-    }
-    const s = (isSelected ? 1.5 : isHighlighted ? 1.2 : 1) * spawnScale
-    nodeGroupRef.current.scale.set(s, s, s)
-    if (materialRef.current) {
-      materialRef.current.opacity =
-        (isHighlighted || isSelected ? 1 : 0.8) * spawnOpacity
-    }
-  })
-
-  return (
-    <DraggableGroup
-      story={story}
-      onDrag={onDrag}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-    >
-      <group
-        ref={nodeGroupRef}
-        position={[story.position.x, story.position.y, story.position.z]}
-      >
-        <Sphere
-          args={[0.8]}
-          scale={scale}
-          onClick={() => onClick(story)}
-          onPointerOver={() => onHover(story)}
-          onPointerOut={() => onHover(null)}
-        >
-          <meshStandardMaterial
-            ref={materialRef}
-            color={category?.color || '#ffffff'}
-            transparent
-            opacity={opacity}
-            emissive={isSelected ? category?.color || '#ffffff' : '#000000'}
-            emissiveIntensity={isSelected ? 0.3 : 0}
-          />
-        </Sphere>
-
-        <Html center>
-          <div
-            className={`transform transition-all duration-300 pointer-events-none ${
-              isSelected ? 'scale-150' : isHighlighted ? 'scale-120' : ''
-            }`}
-          >
-            <IconComponent
-              className="w-6 h-6 text-white drop-shadow-lg"
-              style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))' }}
-            />
-          </div>
-        </Html>
-
-        {(isSelected || isHighlighted) && (
-          <Html position={[0, 2.4, 0]} center>
-            <div className="pointer-events-none select-none text-sm font-semibold text-white text-center drop-shadow">
-              <div className="bg-black/60 px-3 py-1 rounded-md max-w-[220px] w-max text-sm">
-                {story.title}
-              </div>
-            </div>
-          </Html>
-        )}
-      </group>
-    </DraggableGroup>
-  )
+// Unicode icons for canvas rendering
+const categoryIconsUnicode = {
+  character: '👤',
+  event: '⚡',
+  location: '📍',
+  technology: '⚙️',
+  culture: '🎭',
+  mystery: '❓'
 }
 
-function DraggableGroup({
-  story,
-  children,
-  onDrag,
-  onDragStart,
-  onDragEnd
-}: any) {
-  const { camera, gl } = useThree()
-  const draggingRef = useRef(false)
-  const planeRef = useRef(new Plane())
-  const intersectPoint = useRef(new Vector3())
-  const raycaster = useRef(new Raycaster())
-  const mouse = useRef(new Vector2())
-
-  const handlePointerDown = (e: any) => {
-    e.stopPropagation()
-    const target = e.target || e.currentTarget
-    try {
-      target.setPointerCapture(e.pointerId)
-    } catch {}
-    draggingRef.current = true
-    if (onDragStart) onDragStart(story.id)
-
-    const normal = camera.getWorldDirection(new Vector3()).negate()
-    planeRef.current.setFromNormalAndCoplanarPoint(
-      normal,
-      new Vector3(story.position.x, story.position.y, story.position.z)
-    )
-  }
-
-  const handlePointerMove = (e: any) => {
-    if (!draggingRef.current) return
-    e.stopPropagation()
-
-    const rect = gl.domElement.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1
-    const y = -((e.clientY - rect.top) / rect.height) * 2 + 1
-
-    raycaster.current.setFromCamera(mouse.current.set(x, y), camera)
-    const intersect = raycaster.current.ray.intersectPlane(
-      planeRef.current,
-      intersectPoint.current
-    )
-    if (intersect) {
-      const p = intersectPoint.current
-      if (onDrag) onDrag(story.id, { x: p.x, y: p.y, z: p.z })
-    }
-  }
-
-  const handlePointerUp = (e: any) => {
-    if (!draggingRef.current) return
-    e.stopPropagation()
-    const target = e.target || e.currentTarget
-    try {
-      target.releasePointerCapture(e.pointerId)
-    } catch {}
-    draggingRef.current = false
-    if (onDragEnd) onDragEnd(story.id)
-  }
-
-  return (
-    <group
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-    >
-      {children}
-    </group>
-  )
+interface GraphNode {
+  id: string
+  name: string
+  val: number
+  color: string
+  category: string
+  story: Story
+  x?: number
+  y?: number
+  vx?: number
+  vy?: number
 }
 
-function ConnectionLines({
-  selectedStory,
-  stories,
-  connections: baseConnections
-}: {
-  selectedStory: Story | null
-  stories: Story[]
-  connections: StoryConnection[]
-}) {
-  const connections = useMemo(() => {
-    const storyMap = new Map(stories.map((s) => [s.id, s]))
-
-    return baseConnections
-      .map((c) => {
-        const from = storyMap.get(c.from)
-        const to = storyMap.get(c.to)
-        if (!from || !to) return null
-        return {
-          from: from.position,
-          to: to.position,
-          strength: c.strength || 0.5,
-          type: c.type || 'mentions',
-          fromId: c.from,
-          toId: c.to
-        }
-      })
-      .filter(Boolean)
-  }, [stories, baseConnections])
-
-  const seenRef = useRef<Set<string>>(new Set())
-  const spawnMapRef = useRef<Map<string, number>>(new Map())
-
-  return (
-    <>
-      {connections.map((connection, index) => {
-        if (!connection) return null
-        const key = `${connection.fromId}->${connection.toId}`
-        if (!seenRef.current.has(key)) {
-          seenRef.current.add(key)
-          spawnMapRef.current.set(key, performance.now())
-        }
-        const connectsSelected = Boolean(
-          selectedStory &&
-            (selectedStory.id === connection.fromId ||
-              selectedStory.id === connection.toId)
-        )
-
-        const lineColor = connectsSelected ? '#00ffff' : '#335566'
-        const lineWidth = connectsSelected
-          ? connection.strength * 6 + 1
-          : connection.strength * 2
-        let baseOpacity = connectsSelected ? 0.9 : 0.35
-        const started = spawnMapRef.current.get(key) || 0
-        const elapsed = (performance.now() - started) / 1000
-        if (elapsed < 0.2) {
-          const k = Math.min(1, elapsed / 0.2)
-          const ease = 1 - Math.pow(1 - k, 2)
-          baseOpacity *= ease
-        }
-
-        return (
-          <Line
-            key={index}
-            points={[
-              [connection.from.x, connection.from.y, connection.from.z],
-              [connection.to.x, connection.to.y, connection.to.z]
-            ]}
-            color={lineColor}
-            lineWidth={lineWidth}
-            transparent
-            opacity={baseOpacity}
-          />
-        )
-      })}
-    </>
-  )
+interface GraphLink {
+  source: string
+  target: string
+  strength: number
 }
 
-function Scene({
-  stories,
-  selectedStory,
-  hoveredStory,
-  onStoryClick,
-  onStoryHover,
-  visibleCategories,
-  onNodeDrag,
-  onNodeDragStart,
-  onNodeDragEnd,
-  isDragging,
-  connections,
-  spawnedIds
-}: {
-  stories: Story[]
-  selectedStory: Story | null
-  hoveredStory: Story | null
-  onStoryClick: (story: Story) => void
-  onStoryHover: (story: Story | null) => void
-  visibleCategories: Set<string>
-  onNodeDrag?: (id: string, pos: { x: number; y: number; z: number }) => void
-  onNodeDragStart?: (id: string) => void
-  onNodeDragEnd?: (id: string) => void
-  isDragging?: boolean
-  connections: StoryConnection[]
-  spawnedIds: Set<string>
-}) {
-  const filteredStories = stories.filter((story) =>
-    visibleCategories.has(story.category)
-  )
-
-  return (
-    <>
-      <PerspectiveCamera makeDefault position={[0, 0, 50]} />
-      <OrbitControls
-        enablePan={!isDragging}
-        enableZoom={!isDragging}
-        enableRotate={!isDragging}
-        minDistance={10}
-        maxDistance={100}
-        autoRotate={false}
-      />
-
-      <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={0.8} />
-      <pointLight position={[-10, -10, -10]} intensity={0.4} />
-
-      <color attach="background" args={[0.03, 0.03, 0.05]} />
-      <mesh>
-        <sphereGeometry args={[200, 64, 64]} />
-        <meshBasicMaterial color="#000033" transparent opacity={0.06} />
-      </mesh>
-
-      {filteredStories.map((story) => (
-        <StoryNode
-          key={story.id}
-          story={story}
-          isSelected={selectedStory?.id === story.id}
-          isHighlighted={Boolean(
-            hoveredStory?.id === story.id ||
-              (selectedStory && selectedStory.connections.includes(story.id))
-          )}
-          onClick={onStoryClick}
-          onHover={onStoryHover}
-          onDrag={onNodeDrag}
-          onDragStart={onNodeDragStart}
-          onDragEnd={onNodeDragEnd}
-          justSpawned={spawnedIds.has(story.id)}
-        />
-      ))}
-
-      <ConnectionLines
-        selectedStory={selectedStory}
-        stories={filteredStories}
-        connections={connections}
-      />
-    </>
-  )
-}
+type ViewMode = 'global' | 'local' | 'minimal'
 
 export default function HistoriasPage() {
   const [stories, setStories] = useState<Story[]>([])
   const [connections, setConnections] = useState<StoryConnection[]>([])
-  const pageSize = 24
-  const spawnedIdsRef = useRef<Set<string>>(new Set())
   const [selectedStory, setSelectedStory] = useState<Story | null>(null)
   const [hoveredStory, setHoveredStory] = useState<Story | null>(null)
+  const [highlightNodes, setHighlightNodes] = useState<Set<string>>(new Set())
+  const [highlightLinks, setHighlightLinks] = useState<Set<string>>(new Set())
   const [searchTerm, setSearchTerm] = useState('')
   const [visibleCategories, setVisibleCategories] = useState<Set<string>>(
     new Set(storyCategories.map((c) => c.id))
@@ -400,17 +96,302 @@ export default function HistoriasPage() {
   const [showDetails, setShowDetails] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [showFilters, setShowFilters] = useState(false)
+  const [showControls, setShowControls] = useState(false)
+  const [viewMode, setViewMode] = useState<ViewMode>('global')
+  const [localDepth, setLocalDepth] = useState(2)
+  const [showFullContent, setShowFullContent] = useState(false) // Estado para controlar expansão do conteúdo
+
+  // Control menu states
+  const [chargeStrength, setChargeStrength] = useState(-120)
+  const [linkDistance, setLinkDistance] = useState(20)
+  const [showLabels, setShowLabels] = useState(true)
+  const [nodeSize, setNodeSize] = useState(1)
+  const [linkOpacity, setLinkOpacity] = useState(0.2)
+
+  // Dynamic/Obsidian-like physics parameters
+  const [dynamicsOpen, setDynamicsOpen] = useState(false)
+  const [physicsPreset, setPhysicsPreset] = useState<'obsidian' | 'tight' | 'wide' | 'custom'>('obsidian')
+  const [linkDistancePadding, setLinkDistancePadding] = useState(50)
+  const [linkStrengthMultiplier, setLinkStrengthMultiplier] = useState(0.6)
+  const [chargeStrengthFactor, setChargeStrengthFactor] = useState(3)
+  const [collisionPadding, setCollisionPadding] = useState(8)
+  const [centerForceStrength, setCenterForceStrength] = useState(0.1)
+  const [enableCenterForce, setEnableCenterForce] = useState(true)
+  const [enableGravity, setEnableGravity] = useState(true)
+  const [gravityStrength, setGravityStrength] = useState(0.05)
+  const [velocityDecay, setVelocityDecay] = useState(0.4)
+  const [alphaDecay, setAlphaDecay] = useState(0.02)
+  const [physicsActive, setPhysicsActive] = useState(true)
+  const [dagMode, setDagMode] = useState<'td' | 'bu' | 'lr' | 'rl' | undefined>(undefined)
+  const [enableParticles, setEnableParticles] = useState(true)
+  const [enableGlow, setEnableGlow] = useState(true)
+
+  const graphRef = useRef<any>(null)
+
+  // Physics presets (Obsidian-like configurations)
+  const physicsPresets = useMemo(() => ({
+    obsidian: {
+      linkDistancePadding: 50,
+      linkStrengthMultiplier: 0.6,
+      chargeStrengthFactor: 3,
+      collisionPadding: 8,
+      centerForceStrength: 0.1,
+      enableCenterForce: true,
+      enableGravity: true,
+      gravityStrength: 0.05,
+      velocityDecay: 0.4,
+      alphaDecay: 0.02
+    },
+    tight: {
+      linkDistancePadding: 20,
+      linkStrengthMultiplier: 1.2,
+      chargeStrengthFactor: 1.5,
+      collisionPadding: 4,
+      centerForceStrength: 0.2,
+      enableCenterForce: true,
+      enableGravity: true,
+      gravityStrength: 0.08,
+      velocityDecay: 0.5,
+      alphaDecay: 0.03
+    },
+    wide: {
+      linkDistancePadding: 100,
+      linkStrengthMultiplier: 0.3,
+      chargeStrengthFactor: 4,
+      collisionPadding: 12,
+      centerForceStrength: 0.05,
+      enableCenterForce: true,
+      enableGravity: true,
+      gravityStrength: 0.03,
+      velocityDecay: 0.3,
+      alphaDecay: 0.015
+    },
+    custom: {
+      linkDistancePadding,
+      linkStrengthMultiplier,
+      chargeStrengthFactor,
+      collisionPadding,
+      centerForceStrength,
+      enableCenterForce,
+      enableGravity,
+      gravityStrength,
+      velocityDecay,
+      alphaDecay
+    }
+  }), [linkDistancePadding, linkStrengthMultiplier, chargeStrengthFactor, collisionPadding, centerForceStrength, enableCenterForce, enableGravity, gravityStrength, velocityDecay, alphaDecay])
+
+  // Apply preset function
+  const applyPreset = useCallback((preset: 'obsidian' | 'tight' | 'wide') => {
+    const config = physicsPresets[preset]
+    setLinkDistancePadding(config.linkDistancePadding)
+    setLinkStrengthMultiplier(config.linkStrengthMultiplier)
+    setChargeStrengthFactor(config.chargeStrengthFactor)
+    setCollisionPadding(config.collisionPadding)
+    setCenterForceStrength(config.centerForceStrength)
+    setEnableCenterForce(config.enableCenterForce)
+    setEnableGravity(config.enableGravity)
+    setGravityStrength(config.gravityStrength)
+    setVelocityDecay(config.velocityDecay)
+    setAlphaDecay(config.alphaDecay)
+    setPhysicsPreset(preset)
+  }, [physicsPresets])
+
+  // Save/Load physics settings from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('systempunk-graph-physics')
+    if (saved) {
+      try {
+        const config = JSON.parse(saved)
+        if (config.preset && config.preset !== 'custom') {
+          applyPreset(config.preset)
+        } else if (config.custom) {
+          setLinkDistancePadding(config.custom.linkDistancePadding ?? 50)
+          setLinkStrengthMultiplier(config.custom.linkStrengthMultiplier ?? 0.6)
+          setChargeStrengthFactor(config.custom.chargeStrengthFactor ?? 3)
+          setCollisionPadding(config.custom.collisionPadding ?? 8)
+          setCenterForceStrength(config.custom.centerForceStrength ?? 0.1)
+          setEnableCenterForce(config.custom.enableCenterForce ?? true)
+          setEnableGravity(config.custom.enableGravity ?? true)
+          setGravityStrength(config.custom.gravityStrength ?? 0.05)
+          setVelocityDecay(config.custom.velocityDecay ?? 0.4)
+          setAlphaDecay(config.custom.alphaDecay ?? 0.02)
+          setPhysicsPreset('custom')
+        }
+      } catch (e) {
+        console.warn('Failed to load physics settings', e)
+      }
+    }
+  }, [applyPreset])
+
+  useEffect(() => {
+    const config = {
+      preset: physicsPreset,
+      custom: physicsPreset === 'custom' ? physicsPresets.custom : undefined
+    }
+    localStorage.setItem('systempunk-graph-physics', JSON.stringify(config))
+  }, [physicsPreset, physicsPresets])
+
+  // Helper function to get nodes within N hops from selected node
+  const getLocalSubgraph = useCallback((centerStoryId: string, depth: number): Set<string> => {
+    const visited = new Set<string>()
+    const queue: Array<{ id: string; depth: number }> = [{ id: centerStoryId, depth: 0 }]
+    
+    while (queue.length > 0) {
+      const { id, depth: currentDepth } = queue.shift()!
+      
+      if (visited.has(id) || currentDepth > depth) continue
+      visited.add(id)
+      
+      // Find connected stories
+      const story = stories.find(s => s.id === id)
+      if (story && currentDepth < depth) {
+        story.connections.forEach(connId => {
+          if (!visited.has(connId)) {
+            queue.push({ id: connId, depth: currentDepth + 1 })
+          }
+        })
+      }
+    }
+    
+    return visited
+  }, [stories])
 
   const filteredStories = useMemo(() => {
-    return stories.filter(
+    let filtered = stories.filter(
       (story) =>
-        story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        story.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        story.tags.some((tag) =>
-          tag.toLowerCase().includes(searchTerm.toLowerCase())
-        )
+        visibleCategories.has(story.category) &&
+        (story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          story.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          story.tags.some((tag) =>
+            tag.toLowerCase().includes(searchTerm.toLowerCase())
+          ))
     )
-  }, [searchTerm, stories])
+
+    // Apply view mode filtering
+    if (viewMode === 'local' && selectedStory) {
+      const localIds = getLocalSubgraph(selectedStory.id, localDepth)
+      filtered = filtered.filter(s => localIds.has(s.id))
+    } else if (viewMode === 'minimal') {
+      // Show only high importance stories when minimal mode
+      filtered = filtered.filter(s => 
+        s.importance === 'critical' || s.importance === 'high'
+      )
+    }
+
+    return filtered
+  }, [searchTerm, stories, visibleCategories, viewMode, selectedStory, localDepth, getLocalSubgraph])
+
+  // Transform data for force graph
+  const graphData = useMemo(() => {
+    const nodes: GraphNode[] = filteredStories.map((story) => ({
+      id: story.id,
+      name: story.title,
+      val: story.importance === 'critical' ? 20 : story.importance === 'high' ? 15 : story.importance === 'medium' ? 10 : 5,
+      color: story.color,
+      category: story.category,
+      story
+    }))
+
+    const visibleIds = new Set(filteredStories.map((s) => s.id))
+    const links: GraphLink[] = connections
+      .filter((c) => visibleIds.has(c.from) && visibleIds.has(c.to))
+      .map((c) => ({
+        source: c.from,
+        target: c.to,
+        strength: c.strength || 0.5
+      }))
+
+    return { nodes, links }
+  }, [filteredStories, connections])
+
+  // Apply simple force-directed physics
+  useEffect(() => {
+    const g = graphRef.current
+    if (!g || typeof g.d3Force !== 'function') return
+
+    const applyForces = async () => {
+      try {
+        const mod: any = await import('d3-force')
+        const { forceManyBody, forceLink, forceCenter } = mod
+
+        console.log('🔧 Aplicando física:', {
+          chargeStrength,
+          linkDistance
+        })
+
+        // Repulsive force (controllable) - valores negativos afastam
+        const chargeForce = forceManyBody()
+          .strength(chargeStrength)
+          .distanceMax(500) // Limita alcance para melhor performance
+
+        g.d3Force('charge', chargeForce)
+        console.log('  ⚡ Charge force:', chargeStrength, '(valores negativos = repulsão)')
+
+        // Link force (controllable) - precisa do .id() para funcionar
+        const linkForce = forceLink()
+          .id((d: any) => d.id) // CRUCIAL: define como identificar nós
+          .distance(linkDistance) // Distância desejada
+          .strength(1) // Força total (1 = força máxima)
+
+        g.d3Force('link', linkForce)
+        console.log('  🔗 Link force:', linkDistance, 'px')
+
+        // Center force - mantém tudo centralizado
+        g.d3Force('center', forceCenter(0, 0).strength(0.05))
+        console.log('  🎯 Center force: 0.05')
+
+        // IMPORTANTE: Reaquece a simulação APENAS quando parâmetros de física mudam
+        if (typeof g.d3ReheatSimulation === 'function') {
+          console.log('  🔥 Reaquecendo simulação...')
+          g.d3ReheatSimulation()
+        }
+
+        console.log('✅ Física aplicada com sucesso!')
+
+      } catch (e) {
+        console.error('❌ Erro ao aplicar física:', e)
+      }
+    }
+
+    applyForces()
+  }, [chargeStrength, linkDistance]) // ✅ REMOVIDO graphData - não reaquece ao clicar em nós!
+
+  // Initialize forces when graph data changes (without reheating)
+  useEffect(() => {
+    const g = graphRef.current
+    if (!g || typeof g.d3Force !== 'function') return
+
+    const initForces = async () => {
+      try {
+        const mod: any = await import('d3-force')
+        const { forceManyBody, forceLink, forceCenter } = mod
+
+        console.log('🎯 Inicializando forças para novo graphData')
+
+        // Configure forces without reheating
+        const chargeForce = forceManyBody()
+          .strength(chargeStrength)
+          .distanceMax(500)
+
+        const linkForce = forceLink()
+          .id((d: any) => d.id)
+          .distance(linkDistance)
+          .strength(1)
+
+        g.d3Force('charge', chargeForce)
+        g.d3Force('link', linkForce)
+        g.d3Force('center', forceCenter(0, 0).strength(0.05))
+
+        // NÃO reaquece - deixa a simulação continuar naturalmente
+        console.log('✅ Forças configuradas (sem reheat)')
+
+      } catch (e) {
+        console.error('❌ Erro ao inicializar forças:', e)
+      }
+    }
+
+    initForces()
+  }, [graphData]) // Apenas quando graphData muda
 
   const handleCategoryToggle = (categoryId: string) => {
     const newVisible = new Set(visibleCategories)
@@ -422,6 +403,75 @@ export default function HistoriasPage() {
     setVisibleCategories(newVisible)
   }
 
+  // Toggle physics simulation on/off
+  const togglePhysics = useCallback(() => {
+    setPhysicsActive(prev => !prev)
+  }, [])
+
+  // Reset node positions and restart physics
+  const resetGraphLayout = useCallback(() => {
+    const g = graphRef.current
+    if (!g) return
+
+    // Clear fixed positions and reset all position/velocity data
+    graphData.nodes.forEach((node: any) => {
+      // Remove fixed positions
+      delete node.fx
+      delete node.fy
+
+      // Reset positions to undefined to force recalculation
+      delete node.x
+      delete node.y
+
+      // Reset velocities
+      delete node.vx
+      delete node.vy
+    })
+
+    // Force the graph to reinitialize positions
+    if (typeof g.refresh === 'function') {
+      g.refresh()
+    }
+
+    // Restart simulation with full energy
+    if (typeof g.d3ReheatSimulation === 'function') {
+      g.d3ReheatSimulation()
+    }
+
+    setPhysicsActive(true)
+  }, [graphData])
+
+  // Shake graph - add random velocity to nodes to make physics more active
+  const shakeGraph = useCallback(() => {
+    const g = graphRef.current
+    if (!g) return
+
+    // Add random velocity to all nodes
+    graphData.nodes.forEach((node: any) => {
+      if (node.vx !== undefined) {
+        node.vx += (Math.random() - 0.5) * 50
+        node.vy += (Math.random() - 0.5) * 50
+      }
+    })
+
+    // Reheat simulation
+    if (typeof g.d3ReheatSimulation === 'function') {
+      g.d3ReheatSimulation()
+    }
+
+    if (!physicsActive) {
+      setPhysicsActive(true)
+    }
+  }, [graphData, physicsActive])
+
+  // Mark preset as custom when any parameter changes manually
+  const updatePhysicsParam = useCallback((setter: (val: any) => void, value: any) => {
+    setter(value)
+    if (physicsPreset !== 'custom') {
+      setPhysicsPreset('custom')
+    }
+  }, [physicsPreset])
+
   const resetView = () => {
     setSelectedStory(null)
     setHoveredStory(null)
@@ -429,81 +479,51 @@ export default function HistoriasPage() {
     setVisibleCategories(new Set(storyCategories.map((c) => c.id)))
   }
 
-  async function fetchBatches(reset = false) {
-    let cancelled = false
+  const fetchBatches = useCallback(async (reset = false) => {
     if (reset) {
       setStories([])
       setConnections([])
     }
-    async function loadBatch(start: number) {
-      const params = new URLSearchParams({
-        offset: String(start),
-        limit: String(pageSize),
-        t: String(Date.now())
-      })
-      const res = await fetch(`/api/historias?${params.toString()}`, {
-        cache: 'no-store'
-      })
-      if (!res.ok) return null
-      const data = await res.json()
-      return data
-    }
+
     try {
-      let cur = 0
-      let more = true
-      while (!cancelled && more) {
-        const data = await loadBatch(cur)
-        if (!data?.ok) break
-        const newStories: Story[] = data.stories || []
-        const newConnections: StoryConnection[] = data.connections || []
+      // Carrega JSON pré-gerado para performance otimizada
+      const res = await fetch('/data/graph-data.json', {
+        cache: 'force-cache' // Cache agressivo para JSON estático
+      })
 
-        const incomingIds = newStories.map((s) => s.id)
-        incomingIds.forEach((id) => spawnedIdsRef.current.add(id))
-        setTimeout(() => {
-          incomingIds.forEach((id) => spawnedIdsRef.current.delete(id))
-        }, 500)
-
-        setStories((prev) => {
-          const byId = new Map(prev.map((s) => [s.id, s]))
-          newStories.forEach((s) => byId.set(s.id, s))
-          return Array.from(byId.values())
-        })
-        setConnections((prev) => {
-          const key = (c: StoryConnection) => `${c.from}->${c.to}|${c.type}`
-          const map = new Map(prev.map((c) => [key(c), c]))
-          newConnections.forEach((c) => map.set(key(c), c))
-          return Array.from(map.values())
-        })
-
-        cur += newStories.length
-        more = data.hasMore && newStories.length > 0
-
-        if (more) await new Promise((r) => setTimeout(r, 120))
+      if (!res.ok) {
+        throw new Error(`Failed to load graph data: ${res.status}`)
       }
+
+      const data = await res.json()
+
+      setStories(data.stories || [])
+      setConnections(data.connections || [])
+
+      console.log('✅ Grafo carregado do JSON estático:', data.metadata?.stats)
     } catch (e) {
-      console.error('Failed to progressively fetch historias', e)
+      console.error('❌ Erro ao carregar dados do grafo:', e)
+      // Fallback para API se JSON não existir
+      console.warn('⚠️  Tentando fallback para API...')
+      try {
+        const res = await fetch('/api/historias?offset=0&limit=500')
+        if (res.ok) {
+          const data = await res.json()
+          if (data?.ok) {
+            setStories(data.stories || [])
+            setConnections(data.connections || [])
+            console.log('✅ Fallback bem-sucedido via API')
+          }
+        }
+      } catch (fallbackError) {
+        console.error('❌ Fallback também falhou:', fallbackError)
+      }
     }
-    return () => {
-      cancelled = true
-    }
-  }
+  }, [])
 
   useEffect(() => {
     fetchBatches(true)
-  }, [])
-
-  const hoverRef = useRef<{ raf?: number; lastId?: string | null }>({})
-  const setHoveredDebounced = (story: Story | null) => {
-    const newId = story ? story.id : null
-    if (hoverRef.current.lastId === newId) return
-    hoverRef.current.lastId = newId
-
-    if (hoverRef.current.raf) cancelAnimationFrame(hoverRef.current.raf)
-    hoverRef.current.raf = requestAnimationFrame(() => {
-      setHoveredStory(story)
-      hoverRef.current.raf = undefined
-    })
-  }
+  }, [fetchBatches])
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -523,6 +543,150 @@ export default function HistoriasPage() {
     window.addEventListener('keydown', handleKeyPress)
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [isFullscreen, showFilters])
+
+  const handleNodeClick = useCallback((node: any) => {
+    if (node && node.story) {
+      const story = node.story as Story
+
+      // Open the story in the dedicated viewer page in a new tab
+      const url = `/historias/${story.id}`
+      window.open(url, '_blank', 'noopener,noreferrer')
+    }
+  }, [])
+
+  const handleNodeHover = useCallback((node: any) => {
+    setHoveredStory(node?.story || null)
+
+    // Highlight neighbors
+    if (node) {
+      const neighbors = new Set<string>()
+      neighbors.add(node.id)
+
+      const links = new Set<string>()
+      graphData.links.forEach((link: any) => {
+        if (link.source.id === node.id) {
+          neighbors.add(link.target.id)
+          links.add(`${link.source.id}-${link.target.id}`)
+        }
+        if (link.target.id === node.id) {
+          neighbors.add(link.source.id)
+          links.add(`${link.source.id}-${link.target.id}`)
+        }
+      })
+
+      setHighlightNodes(neighbors)
+      setHighlightLinks(links)
+    } else {
+      setHighlightNodes(new Set())
+      setHighlightLinks(new Set())
+    }
+  }, [graphData])
+
+  const paintNodeCanvas = useCallback(
+    (node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
+      if (!node || typeof node.x !== 'number' || typeof node.y !== 'number') return
+
+      const isSelected = selectedStory?.id === node.id
+      const isHighlighted = highlightNodes.has(node.id)
+      const isDimmed = (hoveredStory || selectedStory) && !isHighlighted && !isSelected
+
+      // Node size - adjustable via control
+      const size = (node.val || 5) * nodeSize
+
+      // Draw node circle - clean and simple
+      ctx.beginPath()
+      ctx.arc(node.x, node.y, size, 0, 2 * Math.PI, false)
+
+      // Fill with slight transparency when dimmed
+      if (isDimmed) {
+        ctx.fillStyle = node.color + '40' // 25% opacity
+      } else {
+        ctx.fillStyle = node.color
+      }
+      ctx.fill()
+
+      // Draw border for highlighted/selected nodes
+      if (isSelected || isHighlighted) {
+        ctx.strokeStyle = isSelected ? '#ffffff' : node.color
+        ctx.lineWidth = isSelected ? 2.5 : 1.5
+        ctx.stroke()
+      }
+
+      // Draw category icon inside the node
+      const icon = categoryIconsUnicode[node.category as keyof typeof categoryIconsUnicode] || '❓'
+      const iconSize = Math.max(size * 0.8, 10) // Icon scales with node size
+      ctx.font = `${iconSize}px sans-serif`
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+
+      // Draw icon with shadow for better visibility
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.8)'
+      ctx.shadowBlur = 4
+      ctx.fillStyle = isDimmed ? '#ffffff60' : '#ffffff'
+      ctx.fillText(icon, node.x, node.y)
+      ctx.shadowBlur = 0 // Reset shadow
+
+      // Draw label only when enabled and zoomed in or selected
+      if (showLabels && (globalScale > 1.2 || isSelected || isHighlighted)) {
+        const fontSize = Math.max(10, 12 / globalScale)
+        ctx.font = `${fontSize}px Sans-Serif`
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        
+        // Label with background for better readability
+        const labelText = node.name
+        const metrics = ctx.measureText(labelText)
+        const labelWidth = metrics.width
+        const labelHeight = fontSize * 1.2
+        const labelY = node.y + size + fontSize + 2
+
+        // Background
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+        ctx.fillRect(
+          node.x - labelWidth / 2 - 4,
+          labelY - labelHeight / 2,
+          labelWidth + 8,
+          labelHeight
+        )
+
+        // Text
+        ctx.fillStyle = isDimmed ? '#ffffff60' : '#ffffff'
+        ctx.fillText(labelText, node.x, labelY)
+      }
+    },
+    [selectedStory, hoveredStory, highlightNodes, nodeSize, showLabels]
+  )
+
+  const paintLinkCanvas = useCallback(
+    (link: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
+      const linkId = `${link.source.id}-${link.target.id}`
+      const isHighlighted = highlightLinks.has(linkId)
+      const isDimmed = (hoveredStory || selectedStory) && !isHighlighted
+
+      // Simple line rendering
+      ctx.beginPath()
+      ctx.moveTo(link.source.x, link.source.y)
+      ctx.lineTo(link.target.x, link.target.y)
+
+      // Line styling - clean and minimal with adjustable opacity
+      if (isDimmed) {
+        ctx.strokeStyle = `#ffffff${Math.floor(linkOpacity * 25).toString(16).padStart(2, '0')}`
+        ctx.lineWidth = 0.5
+      } else if (isHighlighted) {
+        ctx.strokeStyle = link.source.color || '#ffffff'
+        ctx.lineWidth = 2
+        ctx.globalAlpha = 0.8
+      } else {
+        ctx.strokeStyle = `#ffffff${Math.floor(linkOpacity * 255).toString(16).padStart(2, '0')}`
+        ctx.lineWidth = 1
+        ctx.globalAlpha = linkOpacity * 2
+      }
+
+      ctx.stroke()
+      ctx.globalAlpha = 1
+    },
+    [selectedStory, hoveredStory, highlightLinks, linkOpacity]
+  )
 
   return (
     <div
@@ -556,6 +720,15 @@ export default function HistoriasPage() {
             <Button
               variant="ghost"
               size="sm"
+              onClick={() => setShowControls(!showControls)}
+              className={`${showControls ? 'text-lime-400 bg-lime-400/10' : 'text-white/80'} hover:text-white`}
+              title="Controles do Mapa"
+            >
+              <Sliders className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={() => setShowFilters(!showFilters)}
               className="text-white/80 hover:text-white"
             >
@@ -584,7 +757,7 @@ export default function HistoriasPage() {
       <div className="flex-1 relative">
         {/* Painel de Filtros Lateral */}
         {showFilters && (
-          <div className="fixed left-0 top-0 h-full w-80 md:w-80 sm:w-72 xs:w-64 bg-zinc-900/95 backdrop-blur-sm border-r border-zinc-700 z-50 shadow-2xl">
+          <div className="fixed left-0 top-0 h-full w-80 bg-zinc-900/95 backdrop-blur-sm border-r border-zinc-700 z-50 shadow-2xl overflow-y-auto">
             <div className="p-6 space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-lime-200">Filtros</h2>
@@ -635,7 +808,9 @@ export default function HistoriasPage() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => setVisibleCategories(new Set(storyCategories.map((c) => c.id)))}
+                      onClick={() =>
+                        setVisibleCategories(new Set(storyCategories.map((c) => c.id)))
+                      }
                       className="text-xs text-zinc-400 hover:text-white px-2 py-1 h-auto"
                       title="Selecionar todas"
                     >
@@ -669,9 +844,7 @@ export default function HistoriasPage() {
                             : 'text-zinc-400 hover:text-white'
                         }`}
                         style={{
-                          backgroundColor: isActive
-                            ? category.color + '15'
-                            : undefined,
+                          backgroundColor: isActive ? category.color + '15' : undefined,
                           borderColor: isActive ? category.color + '80' : undefined
                         }}
                       >
@@ -683,9 +856,8 @@ export default function HistoriasPage() {
                           <div className="font-medium">{category.name}</div>
                           <div className="text-xs text-zinc-500">
                             {
-                              filteredStories.filter(
-                                (s) => s.category === category.id
-                              ).length
+                              filteredStories.filter((s) => s.category === category.id)
+                                .length
                             }{' '}
                             histórias
                           </div>
@@ -693,6 +865,91 @@ export default function HistoriasPage() {
                       </Button>
                     )
                   })}
+                </div>
+              </div>
+
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-semibold text-amber-200">Modo de Visualização</h3>
+                </div>
+                <div className="space-y-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setViewMode('global')}
+                    className={`w-full justify-start gap-3 p-3 h-auto ${
+                      viewMode === 'global'
+                        ? 'bg-amber-500/20 text-white border border-amber-500/50'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    <BookOpen className="w-5 h-5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Global</div>
+                      <div className="text-xs text-zinc-500">
+                        Mostra todas as histórias ({stories.length} total)
+                      </div>
+                    </div>
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setViewMode('local')
+                      if (!selectedStory && filteredStories.length > 0) {
+                        setSelectedStory(filteredStories[0])
+                      }
+                    }}
+                    className={`w-full justify-start gap-3 p-3 h-auto ${
+                      viewMode === 'local'
+                        ? 'bg-cyan-500/20 text-white border border-cyan-500/50'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    <MapPin className="w-5 h-5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Local</div>
+                      <div className="text-xs text-zinc-500">
+                        Foco em história selecionada + vizinhos
+                      </div>
+                    </div>
+                  </Button>
+
+                  {viewMode === 'local' && (
+                    <div className="pl-4 pr-2">
+                      <label className="text-xs text-zinc-400 block mb-1">
+                        Profundidade: {localDepth} hop{localDepth > 1 ? 's' : ''}
+                      </label>
+                      <input
+                        type="range"
+                        min="1"
+                        max="4"
+                        value={localDepth}
+                        onChange={(e) => setLocalDepth(parseInt(e.target.value))}
+                        className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                      />
+                    </div>
+                  )}
+
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setViewMode('minimal')}
+                    className={`w-full justify-start gap-3 p-3 h-auto ${
+                      viewMode === 'minimal'
+                        ? 'bg-purple-500/20 text-white border border-purple-500/50'
+                        : 'text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    <Zap className="w-5 h-5 flex-shrink-0" />
+                    <div className="flex-1 text-left">
+                      <div className="font-medium">Minimal</div>
+                      <div className="text-xs text-zinc-500">
+                        Apenas histórias importantes
+                      </div>
+                    </div>
+                  </Button>
                 </div>
               </div>
 
@@ -705,112 +962,240 @@ export default function HistoriasPage() {
                   <RotateCcw className="w-4 h-4 mr-2" />
                   Reset Filtros
                 </Button>
-                
+
                 <Button
                   variant="outline"
-                  onClick={() => fetchBatches(true)}
+                  onClick={() => {
+                    setShowFilters(false)
+                    setShowDetails(true)
+                  }}
                   className="w-full text-zinc-400 hover:text-white border-zinc-600"
-                  title="Recarregar todas as histórias"
                 >
-                  <RotateCcw className="w-4 h-4 mr-2" />
-                  Recarregar Dados
+                  <Info className="w-4 h-4 mr-2" />
+                  Como Usar
                 </Button>
-              </div>
-
-              <div className="text-xs text-zinc-500 space-y-1">
-                <div>{filteredStories.length} histórias visíveis</div>
-                <div>{connections.length} conexões ativas</div>
-                <div>
-                  {visibleCategories.size}/{storyCategories.length} categorias
-                  selecionadas
-                </div>
               </div>
             </div>
           </div>
         )}
 
-        {/* Overlay para fechar o painel */}
-        {showFilters && (
-          <div
-            className="fixed inset-0 bg-black/30 z-40"
-            onClick={() => setShowFilters(false)}
-          />
-        )}
+        {/* Painel de Controles Lateral */}
+        {showControls && (
+          <div className="fixed right-0 top-0 h-full w-80 bg-zinc-900/95 backdrop-blur-sm border-l border-zinc-700 z-50 shadow-2xl overflow-y-auto">
+            <div className="p-6 space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-bold text-lime-200">Controles</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowControls(false)}
+                  className="text-zinc-400 hover:text-white"
+                >
+                  ✕
+                </Button>
+              </div>
 
-        <div
-          className={`grid grid-cols-1 lg:grid-cols-4 h-screen transition-all duration-300 ${
-            showFilters ? 'lg:ml-80 md:ml-80 sm:ml-72' : ''
-          }`}
-        >
-          <div
-            className={`${selectedStory ? 'lg:col-span-3' : 'lg:col-span-4'} relative`}
-          >
-            <Suspense
-              fallback={
-                <div className="flex items-center justify-center h-full">
-                  <div className="text-center">
-                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-lime-400 mx-auto mb-4"></div>
-                    <p className="text-zinc-400">Carregando mapa mental...</p>
+              {/* Physics Controls */}
+              <div>
+                <h3 className="font-semibold text-cyan-200 mb-3 flex items-center gap-2">
+                  <Zap className="w-4 h-4" />
+                  Física
+                </h3>
+
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-sm text-zinc-300">Repulsão</label>
+                      <span className="text-xs text-lime-400 font-mono">{Math.abs(chargeStrength)}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="20"
+                      max="300"
+                      value={Math.abs(chargeStrength)}
+                      onChange={(e) => setChargeStrength(-parseInt(e.target.value))}
+                      className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                    />
+                    <div className="text-xs text-zinc-500 mt-1 flex justify-between">
+                      <span>Fraca (20)</span>
+                      <span>Forte (300)</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-sm text-zinc-300">Distância Links</label>
+                      <span className="text-xs text-lime-400 font-mono">{linkDistance}px</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="10"
+                      max="150"
+                      value={linkDistance}
+                      onChange={(e) => setLinkDistance(parseInt(e.target.value))}
+                      className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+                    />
+                    <div className="text-xs text-zinc-500 mt-1 flex justify-between">
+                      <span>Curta (10px)</span>
+                      <span>Longa (150px)</span>
+                    </div>
                   </div>
                 </div>
-              }
-            >
-              <Canvas
-                gl={{ antialias: true, alpha: true }}
-                style={{ background: 'transparent' }}
-                className="bg-transparent"
-                onCreated={({ gl }) => {
-                  try {
-                    const canvas = gl.domElement
-                    const handleContextLost = (e: Event) => {
-                      e.preventDefault()
-                      console.warn('WebGL context lost, attempting to recover')
-                    }
-                    canvas.addEventListener(
-                      'webglcontextlost',
-                      handleContextLost,
-                      false
-                    )
-                  } catch {
-                    console.warn('Failed to set up WebGL context lost handler')
-                  }
-                }}
-              >
-                <Scene
-                  stories={filteredStories}
-                  selectedStory={selectedStory}
-                  hoveredStory={hoveredStory}
-                  onStoryClick={setSelectedStory}
-                  onStoryHover={setHoveredDebounced}
-                  visibleCategories={visibleCategories}
-                  connections={connections}
-                  spawnedIds={spawnedIdsRef.current}
-                />
-              </Canvas>
-            </Suspense>
+              </div>
 
-            {!selectedStory && !showFilters && (
-              <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg p-4 z-10">
-                <div className="text-sm text-white/80 space-y-1">
-                  <div>🖱️ Clique e arraste para rotacionar</div>
-                  <div>🔍 Scroll para zoom</div>
-                  <div>👆 Clique nas esferas para detalhes</div>
-                  <div>⌨️ F para tela cheia • ESC para sair</div>
+              <div className="h-px bg-zinc-700" />
+
+              {/* Visual Controls */}
+              <div>
+                <h3 className="font-semibold text-purple-200 mb-3 flex items-center gap-2">
+                  <Palette className="w-4 h-4" />
+                  Visual
+                </h3>
+
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-sm text-zinc-300">Tamanho dos Nós</label>
+                      <span className="text-xs text-lime-400 font-mono">{nodeSize.toFixed(1)}x</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0.5"
+                      max="2"
+                      step="0.1"
+                      value={nodeSize}
+                      onChange={(e) => setNodeSize(parseFloat(e.target.value))}
+                      className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <label className="text-sm text-zinc-300">Opacidade Links</label>
+                      <span className="text-xs text-lime-400 font-mono">{Math.round(linkOpacity * 100)}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0.1"
+                      max="1"
+                      step="0.05"
+                      value={linkOpacity}
+                      onChange={(e) => setLinkOpacity(parseFloat(e.target.value))}
+                      className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <label className="text-sm text-zinc-300">Mostrar Labels</label>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={showLabels}
+                        onChange={(e) => setShowLabels(e.target.checked)}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                    </label>
+                  </div>
                 </div>
               </div>
-            )}
 
-            <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 z-10">
-              <div className="text-sm text-white/80">
-                <div className="font-semibold text-lime-400">
-                  {filteredStories.length} Histórias
+              <div className="h-px bg-zinc-700" />
+
+              {/* Actions */}
+              <div>
+                <h3 className="font-semibold text-amber-200 mb-3 flex items-center gap-2">
+                  <Settings className="w-4 h-4" />
+                  Ações
+                </h3>
+
+                <div className="space-y-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={resetGraphLayout}
+                    className="w-full text-amber-300 hover:bg-amber-900/20 border-amber-600/50"
+                  >
+                    <RotateCcw className="w-4 h-4 mr-2" />
+                    Reorganizar
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const g = graphRef.current
+                      if (g && typeof g.zoomToFit === 'function') {
+                        g.zoomToFit(400, 50)
+                      }
+                    }}
+                    className="w-full text-cyan-300 hover:bg-cyan-900/20 border-cyan-600/50"
+                  >
+                    <Maximize className="w-4 h-4 mr-2" />
+                    Ajustar à Tela
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setChargeStrength(-120)
+                      setLinkDistance(30)
+                      setNodeSize(1)
+                      setLinkOpacity(0.2)
+                      setShowLabels(true)
+                    }}
+                    className="w-full text-zinc-400 hover:bg-zinc-700/50 border-zinc-600"
+                  >
+                    Resetar Padrões
+                  </Button>
                 </div>
-                <div>{connections.length} Conexões</div>
-                <div>
-                  {visibleCategories.size}/{storyCategories.length} Categorias
-                </div>
+              </div>
+
+              <div className="text-xs text-zinc-400 bg-zinc-800/50 p-3 rounded space-y-1">
+                <div className="text-cyan-300 font-semibold mb-1">💡 Dicas:</div>
+                <div>• Repulsão alta = nós mais espaçados</div>
+                <div>• Distância maior = grafo mais largo</div>
+                <div>• Arraste nós para posicionamento manual</div>
+                <div>• Scroll para zoom, arraste para mover</div>
               </div>
             </div>
+          </div>
+        )}
+
+        <div className={`grid ${selectedStory ? 'lg:grid-cols-3' : 'grid-cols-1'} h-[calc(100vh-140px)]`}>
+          <div className={`${selectedStory ? 'lg:col-span-2' : 'col-span-1'} relative bg-zinc-950`}>
+            {/* Stats overlay */}
+            <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 z-10">
+              <div className="text-xs text-white/80 space-y-0.5">
+                <div className="font-semibold text-white">
+                  {filteredStories.length} nodes
+                </div>
+                <div>{graphData.links.length} links</div>
+              </div>
+            </div>
+
+            {/* Force Graph */}
+            <ForceGraph2D
+              ref={graphRef}
+              graphData={graphData}
+              nodeId="id"
+              nodeVal="val"
+              nodeLabel="name"
+              nodeColor="color"
+              linkSource="source"
+              linkTarget="target"
+              onNodeClick={handleNodeClick}
+              onNodeHover={handleNodeHover}
+              nodeCanvasObject={paintNodeCanvas}
+              linkCanvasObject={paintLinkCanvas}
+              backgroundColor="#000000"
+              enableNodeDrag={true}
+              enableZoomInteraction={true}
+              enablePanInteraction={true}
+              cooldownTime={3000}
+              warmupTicks={100}
+            />
           </div>
 
           {selectedStory && (
@@ -825,17 +1210,15 @@ export default function HistoriasPage() {
                       className="mb-4"
                       style={{
                         backgroundColor:
-                          storyCategories.find(
-                            (c) => c.id === selectedStory.category
-                          )?.color + '33',
+                          storyCategories.find((c) => c.id === selectedStory.category)
+                            ?.color + '33',
                         color: storyCategories.find(
                           (c) => c.id === selectedStory.category
                         )?.color
                       }}
                     >
-                      {selectedStory.categorySource === 'fallback'
-                        ? '?'
-                        : storyCategories.find((c) => c.id === selectedStory.category)?.name}
+                      {storyCategories.find((c) => c.id === selectedStory.category)
+                        ?.name}
                     </Badge>
                   </div>
                   <Button
@@ -855,23 +1238,60 @@ export default function HistoriasPage() {
                   </p>
                 </div>
 
-                <div>
-                  <h3 className="font-semibold text-cyan-200 mb-2">História</h3>
-                  <p className="text-zinc-300 text-sm leading-relaxed">
-                    {selectedStory.intro || ''}
-                  </p>
-                </div>
+                {(selectedStory as any).intro && (
+                  <div>
+                    <h3 className="font-semibold text-cyan-200 mb-2">História</h3>
+                    <p className="text-zinc-300 text-sm leading-relaxed">
+                      {(selectedStory as any).intro}
+                    </p>
+                  </div>
+                )}
+
+                {/* Conteúdo Markdown Completo */}
+                {selectedStory.content && (
+                  <div>
+                    <h3 className="font-semibold text-cyan-200 mb-3 flex items-center gap-2">
+                      <BookOpen className="w-4 h-4" />
+                      Conteúdo Completo
+                    </h3>
+                    <div className="prose prose-invert prose-sm max-w-none text-zinc-300 leading-relaxed">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          h1: (props) => <h1 className="text-2xl font-bold text-lime-300 mt-6 mb-4" {...props} />,
+                          h2: (props) => <h2 className="text-xl font-bold text-cyan-300 mt-5 mb-3" {...props} />,
+                          h3: (props) => <h3 className="text-lg font-semibold text-purple-300 mt-4 mb-2" {...props} />,
+                          h4: (props) => <h4 className="text-base font-semibold text-amber-300 mt-3 mb-2" {...props} />,
+                          p: (props) => <p className="text-zinc-300 mb-4 leading-relaxed" {...props} />,
+                          ul: (props) => <ul className="list-disc list-inside text-zinc-300 mb-4 space-y-1" {...props} />,
+                          ol: (props) => <ol className="list-decimal list-inside text-zinc-300 mb-4 space-y-1" {...props} />,
+                          li: (props) => <li className="text-zinc-300" {...props} />,
+                          a: (props) => <a className="text-lime-400 hover:text-lime-300 underline" {...props} />,
+                          blockquote: (props) => <blockquote className="border-l-4 border-cyan-500 pl-4 italic text-zinc-400 my-4" {...props} />,
+                          code: (props: any) => {
+                            const { inline, ...rest } = props
+                            return inline ? (
+                              <code className="bg-zinc-800 text-lime-400 px-1.5 py-0.5 rounded text-sm font-mono" {...rest} />
+                            ) : (
+                              <code className="block bg-zinc-800 text-lime-400 p-4 rounded-lg text-sm font-mono overflow-x-auto my-4" {...rest} />
+                            )
+                          },
+                          strong: (props) => <strong className="font-bold text-white" {...props} />,
+                          em: (props) => <em className="italic text-cyan-200" {...props} />,
+                        }}
+                      >
+                        {selectedStory.content}
+                      </ReactMarkdown>
+                    </div>
+                  </div>
+                )}
 
                 {selectedStory.tags.length > 0 && (
                   <div>
                     <h3 className="font-semibold text-purple-200 mb-2">Tags</h3>
                     <div className="flex flex-wrap gap-2">
                       {selectedStory.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="text-xs"
-                        >
+                        <Badge key={tag} variant="secondary" className="text-xs">
                           {tag}
                         </Badge>
                       ))}
@@ -881,14 +1301,10 @@ export default function HistoriasPage() {
 
                 {selectedStory.connections.length > 0 && (
                   <div>
-                    <h3 className="font-semibold text-orange-200 mb-2">
-                      Conexões
-                    </h3>
+                    <h3 className="font-semibold text-orange-200 mb-2">Conexões</h3>
                     <div className="space-y-2">
                       {selectedStory.connections.map((connectionId) => {
-                        const connectedStory = stories.find(
-                          (s) => s.id === connectionId
-                        )
+                        const connectedStory = stories.find((s) => s.id === connectionId)
                         if (!connectedStory) return null
                         return (
                           <Button
@@ -920,8 +1336,8 @@ export default function HistoriasPage() {
                       .replace('-', ' ')
                       .replace(/\b\w/g, (l) => l.toUpperCase())}
                   </div>
-                  {selectedStory.author && (
-                    <div>Autor: {selectedStory.author}</div>
+                  {(selectedStory as any).author && (
+                    <div>Autor: {(selectedStory as any).author}</div>
                   )}
                   <div>Importância: {selectedStory.importance}</div>
                   <div>Status: {selectedStory.status}</div>
@@ -952,39 +1368,46 @@ export default function HistoriasPage() {
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-semibold text-cyan-200 mb-2">
-                    Navegação 3D
-                  </h3>
+                  <h3 className="font-semibold text-cyan-200 mb-2">Navegação</h3>
                   <ul className="text-sm text-zinc-300 space-y-1">
                     <li>
-                      • <strong>Rotacionar:</strong> Clique e arraste com o
-                      mouse
+                      • <strong>Zoom:</strong> Use a roda do mouse ou pinch no touchpad
                     </li>
                     <li>
-                      • <strong>Zoom:</strong> Use a roda do mouse
+                      • <strong>Mover:</strong> Clique e arraste o fundo
                     </li>
                     <li>
-                      • <strong>Mover:</strong> Botão direito + arrastar
+                      • <strong>Selecionar:</strong> Clique em um nó
                     </li>
                     <li>
-                      • <strong>Focar:</strong> Clique duplo em uma esfera
+                      • <strong>Mover nó:</strong> Arraste um nó para reposicioná-lo
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-purple-200 mb-2">
-                    Categorias
-                  </h3>
+                  <h3 className="font-semibold text-amber-200 mb-2">Modos de Visualização</h3>
+                  <ul className="text-sm text-zinc-300 space-y-2">
+                    <li>
+                      • <strong className="text-amber-300">Global:</strong> Mostra todas as histórias de uma vez. Ideal para visão geral, mas pode ficar lento com muitos nós (500+).
+                    </li>
+                    <li>
+                      • <strong className="text-cyan-300">Local:</strong> Mostra apenas a história selecionada e seus vizinhos (1-4 hops). Perfeito para explorar relações específicas. Similar ao grafo local do Obsidian.
+                    </li>
+                    <li>
+                      • <strong className="text-purple-300">Minimal:</strong> Mostra apenas histórias de alta importância (críticas e altas). Útil para focar no essencial em grandes datasets.
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-purple-200 mb-2">Categorias</h3>
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     {storyCategories.map((category) => {
                       const IconComponent =
                         categoryIcons[category.id as keyof typeof categoryIcons]
                       return (
-                        <div
-                          key={category.id}
-                          className="flex items-center gap-2"
-                        >
+                        <div key={category.id} className="flex items-center gap-2">
                           <IconComponent
                             className="w-4 h-4"
                             style={{ color: category.color }}
@@ -997,11 +1420,9 @@ export default function HistoriasPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-orange-200 mb-2">
-                    Conexões
-                  </h3>
+                  <h3 className="font-semibold text-orange-200 mb-2">Conexões</h3>
                   <p className="text-sm text-zinc-300">
-                    Quando você seleciona uma história, linhas cyan aparecem
+                    Quando você seleciona uma história, as linhas cyan aparecem
                     conectando-a às histórias relacionadas. A espessura da linha
                     indica a força da conexão.
                   </p>
@@ -1016,13 +1437,393 @@ export default function HistoriasPage() {
                       • <strong>F:</strong> Alternar tela cheia
                     </li>
                     <li>
-                      • <strong>ESC:</strong> Fechar detalhes/sair da tela cheia
+                      • <strong>ESC:</strong> Fechar detalhes/filtros
                     </li>
                   </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-lime-200 mb-2">Performance com Muitos Nós</h3>
+                  <div className="text-sm text-zinc-300 space-y-2">
+                    <p>
+                      Este mapa usa renderização em canvas 2D para melhor performance.
+                      O sistema se adapta automaticamente ao tamanho do dataset:
+                    </p>
+                    <ul className="list-disc pl-5 space-y-1">
+                      <li><strong>Até 100 nós:</strong> Performance excelente (60 fps) no modo Global</li>
+                      <li><strong>100-300 nós:</strong> Use modo Global com zoom. LOD simplifica nós distantes</li>
+                      <li><strong>300-1000 nós:</strong> Recomendado usar modo Local ou Minimal</li>
+                      <li><strong>1000+ nós:</strong> Use modo Local (mostra apenas subgrafo) para melhor UX</li>
+                    </ul>
+                    <p className="mt-2 text-cyan-300">
+                      💡 Dica: Para datasets grandes, comece no modo Minimal para visão geral, 
+                      depois mude para Local ao explorar histórias específicas.
+                    </p>
+                  </div>
                 </div>
               </div>
             </CardContent>
           </Card>
+        </div>
+      )}
+
+      {/* Enhanced Dynamics Panel (Obsidian-like) */}
+      {dynamicsOpen && (
+        <div className="fixed right-6 top-24 z-50 bg-zinc-900/95 backdrop-blur-md border border-zinc-700 rounded-lg shadow-2xl w-80 max-h-[calc(100vh-120px)] overflow-y-auto">
+          <div className="sticky top-0 bg-zinc-900/95 backdrop-blur-md p-4 border-b border-zinc-700 flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-lime-200">⚙️ Física do Grafo</h3>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setDynamicsOpen(false)}
+              className="h-6 w-6 p-0 text-zinc-400 hover:text-white"
+            >
+              ✕
+            </Button>
+          </div>
+
+          <div className="p-4 space-y-4">
+            {/* Physics Presets */}
+            <div>
+              <label className="text-xs font-semibold text-cyan-200 mb-2 block">Presets</label>
+              <div className="grid grid-cols-2 gap-2">
+                <Button
+                  size="sm"
+                  variant={physicsPreset === 'obsidian' ? 'default' : 'ghost'}
+                  onClick={() => applyPreset('obsidian')}
+                  className={`text-xs ${physicsPreset === 'obsidian' ? 'bg-lime-600 hover:bg-lime-700' : ''}`}
+                >
+                  🌌 Obsidian
+                </Button>
+                <Button
+                  size="sm"
+                  variant={physicsPreset === 'tight' ? 'default' : 'ghost'}
+                  onClick={() => applyPreset('tight')}
+                  className={`text-xs ${physicsPreset === 'tight' ? 'bg-lime-600 hover:bg-lime-700' : ''}`}
+                >
+                  🔗 Compact
+                </Button>
+                <Button
+                  size="sm"
+                  variant={physicsPreset === 'wide' ? 'default' : 'ghost'}
+                  onClick={() => applyPreset('wide')}
+                  className={`text-xs ${physicsPreset === 'wide' ? 'bg-lime-600 hover:bg-lime-700' : ''}`}
+                >
+                  🌐 Disperso
+                </Button>
+                <Button
+                  size="sm"
+                  variant={physicsPreset === 'custom' ? 'default' : 'ghost'}
+                  disabled={physicsPreset !== 'custom'}
+                  className={`text-xs ${physicsPreset === 'custom' ? 'bg-purple-600 hover:bg-purple-700' : ''}`}
+                >
+                  🎨 Custom
+                </Button>
+              </div>
+            </div>
+
+            {/* DAG Layout Options */}
+            <div>
+              <label className="text-xs font-semibold text-pink-200 mb-2 block">Layout DAG</label>
+              <div className="grid grid-cols-3 gap-2 mb-2">
+                <Button
+                  size="sm"
+                  variant={dagMode === 'td' ? 'default' : 'ghost'}
+                  onClick={() => setDagMode(dagMode === 'td' ? undefined : 'td')}
+                  className={`text-xs ${dagMode === 'td' ? 'bg-pink-600 hover:bg-pink-700' : ''}`}
+                  title="Top-Down"
+                >
+                  ↓ TD
+                </Button>
+                <Button
+                  size="sm"
+                  variant={dagMode === 'lr' ? 'default' : 'ghost'}
+                  onClick={() => setDagMode(dagMode === 'lr' ? undefined : 'lr')}
+                  className={`text-xs ${dagMode === 'lr' ? 'bg-pink-600 hover:bg-pink-700' : ''}`}
+                  title="Left-Right"
+                >
+                  → LR
+                </Button>
+                <Button
+                  size="sm"
+                  variant={dagMode === undefined ? 'default' : 'ghost'}
+                  onClick={() => setDagMode(undefined)}
+                  className={`text-xs ${dagMode === undefined ? 'bg-zinc-600 hover:bg-zinc-700' : ''}`}
+                  title="Força Normal"
+                >
+                  ⊚ Off
+                </Button>
+              </div>
+              <p className="text-xs text-zinc-400">Layout hierárquico direcional</p>
+            </div>
+
+            {/* Physics Actions */}
+            <div>
+              <label className="text-xs font-semibold text-cyan-200 mb-2 block">Ações da Física</label>
+              <div className="space-y-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={shakeGraph}
+                  className="w-full text-xs text-amber-300 hover:bg-amber-900/20 border-amber-600/50"
+                  title="Adiciona energia aleatória aos nós"
+                >
+                  ⚡ Agitar Grafo
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={resetGraphLayout}
+                  className="w-full text-xs text-cyan-300 hover:bg-cyan-900/20 border-cyan-600/50"
+                  title="Reinicia posições e física"
+                >
+                  🔄 Reset Completo
+                </Button>
+                <div className="text-xs text-zinc-400 bg-zinc-800/50 p-2 rounded">
+                  💡 Arraste nós e solte para ativar a física automaticamente
+                </div>
+              </div>
+            </div>
+
+            {/* Visual Effects */}
+            <div>
+              <label className="text-xs font-semibold text-violet-200 mb-2 block">Efeitos Visuais</label>
+
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-xs text-zinc-300">Partículas Animadas</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={enableParticles}
+                    onChange={(e) => setEnableParticles(e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-9 h-5 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+                </label>
+              </div>
+
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-xs text-zinc-300">Efeito Glow</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={enableGlow}
+                    onChange={(e) => setEnableGlow(e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-9 h-5 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-violet-600"></div>
+                </label>
+              </div>
+
+              <p className="text-xs text-zinc-400 mt-2">Desative para melhor performance em grafos grandes</p>
+            </div>
+
+            {/* Physics State Controls */}
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant={physicsActive ? 'default' : 'outline'}
+                onClick={togglePhysics}
+                className={`flex-1 text-xs ${physicsActive ? 'bg-green-600 hover:bg-green-700' : 'bg-red-900/30 hover:bg-red-900/50'}`}
+              >
+                {physicsActive ? '⏸️ Pausar' : '▶️ Resumir'}
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={resetGraphLayout}
+                className="flex-1 text-xs"
+              >
+                🔄 Reset
+              </Button>
+            </div>
+
+            <div className="h-px bg-zinc-700" />
+
+            {/* Force Parameters */}
+            <div>
+              <label className="text-xs font-semibold text-amber-200 mb-3 block">Forças</label>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Repulsão</span>
+                  <span className="text-xs text-cyan-400 font-mono">{chargeStrengthFactor.toFixed(1)}x</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.5"
+                  max="6"
+                  step="0.1"
+                  value={chargeStrengthFactor}
+                  onChange={(e) => updatePhysicsParam(setChargeStrengthFactor, parseFloat(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-lime-500"
+                />
+              </div>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Distância Links</span>
+                  <span className="text-xs text-cyan-400 font-mono">{linkDistancePadding}px</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="150"
+                  value={linkDistancePadding}
+                  onChange={(e) => updatePhysicsParam(setLinkDistancePadding, parseInt(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-lime-500"
+                />
+              </div>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Força Links</span>
+                  <span className="text-xs text-cyan-400 font-mono">{linkStrengthMultiplier.toFixed(2)}x</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.1"
+                  max="2"
+                  step="0.05"
+                  value={linkStrengthMultiplier}
+                  onChange={(e) => updatePhysicsParam(setLinkStrengthMultiplier, parseFloat(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-lime-500"
+                />
+              </div>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Espaçamento Nós</span>
+                  <span className="text-xs text-cyan-400 font-mono">{collisionPadding}px</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="32"
+                  value={collisionPadding}
+                  onChange={(e) => updatePhysicsParam(setCollisionPadding, parseInt(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-lime-500"
+                />
+              </div>
+            </div>
+
+            <div className="h-px bg-zinc-700" />
+
+            {/* Gravity & Center Forces */}
+            <div>
+              <label className="text-xs font-semibold text-purple-200 mb-3 block">Gravidade</label>
+
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs text-zinc-300">Força Central</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={enableCenterForce}
+                    onChange={(e) => updatePhysicsParam(setEnableCenterForce, e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-9 h-5 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-lime-600"></div>
+                </label>
+              </div>
+
+              {enableCenterForce && (
+                <div className="mb-3 ml-4">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs text-zinc-400">Intensidade</span>
+                    <span className="text-xs text-cyan-400 font-mono">{centerForceStrength.toFixed(2)}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="0.5"
+                    step="0.01"
+                    value={centerForceStrength}
+                    onChange={(e) => updatePhysicsParam(setCenterForceStrength, parseFloat(e.target.value))}
+                    className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                  />
+                </div>
+              )}
+
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs text-zinc-300">Gravidade (X/Y)</span>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={enableGravity}
+                    onChange={(e) => updatePhysicsParam(setEnableGravity, e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-9 h-5 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-lime-600"></div>
+                </label>
+              </div>
+
+              {enableGravity && (
+                <div className="mb-3 ml-4">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs text-zinc-400">Intensidade</span>
+                    <span className="text-xs text-cyan-400 font-mono">{gravityStrength.toFixed(3)}</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="0"
+                    max="0.2"
+                    step="0.005"
+                    value={gravityStrength}
+                    onChange={(e) => updatePhysicsParam(setGravityStrength, parseFloat(e.target.value))}
+                    className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+                  />
+                </div>
+              )}
+            </div>
+
+            <div className="h-px bg-zinc-700" />
+
+            {/* Simulation Parameters */}
+            <div>
+              <label className="text-xs font-semibold text-orange-200 mb-3 block">Simulação</label>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Fricção</span>
+                  <span className="text-xs text-cyan-400 font-mono">{velocityDecay.toFixed(2)}</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.1"
+                  max="0.9"
+                  step="0.05"
+                  value={velocityDecay}
+                  onChange={(e) => updatePhysicsParam(setVelocityDecay, parseFloat(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
+                />
+              </div>
+
+              <div className="mb-3">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs text-zinc-300">Resfriamento</span>
+                  <span className="text-xs text-cyan-400 font-mono">{alphaDecay.toFixed(3)}</span>
+                </div>
+                <input
+                  type="range"
+                  min="0.005"
+                  max="0.1"
+                  step="0.005"
+                  value={alphaDecay}
+                  onChange={(e) => updatePhysicsParam(setAlphaDecay, parseFloat(e.target.value))}
+                  className="w-full h-2 bg-zinc-700 rounded-lg appearance-none cursor-pointer accent-orange-500"
+                />
+              </div>
+            </div>
+
+            {/* Help Text */}
+            <div className="text-xs text-zinc-400 bg-zinc-800/50 p-3 rounded space-y-1">
+              <div className="text-cyan-300 font-semibold mb-1">💡 Dicas:</div>
+              <div>• Repulsão alta = nós mais espaçados</div>
+              <div>• Gravidade puxa nós críticos ao centro</div>
+              <div>• Fricção alta = estabiliza mais rápido</div>
+              <div>• Pause para arrastar nós manualmente</div>
+            </div>
+          </div>
         </div>
       )}
     </div>

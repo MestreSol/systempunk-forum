@@ -1,0 +1,202 @@
+{
+  "main": {
+    "id": "304613fad63466bd",
+    "type": "split",
+    "children": [
+      {
+        "id": "ab99bdefc4439728",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "039de0d1aa76e3d3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Contos/O simples Senhor.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "59f4a5d311f10022",
+    "type": "split",
+    "children": [
+      {
+        "id": "e9d247e4b203584f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "491a29c45bbcf686",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "182461887979515b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ff1fdb232d1685c1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "873c0c87d4f3dca2",
+    "type": "split",
+    "children": [
+      {
+        "id": "7c5b18e01b2a654f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f2060dccff415812",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Contos/O simples Senhor.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "93ca2e3aef7f2c1a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Contos/O simples Senhor.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c798d22f6ea910f8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "acfe3422fd2fa369",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Contos/O simples Senhor.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "publish:Publish changes...": false
+    }
+  },
+  "active": "039de0d1aa76e3d3",
+  "lastOpenFiles": [
+    "Contos/O velho senhor - Primeira pessoa.md",
+    "Eras/Eras Menores/2. Stonepunk (10.000 AC ~ 2.000 AC).md",
+    "Pessoas ou Entidades/Entidades/Harmonissia.md",
+    "Conceitos/Supra-Singularidade.md",
+    "Eras/Eras Menores/00. Apunk (X ~ 10.000).md",
+    "Conceitos/Conceitos Fundamentais/Dualidade.md",
+    "Conceitos/Conceitos Fundamentais/Energia.md",
+    "Conceitos/Conceitos Fundamentais/Dualidade (conflict 2024-09-23-21-41-10).md",
+    "Conceitos/Conceitos Fundamentais/Caos.md",
+    "Pessoas ou Entidades/Entidades/Equitária.md",
+    "Conceitos/Conceitos Fundamentais/Espaço.md",
+    "Conceitos/Conceitos Fundamentais/Esperança.md",
+    "Conceitos/Conceitos Fundamentais/Harmonia.md",
+    "Images/DominiosEterios.png",
+    "Images/DivindadesDoConhecimento.png",
+    "Images/DivindadesDoCaos.png",
+    "Images/DivindadesDasArtes.png",
+    "Images/DivindadesDaGuerra.png",
+    "Images/DivindadesAncestrais.png",
+    "Images/Desconhecido_C.png",
+    "Images/Desconhecido-1.png",
+    "Images/Desconhecido_B.png",
+    "Images/Desconhecido_A.png",
+    "Contos/Monocrom.md",
+    "Eras/Eras Menores/Monopunk.md",
+    "Conceitos/Série de Flux.md",
+    "Contos/O simples Senhor.md",
+    "Contos/O simples Senhor-DESKTOP-B23318D.md",
+    "Contos/O Legado do Autor - A Queda do Criador.md",
+    "Contos/Não sinto minhas mãos.md",
+    "Domínio/Dominios das Planicies da concretude/Primordiz.md",
+    "Conceitos/Divindades.md",
+    "Eventos/Guerra das cores.md",
+    "Conceitos/Essências de Minerva.md",
+    "Conceitos/Domínios etéreos.md",
+    "Conceitos/Concelho dos mil.md",
+    "MinecraftMod/Crafts",
+    "MinecraftMod/Minerios",
+    "MinecraftMod",
+    "Untitled.canvas",
+    "Pessoas ou Entidades/Deidades e divindades",
+    "Roger o Cowboy/Pessoas",
+    "Roger o Cowboy",
+    "Systempunk/Conceitos/Conceitos Fundamentais",
+    "Systempunk/Conceitos",
+    "Systempunk",
+    "RPG/Itens/Magicos/Laminas",
+    "Historia/Systempunk/Geral.canvas"
+  ]
+}

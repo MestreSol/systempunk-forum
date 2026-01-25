@@ -1,0 +1,4 @@
+- **Título Sugerido:** _"Stonepunk: Sob a Sombra de Fallmora"_
+- **Conceito:** Um jogo de sobrevivência onde os jogadores controlam uma das tribos primitivas que migram para a região da **Torre de Fallmora**. Eles devem enfrentar as **monstruosidades criadas por Hego**, explorar o ambiente hostil e construir uma civilização sob a influência da torre.
+- **Mecânicas:** Sistema de construção de aldeias, coleta de recursos, e combate contra criaturas gigantescas.
+- **Destaque:** Eventos aleatórios relacionados ao **Culto Carmesim** e ao **Limiar dos Caídos**.

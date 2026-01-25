@@ -1,0 +1,1 @@
+O prefeito de [[Valley of Figures]], Seu principal feito foi ter se mantido no poder sem apoio do povo da cidade

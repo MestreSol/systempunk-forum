@@ -1,0 +1,233 @@
+{
+  "main": {
+    "id": "304613fad63466bd",
+    "type": "split",
+    "children": [
+      {
+        "id": "3ca100b3e5fdfdde",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "464b98ac0c5070b8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Eras/Eras Menores.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Eras Menores"
+            }
+          },
+          {
+            "id": "1b06e323a728a7c5",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Images/Art/DominiosEterios.png"
+              },
+              "icon": "lucide-image",
+              "title": "DominiosEterios"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "59f4a5d311f10022",
+    "type": "split",
+    "children": [
+      {
+        "id": "e9d247e4b203584f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "491a29c45bbcf686",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "182461887979515b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "profec",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "ff1fdb232d1685c1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "873c0c87d4f3dca2",
+    "type": "split",
+    "children": [
+      {
+        "id": "7c5b18e01b2a654f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f2060dccff415812",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Images/Art/DominiosEterios.png",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for DominiosEterios"
+            }
+          },
+          {
+            "id": "93ca2e3aef7f2c1a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Contos/O simples Senhor.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from O simples Senhor"
+            }
+          },
+          {
+            "id": "c798d22f6ea910f8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "acfe3422fd2fa369",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Contos/O simples Senhor.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of O simples Senhor"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "publish:Publish changes...": false
+    }
+  },
+  "active": "1b06e323a728a7c5",
+  "lastOpenFiles": [
+    "Images/Art/DALL·E 2024-10-15 08.26.56 - In a monochromatic universe, the Red Empire stands out with its striking red hues against a grayscale world. Towering, militaristic fortresses adorned.webp",
+    "Images/Art/DALL·E 2024-10-15 08.30.04 - A scene set in a monochromatic medieval-fantasy world. The young princess, dressed in regal but simple clothing, stands in the middle of a grayscale c.webp",
+    "Images/Art/DALL·E 2024-10-21 17.39.52 - An old grandfather clock with a classic wooden design, standing next to a rustic, vertical piano with a similar wooden design. Both have intricate car.webp",
+    "Images/Art/A_S_Abstrato_T_InfernoB.png",
+    "Images/Art/A_S_Abstrato_T_InfernoA.png",
+    "Eras/Eras Menores.md",
+    "Eras/Eras Menores/Apunk.md",
+    "Eras/Eras Menores/36. War Colorpunk.md",
+    "Eras/Eras Menores/34. Ocean World War.md",
+    "Images/Punks/Cataclisma magico.png",
+    "Images/mestresol_a_meeting_between_deities_from_the_pantheon_of_nature_692db104-688a-4ff9-960d-125c49474ce7.png",
+    "Conceitos/Conceitos Fundamentais/Caos.md",
+    "Eras/Eras Menores/46. Cyber Urban Fantasy.md",
+    "Images/mestresol_a_Meeting_between_deities_from_the_Pantheon_of_ancest_3cd8560d-2bb9-426f-91fd-d11418a94f7b.png",
+    "Untitled 10.md",
+    "Eras/Eras Menores/Bronzepunk.md",
+    "Eras/Eras Menores/Organicpunk.md",
+    "Eras/Eras Menores/Rococopunk.md",
+    "Eras/Eras Menores/Scavengedpunk.md",
+    "Eras/Eras Menores/Silkpunk.md",
+    "Eras/Eras Menores/Solar War.md",
+    "Eras/Class War.md",
+    "Projetos/Jogos/Monocrom.md",
+    "Projetos/As Sombras do relógio - Primeira pessoa.md",
+    "Untitled.md",
+    "Untitled.canvas",
+    "Untitled 2.md",
+    "Untitled 5.md",
+    "Untitled 7.md",
+    "Untitled 8.md",
+    "Untitled 9.md",
+    "weirddi.md",
+    "Eras/Eras Menores/Biopunk Rebellion.md",
+    "Eras/Eras Menores/Biopunk.md",
+    "Forte De Rosvalia_Cidade.jpg",
+    "Forte De Rosvalia.jpg",
+    "324747_bfef99dc1f90417fb2e31783b7a5e40e~mv2.webp",
+    "Untitled 1.canvas",
+    "Culturas",
+    "Lugares/Untitled 1",
+    "Lugares/Paises",
+    "RPG/Untitled",
+    "Untitled 1",
+    "Projetos/Jogos/Cattlepunk",
+    "Projetos/Jogos/Wear Steampunk",
+    "Projetos/Jogos/Steampunk",
+    "Projetos/Jogos/Clockpunk",
+    "Projetos/Jogos/Dungeonpunk",
+    "Images/Nelson.canvas",
+    "Historia/Systempunk/Geral.canvas"
+  ]
+}

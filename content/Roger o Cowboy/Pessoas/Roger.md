@@ -1,0 +1,1 @@
+O jogador escolhe seu nome, Nasceu na vila de [[Valley of Figures]] e quer se livrar da corrupção da sua cidade antes que ela pereça em meio ao caos politico. E não seu nome não é Roger

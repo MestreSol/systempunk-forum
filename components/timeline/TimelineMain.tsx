@@ -9,11 +9,15 @@ interface Props {
 }
 
 export default function TimelineMain({ currentEraData, isLoading }: Props) {
+  if (!currentEraData) return null
+  
+  const IconComponent = currentEraData.icon
+  
   return (
     <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-6 md:p-6">
       <div className={`text-center max-w-3xl md:max-w-5xl mx-auto transition-all duration-700 ${isLoading ? 'opacity-0 transform scale-95' : 'opacity-100 transform scale-100'}`}>
         <div className={`inline-flex items-center justify-center w-20 h-20 md:w-24 md:h-24 mb-6 md:mb-8 rounded-full border-4 ${currentEraData?.accentColor} border-current`}>
-          <currentEraData.icon className="w-12 h-12" />
+          <IconComponent className="w-12 h-12" />
         </div>
 
         <div className={`text-sm font-mono tracking-wider mb-4 ${currentEraData?.accentColor}`}>{currentEraData?.period}</div>

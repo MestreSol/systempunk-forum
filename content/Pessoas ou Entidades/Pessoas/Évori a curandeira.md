@@ -1,0 +1,1 @@
+Nasceu e viveu apos o cataclisma magico, se tornou um tipo de deusa da cura a qual é atribuida a poção de Évori 

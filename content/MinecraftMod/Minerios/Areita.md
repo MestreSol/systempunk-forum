@@ -1,0 +1,1 @@
+Um minério branco translúcido que pode ser encontrado na areia branca. Usado para criar armas e ferramentas leves, mas duráveis.

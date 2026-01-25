@@ -10,6 +10,7 @@
     "textColor": "text-violet-100",
     "accentColor": "text-violet-400",
     "icon": "Flame",
+    "storyPath": "/historias/apunk",
     "details": {
       "overview": "Cosmogonia do universo Systempunk: criação, aspectos e a Profecia do Fim.",
       "keyEvents": [
@@ -33,6 +34,7 @@
     "textColor": "text-amber-100",
     "accentColor": "text-amber-400",
     "icon": "Mountain",
+    "storyPath": "/historias/stonepunk",
     "details": {
       "overview": "Primeiras cidades e religião ao redor da torre, entre monstros e milagres.",
       "keyEvents": [
@@ -717,6 +719,7 @@
     "textColor": "text-cyan-100",
     "accentColor": "text-teal-300",
     "icon": "Bug",
+    "storyPath": "/historias/nanopunk-noir",
     "details": {
       "overview": "Falências críticas; migração estratégica ao espaço começa.",
       "keyEvents": [

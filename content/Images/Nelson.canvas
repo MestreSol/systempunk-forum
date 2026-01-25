@@ -1,0 +1,35 @@
+{
+	"nodes":[
+		{"id":"fb8f161cb136d1d5","type":"group","x":-620,"y":-940,"width":880,"height":520,"color":"1","label":"Livros"},
+		{"id":"0042d0ae9a5f214c","type":"group","x":-597,"y":260,"width":857,"height":360,"label":"Jogos"},
+		{"id":"3a176e2eb4f3ea9d","type":"group","x":-597,"y":1440,"width":872,"height":320,"label":"Divulgação"},
+		{"id":"63126113419f6c8e","type":"file","file":"324747_bfef99dc1f90417fb2e31783b7a5e40e~mv2.webp","x":360,"y":-795,"width":400,"height":250},
+		{"id":"eb2fd5be651357ad","type":"file","file":"Images/Design-sem-nome-3.png","x":-1040,"y":-901,"width":260,"height":183},
+		{"id":"292e3ddc2babf1f6","type":"file","file":"Projetos/As Sombras do relógio - Primeira pessoa.md","x":-600,"y":-860,"width":400,"height":100},
+		{"id":"94becade729126bb","type":"file","file":"Projetos/Eu confio em voce.md","x":-180,"y":-860,"width":400,"height":60},
+		{"id":"f2b8ae60357ca6e9","type":"file","file":"Projetos/Não sinto minhas mãos.md","x":-180,"y":-720,"width":400,"height":100},
+		{"id":"1562eb822aceece4","type":"file","file":"Projetos/O Legado do Autor - A Queda do Criador.md","x":-180,"y":-560,"width":400,"height":100},
+		{"id":"8de6fd40973837c9","type":"text","text":"Short Content","x":-577,"y":1526,"width":250,"height":60},
+		{"id":"8b922d8bfb221679","type":"text","text":"Canal de Jogos","x":-290,"y":1526,"width":250,"height":60},
+		{"id":"82842b6bd068dae0","type":"text","text":"Google Ads","x":5,"y":1526,"width":250,"height":60},
+		{"id":"b1ff38ec157fef24","type":"text","text":"Patron?","x":5,"y":1620,"width":250,"height":60},
+		{"id":"977795141409681d","type":"text","text":"ARG - Nova\nhttps://www.youtube.com/watch?v=ADMdGevrcd8&t=315s","x":-290,"y":1620,"width":250,"height":50},
+		{"id":"f4a9f5a2418b5f41","type":"file","file":"Projetos/Jogos/Lab.md","x":-577,"y":327,"width":400,"height":50},
+		{"id":"20ff01d687b78f63","type":"file","file":"Projetos/Jogos/Monocrom.md","x":-160,"y":327,"width":400,"height":50},
+		{"id":"ec9e991e11179759","type":"file","file":"Projetos/Jogos/Stonepunk/Tower of Fallmora.md","x":-577,"y":400,"width":400,"height":50},
+		{"id":"eca91e923e686728","type":"file","file":"Projetos/Jogos/Two Falls.md","x":-160,"y":400,"width":400,"height":50},
+		{"id":"2e84c575a3287550","type":"file","file":"Projetos/Jogos/Perdidos No Horizonte - N.O.V.A..md","x":-577,"y":480,"width":817,"height":50},
+		{"id":"cee0b127db0259e7","type":"file","file":"Images/Steam_icon_logo.svg.png","x":460,"y":370,"width":160,"height":160},
+		{"id":"ecb9c62681aed2a3","type":"file","file":"Images/Xbox_logo_(2019).svg","x":740,"y":370,"width":201,"height":160},
+		{"id":"2a60510130ee8a83","type":"file","file":"Images/devolver-scaled.webp","x":460,"y":180,"width":200,"height":113}
+	],
+	"edges":[
+		{"id":"9afea211f4d79d81","fromNode":"292e3ddc2babf1f6","fromSide":"left","toNode":"eb2fd5be651357ad","toSide":"right","label":"Publicar"},
+		{"id":"d62e7d4b23e51c12","fromNode":"94becade729126bb","fromSide":"right","toNode":"63126113419f6c8e","toSide":"left"},
+		{"id":"8bb164be5fa1ed1a","fromNode":"f2b8ae60357ca6e9","fromSide":"right","toNode":"63126113419f6c8e","toSide":"left"},
+		{"id":"90200ea779e250df","fromNode":"1562eb822aceece4","fromSide":"right","toNode":"63126113419f6c8e","toSide":"left"},
+		{"id":"d70078337da56440","fromNode":"0042d0ae9a5f214c","fromSide":"right","toNode":"cee0b127db0259e7","toSide":"left"},
+		{"id":"c5bccc8305d4b650","fromNode":"cee0b127db0259e7","fromSide":"right","toNode":"ecb9c62681aed2a3","toSide":"left"},
+		{"id":"08aa62af0b03adc0","fromNode":"20ff01d687b78f63","fromSide":"right","toNode":"2a60510130ee8a83","toSide":"left"}
+	]
+}

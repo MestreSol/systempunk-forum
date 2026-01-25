@@ -1,0 +1,9 @@
+![[CyberUrbanFantazy.webp]]
+**Início:**  
+Após a vitória do **Conselho dos Magos** na **Myth War**, o mundo abandonou os ideais de harmonia com a natureza da era **Solarpunk**. A fusão de magia e tecnologia tornou-se a base para o crescimento descontrolado das cidades, que passaram a se expandir verticalmente, criando vastas metrópoles que se erguiam acima dos restos do mundo natural. As cidades tornaram-se centros de inovação, mas também de desigualdade, onde criaturas mágicas, humanos e seres híbridos conviviam em um ambiente de avanços incessantes e decadência urbana.
+
+**Auge:**  
+As metrópoles alcançaram um nível de desenvolvimento sem precedentes. Sistemas de transporte mágico-tecnológico conectavam torres flutuantes e megacidades, enquanto a magia alimentava as redes elétricas e os serviços urbanos. Máquinas mágicas, inteligência artificial encantada e criaturas artificiais moldavam a vida cotidiana. Essa era viu um florescimento cultural e artístico, mas também uma fragmentação social, onde elites mágicas controlavam o progresso, enquanto as classes mais baixas sobreviviam em bairros superlotados e decadentes.
+
+**Queda:**  
+A busca por novos recursos para sustentar o crescimento desenfreado levou as elites a reativarem antigas instalações espaciais da era pré-cataclísmica. Inicialmente, esses esforços tinham como objetivo fornecer matéria-prima para as megacidades, mas a exploração revelou os potenciais das colônias espaciais abandonadas. Essa descoberta reavivou o sonho da expansão interplanetária. No final da era, um movimento global foi iniciado para retomar a exploração espacial, marcando o fim da **Cyber Urban Fantasy** e a transição para a era **Spacialpunk**, onde a humanidade voltaria a olhar para as estrelas.

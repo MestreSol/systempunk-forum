@@ -1,0 +1,1 @@
+A singularidade mais antiga de todas poderia ser chamada de "Aevum Primus", que significa "Primeiro Eterno" em latim. Esse nome reflete sua posição como a primeira criação das supra-singularidades e sua natureza atemporal e eterna.

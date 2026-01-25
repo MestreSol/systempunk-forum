@@ -1,0 +1,229 @@
+{
+  "main": {
+    "id": "304613fad63466bd",
+    "type": "split",
+    "children": [
+      {
+        "id": "379af843c8418250",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "367c393da16cf844",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Contos/O velho senhor - Primeira pessoa.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "O velho senhor - Primeira pessoa"
+            }
+          },
+          {
+            "id": "21fd5ff3a966722c",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "59f4a5d311f10022",
+    "type": "split",
+    "children": [
+      {
+        "id": "e9d247e4b203584f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "491a29c45bbcf686",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "182461887979515b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "ff1fdb232d1685c1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "873c0c87d4f3dca2",
+    "type": "split",
+    "children": [
+      {
+        "id": "7c5b18e01b2a654f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f2060dccff415812",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Contos/O simples Senhor.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for O simples Senhor"
+            }
+          },
+          {
+            "id": "93ca2e3aef7f2c1a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Contos/O simples Senhor.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from O simples Senhor"
+            }
+          },
+          {
+            "id": "c798d22f6ea910f8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "acfe3422fd2fa369",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Contos/O simples Senhor.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of O simples Senhor"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "publish:Publish changes...": false
+    }
+  },
+  "active": "21fd5ff3a966722c",
+  "lastOpenFiles": [
+    "Contos/O velho senhor - Primeira pessoa.md",
+    "Contos/As Sombras do relógio - Primeira pessoa.md",
+    "Contos/O simples Senhor-DESKTOP-B23318D.md",
+    "Contos/O simples Senhor.md",
+    "Contos/Não sinto minhas mãos.md",
+    "Contos/Monocrom.md",
+    "Notas de versão.md",
+    "Introdução.md",
+    "Images/Quarto.png",
+    "87aa14bb-4566-49e1-9b25-0652f200de11.webp",
+    "Conceitos/Magias/Arcânicas.md",
+    "Systempunk/Conceitos/Conceitos Fundamentais",
+    "Systempunk/Conceitos",
+    "Systempunk",
+    "Eras/Eras Menores/2. Stonepunk (10.000 AC ~ 2.000 AC).md",
+    "Pessoas ou Entidades/Entidades/Harmonissia.md",
+    "Conceitos/Supra-Singularidade.md",
+    "Eras/Eras Menores/00. Apunk (X ~ 10.000).md",
+    "Conceitos/Conceitos Fundamentais/Dualidade.md",
+    "Conceitos/Conceitos Fundamentais/Energia.md",
+    "Conceitos/Conceitos Fundamentais/Dualidade (conflict 2024-09-23-21-41-10).md",
+    "Conceitos/Conceitos Fundamentais/Caos.md",
+    "Pessoas ou Entidades/Entidades/Equitária.md",
+    "Conceitos/Conceitos Fundamentais/Espaço.md",
+    "Conceitos/Conceitos Fundamentais/Esperança.md",
+    "Conceitos/Conceitos Fundamentais/Harmonia.md",
+    "Images/DominiosEterios.png",
+    "Images/DivindadesDoConhecimento.png",
+    "Images/DivindadesDoCaos.png",
+    "Images/DivindadesDasArtes.png",
+    "Images/DivindadesDaGuerra.png",
+    "Images/DivindadesAncestrais.png",
+    "Images/Desconhecido_C.png",
+    "Images/Desconhecido-1.png",
+    "Eras/Eras Menores/Monopunk.md",
+    "Conceitos/Série de Flux.md",
+    "Contos/O Legado do Autor - A Queda do Criador.md",
+    "Domínio/Dominios das Planicies da concretude/Primordiz.md",
+    "Conceitos/Divindades.md",
+    "MinecraftMod/Crafts",
+    "MinecraftMod/Minerios",
+    "MinecraftMod",
+    "Untitled.canvas",
+    "Pessoas ou Entidades/Deidades e divindades",
+    "Roger o Cowboy/Pessoas",
+    "Roger o Cowboy",
+    "RPG/Itens/Magicos/Laminas",
+    "Historia/Systempunk/Geral.canvas"
+  ]
+}

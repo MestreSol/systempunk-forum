@@ -1,0 +1,1 @@
+Um minério raro e precioso que pode ser encontrado em áreas secretas ou protegidas. Usado para criar itens sagrados ou encantados.
