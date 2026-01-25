@@ -1529,7 +1529,7 @@ export default function HistoriasPage() {
                 <Button
                   size="sm"
                   variant={dagMode === 'td' ? 'default' : 'ghost'}
-                  onClick={() => setDagMode(dagMode === 'td' ? null : 'td')}
+                  onClick={() => setDagMode(dagMode === 'td' ? undefined : 'td')}
                   className={`text-xs ${dagMode === 'td' ? 'bg-pink-600 hover:bg-pink-700' : ''}`}
                   title="Top-Down"
                 >
@@ -1538,7 +1538,7 @@ export default function HistoriasPage() {
                 <Button
                   size="sm"
                   variant={dagMode === 'lr' ? 'default' : 'ghost'}
-                  onClick={() => setDagMode(dagMode === 'lr' ? null : 'lr')}
+                  onClick={() => setDagMode(dagMode === 'lr' ? undefined : 'lr')}
                   className={`text-xs ${dagMode === 'lr' ? 'bg-pink-600 hover:bg-pink-700' : ''}`}
                   title="Left-Right"
                 >
@@ -1546,9 +1546,9 @@ export default function HistoriasPage() {
                 </Button>
                 <Button
                   size="sm"
-                  variant={dagMode === null ? 'default' : 'ghost'}
-                  onClick={() => setDagMode(null)}
-                  className={`text-xs ${dagMode === null ? 'bg-zinc-600 hover:bg-zinc-700' : ''}`}
+                  variant={dagMode === undefined ? 'default' : 'ghost'}
+                  onClick={() => setDagMode(undefined)}
+                  className={`text-xs ${dagMode === undefined ? 'bg-zinc-600 hover:bg-zinc-700' : ''}`}
                   title="Força Normal"
                 >
                   ⊚ Off
