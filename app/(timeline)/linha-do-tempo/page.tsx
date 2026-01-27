@@ -6,7 +6,7 @@ import BackgroundLayers from '@/components/timeline/BackgroundLayers'
 import TimelineHeader from '@/components/timeline/TimelineHeader'
 import TimelineMain from '@/components/timeline/TimelineMain'
 import DetailsPanel from '@/components/timeline/DetailsPanel'
-import useTimeline from '../../../hooks/useTimeline'
+import useTimeline from '@/hooks/useTimeline'
 
 const rawEras = eras as any[]
 

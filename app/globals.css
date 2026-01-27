@@ -354,4 +354,20 @@ html {
   background: rgb(82 82 91);
 }
 
+/* Loading animation for graph */
+@keyframes grid-pulse {
+  0%, 100% {
+    opacity: 0.05;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.15;
+    transform: scale(1.02);
+  }
+}
+
+.animate-grid-pulse {
+  animation: grid-pulse 2s ease-in-out infinite;
+}
+
 

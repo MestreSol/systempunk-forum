@@ -23,21 +23,95 @@ import {
   Palette,
   HelpCircle,
   Settings,
-  Play,
-  Pause,
   Sliders,
-  ChevronDown,
-  ChevronUp
 } from 'lucide-react'
 import type { Story, StoryConnection } from '@/types/Story.type'
 import { storyCategories } from '@/mocks/Stories'
 
-// Dynamically import ForceGraph2D to avoid SSR issues
 const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex items-center justify-center bg-zinc-950">
-      <div className="text-zinc-400">Carregando grafo...</div>
+    <div className="w-full h-full flex items-center justify-center bg-zinc-950 relative overflow-hidden">
+      {/* Animated background grid */}
+      <div className="absolute inset-0 opacity-10">
+        <div
+          className="absolute inset-0 animate-grid-pulse"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #22c55e 1px, transparent 1px)',
+            backgroundSize: '50px 50px'
+          }}
+        />
+      </div>
+
+      {/* Central loading animation */}
+      <div className="relative z-10 flex flex-col items-center gap-6">
+        {/* Orbiting nodes */}
+        <div className="relative w-32 h-32">
+          {/* Central core */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-4 h-4 bg-lime-400 rounded-full animate-pulse shadow-lg shadow-lime-400/50" />
+          </div>
+
+          {/* Orbiting particles */}
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="absolute inset-0 animate-spin"
+              style={{
+                animationDuration: `${2 + i * 0.5}s`,
+                animationDelay: `${i * 0.2}s`
+              }}
+            >
+              <div
+                className="absolute top-0 left-1/2 w-3 h-3 -ml-1.5 rounded-full"
+                style={{
+                  backgroundColor: ['#22c55e', '#a78bfa', '#06b6d4'][i],
+                  boxShadow: `0 0 10px ${['#22c55e', '#a78bfa', '#06b6d4'][i]}`
+                }}
+              />
+            </div>
+          ))}
+
+          {/* Connection lines */}
+          <svg className="absolute inset-0 w-full h-full opacity-30">
+            <circle
+              cx="64"
+              cy="64"
+              r="60"
+              fill="none"
+              stroke="#22c55e"
+              strokeWidth="1"
+              strokeDasharray="4 4"
+              className="animate-spin"
+              style={{ animationDuration: '8s' }}
+            />
+          </svg>
+        </div>
+
+        {/* Loading text with gradient */}
+        <div className="text-center space-y-2">
+          <div className="text-lg font-semibold bg-gradient-to-r from-lime-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
+            Carregando grafo
+          </div>
+          <div className="flex items-center gap-1 justify-center">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className="w-2 h-2 bg-lime-400 rounded-full animate-bounce"
+                style={{
+                  animationDelay: `${i * 0.15}s`,
+                  animationDuration: '0.6s'
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Stats counter animation */}
+        <div className="text-xs text-zinc-500 font-mono animate-pulse">
+          Inicializando física...
+        </div>
+      </div>
     </div>
   )
 })
