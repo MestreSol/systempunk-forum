@@ -55,7 +55,7 @@ const defaultSocial: Social[] = [
 const defaultQuick: LinkItem[] = [
   { label: 'Início', href: '/' },
   { label: 'Sobre', href: '/about' },
-  { label: 'Projetos', href: '/projects' },
+  { label: 'Projetos', href: '/projects/jogo' },
   { label: 'Notícias', href: '/news' },
   { label: 'Contribuições', href: '/contribuicoes' }
 ]
