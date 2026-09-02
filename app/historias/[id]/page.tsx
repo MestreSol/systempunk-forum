@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useEffect, useState, useRef, useMemo, useCallback, isValidElement, type ReactNode } from 'react'
+import { useParams } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Button } from '@/components/ui/button'
@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import {
   ArrowLeft,
+  ArrowRight,
   ExternalLink,
   Share2,
   Copy,
@@ -23,10 +24,49 @@ import {
 } from 'lucide-react'
 import type { Story } from '@/types/Story.type'
 import Image from 'next/image'
+import { useStoryNavigation } from '@/hooks/useStoryNavigation'
+
+// Strips inline markdown formatting (bold/italic/code/links) from a raw
+// markdown string, e.g. for a heading like "### **Título do Jogo:**" whose
+// captured text still contains the "**...**" wrapping.
+function stripInlineMarkdown(text: string): string {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/__(.+?)__/g, '$1')
+    .replace(/\*(.+?)\*/g, '$1')
+    .replace(/`(.+?)`/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .trim()
+}
+
+// Disambiguates a heading id against ids already seen in the same pass
+// (e.g. repeated "Início"/"Auge"/"Queda" subheadings across multiple eras),
+// so every heading gets a unique DOM id: first occurrence keeps the plain
+// id, later ones get "-2", "-3", etc. `seen` must be a fresh Map per pass —
+// one for the TOC extraction pass, another for the content render pass —
+// so the two stay in sync as long as they encounter headings in the same order.
+function dedupeHeadingId(baseId: string, seen: Map<string, number>): string {
+  const count = (seen.get(baseId) || 0) + 1
+  seen.set(baseId, count)
+  return count > 1 ? `${baseId}-${count}` : baseId
+}
+
+// Flattens rendered React children (e.g. a heading whose only child is a
+// <strong> element) down to their plain text, so heading ids computed from
+// content match the ids computed from the raw markdown for the TOC.
+function getPlainText(node: ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(getPlainText).join('')
+  if (isValidElement(node)) {
+    const props = node.props as { children?: ReactNode }
+    return getPlainText(props.children)
+  }
+  return ''
+}
 
 export default function StoryViewerPage() {
   const params = useParams()
-  const router = useRouter()
+  const { back, forward, canGoForward, visitStory, registerCurrent } = useStoryNavigation()
   const [story, setStory] = useState<Story | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -45,12 +85,14 @@ export default function StoryViewerPage() {
   const [readingProgress, setReadingProgress] = useState(0)
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [activeSection, setActiveSection] = useState<string>('')
-  const [tableOfContents, setTableOfContents] = useState<Array<{ id: string; text: string; level: number }>>([])
+  const [tableOfContents, setTableOfContents] = useState<Array<{ id: string; text: string; level: number; line: number }>>([])
   const [relatedStories, setRelatedStories] = useState<Story[]>([])
   const [reverseConnections, setReverseConnections] = useState<Story[]>([]) // Stories that reference this one
   const [copied, setCopied] = useState(false)
   const [readingTime, setReadingTime] = useState(0)
   const contentRef = useRef<HTMLDivElement>(null)
+  // filename (lowercase) -> real path in content/, loaded once per story load
+  const imageIndexRef = useRef<Record<string, string>>({})
 
   // Helper: convert a string to Title Case while preserving separators (space, hyphen, underscore)
   function toTitleCase(input?: string | null) {
@@ -115,34 +157,41 @@ export default function StoryViewerPage() {
       .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
   }
 
-  // Extract headings from markdown for table of contents
-  function extractHeadings(markdown: string): Array<{ id: string; text: string; level: number }> {
+  // Extract headings from markdown for table of contents. `line` (1-based,
+  // matching remark/react-markdown's node.position.start.line) lets the
+  // content renderers below look up the same id by source position instead
+  // of recomputing/deduping it themselves — recomputing during render is
+  // unsafe here because React Strict Mode's dev-only double-invoke would
+  // increment a shared counter twice per heading, desyncing it from the TOC.
+  function extractHeadings(
+    markdown: string
+  ): Array<{ id: string; text: string; level: number; line: number }> {
     if (!markdown) return []
 
-    const headings: Array<{ id: string; text: string; level: number }> = []
+    const headings: Array<{ id: string; text: string; level: number; line: number }> = []
     const lines = markdown.split('\n')
+    const seenIds = new Map<string, number>()
 
-    for (const line of lines) {
+    lines.forEach((line, index) => {
       // Match standard markdown headings: # ## ###
       const headingMatch = line.match(/^(#{1,3})\s+(.+)$/)
       if (headingMatch) {
         const level = headingMatch[1].length
-        const text = headingMatch[2].trim()
-        const id = generateHeadingId(text)
-        headings.push({ id, text, level })
-        continue
+        const text = stripInlineMarkdown(headingMatch[2].trim())
+        const id = dedupeHeadingId(generateHeadingId(text), seenIds)
+        headings.push({ id, text, level, line: index + 1 })
+        return
       }
 
       // ALSO match bold patterns like **Text:** (common in this content)
       const boldMatch = line.match(/^\*\*([^*]+):\*\*\s*$/)
       if (boldMatch) {
-        const text = boldMatch[1].trim()
-        const id = generateHeadingId(text)
+        const text = stripInlineMarkdown(boldMatch[1].trim())
+        const id = dedupeHeadingId(generateHeadingId(text), seenIds)
         // Treat bold headings as level 2 (similar to ##)
-        headings.push({ id, text, level: 2 })
-        continue
+        headings.push({ id, text, level: 2, line: index + 1 })
       }
-    }
+    })
 
     return headings
   }
@@ -191,10 +240,32 @@ export default function StoryViewerPage() {
 
   useEffect(() => {
     const loadStory = async () => {
+      // Reset per-story UI state up front so nothing leaks from the previously
+      // viewed story when navigating story -> story without a full remount
+      // (this is what caused content to stay hidden behind a stale alert modal).
+      setError(null)
+      setRenderContent(null)
+      setRenderSummary(null)
+      setAlertVisible(false)
+      setAlertType(null)
+      setAlertMessage(null)
+      setContentBlocked(false)
+      setTableOfContents([])
+      setActiveSection('')
+      setRelatedStories([])
+      setReverseConnections([])
+      window.scrollTo(0, 0)
+
       try {
-        // Load the graph data
-        const response = await fetch('/data/graph-data.json')
-        const data = await response.json()
+        // Load the lightweight story index (no `content` field — just enough
+        // to resolve the id and build related/reverse connection lists) and
+        // the image filename -> real path index, in parallel.
+        const [indexResponse, imageIndexResponse] = await Promise.all([
+          fetch('/data/graph-data.json'),
+          fetch('/data/image-index.json')
+        ])
+        const data = await indexResponse.json()
+        imageIndexRef.current = imageIndexResponse.ok ? await imageIndexResponse.json() : {}
 
         // Find the story by ID
         const paramId = String(params.id || '')
@@ -215,17 +286,27 @@ export default function StoryViewerPage() {
           return norm(a) === norm(b)
         }
 
-        const foundStory = data.stories.find((s: Story) => {
+        const foundStoryLight = data.stories.find((s: Story) => {
           return tolerantEquals(s.id, paramId) || tolerantEquals(s.title, paramId) || tolerantEquals(s.title, decodeURIComponent(paramId))
         })
-        if (!foundStory) {
-          console.debug('Story lookup failed for paramId:', paramId, 'available ids (first 20):', data.stories.slice(0,20).map((x:any)=>x.id))
+        if (!foundStoryLight) {
           setError('História não encontrada')
           setLoading(false)
           return
         }
 
+        // The index has everything except `content` — fetch the one story's
+        // full JSON (with content) instead of shipping every story's text.
+        const storyResponse = await fetch(`/data/stories/${encodeURIComponent(foundStoryLight.id)}.json`)
+        if (!storyResponse.ok) {
+          setError('História não encontrada')
+          setLoading(false)
+          return
+        }
+        const foundStory: Story = await storyResponse.json()
+
         setStory(foundStory)
+        registerCurrent(foundStory.id)
 
         // After setting the story, preprocess its markdown content to handle wiki links
         const transformed = await transformWikiLinks(foundStory.content || '', data.stories)
@@ -252,10 +333,6 @@ export default function StoryViewerPage() {
 
         // Extract table of contents from markdown
         const headings = extractHeadings(cleaned)
-        console.log('🔍 DEBUG TOC - Extracted headings:', headings)
-        console.log('🔍 DEBUG TOC - Number of headings:', headings.length)
-        console.log('🔍 DEBUG TOC - Content sample:', cleaned.substring(0, 500))
-        console.log('🔍 DEBUG TOC - Full content length:', cleaned.length)
         setTableOfContents(headings)
 
         // Find related stories based on connections
@@ -282,7 +359,7 @@ export default function StoryViewerPage() {
     if (params.id) {
       loadStory()
     }
-  }, [params.id])
+  }, [params.id, registerCurrent])
 
   // Track scroll progress
   useEffect(() => {
@@ -315,15 +392,9 @@ export default function StoryViewerPage() {
 
   // Handle modal confirmation
   function handleAlertConfirm(allow = false) {
-    if (!allow && alertType === 'warning') {
-      // for warnings, go back to list as per requirement
-      router.push('/about/historias')
-      return
-    }
-
     if (!allow) {
-      // user chose to close without enabling (treat as back)
-      router.push('/about/historias')
+      // user declined: go back to whatever they came from (previous story, or the graph)
+      back()
       return
     }
 
@@ -332,11 +403,25 @@ export default function StoryViewerPage() {
     setContentBlocked(false)
   }
 
-  // Resolves a filename (e.g. "Luminarion.png" or "Images/Luminarion.png") to a valid public URL by trying common folders
+  function encodeContentPath(path: string) {
+    return path
+      .split('/')
+      .map((p) => encodeURIComponent(p))
+      .join('/')
+  }
+
+  // Resolves a filename (e.g. "Luminarion.png" or "Images/Luminarion.png") to
+  // a valid public URL. Looks the bare filename up in the prebuilt image
+  // index first (one object lookup, no network probing) since it's built
+  // from every image actually under content/ — only falls back to guessing
+  // common folders for the rare file the index doesn't know about.
   async function resolveImageUrl(filename: string) {
     if (!filename) return `/content/Images/${filename}`
 
     const normalized = filename.replace(/^\/+/, '') // remove leading slashes
+    const basename = normalized.split('/').pop() || normalized
+    const indexed = imageIndexRef.current[basename.toLowerCase()]
+    if (indexed) return `/content/${encodeContentPath(indexed)}`
 
     // If the inner already contains a folder path, try it directly first
     const candidates = [] as string[]
@@ -479,6 +564,107 @@ export default function StoryViewerPage() {
     return replaced
   }
 
+  // Maps each heading's source line (1-based, matching react-markdown's
+  // node.position.start.line) to its deduped id from extractHeadings, so the
+  // content renderers below can look up the exact same id the TOC uses by
+  // position instead of recomputing/deduping it themselves during render.
+  const contentHeadingIdByLine = useMemo(() => {
+    const map = new Map<number, string>()
+    extractHeadings(renderContent || '').forEach((h) => map.set(h.line, h.id))
+    return map
+  }, [renderContent])
+
+  // Looks up a heading/pseudo-heading's id by its source line, falling back
+  // to a plain (non-deduped) id if the node has no position or no match —
+  // e.g. for markdown that extractHeadings' line-based patterns don't catch.
+  const resolveHeadingId = useCallback(
+    (node: { position?: { start?: { line?: number } } } | undefined, text: string) => {
+      const line = node?.position?.start?.line
+      if (line != null) {
+        const fromLine = contentHeadingIdByLine.get(line)
+        if (fromLine) return fromLine
+      }
+      return generateHeadingId(text)
+    },
+    [contentHeadingIdByLine]
+  )
+
+  // Memoized so this doesn't get recreated (forcing react-markdown to
+  // re-render the whole ~80KB-of-markdown tree) on every unrelated re-render
+  // — e.g. the reading-progress state that updates on every scroll tick.
+  const storyMarkdownComponents = useMemo(
+    () => ({
+      h1: ({ node, ...props }: any) => {
+        const text = getPlainText(props.children)
+        const id = resolveHeadingId(node, text)
+        return <h1 id={id} className="text-3xl font-bold text-lime-100 mb-6 mt-10 scroll-mt-24" {...props} />
+      },
+      h2: ({ node, ...props }: any) => {
+        const text = getPlainText(props.children)
+        const id = resolveHeadingId(node, text)
+        return <h2 id={id} className="text-2xl font-bold text-lime-200 mb-4 mt-8 scroll-mt-24" {...props} />
+      },
+      h3: ({ node, ...props }: any) => {
+        const text = getPlainText(props.children)
+        const id = resolveHeadingId(node, text)
+        return <h3 id={id} className="text-xl font-bold text-cyan-200 mb-3 mt-6 scroll-mt-24" {...props} />
+      },
+      h4: (props: any) => <h4 className="text-lg font-bold text-cyan-200 mb-2 mt-4" {...props} />,
+      strong: ({ node, ...props }: any) => {
+        // Check if this is a heading-like bold (ends with :)
+        const text = getPlainText(props.children)
+        if (text.endsWith(':')) {
+          const id = resolveHeadingId(node, text.replace(/:$/, ''))
+          return (
+            <strong
+              id={id}
+              className="block text-xl font-bold text-lime-200 mb-3 mt-6 scroll-mt-24"
+              {...props}
+            />
+          )
+        }
+        // Regular bold text
+        return <strong {...props} />
+      },
+      p: (props: any) => <p className="text-zinc-300 mb-4 leading-relaxed" {...props} />,
+      ul: (props: any) => <ul className="list-disc list-inside text-zinc-300 mb-4 space-y-2" {...props} />,
+      ol: (props: any) => <ol className="list-decimal list-inside text-zinc-300 mb-4 space-y-2" {...props} />,
+      li: (props: any) => <li className="text-zinc-300" {...props} />,
+      blockquote: (props: any) => (
+        <blockquote className="border-l-4 border-lime-500 pl-4 py-2 italic text-zinc-400 my-4 bg-lime-500/5" {...props} />
+      ),
+      code: (props: any) => {
+        const { node, className, children, ...rest } = props
+        const isInline = !className
+        return isInline ? (
+          <code className="bg-zinc-800 text-lime-300 px-1.5 py-0.5 rounded text-sm" {...rest}>
+            {children}
+          </code>
+        ) : (
+          <code className="block bg-zinc-800 text-lime-300 p-4 rounded-lg overflow-x-auto text-sm" {...rest}>
+            {children}
+          </code>
+        )
+      },
+      a: (props: any) => <a className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-400/30 hover:decoration-cyan-300 transition-colors" {...props} />,
+      img: (props: any) => (
+        <img className="rounded-lg max-w-full h-auto my-6 shadow-lg" {...props} alt={props.alt || ''} />
+      ),
+      table: (props: any) => (
+        <div className="overflow-x-auto my-6 rounded-lg border border-zinc-800">
+          <table className="min-w-full border-collapse" {...props} />
+        </div>
+      ),
+      th: (props: any) => (
+        <th className="border border-zinc-700 bg-zinc-800 px-4 py-2 text-left text-zinc-200 font-semibold" {...props} />
+      ),
+      td: (props: any) => (
+        <td className="border border-zinc-700 px-4 py-2 text-zinc-300" {...props} />
+      ),
+    }),
+    [resolveHeadingId]
+  )
+
   if (loading) {
     return (
       <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
@@ -492,7 +678,7 @@ export default function StoryViewerPage() {
       <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
         <div className="text-center">
           <div className="text-red-400 text-lg mb-4">{error || 'História não encontrada'}</div>
-          <Button onClick={() => router.push('/about/historias')} variant="outline">
+          <Button onClick={() => back()} variant="outline">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Voltar
           </Button>
@@ -529,11 +715,6 @@ export default function StoryViewerPage() {
 
       {/* Desktop: Left Sidebar TOC */}
       <aside className="hidden lg:block fixed left-4 top-24 w-64 max-h-[calc(100vh-8rem)] overflow-y-auto z-10">
-        {(() => {
-          console.log('🎯 DEBUG RENDER - TOC length:', tableOfContents.length)
-          console.log('🎯 DEBUG RENDER - TOC data:', tableOfContents)
-          return null
-        })()}
         {tableOfContents.length > 0 && (
           <Card className="animate-slide-in-left">
             <CardHeader>
@@ -647,7 +828,7 @@ export default function StoryViewerPage() {
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
               <div className="flex items-center gap-3 mb-4">
                 <Button
-                  onClick={() => router.push('/about/historias')}
+                  onClick={() => back()}
                   variant="outline"
                   size="sm"
                   className="bg-zinc-900/80 backdrop-blur-sm"
@@ -655,6 +836,17 @@ export default function StoryViewerPage() {
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Voltar
                 </Button>
+                {canGoForward && (
+                  <Button
+                    onClick={() => forward()}
+                    variant="outline"
+                    size="sm"
+                    className="bg-zinc-900/80 backdrop-blur-sm"
+                    title="Avançar (Alt+→)"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                )}
                 {story.filePath && (
                   <Button
                     variant="outline"
@@ -689,13 +881,23 @@ export default function StoryViewerPage() {
           <div className="mb-8 animate-slide-up">
             <div className="flex items-center gap-3 mb-6">
               <Button
-                onClick={() => router.push('/about/historias')}
+                onClick={() => back()}
                 variant="outline"
                 size="sm"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Voltar
               </Button>
+              {canGoForward && (
+                <Button
+                  onClick={() => forward()}
+                  variant="outline"
+                  size="sm"
+                  title="Avançar (Alt+→)"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              )}
               {story.filePath && (
                 <Button
                   variant="outline"
@@ -800,75 +1002,7 @@ export default function StoryViewerPage() {
                     <div className="prose prose-invert prose-lime max-w-none story-content">
                       <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
-                        components={{
-                          h1: ({node, ...props}) => {
-                            const text = String(props.children)
-                            const id = generateHeadingId(text)
-                            return <h1 id={id} className="text-3xl font-bold text-lime-100 mb-6 mt-10 scroll-mt-24" {...props} />
-                          },
-                          h2: ({node, ...props}) => {
-                            const text = String(props.children)
-                            const id = generateHeadingId(text)
-                            return <h2 id={id} className="text-2xl font-bold text-lime-200 mb-4 mt-8 scroll-mt-24" {...props} />
-                          },
-                          h3: ({node, ...props}) => {
-                            const text = String(props.children)
-                            const id = generateHeadingId(text)
-                            return <h3 id={id} className="text-xl font-bold text-cyan-200 mb-3 mt-6 scroll-mt-24" {...props} />
-                          },
-                          h4: (props) => <h4 className="text-lg font-bold text-cyan-200 mb-2 mt-4" {...props} />,
-                          strong: ({node, ...props}) => {
-                            // Check if this is a heading-like bold (ends with :)
-                            const text = String(props.children)
-                            if (text.endsWith(':')) {
-                              const id = generateHeadingId(text.replace(/:$/, ''))
-                              return (
-                                <strong
-                                  id={id}
-                                  className="block text-xl font-bold text-lime-200 mb-3 mt-6 scroll-mt-24"
-                                  {...props}
-                                />
-                              )
-                            }
-                            // Regular bold text
-                            return <strong {...props} />
-                          },
-                          p: (props) => <p className="text-zinc-300 mb-4 leading-relaxed" {...props} />,
-                          ul: (props) => <ul className="list-disc list-inside text-zinc-300 mb-4 space-y-2" {...props} />,
-                          ol: (props) => <ol className="list-decimal list-inside text-zinc-300 mb-4 space-y-2" {...props} />,
-                          li: (props) => <li className="text-zinc-300" {...props} />,
-                          blockquote: (props) => (
-                            <blockquote className="border-l-4 border-lime-500 pl-4 py-2 italic text-zinc-400 my-4 bg-lime-500/5" {...props} />
-                          ),
-                          code: (props) => {
-                            const { node, className, children, ...rest } = props as any
-                            const isInline = !className
-                            return isInline ? (
-                              <code className="bg-zinc-800 text-lime-300 px-1.5 py-0.5 rounded text-sm" {...rest}>
-                                {children}
-                              </code>
-                            ) : (
-                              <code className="block bg-zinc-800 text-lime-300 p-4 rounded-lg overflow-x-auto text-sm" {...rest}>
-                                {children}
-                              </code>
-                            )
-                          },
-                          a: (props) => <a className="text-cyan-400 hover:text-cyan-300 underline decoration-cyan-400/30 hover:decoration-cyan-300 transition-colors" {...props} />,
-                          img: (props) => (
-                            <img className="rounded-lg max-w-full h-auto my-6 shadow-lg" {...props} alt={props.alt || ''} />
-                          ),
-                          table: (props) => (
-                            <div className="overflow-x-auto my-6 rounded-lg border border-zinc-800">
-                              <table className="min-w-full border-collapse" {...props} />
-                            </div>
-                          ),
-                          th: (props) => (
-                            <th className="border border-zinc-700 bg-zinc-800 px-4 py-2 text-left text-zinc-200 font-semibold" {...props} />
-                          ),
-                          td: (props) => (
-                            <td className="border border-zinc-700 px-4 py-2 text-zinc-300" {...props} />
-                          ),
-                        }}
+                        components={storyMarkdownComponents}
                       >
                         {renderContent}
                       </ReactMarkdown>
@@ -886,7 +1020,7 @@ export default function StoryViewerPage() {
                   <Card
                     key={relatedStory.id}
                     className="cursor-pointer hover:border-lime-500/50 transition-all hover:shadow-lg hover:shadow-lime-500/10 group animate-scale-in"
-                    onClick={() => router.push(`/historias/${relatedStory.id}`)}
+                    onClick={() => visitStory(relatedStory.id)}
                   >
                     <CardHeader>
                       <div className="flex items-start justify-between gap-2">
@@ -1000,7 +1134,7 @@ export default function StoryViewerPage() {
                           {relatedStories.map((relatedStory) => (
                             <button
                               key={relatedStory.id}
-                              onClick={() => router.push(`/historias/${relatedStory.id}`)}
+                              onClick={() => visitStory(relatedStory.id)}
                               className="w-full text-left p-3 rounded-lg bg-zinc-900/50 hover:bg-zinc-800 transition-colors group flex items-center justify-between"
                             >
                               <div className="flex-1">
@@ -1029,7 +1163,7 @@ export default function StoryViewerPage() {
                           {reverseConnections.map((reverseStory) => (
                             <button
                               key={reverseStory.id}
-                              onClick={() => router.push(`/historias/${reverseStory.id}`)}
+                              onClick={() => visitStory(reverseStory.id)}
                               className="w-full text-left p-3 rounded-lg bg-zinc-900/50 hover:bg-zinc-800 transition-colors group flex items-center justify-between"
                             >
                               <div className="flex-1">

@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown, { type Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -27,6 +27,34 @@ import {
 } from 'lucide-react'
 import type { Story, StoryConnection } from '@/types/Story.type'
 import { storyCategories } from '@/mocks/Stories'
+import { useStoryNavigation } from '@/hooks/useStoryNavigation'
+
+// Static markdown component overrides for the story detail sidebar — none of
+// these depend on component state, so this is defined once at module scope
+// instead of being recreated (and forcing react-markdown to re-render) on
+// every render of the page, e.g. every time a scroll/hover updates state.
+const sidebarMarkdownComponents: Components = {
+  h1: (props) => <h1 className="text-2xl font-bold text-lime-300 mt-6 mb-4" {...props} />,
+  h2: (props) => <h2 className="text-xl font-bold text-cyan-300 mt-5 mb-3" {...props} />,
+  h3: (props) => <h3 className="text-lg font-semibold text-purple-300 mt-4 mb-2" {...props} />,
+  h4: (props) => <h4 className="text-base font-semibold text-amber-300 mt-3 mb-2" {...props} />,
+  p: (props) => <p className="text-zinc-300 mb-4 leading-relaxed" {...props} />,
+  ul: (props) => <ul className="list-disc list-inside text-zinc-300 mb-4 space-y-1" {...props} />,
+  ol: (props) => <ol className="list-decimal list-inside text-zinc-300 mb-4 space-y-1" {...props} />,
+  li: (props) => <li className="text-zinc-300" {...props} />,
+  a: (props) => <a className="text-lime-400 hover:text-lime-300 underline" {...props} />,
+  blockquote: (props) => <blockquote className="border-l-4 border-cyan-500 pl-4 italic text-zinc-400 my-4" {...props} />,
+  code: (props: any) => {
+    const { inline, ...rest } = props
+    return inline ? (
+      <code className="bg-zinc-800 text-lime-400 px-1.5 py-0.5 rounded text-sm font-mono" {...rest} />
+    ) : (
+      <code className="block bg-zinc-800 text-lime-400 p-4 rounded-lg text-sm font-mono overflow-x-auto my-4" {...rest} />
+    )
+  },
+  strong: (props) => <strong className="font-bold text-white" {...props} />,
+  em: (props) => <em className="italic text-cyan-200" {...props} />,
+}
 
 const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), {
   ssr: false,
@@ -157,9 +185,14 @@ interface GraphLink {
 type ViewMode = 'global' | 'local' | 'minimal'
 
 export default function HistoriasPage() {
+  const { back: goBackToStory, canGoBack: canGoBackToStory, visitStory } = useStoryNavigation()
   const [stories, setStories] = useState<Story[]>([])
   const [connections, setConnections] = useState<StoryConnection[]>([])
   const [selectedStory, setSelectedStory] = useState<Story | null>(null)
+  // graph-data.json no longer ships each story's full text (it's fetched
+  // per-story on demand instead), so the detail panel loads it separately
+  // only when a story is actually selected.
+  const [selectedStoryContent, setSelectedStoryContent] = useState<string | null>(null)
   const [hoveredStory, setHoveredStory] = useState<Story | null>(null)
   const [highlightNodes, setHighlightNodes] = useState<Set<string>>(new Set())
   const [highlightLinks, setHighlightLinks] = useState<Set<string>>(new Set())
@@ -201,6 +234,9 @@ export default function HistoriasPage() {
   const [enableGlow, setEnableGlow] = useState(true)
 
   const graphRef = useRef<any>(null)
+  // Bounding boxes of labels already drawn in the current frame, used to skip
+  // labels that would overlap an already-drawn one (reset each frame).
+  const drawnLabelRectsRef = useRef<Array<{ x1: number; y1: number; x2: number; y2: number }>>([])
 
   // Physics presets (Obsidian-like configurations)
   const physicsPresets = useMemo(() => ({
@@ -357,14 +393,18 @@ export default function HistoriasPage() {
 
   // Transform data for force graph
   const graphData = useMemo(() => {
-    const nodes: GraphNode[] = filteredStories.map((story) => ({
-      id: story.id,
-      name: story.title,
-      val: story.importance === 'critical' ? 20 : story.importance === 'high' ? 15 : story.importance === 'medium' ? 10 : 5,
-      color: story.color,
-      category: story.category,
-      story
-    }))
+    const nodes: GraphNode[] = filteredStories
+      .map((story) => ({
+        id: story.id,
+        name: story.title,
+        val: story.importance === 'critical' ? 20 : story.importance === 'high' ? 15 : story.importance === 'medium' ? 10 : 5,
+        color: story.color,
+        category: story.category,
+        story
+      }))
+      // Bigger/more important nodes are painted first each frame, so their
+      // labels win priority over smaller neighbors when labels would overlap.
+      .sort((a, b) => b.val - a.val)
 
     const visibleIds = new Set(filteredStories.map((s) => s.id))
     const links: GraphLink[] = connections
@@ -388,18 +428,12 @@ export default function HistoriasPage() {
         const mod: any = await import('d3-force')
         const { forceManyBody, forceLink, forceCenter } = mod
 
-        console.log('🔧 Aplicando física:', {
-          chargeStrength,
-          linkDistance
-        })
-
         // Repulsive force (controllable) - valores negativos afastam
         const chargeForce = forceManyBody()
           .strength(chargeStrength)
           .distanceMax(500) // Limita alcance para melhor performance
 
         g.d3Force('charge', chargeForce)
-        console.log('  ⚡ Charge force:', chargeStrength, '(valores negativos = repulsão)')
 
         // Link force (controllable) - precisa do .id() para funcionar
         const linkForce = forceLink()
@@ -408,19 +442,14 @@ export default function HistoriasPage() {
           .strength(1) // Força total (1 = força máxima)
 
         g.d3Force('link', linkForce)
-        console.log('  🔗 Link force:', linkDistance, 'px')
 
         // Center force - mantém tudo centralizado
         g.d3Force('center', forceCenter(0, 0).strength(0.05))
-        console.log('  🎯 Center force: 0.05')
 
         // IMPORTANTE: Reaquece a simulação APENAS quando parâmetros de física mudam
         if (typeof g.d3ReheatSimulation === 'function') {
-          console.log('  🔥 Reaquecendo simulação...')
           g.d3ReheatSimulation()
         }
-
-        console.log('✅ Física aplicada com sucesso!')
 
       } catch (e) {
         console.error('❌ Erro ao aplicar física:', e)
@@ -440,8 +469,6 @@ export default function HistoriasPage() {
         const mod: any = await import('d3-force')
         const { forceManyBody, forceLink, forceCenter } = mod
 
-        console.log('🎯 Inicializando forças para novo graphData')
-
         // Configure forces without reheating
         const chargeForce = forceManyBody()
           .strength(chargeStrength)
@@ -457,7 +484,6 @@ export default function HistoriasPage() {
         g.d3Force('center', forceCenter(0, 0).strength(0.05))
 
         // NÃO reaquece - deixa a simulação continuar naturalmente
-        console.log('✅ Forças configuradas (sem reheat)')
 
       } catch (e) {
         console.error('❌ Erro ao inicializar forças:', e)
@@ -573,8 +599,6 @@ export default function HistoriasPage() {
 
       setStories(data.stories || [])
       setConnections(data.connections || [])
-
-      console.log('✅ Grafo carregado do JSON estático:', data.metadata?.stats)
     } catch (e) {
       console.error('❌ Erro ao carregar dados do grafo:', e)
       // Fallback para API se JSON não existir
@@ -586,7 +610,6 @@ export default function HistoriasPage() {
           if (data?.ok) {
             setStories(data.stories || [])
             setConnections(data.connections || [])
-            console.log('✅ Fallback bem-sucedido via API')
           }
         }
       } catch (fallbackError) {
@@ -598,6 +621,31 @@ export default function HistoriasPage() {
   useEffect(() => {
     fetchBatches(true)
   }, [fetchBatches])
+
+  // Fetch the selected story's full text on demand — the graph's own data
+  // load only carries the lightweight index (no `content`).
+  useEffect(() => {
+    if (!selectedStory) {
+      setSelectedStoryContent(null)
+      return
+    }
+
+    let cancelled = false
+    setSelectedStoryContent(null)
+
+    fetch(`/data/stories/${encodeURIComponent(selectedStory.id)}.json`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (!cancelled) setSelectedStoryContent(data?.content || null)
+      })
+      .catch(() => {
+        if (!cancelled) setSelectedStoryContent(null)
+      })
+
+    return () => {
+      cancelled = true
+    }
+  }, [selectedStory])
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -618,15 +666,20 @@ export default function HistoriasPage() {
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [isFullscreen, showFilters])
 
-  const handleNodeClick = useCallback((node: any) => {
+  const handleNodeClick = useCallback((node: any, event?: MouseEvent) => {
     if (node && node.story) {
       const story = node.story as Story
 
-      // Open the story in the dedicated viewer page in a new tab
-      const url = `/historias/${story.id}`
-      window.open(url, '_blank', 'noopener,noreferrer')
+      // Ctrl/Cmd/clique do meio: abre em nova aba (comportamento padrão da web)
+      if (event && (event.ctrlKey || event.metaKey || event.button === 1)) {
+        window.open(`/historias/${story.id}`, '_blank', 'noopener,noreferrer')
+        return
+      }
+
+      // Clique normal: navega no lugar, registrando na pilha de navegação
+      visitStory(story.id)
     }
-  }, [])
+  }, [visitStory])
 
   const handleNodeHover = useCallback((node: any) => {
     setHoveredStory(node?.story || null)
@@ -693,20 +746,20 @@ export default function HistoriasPage() {
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
 
-      // Draw icon with shadow for better visibility
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.8)'
-      ctx.shadowBlur = 4
+      // Note: intentionally no ctx.shadowBlur here — shadow blur is one of
+      // the most expensive Canvas2D operations, and this fillText runs for
+      // every node (up to ~200+) on every animation frame. The icon is
+      // already legible as solid white on the node's fill color.
       ctx.fillStyle = isDimmed ? '#ffffff60' : '#ffffff'
       ctx.fillText(icon, node.x, node.y)
-      ctx.shadowBlur = 0 // Reset shadow
 
       // Draw label only when enabled and zoomed in or selected
-      if (showLabels && (globalScale > 1.2 || isSelected || isHighlighted)) {
+      if (showLabels && (globalScale > 1.6 || isSelected || isHighlighted)) {
         const fontSize = Math.max(10, 12 / globalScale)
         ctx.font = `${fontSize}px Sans-Serif`
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        
+
         // Label with background for better readability
         const labelText = node.name
         const metrics = ctx.measureText(labelText)
@@ -714,18 +767,34 @@ export default function HistoriasPage() {
         const labelHeight = fontSize * 1.2
         const labelY = node.y + size + fontSize + 2
 
-        // Background
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
-        ctx.fillRect(
-          node.x - labelWidth / 2 - 4,
-          labelY - labelHeight / 2,
-          labelWidth + 8,
-          labelHeight
+        const padding = 4
+        const rect = {
+          x1: node.x - labelWidth / 2 - padding,
+          y1: labelY - labelHeight / 2,
+          x2: node.x + labelWidth / 2 + padding,
+          y2: labelY + labelHeight / 2
+        }
+
+        // Skip labels that would overlap one already drawn this frame —
+        // nodes are painted biggest/most-important first, so those win.
+        // Selected/highlighted labels always draw, since that's what the
+        // user is explicitly focused on.
+        const overlapsDrawn = drawnLabelRectsRef.current.some(
+          (r) =>
+            rect.x1 < r.x2 && rect.x2 > r.x1 && rect.y1 < r.y2 && rect.y2 > r.y1
         )
 
-        // Text
-        ctx.fillStyle = isDimmed ? '#ffffff60' : '#ffffff'
-        ctx.fillText(labelText, node.x, labelY)
+        if (!overlapsDrawn || isSelected || isHighlighted) {
+          // Background
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
+          ctx.fillRect(rect.x1, rect.y1, rect.x2 - rect.x1, rect.y2 - rect.y1)
+
+          // Text
+          ctx.fillStyle = isDimmed ? '#ffffff60' : '#ffffff'
+          ctx.fillText(labelText, node.x, labelY)
+
+          drawnLabelRectsRef.current.push(rect)
+        }
       }
     },
     [selectedStory, hoveredStory, highlightNodes, nodeSize, showLabels]
@@ -791,6 +860,17 @@ export default function HistoriasPage() {
           </div>
 
           <div className="flex items-center gap-3">
+            {canGoBackToStory && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={goBackToStory}
+                className="text-white/80 hover:text-white"
+                title="Voltar para a última história visitada (Alt+←)"
+              >
+                <ArrowLeft className="w-4 h-4" />
+              </Button>
+            )}
             <Button
               variant="ghost"
               size="sm"
@@ -1261,6 +1341,9 @@ export default function HistoriasPage() {
               linkTarget="target"
               onNodeClick={handleNodeClick}
               onNodeHover={handleNodeHover}
+              onRenderFramePre={() => {
+                drawnLabelRectsRef.current = []
+              }}
               nodeCanvasObject={paintNodeCanvas}
               linkCanvasObject={paintLinkCanvas}
               backgroundColor="#000000"
@@ -1322,7 +1405,7 @@ export default function HistoriasPage() {
                 )}
 
                 {/* Conteúdo Markdown Completo */}
-                {selectedStory.content && (
+                {selectedStoryContent && (
                   <div>
                     <h3 className="font-semibold text-cyan-200 mb-3 flex items-center gap-2">
                       <BookOpen className="w-4 h-4" />
@@ -1331,30 +1414,9 @@ export default function HistoriasPage() {
                     <div className="prose prose-invert prose-sm max-w-none text-zinc-300 leading-relaxed">
                       <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
-                        components={{
-                          h1: (props) => <h1 className="text-2xl font-bold text-lime-300 mt-6 mb-4" {...props} />,
-                          h2: (props) => <h2 className="text-xl font-bold text-cyan-300 mt-5 mb-3" {...props} />,
-                          h3: (props) => <h3 className="text-lg font-semibold text-purple-300 mt-4 mb-2" {...props} />,
-                          h4: (props) => <h4 className="text-base font-semibold text-amber-300 mt-3 mb-2" {...props} />,
-                          p: (props) => <p className="text-zinc-300 mb-4 leading-relaxed" {...props} />,
-                          ul: (props) => <ul className="list-disc list-inside text-zinc-300 mb-4 space-y-1" {...props} />,
-                          ol: (props) => <ol className="list-decimal list-inside text-zinc-300 mb-4 space-y-1" {...props} />,
-                          li: (props) => <li className="text-zinc-300" {...props} />,
-                          a: (props) => <a className="text-lime-400 hover:text-lime-300 underline" {...props} />,
-                          blockquote: (props) => <blockquote className="border-l-4 border-cyan-500 pl-4 italic text-zinc-400 my-4" {...props} />,
-                          code: (props: any) => {
-                            const { inline, ...rest } = props
-                            return inline ? (
-                              <code className="bg-zinc-800 text-lime-400 px-1.5 py-0.5 rounded text-sm font-mono" {...rest} />
-                            ) : (
-                              <code className="block bg-zinc-800 text-lime-400 p-4 rounded-lg text-sm font-mono overflow-x-auto my-4" {...rest} />
-                            )
-                          },
-                          strong: (props) => <strong className="font-bold text-white" {...props} />,
-                          em: (props) => <em className="italic text-cyan-200" {...props} />,
-                        }}
+                        components={sidebarMarkdownComponents}
                       >
-                        {selectedStory.content}
+                        {selectedStoryContent}
                       </ReactMarkdown>
                     </div>
                   </div>
