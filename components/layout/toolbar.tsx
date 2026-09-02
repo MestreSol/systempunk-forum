@@ -15,6 +15,7 @@ import {
 import { Button } from '../ui/button'
 import { Avatar } from '../ui/avatar'
 import ListItem from './toolbar/ListItem'
+import { projects as realGames } from '@/mocks/Projects'
 
 type User = {
   name: string
@@ -27,32 +28,20 @@ export type Project = {
   description: string
   type: 'Jogo' | 'Livro' | 'Historia'
   link?: string
+  image?: string
 }
 
-// Backwards-compatible sample data. Prefer passing `projects` and `user` as props.
-const defaultProjects: Project[] = [
-  {
-    id: 'sistema-001',
-    name: 'Sistema Alpha',
-    description: 'Um jogo de exploração e intriga.',
-    type: 'Jogo',
-    link: '/projects/jogo/sistema-001'
-  },
-  {
-    id: 'livro-001',
-    name: 'Crônicas de Systempunk',
-    description: 'Uma coletânea de contos do universo Systempunk.',
-    type: 'Livro',
-    link: '/projects/livro/livro-001'
-  },
-  {
-    id: 'historia-001',
-    name: 'A Primeira História',
-    description: 'A história que iniciou tudo.',
-    type: 'Historia',
-    link: '/projects/historia/historia-001'
-  }
-]
+// Prefer passing `projects` and `user` as props. Defaults to the real games
+// from mocks/Projects.ts (there's no real Livro/Historia content yet, so
+// those columns in the dropdown have no cards besides the static "Todos os..." link).
+const defaultProjects: Project[] = realGames.map((game) => ({
+  id: game.id,
+  name: game.name,
+  description: game.description,
+  type: 'Jogo',
+  link: `/projects/jogo/${game.id}`,
+  image: game.image
+}))
 
 type Props = {
   user?: User
@@ -107,7 +96,7 @@ export default function Toolbar({
                         href="/"
                         style={{
                           backgroundImage:
-                            "linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to)), url('/systempunkBrand.png')",
+                            "linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to)), url('/systempunkBrand.webp')",
                           backgroundSize: 'cover',
                           backgroundPosition: 'center',
                           backgroundRepeat: 'no-repeat'
@@ -169,7 +158,7 @@ export default function Toolbar({
                               className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden focus:shadow-md"
                               href={`/projects/jogo/${project.id}`}
                               style={{
-                                backgroundImage: `linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to)), url('/${project.id}.png')`,
+                                backgroundImage: `linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to)), url('${project.image || `/${project.id}.png`}')`,
                                 backgroundSize: 'cover',
                                 backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat'

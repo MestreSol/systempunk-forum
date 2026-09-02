@@ -20,7 +20,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/Trailer.png"
+          src="/Trailer.webp"
           alt="SystemPunk Background"
           fill
           className="object-cover"
@@ -47,7 +47,7 @@ export default function HeroSection({ stats }: HeroSectionProps) {
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Link href="/projects">
+            <Link href="/projects/jogo">
               <Button
                 size="lg"
                 className="bg-lime-600 hover:bg-lime-700 text-white font-semibold px-8 py-4 text-lg shadow-2xl hover:shadow-lime-600/25 transition-all duration-300 transform hover:scale-105"

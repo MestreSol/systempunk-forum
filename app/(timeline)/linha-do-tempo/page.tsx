@@ -1,6 +1,6 @@
  'use client'
 
-import eras from './eras.json'
+import { useEffect, useState } from 'react'
 import TimelineLoading from '@/components/timeline/TimelineLoading'
 import BackgroundLayers from '@/components/timeline/BackgroundLayers'
 import TimelineHeader from '@/components/timeline/TimelineHeader'
@@ -8,9 +8,19 @@ import TimelineMain from '@/components/timeline/TimelineMain'
 import DetailsPanel from '@/components/timeline/DetailsPanel'
 import useTimeline from '@/hooks/useTimeline'
 
-const rawEras = eras as any[]
-
 export default function UniverseTimelinePage() {
+  // Fetched at runtime instead of imported directly (eras.json was getting
+  // bundled straight into this page's client JS — 46KB of data shipped as
+  // code on every load instead of a cacheable static file).
+  const [rawEras, setRawEras] = useState<any[]>([])
+
+  useEffect(() => {
+    fetch('/data/eras.json')
+      .then((res) => res.json())
+      .then(setRawEras)
+      .catch(() => setRawEras([]))
+  }, [])
+
   const {
     universeEras,
     currentEra,
@@ -31,7 +41,7 @@ export default function UniverseTimelinePage() {
     setShowDetails
   } = useTimeline(rawEras)
 
-  if (isInitialLoad) {
+  if (isInitialLoad || universeEras.length === 0) {
     return <TimelineLoading universeEras={universeEras} loadingIconIndex={loadingIconIndex} loadingOpacity={loadingOpacity} />
   }
 

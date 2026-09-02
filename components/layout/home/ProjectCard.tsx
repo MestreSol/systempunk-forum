@@ -14,7 +14,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Card
-      className={`bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 ${
+      className={`bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 h-full ${
         project.featured ? 'ring-2 ring-lime-500/20' : ''
       } p-0 overflow-hidden`}
     >
@@ -35,7 +35,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       </CardMedia>
 
       {/* Conteúdo */}
-      <CardContent className="p-6">
+      <CardContent className="p-6 flex flex-col flex-1">
         <div className="flex items-center justify-between mb-3">
           <Badge
             variant="secondary"
@@ -64,12 +64,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto pt-2">
           <div className="flex items-center gap-2 text-xs text-zinc-500">
             <Download className="w-3 h-3" />
             {project.downloads}
           </div>
-          <Link href={`/projects/jogo`}>
+          <Link href={`/projects/jogo/${project.id}`}>
             <Button size="sm" className="bg-lime-600 hover:bg-lime-700">
               Ver Projeto
             </Button>

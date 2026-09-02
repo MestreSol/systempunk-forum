@@ -30,7 +30,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/projects">
+          <Link href="/projects/jogo">
             <Button
               variant="outline"
               className="border-background-700 text-primary-300 hover:bg-background-800"
