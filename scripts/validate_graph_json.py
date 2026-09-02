@@ -54,7 +54,11 @@ class GraphValidator:
         stories = self.data.get('stories', [])
         ids = set()
 
-        required_fields = ['id', 'title', 'category', 'summary', 'content',
+        # 'content' não é obrigatório aqui de propósito: graph-data.json é o
+        # índice leve (sem o texto completo de cada história), gerado por
+        # save_split() em scripts/generate_graph_json.py — o conteúdo
+        # completo fica em public/data/stories/{id}.json.
+        required_fields = ['id', 'title', 'category', 'summary',
                           'connections', 'position', 'color', 'importance', 'status']
         valid_categories = {'character', 'event', 'location', 'technology', 'culture', 'mystery'}
         valid_importance = {'low', 'medium', 'high', 'critical'}

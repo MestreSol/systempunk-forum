@@ -12,8 +12,8 @@
     "release": "standard-version",
     "release:dry": "standard-version --dry-run",
     "commit": "npm run release:dry && npm run release && git push origin HEAD --follow-tags",
-    "generate:graph": "python scripts/generate_graph_json.py --input content/ --output public/data/graph-data.json --pretty",
-    "generate:graph:prod": "python scripts/generate_graph_json.py --input content/ --output public/data/graph-data.json",
+    "generate:graph": "python scripts/generate_graph_json.py --input content/ --output public/data/graph-data.json",
+    "generate:graph:pretty": "python scripts/generate_graph_json.py --input content/ --output public/data/graph-data.json --pretty",
     "validate:graph": "python scripts/validate_graph_json.py --input public/data/graph-data.json"
   },
   "jest": {
@@ -89,9 +89,6 @@
     }
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.6",
-    "@react-three/fiber": "^9.4.0",
-    "@types/three": "^0.180.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -113,7 +110,6 @@
     "remark-gfm": "^4.0.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
-    "three": "^0.180.0",
     "vaul": "^1.1.2"
   },
   "devDependencies": {
