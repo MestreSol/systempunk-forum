@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, Calendar, Eye, Clock, Share } from 'lucide-react'
@@ -272,9 +274,9 @@ export default function NewsPage({ params }: NewsPageParams) {
 
             {/* Content */}
             <div className="prose prose-invert prose-lg max-w-none">
-              <div className="whitespace-pre-wrap text-zinc-200 leading-relaxed">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {article.content}
-              </div>
+              </ReactMarkdown>
             </div>
 
             {/* Footer */}
@@ -355,10 +357,11 @@ export default function NewsPage({ params }: NewsPageParams) {
         <article className="container mx-auto px-6 py-12">
           <div className="max-w-2xl mx-auto bg-zinc-900 border border-lime-700 rounded-lg shadow-lg p-6">
             {n.content ? (
-              <div
-                className="prose prose-invert prose-lg max-w-none text-lime-100"
-                dangerouslySetInnerHTML={{ __html: n.content }}
-              />
+              <div className="prose prose-invert prose-lg max-w-none text-lime-100">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {n.content}
+                </ReactMarkdown>
+              </div>
             ) : (
               <div className="text-lime-200 text-base">
                 Conteúdo completo em breve.
