@@ -1,8 +1,111 @@
+import {
+  Anchor,
+  Atom,
+  Beaker,
+  Biohazard,
+  Bug,
+  Building,
+  Camera,
+  Church,
+  Clock,
+  CloudFog,
+  Cog,
+  Compass,
+  Cpu,
+  Crown,
+  Dna,
+  Droplet,
+  Factory,
+  Flame,
+  Fuel,
+  Gem,
+  Hourglass,
+  Lasso,
+  Leaf,
+  LeafyGreen,
+  Moon,
+  Mountain,
+  Palette,
+  Plane,
+  Radio,
+  Rocket,
+  Scale,
+  Shield,
+  ShieldCheck,
+  Skull,
+  Snowflake,
+  Sparkles,
+  Sun,
+  SunDim,
+  Swords,
+  Users,
+  Wand2,
+  Waves,
+  Wind,
+  Wrench,
+  Zap,
+  type LucideIcon
+} from 'lucide-react'
 import { UniverseEra } from '../types/Timeline.type'
 
-export function mapEras(rawEras: any[], Icons: any, Cpu: any): UniverseEra[] {
+// Explicit map of the icon names actually referenced by eras.json, instead
+// of `import * as Icons from 'lucide-react'` — a namespace import pulls in
+// (and defeats tree-shaking for) the entire icon library, which was the
+// single biggest contributor to /linha-do-tempo's bundle size. Any name in
+// eras.json not listed here (there are a few typos/renamed icons in the
+// data, e.g. "Galaxy", "Vr") falls back to Cpu, matching the previous
+// `(Icons as any)[e.icon] || Cpu` behavior.
+const iconMap: Record<string, LucideIcon> = {
+  Anchor,
+  Atom,
+  Beaker,
+  Biohazard,
+  Bug,
+  Building,
+  Camera,
+  Church,
+  Clock,
+  CloudFog,
+  Cog,
+  Compass,
+  Cpu,
+  Crown,
+  Dna,
+  Droplet,
+  Factory,
+  Flame,
+  Fuel,
+  Gem,
+  Hourglass,
+  Lasso,
+  Leaf,
+  LeafyGreen,
+  Moon,
+  Mountain,
+  Palette,
+  Plane,
+  Radio,
+  Rocket,
+  Scale,
+  Shield,
+  ShieldCheck,
+  Skull,
+  Snowflake,
+  Sparkles,
+  Sun,
+  SunDim,
+  Swords,
+  Users,
+  Wand2,
+  Waves,
+  Wind,
+  Wrench,
+  Zap
+}
+
+export function mapEras(rawEras: any[]): UniverseEra[] {
   return (rawEras || []).map((e: any) => ({
     ...e,
-    icon: (Icons as any)[e.icon] || Cpu
+    icon: iconMap[e.icon] || Cpu
   })) as UniverseEra[]
 }

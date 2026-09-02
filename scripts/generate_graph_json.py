@@ -179,6 +179,20 @@ class StoryGraphGenerator:
         """Lista todos os arquivos .md recursivamente"""
         return list(self.content_dir.rglob('*.md'))
 
+    def build_image_index(self) -> Dict[str, str]:
+        """Varre content_dir procurando imagens e monta um índice
+        nome-de-arquivo (lowercase) -> caminho relativo real em content/.
+        Usado para resolver embeds ![[imagem.png]] sem precisar adivinhar
+        a pasta no cliente (imagens ficam espalhadas em várias subpastas,
+        não seguem um padrão único)."""
+        image_exts = {'.png', '.jpg', '.jpeg', '.webp', '.gif', '.svg'}
+        index = {}
+        for path in self.content_dir.rglob('*'):
+            if path.is_file() and path.suffix.lower() in image_exts:
+                rel = path.relative_to(self.content_dir)
+                index[path.name.lower()] = str(rel).replace('\\', '/')
+        return index
+
     def get_folder_category(self, file_path: Path) -> str:
         """Determina categoria pela pasta pai"""
         rel_path = file_path.relative_to(self.content_dir)
@@ -460,36 +474,71 @@ class StoryGraphGenerator:
             }
         }
 
-    def save_json(self, output_path: str, pretty: bool = True):
-        """Salva JSON do grafo"""
+    def save_split(self, output_path: str, stories_dir: str, image_index_path: str, pretty: bool = False):
+        """Salva os dados do grafo em 3 partes, para que nenhuma página
+        precise baixar mais do que precisa:
+          - output_path: índice leve com todas as histórias SEM o campo
+            'content' (usado pelo grafo e para montar listas de
+            relacionadas/referenciadas)
+          - stories_dir: um arquivo JSON por história, com o objeto
+            completo (incluindo 'content'), buscado sob demanda ao abrir
+            aquela história específica
+          - image_index_path: mapa nome-de-arquivo -> caminho real,
+            construído por build_image_index()
+        """
         graph_data = self.generate_graph()
 
-        # Cria diretório se não existir
-        output_file = Path(output_path)
-        output_file.parent.mkdir(parents=True, exist_ok=True)
+        def dump(obj, path: str):
+            file_path = Path(path)
+            file_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(file_path, 'w', encoding='utf-8') as f:
+                if pretty:
+                    json.dump(obj, f, ensure_ascii=False, indent=2)
+                else:
+                    json.dump(obj, f, ensure_ascii=False)
+            return os.path.getsize(file_path)
 
-        with open(output_path, 'w', encoding='utf-8') as f:
-            if pretty:
-                json.dump(graph_data, f, ensure_ascii=False, indent=2)
-            else:
-                json.dump(graph_data, f, ensure_ascii=False)
+        # Histórias completas, uma por arquivo
+        stories_dir_path = Path(stories_dir)
+        stories_dir_path.mkdir(parents=True, exist_ok=True)
+        # Limpa arquivos de uma geração anterior (histórias removidas/renomeadas)
+        for old_file in stories_dir_path.glob('*.json'):
+            old_file.unlink()
 
-        file_size = os.path.getsize(output_path)
-        print(f"\n✅ JSON salvo em: {output_path}")
-        print(f"📦 Tamanho: {file_size / 1024:.2f} KB")
+        stories_total_size = 0
+        for story in graph_data['stories']:
+            stories_total_size += dump(story, str(stories_dir_path / f"{story['id']}.json"))
+
+        # Índice leve (sem 'content') para o grafo e listas de conexões
+        light_stories = [{k: v for k, v in s.items() if k != 'content'} for s in graph_data['stories']]
+        light_data = {**graph_data, 'stories': light_stories}
+        main_size = dump(light_data, output_path)
+
+        # Índice de imagens
+        image_index = self.build_image_index()
+        image_index_size = dump(image_index, image_index_path)
+
+        print(f"\n✅ Índice salvo em: {output_path} ({main_size / 1024:.2f} KB)")
+        print(f"✅ {len(graph_data['stories'])} histórias salvas em: {stories_dir} ({stories_total_size / 1024:.2f} KB total)")
+        print(f"✅ Índice de {len(image_index)} imagens salvo em: {image_index_path} ({image_index_size / 1024:.2f} KB)")
 
 def main():
     parser = argparse.ArgumentParser(description='Gera JSON do grafo de histórias SystemPunk')
     parser.add_argument('--input', '-i', default='content/', help='Diretório com arquivos .md')
-    parser.add_argument('--output', '-o', default='public/data/graph-data.json', help='Arquivo JSON de saída')
-    parser.add_argument('--pretty', action='store_true', help='Formata JSON com indentação')
+    parser.add_argument('--output', '-o', default='public/data/graph-data.json',
+                         help='Arquivo JSON de saída (índice leve, sem o content completo de cada história)')
+    parser.add_argument('--stories-dir', default='public/data/stories',
+                         help='Diretório onde salvar o JSON completo (com content) de cada história')
+    parser.add_argument('--image-index', default='public/data/image-index.json',
+                         help='Arquivo JSON com o índice nome-de-arquivo -> caminho real das imagens em content/')
+    parser.add_argument('--pretty', action='store_true', help='Formata JSON com indentação (aumenta o tamanho dos arquivos)')
 
     args = parser.parse_args()
 
     print("🚀 SystemPunk Graph Generator\n")
 
     generator = StoryGraphGenerator(args.input)
-    generator.save_json(args.output, pretty=args.pretty)
+    generator.save_split(args.output, args.stories_dir, args.image_index, pretty=args.pretty)
 
     print("\n🎉 Concluído!")
 

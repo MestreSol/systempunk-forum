@@ -1,13 +1,11 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import * as Icons from 'lucide-react'
-import { Cpu } from 'lucide-react'
 import { mapEras } from '../lib/timelineHelpers'
 import { UniverseEra } from '../types/Timeline.type'
 
 export default function useTimeline(rawEras: any[]) {
-  const universeEras: UniverseEra[] = mapEras(rawEras, Icons, Cpu)
+  const universeEras: UniverseEra[] = mapEras(rawEras)
 
   const [currentEra, setCurrentEra] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(false)
@@ -36,11 +34,27 @@ export default function useTimeline(rawEras: any[]) {
     }
   }, [])
 
-  const [topBg, setTopBg] = useState<string | undefined>(() => {
-    return currentEraData?.backgroundImage ? `/${currentEraData.backgroundImage}` : undefined
-  })
+  // Was a lazy useState(() => ...) initializer reading currentEraData
+  // directly — that only ran once at mount, which worked when rawEras was
+  // available synchronously. Now that rawEras is fetched, universeEras is
+  // still empty on that first render, so it always initialized to
+  // undefined. Plain undefined here; the effect below (keyed on
+  // universeEras.length, a stable primitive) sets it once era data
+  // actually arrives.
+  const [topBg, setTopBg] = useState<string | undefined>(undefined)
   const [bottomBg, setBottomBg] = useState<string | undefined>(undefined)
   const [showTop, setShowTop] = useState(true)
+
+  // Sets the initial background as soon as era data actually loads —
+  // separate from the crossfade effect below, which only reacts to
+  // `currentEra` changing (era data arriving doesn't change currentEra, so
+  // that effect alone would never fire for this case).
+  useEffect(() => {
+    if (universeEras.length === 0 || topBg || bottomBg) return
+    const url = currentEraData?.backgroundImage ? `/${currentEraData.backgroundImage}` : undefined
+    setTopBg(url)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [universeEras.length])
 
   useEffect(() => {
     const newUrl = currentEraData?.backgroundImage ? `/${currentEraData.backgroundImage}` : undefined
