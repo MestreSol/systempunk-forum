@@ -15,21 +15,21 @@ Script Python para gerar JSON estático do grafo de histórias a partir dos arqu
 
 ```bash
 # Desenvolvimento (JSON formatado)
-npm run generate:graph
+pnpm generate:graph
 
 # Produção (JSON minificado)
-npm run generate:graph:prod
+pnpm generate:graph:prod
 ```
 
 ### Workflow Recomendado
 
 1. **Durante desenvolvimento**:
    - Edite os arquivos markdown em `content/`
-   - Execute `npm run generate:graph` para regenerar o JSON
+   - Execute `pnpm generate:graph` para regenerar o JSON
    - Recarregue a página `/about/historias` para ver mudanças
 
 2. **Antes de commit**:
-   - Rode `npm run generate:graph:prod` para minificar
+   - Rode `pnpm generate:graph:prod` para minificar
    - Commit tanto os `.md` quanto o `public/data/graph-data.json`
 
 3. **Em produção**:

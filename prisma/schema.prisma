@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum ArticleStatus {
+  draft
+  published
+}
+
+model NewsArticle {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  title       String
+  excerpt     String
+  coverImage  String?
+  category    String
+  tags        String // JSON-encoded string[]
+  author      String
+  status      ArticleStatus @default(draft)
+  publishDate DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  views       Int           @default(0)
+  blocks      NewsBlock[]
+
+  @@index([status, publishDate])
+}
+
+model NewsBlock {
+  id        String      @id @default(cuid())
+  articleId String
+  article   NewsArticle @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  type      String // "heading" | "paragraph" | "image" | "gallery" | "quote" | "callout" | "video" | "divider" | "button"
+  order     Int
+  data      String // JSON-encoded, shape depends on `type`
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@index([articleId, order])
+}
