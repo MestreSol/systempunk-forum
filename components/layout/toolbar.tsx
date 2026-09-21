@@ -14,6 +14,7 @@ import {
 } from '../ui/navigation-menu'
 import { Button } from '../ui/button'
 import { Avatar } from '../ui/avatar'
+import { ArrowRight, Gamepad2, Star } from 'lucide-react'
 import ListItem from './toolbar/ListItem'
 import { projects as realGames } from '@/mocks/Projects'
 
@@ -29,6 +30,9 @@ export type Project = {
   type: 'Jogo' | 'Livro' | 'Historia'
   link?: string
   image?: string
+  status?: string
+  rating?: number
+  featured?: boolean
 }
 
 // Prefer passing `projects` and `user` as props. Defaults to the real games
@@ -40,7 +44,10 @@ const defaultProjects: Project[] = realGames.map((game) => ({
   description: game.description,
   type: 'Jogo',
   link: `/projects/jogo/${game.id}`,
-  image: game.image
+  image: game.image,
+  status: game.status,
+  rating: game.rating,
+  featured: game.featured
 }))
 
 type Props = {
@@ -54,6 +61,7 @@ export default function Toolbar({
 }: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const pathname = usePathname()
+  const games = projects.filter((p) => p.type === 'Jogo')
 
   // Hide toolbar for timeline and historias interactive pages
   if (
@@ -146,90 +154,102 @@ export default function Toolbar({
             <NavigationMenuItem>
               <NavigationMenuTrigger>Projects</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-2 md:w-[600px] lg:w-[700px] lg:grid-cols-3">
-                  <li>
-                    <div className="mb-2 font-semibold">Jogos</div>
-                    <ul className="space-y-1">
-                      {projects
-                        .filter((p) => p.type === 'Jogo')
-                        .map((project) => (
-                          <NavigationMenuLink asChild key={project.id}>
-                            <a
-                              className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden focus:shadow-md"
-                              href={`/projects/jogo/${project.id}`}
-                              style={{
-                                backgroundImage: `linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to)), url('${project.image || `/${project.id}.png`}')`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat'
-                              }}
-                            >
-                              <div className="mb-2 mt-4 text-lg font-medium">
-                                {project.name}
-                              </div>
-                              <p className="text-muted-foreground text-sm leading-tight">
-                                {project.description}
-                              </p>
-                            </a>
-                          </NavigationMenuLink>
-                        ))}
-                      <ListItem href="/projects/jogo" title="Todos os Jogos">
-                        Descubra todos os jogos do universo Systempunk, cada um
-                        com sua própria aventura e desafios.
-                      </ListItem>
-                    </ul>
-                  </li>
+                <div className="md:w-[520px] lg:w-[560px] p-1">
+                  <div className="mb-3 flex items-center justify-between px-1">
+                    <div className="flex items-center gap-2 font-semibold text-lime-300">
+                      <Gamepad2 className="h-4 w-4" />
+                      Jogos
+                    </div>
+                    <span className="font-mono text-xs uppercase tracking-widest text-zinc-500">
+                      {games.length} projetos
+                    </span>
+                  </div>
 
-                  <li>
-                    <div className="mb-2 font-semibold">Livros</div>
-                    <ul className="space-y-1">
-                      {projects
-                        .filter((p) => p.type === 'Livro')
-                        .map((project) => (
-                          <NavigationMenuLink asChild key={project.id}>
-                            <a
-                              className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden focus:shadow-md"
-                              href={project.link ?? '#'}
-                              style={{
-                                backgroundImage: `linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to)), url('/${project.id}.png')`,
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat'
-                              }}
-                            >
-                              <div className="mb-2 mt-4 text-lg font-medium">
-                                {project.name}
-                              </div>
-                              <p className="text-muted-foreground text-sm leading-tight">
-                                {project.description}
-                              </p>
-                            </a>
-                          </NavigationMenuLink>
-                        ))}
-                      <ListItem href="/projects/livro" title="Todos os Livros">
-                        Explore todos os livros do universo Systempunk, cada um
-                        oferecendo uma nova perspectiva e história.
-                      </ListItem>
-                    </ul>
-                  </li>
-
-                  <li>
-                    <div className="mb-2 font-semibold">Histórias</div>
-                    <ul className="space-y-1">
-                      {projects
-                        .filter((p) => p.type === 'Historia')
-                        .map((project) => (
-                          <ListItem
-                            key={project.id}
-                            href={project.link ?? '#'}
-                            title={project.name}
+                  <ul className="grid grid-cols-2 gap-3">
+                    {games.map((project, i) => {
+                      const hero = i === 0
+                      return (
+                        <li key={project.id} className={hero ? 'col-span-2' : ''}>
+                          <NavigationMenuLink
+                            asChild
+                            className={`group relative block w-full select-none overflow-hidden rounded-xl border border-zinc-800 p-4 no-underline outline-hidden transition-all duration-300 hover:-translate-y-0.5 hover:border-lime-500/70 hover:shadow-lg hover:shadow-lime-500/20 focus-visible:border-lime-400 ${
+                                hero ? 'h-44' : 'h-40'
+                              }`}
                           >
-                            {project.description}
-                          </ListItem>
-                        ))}
-                    </ul>
-                  </li>
-                </ul>
+                            <a href={`/projects/jogo/${project.id}`}>
+                              <div
+                                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                style={{
+                                  backgroundImage: `url('${project.image || `/${project.id}.png`}')`
+                                }}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-zinc-950/10" />
+
+                              <div className="absolute left-3 top-3 z-10 flex items-center gap-2">
+                                {project.status && (
+                                  <span className="rounded-full bg-lime-600 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                                    {project.status}
+                                  </span>
+                                )}
+                                {project.featured && (
+                                  <span className="rounded-full border border-lime-400/60 bg-zinc-950/60 px-2 py-0.5 text-[10px] font-semibold text-lime-300 backdrop-blur">
+                                    ⭐ Destaque
+                                  </span>
+                                )}
+                              </div>
+                              {project.rating && (
+                                <span className="absolute right-3 top-3 z-10 flex items-center gap-1 rounded-full bg-zinc-950/60 px-2 py-0.5 text-xs text-zinc-200 backdrop-blur">
+                                  <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+                                  {project.rating}
+                                </span>
+                              )}
+
+                              <div className="absolute inset-x-0 bottom-0 z-10 p-4">
+                                <div
+                                  className={`font-bold leading-tight text-white ${
+                                    hero ? 'text-lg' : 'text-base'
+                                  }`}
+                                >
+                                  {project.name}
+                                </div>
+                                <p
+                                  className={`mt-1 text-xs leading-snug text-zinc-300 ${
+                                    hero ? 'line-clamp-2' : 'line-clamp-1'
+                                  }`}
+                                >
+                                  {project.description}
+                                </p>
+                                <span className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-lime-400 transition-all group-hover:gap-2">
+                                  Ver projeto
+                                  <ArrowRight className="h-3 w-3" />
+                                </span>
+                              </div>
+                            </a>
+                          </NavigationMenuLink>
+                        </li>
+                      )
+                    })}
+                  </ul>
+
+                  <NavigationMenuLink
+                    asChild
+                    className="group mt-3 block rounded-xl border border-lime-500/30 bg-gradient-to-r from-lime-500/10 to-cyan-500/10 px-4 py-3 no-underline outline-hidden transition-colors hover:border-lime-400 hover:from-lime-500/20 hover:to-cyan-500/20"
+                  >
+                    <a href="/projects/jogo">
+                      <div className="flex items-center justify-between gap-4">
+                        <div>
+                          <div className="text-sm font-semibold text-white">
+                            Todos os Jogos
+                          </div>
+                          <div className="text-xs text-zinc-400">
+                            Explore o catálogo completo do universo Systempunk
+                          </div>
+                        </div>
+                        <ArrowRight className="h-5 w-5 shrink-0 text-lime-400 transition-transform group-hover:translate-x-1" />
+                      </div>
+                    </a>
+                  </NavigationMenuLink>
+                </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
 
@@ -323,15 +343,6 @@ export default function Toolbar({
                 className="text-2xl font-semibold text-lime-300"
               >
                 Jogos
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/projects/livro"
-                onClick={() => setMobileOpen(false)}
-                className="text-2xl font-semibold text-lime-300"
-              >
-                Livros
               </Link>
             </li>
             <li>

@@ -372,3 +372,114 @@ html {
 }
 
 
+
+/* Jogos page */
+@keyframes gradient-shift {
+  to {
+    background-position: 200% center;
+  }
+}
+.animate-gradient-shift {
+  animation: gradient-shift 6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient-shift {
+    animation: none;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Glitch text: RGB-split layers that flicker in bursts (auto) or on hover */
+.glitch {
+  position: relative;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  pointer-events: none;
+  opacity: 0;
+}
+.glitch::before {
+  color: #22d3ee;
+}
+.glitch::after {
+  color: #f43f5e;
+}
+.glitch-auto::before {
+  animation: glitch-a 5s steps(1) infinite;
+}
+.glitch-auto::after {
+  animation: glitch-b 5s steps(1) infinite;
+}
+.group:hover .glitch-hover::before,
+.glitch-hover:hover::before,
+.glitch-hover:focus-visible::before {
+  animation: glitch-a 0.6s steps(1) infinite;
+}
+.group:hover .glitch-hover::after,
+.glitch-hover:hover::after,
+.glitch-hover:focus-visible::after {
+  animation: glitch-b 0.6s steps(1) infinite;
+}
+@keyframes glitch-a {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0.9;
+    transform: translate(-4px, 1px);
+    clip-path: inset(10% 0 62% 0);
+  }
+  93% {
+    opacity: 0.9;
+    transform: translate(3px, -1px);
+    clip-path: inset(52% 0 18% 0);
+  }
+  96% {
+    opacity: 0.9;
+    transform: translate(-2px, 0);
+    clip-path: inset(74% 0 4% 0);
+  }
+}
+@keyframes glitch-b {
+  0%,
+  89%,
+  100% {
+    opacity: 0;
+  }
+  91% {
+    opacity: 0.9;
+    transform: translate(4px, -1px);
+    clip-path: inset(60% 0 12% 0);
+  }
+  94% {
+    opacity: 0.9;
+    transform: translate(-3px, 1px);
+    clip-path: inset(6% 0 70% 0);
+  }
+  97% {
+    opacity: 0.9;
+    transform: translate(2px, 0);
+    clip-path: inset(34% 0 40% 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glitch::before,
+  .glitch::after {
+    animation: none !important;
+  }
+}
