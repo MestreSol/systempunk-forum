@@ -19,7 +19,7 @@ export default function TimelineHeader({ universeEras, currentEra, goToEra, isAu
   return (
     <div className="absolute top-0 left-0 right-0 z-50 px-4 py-3 md:p-6">
       <div className="flex items-center justify-between">
-        <Link href="/about/introducao" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
+        <Link href="/pt/universe" className="flex items-center gap-2 text-white/80 hover:text-white transition-colors">
           <ArrowLeft className="w-5 h-5" />
           <span>Voltar</span>
         </Link>
