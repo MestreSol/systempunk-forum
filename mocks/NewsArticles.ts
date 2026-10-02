@@ -1,12 +1,14 @@
 import { NewsArticle } from '@/types/NewsArticle.type'
 
+// Transmission categories (see data/types.ts). Legacy values stored in the
+// database (devlogs, updates, ...) are mapped in lib/site/content.ts.
 export const categoryOptions = [
-  { value: 'updates', label: 'Atualizações' },
-  { value: 'releases', label: 'Lançamentos' },
-  { value: 'devlogs', label: 'Dev Logs' },
-  { value: 'announcements', label: 'Anúncios' },
-  { value: 'tutorials', label: 'Tutoriais' },
-  { value: 'community', label: 'Comunidade' }
+  { value: 'devlog', label: 'Devlog' },
+  { value: 'world', label: 'World' },
+  { value: 'system', label: 'System' },
+  { value: 'announcement', label: 'Announcement' },
+  { value: 'project', label: 'Project' },
+  { value: 'archive', label: 'Archive' }
 ]
 
 export const getCategoryLabel = (value: string): string => {

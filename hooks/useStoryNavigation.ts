@@ -28,7 +28,7 @@ export function useStoryNavigation() {
     } else {
       // Sem histórico próprio (ex.: acesso direto por URL, ou já na primeira
       // história visitada) — cai para o grafo, de onde a navegação começa.
-      router.push('/about/historias')
+      router.push('/historias')
     }
     refresh()
   }, [router, refresh])
